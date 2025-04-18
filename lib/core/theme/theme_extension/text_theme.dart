@@ -2,7 +2,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
-class AppTextTheme{
+class AppTextTheme {
   static TextTheme lightTextTheme = TextTheme(
     headlineLarge: GoogleFonts.roboto(
       fontSize: 28.sp,
@@ -28,18 +28,12 @@ class AppTextTheme{
       fontSize: 18.sp,
       fontWeight: FontWeight.w600,
     ),
-    bodyLarge: GoogleFonts.roboto(
-      fontSize: 16.sp,
-      fontWeight: FontWeight.w400,
-    ),
+    bodyLarge: GoogleFonts.roboto(fontSize: 16.sp, fontWeight: FontWeight.w400),
     bodyMedium: GoogleFonts.roboto(
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
     ),
-    bodySmall: GoogleFonts.roboto(
-      fontSize: 12.sp,
-      fontWeight: FontWeight.w400,
-    ),
+    bodySmall: GoogleFonts.roboto(fontSize: 12.sp, fontWeight: FontWeight.w400),
     labelLarge: GoogleFonts.roboto(
       fontSize: 14,
       color: Color(0xff4A4C56),
@@ -56,6 +50,5 @@ class AppTextTheme{
       fontWeight: FontWeight.w400,
     ),
   );
-  static TextTheme darkTextTheme = TextTheme(
-  );
+  static TextTheme darkTextTheme = TextTheme();
 }

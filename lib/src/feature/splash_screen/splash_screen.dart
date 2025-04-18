@@ -1,6 +1,7 @@
 import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -18,14 +19,12 @@ class SplashScreen extends StatelessWidget {
                     'https://imgcdn.stablediffusionweb.com/2024/3/23/dc1a287c-0eb2-4a27-9a22-075711a0fbcf.jpg',
                 title: 'Muntasir',
                 subtitle: 'Dhaka Bangladesh',
-                subtitlePreIconAsset:AppIcons.locationIcon, context: context,
+                subtitlePreIconAsset: AppIcons.locationIcon,
+                context: context,
                 trailing: [
-                  GestureDetector(
-                    child: Icon(Icons.location_history)
-                  ),GestureDetector(
-                    child: Icon(Icons.location_pin)
-                  ),
-                ]
+                  GestureDetector(child: Icon(Icons.location_history)),
+                  GestureDetector(child: Icon(Icons.location_pin)),
+                ],
               ),
               SizedBox(height: 10),
               TextFormField(
@@ -33,6 +32,19 @@ class SplashScreen extends StatelessWidget {
                   prefixIcon: Icon(Icons.lock),
                   hintText: 'ehfga',
                 ),
+              ),
+              Utils.primaryButton(
+                onPressed: () {},
+                text: 'rtsrg',
+                backgroundColor: Colors.black45,
+                width: 120,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              Utils.secondaryButton(
+                onPressed: () {},
+                imageAsset: AppIcons.locationIcon,
+                buttonName: 'Secondary Button',
+                context: context,
               ),
             ],
           ),

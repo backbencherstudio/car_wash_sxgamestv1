@@ -14,7 +14,7 @@ class Utils {
     required BuildContext context,
   }) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    ColorScheme colorScheme =Theme.of(context).colorScheme;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Container(
       height: 64.h,
       padding: EdgeInsets.all(10.w),
@@ -58,7 +58,10 @@ class Utils {
                 if (title != null)
                   Text(
                     title,
-                    style: textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600,color: colorScheme.primary),
+                    style: textTheme.bodyLarge!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: colorScheme.primary,
+                    ),
                   ),
                 if (subtitle != null)
                   Row(
@@ -74,7 +77,9 @@ class Utils {
                         ),
                       Text(
                         subtitle,
-                        style: textTheme.bodyMedium!.copyWith(color: colorScheme.onSurface)
+                        style: textTheme.bodyMedium!.copyWith(
+                          color: colorScheme.onSurface,
+                        ),
                       ),
                     ],
                   ),
@@ -87,6 +92,61 @@ class Utils {
             Row(mainAxisSize: MainAxisSize.min, children: trailing),
         ],
       ),
+    );
+  }
+
+  static Widget primaryButton({
+    required VoidCallback onPressed,
+    required String text,
+    Color? backgroundColor,
+    TextStyle? textStyle,
+    double? height,
+    double? width,
+    BorderRadius? borderRadius,
+  }) {
+    return SizedBox(
+      height: height,
+      width: width ?? double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: borderRadius ?? BorderRadius.circular(12.r),
+          ),
+        ),
+        onPressed: onPressed,
+        child: Text(text, style: textStyle),
+      ),
+    );
+  }
+
+  static Widget secondaryButton({
+    required VoidCallback onPressed,
+    required String imageAsset,
+    String? buttonName,
+    Color? backgroundColor,
+    TextStyle? textStyle,
+    double? height,
+    double? width,
+    BorderRadius? borderRadius,
+    required BuildContext context,
+  }) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return Column(
+      children: [
+        Container(
+          height: height ??72.w,
+          width: width??74.w,
+          padding: EdgeInsets.symmetric(horizontal: 16.2.w, vertical: 17.1.h),
+          decoration: BoxDecoration(
+            borderRadius: borderRadius ?? BorderRadius.circular(12),
+            color: backgroundColor ?? colorScheme.surface.withOpacity(0.08),
+          ),
+          child: SvgPicture.asset(imageAsset),
+        ),
+        if (buttonName != null) ...[SizedBox(height: 12.h), Text(buttonName,style: textTheme.bodySmall,)],
+      ],
     );
   }
 }

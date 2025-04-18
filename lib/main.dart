@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           routerConfig: RouteConfig().goRouter,
         );
-
       },
     );
   }
