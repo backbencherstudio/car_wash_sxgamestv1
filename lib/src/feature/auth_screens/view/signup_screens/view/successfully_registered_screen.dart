@@ -1,4 +1,5 @@
 import 'package:car_wash/core/constant/images.dart';
+import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,8 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
                     color: Color(0xFFE2E8F0),
                     shape: BoxShape.circle,
                     image: DecorationImage(image: AssetImage(
-                      " "
-                      // AppImages.successfullyRegisteredImage
+                   
+                      AppImages.successfullyRegisteredImage
                       
                       
                       ))
@@ -64,7 +65,7 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
                   color: AuthColorPalette.primary,
                   textColor: AuthColorPalette.white,
                   onPressed: () {
-                    // context.go(RouteName.crateOrJoinScreen);
+                    context.go(RouteName.crateOrJoinScreen);
                   },
                 ),
                 SizedBox(height: 56.h),

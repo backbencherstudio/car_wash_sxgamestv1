@@ -1,7 +1,6 @@
 import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_color_pallete.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -77,7 +76,7 @@ class OTPVerifyScreen extends StatelessWidget {
                   color: AuthColorPalette.primary,
                   textColor: AuthColorPalette.white,
                   onPressed: () {
-                    // context.go(RouteName.successfullyResetPasswordScreen);
+                    context.go(RouteName.successfullyResetPasswordScreen);
                   },
                 ),
                 SizedBox(height: 16.h),

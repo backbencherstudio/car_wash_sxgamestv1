@@ -1,4 +1,4 @@
-import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/routes/route_name.dart' show RouteName;
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_color_pallete.dart';
@@ -102,7 +102,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                       color: AuthColorPalette.primary,
                       textColor: AuthColorPalette.white,
                       onPressed: () {
-                    // context.pushNamed(RouteName.congratulationScreen);
+                    context.pushNamed(RouteName.congratulationScreen);
                       }),
                 ],
               ),
