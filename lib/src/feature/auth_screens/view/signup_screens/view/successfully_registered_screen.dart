@@ -1,5 +1,6 @@
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -62,8 +63,8 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
                 CommonWidgets.primaryButton(
                   context: context,
                   title: "Create or Join?",
-                  color: AuthColorPalette.primary,
-                  textColor: AuthColorPalette.white,
+                  color: AppColors.primary,
+                  textColor: Color(0xffffffff),
                   onPressed: () {
                     context.go(RouteName.crateOrJoinScreen);
                   },

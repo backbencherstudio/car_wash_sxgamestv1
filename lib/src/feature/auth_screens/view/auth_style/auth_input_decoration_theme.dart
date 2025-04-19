@@ -1,3 +1,4 @@
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,31 +19,31 @@ class AuthInputDecorationTheme {
     return InputDecoration(
       suffixIcon: suffixIcon,
       hintStyle: bodyLarge?.copyWith(
-        color: AuthColorPalette.bodyTextColor,
+        color: AppColors.onSecondary,
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
       hintText: hintText,
-      prefixIconColor: AuthColorPalette.bodyTextColor,
+      prefixIconColor: AppColors.onSurface,
       prefixIcon: prefixIcon,
       prefixIconConstraints: BoxConstraints(maxHeight: 40.h, maxWidth: 40.w),
 
       filled: true,
       fillColor: fillColor,
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(99.r),
-        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : AuthColorPalette.greyscale300) ,
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : AppColors.onSecondary  ) ,
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(99.r),
-        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : Color(0xFF6A42C2)),
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: borderColor == false ? Colors.transparent :AppColors.primary),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(99.r),
+        borderRadius: BorderRadius.circular(12.r),
         borderSide: BorderSide(color: borderColor == false ? Colors.transparent : Colors.red),
       ),
       disabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(99.r),
-        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : AuthColorPalette.greyscale300),
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : AppColors.onSecondary),
       ),
     );
   }

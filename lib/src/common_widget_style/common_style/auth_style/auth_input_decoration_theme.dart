@@ -1,3 +1,4 @@
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,7 +35,7 @@ class AuthInputDecorationTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12.r),
-        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : Color(0xFF6A42C2)),
+        borderSide: BorderSide(color: borderColor == false ? Colors.transparent :AppColors.secondary),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12.r),

@@ -1,5 +1,7 @@
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
+import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_input_decoration_theme.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
@@ -23,7 +25,7 @@ class SignUpScreen extends StatelessWidget {
     final bodyMedium = Theme.of(context).textTheme.bodyMedium;
 
     return Scaffold(
-      // appBar: Utils.appBarBackButton(context),
+      appBar: Utils.appBarBackButton(context),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.r, vertical: 16.h),
@@ -34,13 +36,13 @@ class SignUpScreen extends StatelessWidget {
                 Text(
                   'Create Your Account',
                   style: headlineSmall?.copyWith(
-                    color: AuthColorPalette.titleColor,
+                    color: AppColors.primary,
                   ),
                 ),
                 Text(
                   "Sign up and enjoy your experience",
                   style: titleSmall?.copyWith(
-                      color: AuthColorPalette.textColorGreyscale,
+                      color: AppColors.onSecondary,
                       fontWeight: FontWeight.w500
                   ),
                 ),
@@ -192,7 +194,7 @@ class SignUpScreen extends StatelessWidget {
                 CommonWidgets.primaryButton(
                   context: context,
                   title: "Continue",
-                  color: AuthColorPalette.primary,
+                  color: AppColors.primary,
                   textColor: AuthColorPalette.white,
                   onPressed: () {
                    context.push(RouteName.signUpOTPScreen);
@@ -223,16 +225,11 @@ class SignUpScreen extends StatelessWidget {
 
                   title: "Continue with Google",
                 ),
-                SizedBox(height: 16.h),
-                buildLoginButton(
-                  context: context,
-                  imagePath: 
-                   AppImages.appleLogo,
-                 
-                  title: "Continue with Apple",
-                ),
+               
                 SizedBox(height: 24.h),
-                footerText(context: context, text1: "Already have an account? ", text2: 'Log In', onTap: (){}),
+                footerText(context: context, text1: "Already have an account? ", text2: 'Log In', onTap: (){
+                  context.push(RouteName.signInScreen);
+                }),
               ],
             ),
           ),
