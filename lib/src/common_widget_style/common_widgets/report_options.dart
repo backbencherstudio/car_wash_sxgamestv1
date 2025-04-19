@@ -1,0 +1,1 @@
+enum ReportOptions { inappropriate, offensive, other}
