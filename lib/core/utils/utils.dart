@@ -149,4 +149,21 @@ class Utils {
       ],
     );
   }
+
+  static AppBar appBarBackButton(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: ImageIcon(AssetImage('assets/icons/back.png',),size: 26.r, ),
+      ),
+
+      ///size: 20.r
+    );
+  }
 }
+
+
