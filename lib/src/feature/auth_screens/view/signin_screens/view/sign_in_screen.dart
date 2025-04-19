@@ -1,5 +1,6 @@
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_input_decoration_theme.dart';
@@ -36,13 +37,14 @@ class SignInScreen extends StatelessWidget {
                 Text(
                   'Hi! Welcome Back',
                   style: headlineSmall?.copyWith(
-                    color: AuthColorPalette.titleColor,
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w600
                   ),
                 ),
                 Text(
                   "Log in to your account",
                   style: titleSmall?.copyWith(
-                    color: AuthColorPalette.textColorGreyscale,
+                    color: Theme.of(context).colorScheme.onSecondary,
                     fontWeight: FontWeight.w500
                   ),
                 ),
@@ -116,7 +118,7 @@ class SignInScreen extends StatelessWidget {
                               },
                               child: Icon(
                                 isRemember ? Icons.check_circle_rounded : Icons.circle_outlined,
-                                color: AuthColorPalette.selectionBlue,
+                                color: AppColors.primary,
                               ),
                             );
                           }
@@ -136,7 +138,7 @@ class SignInScreen extends StatelessWidget {
                       },
                       child: Text(
                         "Forgot Password?",
-                        style: bodyLarge?.copyWith(color: AuthColorPalette.selectionBlue),
+                        style: bodyLarge?.copyWith(color: AppColors.primary),
                       ),
                     ),
                   ],
@@ -144,7 +146,7 @@ class SignInScreen extends StatelessWidget {
                 SizedBox(height: 44.h),
                 Consumer(
                   builder: (context,ref,child) {
-                    return CommonWidgets.primaryButton(context: context, title: "Log in", color: AuthColorPalette.primary,textColor: AuthColorPalette.white, onPressed: (){
+                    return CommonWidgets.primaryButton(context: context, title: "Log in", color: AppColors.primary,textColor: AuthColorPalette.white, onPressed: (){
                       context.go(RouteName.parentsScreen);
 
                     //   ref.read(parentsScreenProvider.notifier).onSelectedIndex(2);
@@ -179,7 +181,9 @@ class SignInScreen extends StatelessWidget {
                 title: "Continue with Apple"),
                 SizedBox(height: 32.h,),
 
-                footerText(context: context, text1: "Don't have an account? ", text2: 'Sign Up', onTap: (){}),
+                footerText(context: context, text1: "Don't have an account? ", text2: 'Sign Up', onTap: (){
+                  context.push(RouteName.signUpScreen);
+                }),
 
               ],
             ),

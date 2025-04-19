@@ -1,9 +1,12 @@
+import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_input_decoration_theme.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_widgets/footer_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateOrJoinScreen extends StatelessWidget {
   const CreateOrJoinScreen({super.key});
@@ -51,10 +54,10 @@ class CreateOrJoinScreen extends StatelessWidget {
                 CommonWidgets.primaryButton(
                   context: context,
                   title: "Join now",
-                  color: AuthColorPalette.primary,
-                  textColor: AuthColorPalette.white,
+                  color: AppColors.primary,
+                  textColor: Color(0xffffffff),
                   onPressed: () {
-                    // context.go(RouteName.homeScreen);
+                    context.go(RouteName.homeScreen);
                   },
                 ),                SizedBox(height: 38.h),
                 Row(
@@ -74,7 +77,7 @@ class CreateOrJoinScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 24.h,),
                 footerText(context: context, text1: "Want to create a new group? ", text2: 'Create now', onTap: (){
-                  // context.pushNamed(RouteName.createGroupScreen);
+                  context.pushNamed(RouteName.createGroupScreen);
                 })
 
 

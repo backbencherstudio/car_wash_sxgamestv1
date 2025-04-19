@@ -1,5 +1,6 @@
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_input_decoration_theme.dart';
@@ -46,6 +47,7 @@ class EmailVerifyScreen extends StatelessWidget {
                   decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
                     context: context,
                     hintText: "Your Email",
+                    fillColor: Color(0xffffffff),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(left: 16.w, right: 4.w),
                       child: ImageIcon(AssetImage(
@@ -59,8 +61,8 @@ class EmailVerifyScreen extends StatelessWidget {
                 CommonWidgets.primaryButton(
                   context: context,
                   title: "Submit",
-                  color: AuthColorPalette.primary,
-                  textColor: AuthColorPalette.white,
+                  color: AppColors.primary,
+                  textColor: AppColors.onPrimary,
                   onPressed: () {
                     context.pushNamed(RouteName.otpVerifyScreen);
                   },
