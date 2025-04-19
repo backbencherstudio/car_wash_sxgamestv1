@@ -5,7 +5,6 @@ import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.d
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 
 class SuccessfullyResetPasswordScreen extends StatelessWidget {
   const SuccessfullyResetPasswordScreen({super.key});
@@ -34,8 +33,8 @@ class SuccessfullyResetPasswordScreen extends StatelessWidget {
                     // shape: BoxShape.circle,
                     image: DecorationImage(
                       image: AssetImage(
-                        ""
-                        // AppImages.successfullyResetPassword
+                        
+                        AppImages.successfullyResetPassword
                         
                         ),
                     ),
@@ -70,7 +69,7 @@ Continue to login''',
                   color: AuthColorPalette.primary,
                   textColor: AuthColorPalette.white,
                   onPressed: () {
-                    // context.go(RouteName.signInScreen);
+                    context.go(RouteName.signInScreen);
                   },
                 ),
 

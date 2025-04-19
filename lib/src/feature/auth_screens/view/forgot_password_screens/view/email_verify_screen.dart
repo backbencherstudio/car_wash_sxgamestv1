@@ -1,8 +1,11 @@
+import 'package:car_wash/core/constant/images.dart';
+import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_input_decoration_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 
 class EmailVerifyScreen extends StatelessWidget {
@@ -46,8 +49,8 @@ class EmailVerifyScreen extends StatelessWidget {
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(left: 16.w, right: 4.w),
                       child: ImageIcon(AssetImage(
-                        // AppImages.emailIcon
-                        ""
+                        AppImages.emailIcon
+                       
                         ),size: 18.r,),
                     ),
                   ),
@@ -59,7 +62,7 @@ class EmailVerifyScreen extends StatelessWidget {
                   color: AuthColorPalette.primary,
                   textColor: AuthColorPalette.white,
                   onPressed: () {
-                    // context.pushNamed(RouteName.otpVerifyScreen);
+                    context.pushNamed(RouteName.otpVerifyScreen);
                   },
                 ),
                 SizedBox(height: 32.h),

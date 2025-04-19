@@ -1,5 +1,3 @@
-import 'package:car_wash/core/constant/images.dart';
-import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_color_pallete.dart';
@@ -8,7 +6,6 @@ import 'package:car_wash/src/feature/auth_screens/view/create_group_screens/view
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class CongratulationScreen extends StatelessWidget {
   const CongratulationScreen({super.key});

@@ -77,8 +77,8 @@ class SignInScreen extends StatelessWidget {
                          padding: EdgeInsets.only(left: 16.w, right: 4.w),
                          child: ImageIcon(AssetImage(
                           
-                          // AppImages.lockIcon
-                          ""
+                          AppImages.lockIcon
+                         
                           
                           ),size: 18.r,),
                        ),
@@ -130,7 +130,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: (){
-                        // context.go(RouteName.emailVerifyScreen);
+                        context.go(RouteName.emailVerifyScreen);
                       },
                       child: Text(
                         "Forgot Password?",
@@ -145,9 +145,9 @@ class SignInScreen extends StatelessWidget {
                     return CommonWidgets.primaryButton(context: context, title: "Log in", color: AuthColorPalette.primary,textColor: AuthColorPalette.white, onPressed: (){
                       context.go(RouteName.parentsScreen);
 
-                      // ref.read(parentsScreenProvider.notifier).onSelectedIndex(2);
+                    //   ref.read(parentsScreenProvider.notifier).onSelectedIndex(2);
 
-                      // debugPrint("Selected index: ${ref.read(parentsScreenProvider).selectedIndex}");
+                    //   debugPrint("Selected index: ${ref.read(parentsScreenProvider).selectedIndex}");
                     });
                   }
                 ),
@@ -165,14 +165,14 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 44.h,),
                 buildLoginButton(context: context,imagePath:
-                // AppImages.googleLogo,
-                "",
+                AppImages.googleLogo,
+               
                 title: "Continue with Google"),
                 SizedBox(height: 16.h,),
                 buildLoginButton(context: context,
                 imagePath: 
-                // AppImages.appleLogo
-                ""
+                AppImages.appleLogo
+             
                 ,
                 title: "Continue with Apple"),
                 SizedBox(height: 32.h,),

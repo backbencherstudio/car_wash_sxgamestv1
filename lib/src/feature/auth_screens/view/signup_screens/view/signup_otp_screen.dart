@@ -1,12 +1,11 @@
+import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../auth_widgets/footer_text.dart';
 
 class SignupOtpScreen extends StatelessWidget {
   const SignupOtpScreen({super.key});
@@ -76,7 +75,9 @@ class SignupOtpScreen extends StatelessWidget {
                   color: AuthColorPalette.primary,
                   textColor: AuthColorPalette.white,
                   onPressed: () {
-                    // context.go(RouteName.successfullyRegisteredScreen);
+                  
+                  
+                     context.go(RouteName.successfullyRegisteredScreen);
                   },
                 ),
                 SizedBox(height: 32.h),

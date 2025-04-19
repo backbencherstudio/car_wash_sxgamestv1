@@ -1,14 +1,13 @@
 import 'package:car_wash/core/constant/images.dart';
+import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_input_decoration_theme.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view_model/sign_up_provider.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../auth_widgets/footer_text.dart';
 import '../../signin_screens/view/widgets/custom_login_button.dart';
 
@@ -56,8 +55,8 @@ class SignUpScreen extends StatelessWidget {
                           child: ImageIcon(
                             AssetImage(
                               
-                              // AppImages.personIcon
-                              ""
+                              AppImages.personIcon
+                             
                               
                               
                               ),
@@ -76,8 +75,8 @@ class SignUpScreen extends StatelessWidget {
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
                           child: ImageIcon(
                             AssetImage(
-                              ""
-                              // AppImages.emailIcon
+                            
+                             AppImages.emailIcon
                               
                               ),
                             size: 18.r,
@@ -96,8 +95,8 @@ class SignUpScreen extends StatelessWidget {
                           child: ImageIcon(
                             AssetImage(
                               
-                              // AppImages.calendarIcon
-                              ""
+                             AppImages.calendarIcon
+                           
                               ),
                             size: 18.r,
                           ),
@@ -119,8 +118,8 @@ class SignUpScreen extends StatelessWidget {
                               padding: EdgeInsets.only(left: 16.w, right: 4.w),
                               child: ImageIcon(
                                 AssetImage(
-                                  ""
-                                  // AppImages.lockIcon
+                           
+                                   AppImages.lockIcon
                                   
                                   ),
                                 size: 18.r,
@@ -157,8 +156,8 @@ class SignUpScreen extends StatelessWidget {
                               padding: EdgeInsets.only(left: 16.w, right: 4.w),
                               child: ImageIcon(
                                 AssetImage(
-                                  " "
-                                  // AppImages.lockIcon
+                                 
+                                   AppImages.lockIcon
                                   
                                   ),
                                 size: 18.r,
@@ -186,7 +185,7 @@ class SignUpScreen extends StatelessWidget {
                   color: AuthColorPalette.primary,
                   textColor: AuthColorPalette.white,
                   onPressed: () {
-                    // context.push(RouteName.signUpOTPScreen);
+                   context.push(RouteName.signUpOTPScreen);
                   },
                 ),
                 SizedBox(height: 32.h),
@@ -209,9 +208,8 @@ class SignUpScreen extends StatelessWidget {
                 buildLoginButton(
                   context: context,
                   imagePath: 
-                  // AppImages.googleLogo,
-                  " ",
-
+                 AppImages.googleLogo,
+                  
 
                   title: "Continue with Google",
                 ),
@@ -219,8 +217,8 @@ class SignUpScreen extends StatelessWidget {
                 buildLoginButton(
                   context: context,
                   imagePath: 
-                  // AppImages.appleLogo,
-                  "",
+                   AppImages.appleLogo,
+                 
                   title: "Continue with Apple",
                 ),
                 SizedBox(height: 24.h),
