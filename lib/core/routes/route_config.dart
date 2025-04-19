@@ -7,6 +7,7 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_up_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
+import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,14 +15,14 @@ import 'package:go_router/go_router.dart';
 
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.signInScreen,
+     initialLocation: RouteName.onboardingScreen,
      routes: [
-    //  GoRoute(
-    //       name: RouteName.onboardingScreen,
-    //       path: RouteName.onboardingScreen,
-    //       pageBuilder: (context, state) {
-    //        return const MaterialPage(child: OnboardingScreen());
-    //       }),
+     GoRoute(
+          name: RouteName.onboardingScreen,
+          path: RouteName.onboardingScreen,
+          pageBuilder: (context, state) {
+           return const MaterialPage(child: OnboardingScreen());
+          }),
        GoRoute(
           name: RouteName.signInScreen,
           path: RouteName.signInScreen,

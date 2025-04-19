@@ -50,6 +50,8 @@ class SignUpScreen extends StatelessWidget {
                       AuthInputDecorationTheme.lightInputDecorationTheme(
                         context: context,
                         hintText: "Your name",
+                                            fillColor: Color(0xffffffff),
+
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
                           child: ImageIcon(
@@ -71,6 +73,8 @@ class SignUpScreen extends StatelessWidget {
                       AuthInputDecorationTheme.lightInputDecorationTheme(
                         context: context,
                         hintText: "Your email",
+                                            fillColor: Color(0xffffffff),
+
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
                           child: ImageIcon(
@@ -90,6 +94,8 @@ class SignUpScreen extends StatelessWidget {
                       AuthInputDecorationTheme.lightInputDecorationTheme(
                         context: context,
                         hintText: "Date of birth",
+                                            fillColor: Color(0xffffffff),
+
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
                           child: ImageIcon(
@@ -114,6 +120,8 @@ class SignUpScreen extends StatelessWidget {
                           AuthInputDecorationTheme.lightInputDecorationTheme(
                             context: context,
                             hintText: "Create your password",
+                                                fillColor: Color(0xffffffff),
+
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: 16.w, right: 4.w),
                               child: ImageIcon(
@@ -152,6 +160,8 @@ class SignUpScreen extends StatelessWidget {
                           AuthInputDecorationTheme.lightInputDecorationTheme(
                             context: context,
                             hintText: "Confirm your password",
+                                                fillColor: Color(0xffffffff),
+
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: 16.w, right: 4.w),
                               child: ImageIcon(

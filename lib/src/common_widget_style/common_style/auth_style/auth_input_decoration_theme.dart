@@ -29,19 +29,19 @@ class AuthInputDecorationTheme {
       filled: true,
       fillColor: fillColor,
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(99.r),
+        borderRadius: BorderRadius.circular(12.r),
         borderSide: BorderSide(color: borderColor == false ? Colors.transparent : AuthColorPalette.greyscale300) ,
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(99.r),
+        borderRadius: BorderRadius.circular(12.r),
         borderSide: BorderSide(color: borderColor == false ? Colors.transparent : Color(0xFF6A42C2)),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(99.r),
+        borderRadius: BorderRadius.circular(12.r),
         borderSide: BorderSide(color: borderColor == false ? Colors.transparent : Colors.red),
       ),
       disabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(99.r),
+        borderRadius: BorderRadius.circular(12.r),
         borderSide: BorderSide(color: borderColor == false ? Colors.transparent : AuthColorPalette.greyscale300),
       ),
     );

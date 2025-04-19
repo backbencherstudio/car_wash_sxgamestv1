@@ -65,16 +65,16 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/parent_screen/
+  
      - assets/icons/
      - assets/icons/social_media/
      - assets/images/
-     - assets/images/vibe_check/
+   
      - assets/images/signup/
-     - assets/images/timeline_screen/
+    
      - assets/images/forgot_password/
-     - assets/images/quizscreen/
-     - assets/images/group_polls/
+    
+   
      - assets/imojis/
   #   - images/a_dot_ham.jpeg
 

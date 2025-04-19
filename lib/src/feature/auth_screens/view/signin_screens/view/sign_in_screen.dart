@@ -51,11 +51,12 @@ class SignInScreen extends StatelessWidget {
                   decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
                     context: context,
                     hintText: "Your Email",
+                    fillColor: Color(0xffffffff),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(left: 16.w, right: 4.w),
                       child: ImageIcon(AssetImage(
                        
-                       " "
+                       "assets/icons/email.png"
                         
                         ),size: 18.r,),
                     ),
@@ -73,6 +74,7 @@ class SignInScreen extends StatelessWidget {
                      decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
                        context: context,
                        hintText: "Enter your password",
+                       fillColor: Color(0xffffffff),
                        prefixIcon: Padding(
                          padding: EdgeInsets.only(left: 16.w, right: 4.w),
                          child: ImageIcon(AssetImage(
