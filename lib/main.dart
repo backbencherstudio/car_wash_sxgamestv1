@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:car_wash/core/theme/theme.dart';
 import 'core/routes/route_config.dart';
 
