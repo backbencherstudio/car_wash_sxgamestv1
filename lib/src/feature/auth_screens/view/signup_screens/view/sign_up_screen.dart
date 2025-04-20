@@ -18,7 +18,6 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     /// Text Theme
     final headlineSmall = Theme.of(context).textTheme.headlineSmall;
     final titleSmall = Theme.of(context).textTheme.titleSmall;
@@ -35,15 +34,13 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 Text(
                   'Create Your Account',
-                  style: headlineSmall?.copyWith(
-                    color: AppColors.primary,
-                  ),
+                  style: headlineSmall?.copyWith(color: AppColors.primary),
                 ),
                 Text(
                   "Sign up and enjoy your experience",
                   style: titleSmall?.copyWith(
-                      color: AppColors.onSecondary,
-                      fontWeight: FontWeight.w500
+                    color: AppColors.onSecondary,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(height: 32.h),
@@ -52,18 +49,12 @@ class SignUpScreen extends StatelessWidget {
                       AuthInputDecorationTheme.lightInputDecorationTheme(
                         context: context,
                         hintText: "Your name",
-                                            fillColor: Color(0xffffffff),
+                        fillColor: Color(0xffffffff),
 
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
                           child: ImageIcon(
-                            AssetImage(
-                              
-                              AppImages.personIcon
-                             
-                              
-                              
-                              ),
+                            AssetImage(AppImages.personIcon),
                             size: 18.r,
                           ),
                         ),
@@ -75,16 +66,12 @@ class SignUpScreen extends StatelessWidget {
                       AuthInputDecorationTheme.lightInputDecorationTheme(
                         context: context,
                         hintText: "Your email",
-                                            fillColor: Color(0xffffffff),
+                        fillColor: Color(0xffffffff),
 
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
                           child: ImageIcon(
-                            AssetImage(
-                            
-                             AppImages.emailIcon
-                              
-                              ),
+                            AssetImage(AppImages.emailIcon),
                             size: 18.r,
                           ),
                         ),
@@ -96,16 +83,12 @@ class SignUpScreen extends StatelessWidget {
                       AuthInputDecorationTheme.lightInputDecorationTheme(
                         context: context,
                         hintText: "Date of birth",
-                                            fillColor: Color(0xffffffff),
+                        fillColor: Color(0xffffffff),
 
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
                           child: ImageIcon(
-                            AssetImage(
-                              
-                             AppImages.calendarIcon
-                           
-                              ),
+                            AssetImage(AppImages.calendarIcon),
                             size: 18.r,
                           ),
                         ),
@@ -113,8 +96,9 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 Consumer(
-                  builder: (context,ref,child) {
-                    final isPasswordVisible = ref.watch(signUpProvider).isPasswordVisible;
+                  builder: (context, ref, child) {
+                    final isPasswordVisible =
+                        ref.watch(signUpProvider).isPasswordVisible;
                     final notifier = ref.read(signUpProvider.notifier);
                     return TextFormField(
                       obscureText: !isPasswordVisible,
@@ -122,38 +106,39 @@ class SignUpScreen extends StatelessWidget {
                           AuthInputDecorationTheme.lightInputDecorationTheme(
                             context: context,
                             hintText: "Create your password",
-                                                fillColor: Color(0xffffffff),
+                            fillColor: Color(0xffffffff),
 
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: 16.w, right: 4.w),
                               child: ImageIcon(
-                                AssetImage(
-                           
-                                   AppImages.lockIcon
-                                  
-                                  ),
+                                AssetImage(AppImages.lockIcon),
                                 size: 18.r,
                               ),
                             ),
                             suffixIcon: GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 notifier.togglePasswordVisibility();
-                                debugPrint("\n\ntoggle password visibility: $isPasswordVisible\n");
+                                debugPrint(
+                                  "\n\ntoggle password visibility: $isPasswordVisible\n",
+                                );
                               },
                               child: Icon(
-                                isPasswordVisible ?  Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                isPasswordVisible
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
                                 size: 20.r,
                                 color: Color(0xFF777980),
                               ),
                             ),
                           ),
                     );
-                  }
+                  },
                 ),
                 SizedBox(height: 16.h),
                 Consumer(
-                  builder: (context,ref,child) {
-                    final isConfirmPasswordVisible = ref.watch(signUpProvider).isConfirmPasswordVisible;
+                  builder: (context, ref, child) {
+                    final isConfirmPasswordVisible =
+                        ref.watch(signUpProvider).isConfirmPasswordVisible;
                     final notifier = ref.read(signUpProvider.notifier);
 
                     return TextFormField(
@@ -162,33 +147,30 @@ class SignUpScreen extends StatelessWidget {
                           AuthInputDecorationTheme.lightInputDecorationTheme(
                             context: context,
                             hintText: "Confirm your password",
-                                                fillColor: Color(0xffffffff),
+                            fillColor: Color(0xffffffff),
 
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: 16.w, right: 4.w),
                               child: ImageIcon(
-                                AssetImage(
-                                 
-                                   AppImages.lockIcon
-                                  
-                                  ),
+                                AssetImage(AppImages.lockIcon),
                                 size: 18.r,
                               ),
                             ),
                             suffixIcon: GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 notifier.toggleConfirmPasswordVisibility();
-
                               },
                               child: Icon(
-                               isConfirmPasswordVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                isConfirmPasswordVisible
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
                                 size: 20.r,
                                 color: Color(0xFF777980),
                               ),
                             ),
                           ),
                     );
-                  }
+                  },
                 ),
                 SizedBox(height: 32.h),
                 CommonWidgets.primaryButton(
@@ -197,7 +179,7 @@ class SignUpScreen extends StatelessWidget {
                   color: AppColors.primary,
                   textColor: AuthColorPalette.white,
                   onPressed: () {
-                   context.push(RouteName.signUpOTPScreen);
+                    context.push(RouteName.signUpOTPScreen);
                   },
                 ),
                 SizedBox(height: 32.h),
@@ -205,33 +187,48 @@ class SignUpScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Divider(color: AuthColorPalette.greyscale200, height: 1),
+                      child: Divider(
+                        color: AuthColorPalette.greyscale200,
+                        height: 1,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 17.w),
-                      child: Text("Or",style: bodyMedium?.copyWith(color: AuthColorPalette.textColorGrey, fontWeight: FontWeight.w500),),
+                      child: Text(
+                        "Or",
+                        style: bodyMedium?.copyWith(
+                          color: AuthColorPalette.textColorGrey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                     Expanded(
-                      child: Divider(color: AuthColorPalette.greyscale200, height: 1),
+                      child: Divider(
+                        color: AuthColorPalette.greyscale200,
+                        height: 1,
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 24.h),
                 buildLoginButton(
                   context: context,
-                  imagePath: 
-                 AppImages.googleLogo,
-                  
+                  imagePath: AppImages.googleLogo,
 
                   title: "Continue with Google",
                 ),
-               
+
                 SizedBox(height: 24.h),
-                footerText(context: context, text1: "Already have an account? ", text2: 'Log In', onTap: (){
-                  context.push(RouteName.signInScreen);
-                }),
+                footerText(
+                  context: context,
+                  text1: "Already have an account? ",
+                  text2: 'Log In',
+                  onTap: () {
+                    context.push(RouteName.signInScreen);
+                  },
+                ),
               ],
-            ), 
+            ),
           ),
         ),
       ),

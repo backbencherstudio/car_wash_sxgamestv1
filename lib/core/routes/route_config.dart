@@ -8,6 +8,8 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
+import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_one.dart';
+import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_two.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +18,7 @@ import 'package:go_router/go_router.dart';
 
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.splashScreen,
+     initialLocation: RouteName.ScreenTwo,
      routes: [
       GoRoute(
           name: RouteName.splashScreen,
@@ -24,7 +26,18 @@ class RouteConfig{
           pageBuilder: (context, state) {
            return const MaterialPage(child: SplashScreen());
           }),
-          
+          GoRoute(
+          name: RouteName.ScreenOne,
+          path: RouteName.ScreenOne,
+          pageBuilder: (context, state) {
+           return const MaterialPage(child: ScreenOne());
+          }),
+           GoRoute(
+          name: RouteName.ScreenTwo,
+          path: RouteName.ScreenTwo,
+          pageBuilder: (context, state) {
+           return const MaterialPage(child: ScreenTwo());
+          }),
      GoRoute(
           name: RouteName.onboardingScreen,
           path: RouteName.onboardingScreen,
