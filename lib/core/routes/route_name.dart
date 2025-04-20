@@ -18,4 +18,6 @@ class RouteName {
   static const String accountScreen = '/accountScreen';
 static  const String splashScreen = '/SplashScreen';
   static const String groupPollsScreen = '/groupPollsScreen';
+  static const String ScreenOne = '/ScreenOne';
+  static const String ScreenTwo = '/ScreenTwo';
 }
