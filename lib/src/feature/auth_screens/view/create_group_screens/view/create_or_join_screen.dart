@@ -84,8 +84,8 @@ class CreateOrJoinScreen extends StatelessWidget {
                        ),
                        SizedBox(height: 12.h,),
                        CustomCheckContainer(
-                        img: "assets/images/Frame.png",
-                        text: "Im a customer",
+                        img: "assets/images/Family.png",
+                        text: "Im a service provider",
                         index: 1,
                        ),
                        SizedBox(height: 32.h,),
