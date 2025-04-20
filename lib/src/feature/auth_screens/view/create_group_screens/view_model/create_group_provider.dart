@@ -11,4 +11,6 @@ class CreateGroupProvider extends StateNotifier<CreateGroupModel>{
 
 final createGroupProvider = StateNotifierProvider<CreateGroupProvider,CreateGroupModel>(
     (ref) => CreateGroupProvider(),
+
+
 );
