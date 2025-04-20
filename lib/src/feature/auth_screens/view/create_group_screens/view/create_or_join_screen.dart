@@ -1,9 +1,11 @@
 import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
+import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_style/auth_input_decoration_theme.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_widgets/footer_text.dart';
+import 'package:car_wash/src/feature/auth_screens/view/create_group_screens/view/widgets/CustomCheckContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -20,72 +22,86 @@ class CreateOrJoinScreen extends StatelessWidget {
     final titleSmall = Theme.of(context).textTheme.titleSmall;
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(24.r),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hi! Maren Workman',
-                  style: headlineSmall?.copyWith(
-                    color: AuthColorPalette.titleColor,
-                    fontWeight: FontWeight.w500
+     extendBody: true,
+     resizeToAvoidBottomInset: true,
+     body: Stack(
+      fit: StackFit.expand,
+      children: [
+        Container(
+          height: double.infinity,
+          width: double.infinity,
+
+          decoration: BoxDecoration(
+            color: Color(0xffffffff)
+          ),),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            
+            child: Image.asset("assets/images/whitebgm.png",
+            fit: BoxFit.cover,
+            width: double.infinity,
+            ),),
+      
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 20.w),
+              child: Center(
+                child: Container(
+          // padding:  EdgeInsets.symmetric(horizontal: 20.w, vertical: 225.h),
+                height: 450,
+                  width: 400,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24.r),
+                    color: Color(0xffF8FAFB)
+                  ),
+                  child: Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 20.w ),
+                    child: Column(
+                      children: [
+                        SizedBox(height:40.h ,),
+                       Text("Who am I?",
+                       style: headlineSmall!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.secondary
+                       ),
+                       ),
+                       SizedBox(height: 44.h,),
+                       Align(
+                        alignment: Alignment.centerLeft,
+                         child: Text("What role do you want to create?",
+                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.secondary
+                         ),
+                         ),
+                       ),
+                       SizedBox(height: 16.h,),
+                       CustomCheckContainer(
+                        img: "assets/images/Frame.png",
+                        text: "Im a customer",
+                        index: 0,
+                       ),
+                       SizedBox(height: 12.h,),
+                       CustomCheckContainer(
+                        img: "assets/images/Frame.png",
+                        text: "Im a customer",
+                        index: 1,
+                       ),
+                       SizedBox(height: 32.h,),
+                       Utils.primaryButton(onPressed: (){
+                        context.go(RouteName.homeScreen);
+                       }, text: "Done"),
+                       SizedBox(height: 10.h,)
+                      ],
+                    ),
                   ),
                 ),
-                Text(
-                  "Become a member of our community!",
-                  style: titleSmall?.copyWith(
-                      color: AuthColorPalette.textColorGreyscale,
-                      fontWeight: FontWeight.w500
-                  ),
-                ),
-                SizedBox(height: 108.h),
-                TextFormField(
-                  decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
-                    context: context,
-                    hintText: "Enter reference posse link",
-                    fillColor: AuthColorPalette.referenceBackground
-
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                CommonWidgets.primaryButton(
-                  context: context,
-                  title: "Join now",
-                  color: AppColors.primary,
-                  textColor: Color(0xffffffff),
-                  onPressed: () {
-                    context.go(RouteName.homeScreen);
-                  },
-                ),                SizedBox(height: 38.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Divider(color: AuthColorPalette.greyscale200, height: 1),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 17.w),
-                      child: Text("Or",style: bodyMedium?.copyWith(color: AuthColorPalette.textColorGrey, fontWeight: FontWeight.w500),),
-                    ),
-                    Expanded(
-                      child: Divider(color: AuthColorPalette.greyscale200, height: 1),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 24.h,),
-                footerText(context: context, text1: "Want to create a new group? ", text2: 'Create now', onTap: (){
-                  context.pushNamed(RouteName.createGroupScreen);
-                })
-
-
-              ],
-            ),
-          ),
-        ),
-      ),
+              ),
+            )
+        
+      ],
+     ),
     );
   }
 }

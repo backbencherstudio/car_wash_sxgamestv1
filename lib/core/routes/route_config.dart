@@ -8,6 +8,7 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
+import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,8 +16,15 @@ import 'package:go_router/go_router.dart';
 
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.onboardingScreen,
+     initialLocation: RouteName.splashScreen,
      routes: [
+      GoRoute(
+          name: RouteName.splashScreen,
+          path: RouteName.splashScreen,
+          pageBuilder: (context, state) {
+           return const MaterialPage(child: SplashScreen());
+          }),
+          
      GoRoute(
           name: RouteName.onboardingScreen,
           path: RouteName.onboardingScreen,

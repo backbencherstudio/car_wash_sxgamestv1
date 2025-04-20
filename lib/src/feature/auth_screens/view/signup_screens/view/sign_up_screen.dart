@@ -231,7 +231,7 @@ class SignUpScreen extends StatelessWidget {
                   context.push(RouteName.signInScreen);
                 }),
               ],
-            ),
+            ), 
           ),
         ),
       ),
