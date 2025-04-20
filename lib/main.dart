@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:car_wash/core/theme/theme.dart';
 import 'core/routes/route_config.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //set device orientation to portraitUp during app running for better user experience of the UI
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
+  //ensuring screen size for screen util package to implement pixel perfect UI
+  await ScreenUtil.ensureScreenSize();
   runApp(const ProviderScope(child: MyApp()));
 }
 
