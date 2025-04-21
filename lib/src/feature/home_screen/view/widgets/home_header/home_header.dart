@@ -7,6 +7,8 @@ import '../../../../../../core/constant/images.dart';
 import '../../../../../../core/utils/utils.dart';
 
 class HomeHeader extends StatelessWidget {
+  const HomeHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Utils.customAppBar(
