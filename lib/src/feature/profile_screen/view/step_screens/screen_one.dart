@@ -43,10 +43,10 @@ class ScreenOne extends StatelessWidget {
                   hintText: "Your Business Name",
                   fillColor: Color(0xffffffff),
           
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                    child: ImageIcon(AssetImage(AppImages.personIcon), size: 18.r),
-                  ),
+                  // prefixIcon: Padding(
+                  //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                  //   child: ImageIcon(AssetImage(AppImages.personIcon), size: 18.r),
+                  // ),
                 ),
               ),
               SizedBox(height: 16.h),
@@ -56,10 +56,10 @@ class ScreenOne extends StatelessWidget {
                   hintText: "Your Business Number",
                   fillColor: Color(0xffffffff),
           
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                    child: ImageIcon(AssetImage(AppImages.emailIcon), size: 18.r),
-                  ),
+                  // prefixIcon: Padding(
+                  //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                  //   child: ImageIcon(AssetImage(AppImages.emailIcon), size: 18.r),
+                  // ),
                 ),
               ),
               SizedBox(height: 24.h,),

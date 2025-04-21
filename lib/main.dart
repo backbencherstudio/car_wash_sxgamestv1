@@ -15,12 +15,20 @@ void main() async {
   //ensuring screen size for screen util package to implement pixel perfect UI
   await ScreenUtil.ensureScreenSize();
   runApp(const ProviderScope(child: MyApp()));
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // Transparent status bar
+      systemNavigationBarColor: Colors.transparent, // Transparent nav bar
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  static const double deviceWidth = 402.0;
-  static const double deviceHeight = 874.0;
+  static const double deviceWidth = 440.0;
+  static const double deviceHeight = 977.0;
 
   
   @override
@@ -31,7 +39,7 @@ class MyApp extends StatelessWidget {
       ensureScreenSize: true,
       builder: (context, child) {
         return MaterialApp.router(
-          title: 'Car Wash',
+          title: 'CARFLIX',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           routerConfig: RouteConfig().goRouter,

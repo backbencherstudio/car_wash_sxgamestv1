@@ -14,11 +14,11 @@ import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-
+import '../../src/feature/home_screen/view/home_screen.dart';
 
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.ScreenTwo,
+     initialLocation: RouteName.homeScreen,
      routes: [
       GoRoute(
           name: RouteName.splashScreen,
@@ -92,6 +92,13 @@ class RouteConfig{
           pageBuilder: (context, state) {
            return const MaterialPage(child: CreateOrJoinScreen());
           }),
+
+       GoRoute(
+           name: RouteName.homeScreen,
+           path: RouteName.homeScreen,
+           pageBuilder: (context, state) {
+             return  MaterialPage(child: HomeScreen());
+           }),
 
      ]);
 }

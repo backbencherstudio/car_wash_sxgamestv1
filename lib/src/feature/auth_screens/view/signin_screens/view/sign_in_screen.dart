@@ -1,3 +1,4 @@
+import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
@@ -11,6 +12,7 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view_model
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -79,12 +81,14 @@ class SignInScreen extends StatelessWidget {
                        fillColor: Color(0xffffffff),
                        prefixIcon: Padding(
                          padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                         child: ImageIcon(AssetImage(
-                          
-                          AppImages.lockIcon
-                         
-                          
-                          ),size: 18.r,),
+                         child: SvgPicture.asset(AppIcons.lockOutlined,width: 18.w,height: 18.w,)
+
+                         // ImageIcon(AssetImage(
+                         //
+                         //  AppImages.lockIcon
+                         //
+                         //
+                         //  ),size: 18.r,),
                        ),
                        suffixIcon: GestureDetector(
                          onTap: (){
@@ -169,13 +173,13 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 44.h,),
                 buildLoginButton(context: context,imagePath:
-                AppImages.googleLogo,
+                AppIcons.google,
                
                 title: "Continue with Google"),
                 SizedBox(height: 16.h,),
                 buildLoginButton(context: context,
-                imagePath: 
-                AppImages.appleLogo
+                imagePath:
+                AppIcons.apple
              
                 ,
                 title: "Continue with Apple"),
