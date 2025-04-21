@@ -42,6 +42,14 @@ dependencies:
   pin_code_fields: ^8.0.1
   shared_preferences: ^2.5.3
   dotted_border: ^2.1.0
+  flutter_launcher_icons: ^0.14.3
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png"
+  min_sdk_android: 24 # android min sdk min:16, default 21
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/app_icon.png"
 
 dev_dependencies:
   flutter_test:

@@ -40,14 +40,17 @@ Drawer appDrawer({required BuildContext context}) {
               imageAsset: AppIcons.userFill,
               padding: EdgeInsets.all(8.r),
               context: context,
-              backgroundColor: AppColors.primary
+              backgroundColor: AppColors.secondaryButtonBgColor
           ),
           title: Text("Profile",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,
             color: AppColors.onSurface
           ),),
-          trailing: SvgPicture.asset(AppIcons.arrowRight),
+          trailing: SvgPicture.asset(
+            AppIcons.arrowRight,
+            colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),
+          ),
         ),
         SizedBox(height: 8.h,),
         ListTile(
@@ -56,10 +59,11 @@ Drawer appDrawer({required BuildContext context}) {
               imageAsset: AppIcons.order,
               padding: EdgeInsets.all(8.r),
               context: context,
-              backgroundColor: AppColors.primary
+              backgroundColor: AppColors.secondaryButtonBgColor
           ),
           title: Text("Orders",style: Theme.of(context).textTheme.bodyLarge?.copyWith()),
-          trailing: SvgPicture.asset(AppIcons.arrowRight),
+          trailing: SvgPicture.asset(AppIcons.arrowRight,
+            colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
         ),
         SizedBox(height: 8.h,),
         ListTile(
@@ -68,10 +72,11 @@ Drawer appDrawer({required BuildContext context}) {
               imageAsset: AppIcons.crown,
               padding: EdgeInsets.all(8.r),
               context: context,
-              backgroundColor: AppColors.primary
+              backgroundColor: AppColors.secondaryButtonBgColor
           ),
           title: Text("Premium",style: Theme.of(context).textTheme.bodyLarge?.copyWith()),
-          trailing: SvgPicture.asset(AppIcons.arrowRight),
+          trailing: SvgPicture.asset(AppIcons.arrowRight,
+            colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
         ),
         SizedBox(height: 8.h,),
         ListTile(
@@ -80,10 +85,11 @@ Drawer appDrawer({required BuildContext context}) {
               imageAsset: AppIcons.logout,
               padding: EdgeInsets.all(8.r),
               context: context,
-              backgroundColor: AppColors.primary
+              backgroundColor: AppColors.secondaryButtonBgColor
           ),
           title: Text("Logout",style: Theme.of(context).textTheme.bodyLarge?.copyWith()),
-          trailing: SvgPicture.asset(AppIcons.arrowRight),
+          trailing: SvgPicture.asset(AppIcons.arrowRight,
+            colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
         ),
         SizedBox(height: 8.h,),
 

@@ -135,6 +135,7 @@ class Utils {
     double? width,
     BorderRadius? borderRadius,
     required BuildContext context,
+    Color? iconColor,
   })
   {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -152,7 +153,7 @@ class Utils {
             color: backgroundColor ?? colorScheme.surface.withOpacity(0.08),
           ),
           child: SvgPicture.asset(imageAsset,
-
+          colorFilter: ColorFilter.mode(iconColor ?? colorScheme.primary, BlendMode.srcIn),
           ),
         ),
         if (buttonName != null) ...[SizedBox(height: 12.h), Text(buttonName,style: textTheme.bodySmall,)],

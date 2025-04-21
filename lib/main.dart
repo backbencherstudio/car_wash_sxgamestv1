@@ -14,7 +14,7 @@ void main() async {
 
   //ensuring screen size for screen util package to implement pixel perfect UI
   await ScreenUtil.ensureScreenSize();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp(),),);
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // Transparent status bar
