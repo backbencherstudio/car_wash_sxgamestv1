@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^2.5.3
   dotted_border: ^2.1.0
   flutter_launcher_icons: ^0.14.3
+  step_progress_indicator: ^1.0.2
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
@@ -50,7 +51,6 @@ flutter_launcher_icons:
   min_sdk_android: 24 # android min sdk min:16, default 21
   adaptive_icon_background: "#ffffff"
   adaptive_icon_foreground: "assets/app_icon.png"
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

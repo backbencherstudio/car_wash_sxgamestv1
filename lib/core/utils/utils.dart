@@ -1,3 +1,4 @@
+import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -100,7 +101,7 @@ class Utils {
   }
 
   static Widget primaryButton({
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
     required String text,
     Color? backgroundColor,
     TextStyle? textStyle,
@@ -169,7 +170,14 @@ class Utils {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: ImageIcon(AssetImage('assets/icons/back.png',),size: 26.r, ),
+        // icon: ImageIcon(AssetImage('assets/icons/back.png',),size: 26.r, ),
+        icon:  SvgPicture.asset(AppIcons.BackButton,
+        
+        color: Color(0xff000000),
+       
+       height: 24, 
+        width: 24,
+        ),
       ),
 
       ///size: 20.r

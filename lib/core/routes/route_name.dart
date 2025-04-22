@@ -16,8 +16,11 @@ class RouteName {
   static const String parentsScreen = '/parentsScreen';
   static const String vibeCheckScreen = '/vibeCheckScreen';
   static const String accountScreen = '/accountScreen';
-static  const String splashScreen = '/SplashScreen';
+  static const String splashScreen = '/SplashScreen';
   static const String groupPollsScreen = '/groupPollsScreen';
   static const String ScreenOne = '/ScreenOne';
   static const String ScreenTwo = '/ScreenTwo';
+  static const String ScreenThree = '/ScreenThree';
+  static const String ScreenFour = '/ScreenFour';
+  static const String ProfileScreen = '/ProfileScreen';
 }

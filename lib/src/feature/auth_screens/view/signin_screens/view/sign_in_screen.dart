@@ -58,11 +58,7 @@ class SignInScreen extends StatelessWidget {
                     fillColor: Color(0xffffffff),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                      child: ImageIcon(AssetImage(
-                       
-                       "assets/icons/email.png"
-                        
-                        ),size: 18.r,),
+                      child: SvgPicture.asset(AppIcons.mail)
                     ),
                   ),
                 ),
