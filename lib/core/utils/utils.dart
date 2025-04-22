@@ -96,7 +96,7 @@ class Utils {
   }
 
   static Widget primaryButton({
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
     required String text,
     Color? backgroundColor,
     TextStyle? textStyle,

@@ -8,7 +8,10 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
+import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
+import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_four.dart';
 import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_one.dart';
+import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_three.dart';
 import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_two.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +21,7 @@ import 'package:go_router/go_router.dart';
 
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.ScreenTwo,
+     initialLocation: RouteName.splashScreen,
      routes: [
       GoRoute(
           name: RouteName.splashScreen,
@@ -26,11 +29,29 @@ class RouteConfig{
           pageBuilder: (context, state) {
            return const MaterialPage(child: SplashScreen());
           }),
+            GoRoute(
+          name: RouteName.ProfileScreen,
+          path: RouteName.ProfileScreen,
+          pageBuilder: (context, state) {
+           return const MaterialPage(child: ProfileScreen());
+          }),
           GoRoute(
           name: RouteName.ScreenOne,
           path: RouteName.ScreenOne,
           pageBuilder: (context, state) {
            return const MaterialPage(child: ScreenOne());
+          }),
+            GoRoute(
+          name: RouteName.ScreenFour,
+          path: RouteName.ScreenFour,
+          pageBuilder: (context, state) {
+           return const MaterialPage(child: ScreenFour());
+          }),
+          GoRoute(
+          name: RouteName.ScreenThree,
+          path: RouteName.ScreenThree,
+          pageBuilder: (context, state) {
+           return const MaterialPage(child: ScreenThree());
           }),
            GoRoute(
           name: RouteName.ScreenTwo,
