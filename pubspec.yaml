@@ -44,6 +44,7 @@ dependencies:
   dotted_border: ^2.1.0
   flutter_launcher_icons: ^0.14.3
   step_progress_indicator: ^1.0.2
+  image_picker: ^1.1.2
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true

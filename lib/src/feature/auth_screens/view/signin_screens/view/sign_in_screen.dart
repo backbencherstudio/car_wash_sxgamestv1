@@ -79,12 +79,7 @@ class SignInScreen extends StatelessWidget {
                          padding: EdgeInsets.only(left: 16.w, right: 4.w),
                          child: SvgPicture.asset(AppIcons.lockOutlined,width: 18.w,height: 18.w,)
 
-                         // ImageIcon(AssetImage(
-                         //
-                         //  AppImages.lockIcon
-                         //
-                         //
-                         //  ),size: 18.r,),
+                       
                        ),
                        suffixIcon: GestureDetector(
                          onTap: (){
