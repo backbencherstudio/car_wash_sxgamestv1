@@ -1,3 +1,4 @@
+import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
@@ -9,6 +10,7 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view_model
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import '../../auth_widgets/footer_text.dart';
 import '../../signin_screens/view/widgets/custom_login_button.dart';
@@ -53,10 +55,7 @@ class SignUpScreen extends StatelessWidget {
 
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: ImageIcon(
-                            AssetImage(AppImages.personIcon),
-                            size: 18.r,
-                          ),
+                          child: SvgPicture.asset(AppIcons.personOutlined,width: 18.w,height: 18.h,)
                         ),
                       ),
                 ),
@@ -70,10 +69,8 @@ class SignUpScreen extends StatelessWidget {
 
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: ImageIcon(
-                            AssetImage(AppImages.emailIcon),
-                            size: 18.r,
-                          ),
+                          child: SvgPicture.asset(AppIcons.mailOutlined,width: 18.w,height: 18.h,)
+
                         ),
                       ),
                 ),
@@ -85,13 +82,13 @@ class SignUpScreen extends StatelessWidget {
                         hintText: "Date of birth",
                         fillColor: Color(0xffffffff),
 
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: ImageIcon(
-                            AssetImage(AppImages.calendarIcon),
-                            size: 18.r,
-                          ),
-                        ),
+                        // prefixIcon: Padding(
+                        //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                        //   child: ImageIcon(
+                        //     AssetImage(AppImages.calendarIcon),
+                        //     size: 18.r,
+                        //   ),
+                        // ),
                       ),
                 ),
                 SizedBox(height: 16.h),
@@ -108,13 +105,13 @@ class SignUpScreen extends StatelessWidget {
                             hintText: "Create your password",
                             fillColor: Color(0xffffffff),
 
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                              child: ImageIcon(
-                                AssetImage(AppImages.lockIcon),
-                                size: 18.r,
-                              ),
-                            ),
+                            // prefixIcon: Padding(
+                            //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                            //   child: ImageIcon(
+                            //     AssetImage(AppImages.lockIcon),
+                            //     size: 18.r,
+                            //   ),
+                            // ),
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 notifier.togglePasswordVisibility();
@@ -149,13 +146,13 @@ class SignUpScreen extends StatelessWidget {
                             hintText: "Confirm your password",
                             fillColor: Color(0xffffffff),
 
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                              child: ImageIcon(
-                                AssetImage(AppImages.lockIcon),
-                                size: 18.r,
-                              ),
-                            ),
+                            // prefixIcon: Padding(
+                            //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                            //   child: ImageIcon(
+                            //     AssetImage(AppImages.lockIcon),
+                            //     size: 18.r,
+                            //   ),
+                            // ),
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 notifier.toggleConfirmPasswordVisibility();
@@ -213,7 +210,7 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(height: 24.h),
                 buildLoginButton(
                   context: context,
-                  imagePath: AppImages.googleLogo,
+                  imagePath: AppIcons.google,
 
                   title: "Continue with Google",
                 ),

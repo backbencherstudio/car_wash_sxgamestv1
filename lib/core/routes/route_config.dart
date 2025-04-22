@@ -8,17 +8,16 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
-import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
-import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_four.dart';
+import 'package:car_wash/src/feature/parent_screen/view/parent_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_one.dart';
 import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_three.dart';
 import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_two.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-
-
+import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
+import '../../src/feature/home_screen/view/home_screen.dart';
+import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_four.dart';
 class RouteConfig{
  GoRouter goRouter = GoRouter(
      initialLocation: RouteName.splashScreen,
@@ -113,6 +112,19 @@ class RouteConfig{
           pageBuilder: (context, state) {
            return const MaterialPage(child: CreateOrJoinScreen());
           }),
+       GoRoute(
+           name: RouteName.homeScreen,
+           path: RouteName.homeScreen,
+           pageBuilder: (context, state) {
+             return  MaterialPage(child: HomeScreen());
+           }),
+
+       GoRoute(
+           name: RouteName.parentsScreen,
+           path: RouteName.parentsScreen,
+           pageBuilder: (context, state) {
+             return  MaterialPage(child: ParentScreen());
+           }),
 
      ]);
 }

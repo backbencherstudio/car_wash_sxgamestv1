@@ -14,7 +14,7 @@ class SplashViewModel {
   Future<void> handleSplashNavigation(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
 
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
     if (!context.mounted) return;
 
@@ -24,7 +24,7 @@ class SplashViewModel {
       await prefs.setBool(isOpenFirstKey, true);
       context.go(RouteName.onboardingScreen);
     } else {
-      context.go(RouteName.signInScreen);
+      context.go(RouteName.onboardingScreen);
     }
   }
 }

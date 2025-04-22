@@ -1,3 +1,4 @@
+import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,82 +16,86 @@ class Utils {
   }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
-    return Container(
-      height: 64.h,
-      padding: EdgeInsets.all(10.w),
-      decoration: BoxDecoration(
-        color: AppColors.onPrimary,
-        borderRadius: BorderRadius.circular(16.r),
-        border: appBarBgColor,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 33,
-            color: const Color(0xff000000).withOpacity(0.1),
-            offset: const Offset(1, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Leading: custom widget or image
-          leadingImageAddress != null
-              ? Container(
-                height: 44.w,
-                width: 44.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13.2),
-                  image: DecorationImage(
-                    image: NetworkImage(leadingImageAddress),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              )
-              : SizedBox(),
-
-          SizedBox(width: 12.w),
-
-          // Title and subtitle section
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (title != null)
-                  Text(
-                    title,
-                    style: textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: colorScheme.primary,
+    return SafeArea(
+      child: Container(
+        //height: 64.h,
+        padding: EdgeInsets.all(10.r),
+        margin: EdgeInsets.symmetric(horizontal: 16.w),
+        decoration: BoxDecoration(
+          color: AppColors.onPrimary,
+          borderRadius: BorderRadius.circular(16.r),
+          border: appBarBgColor,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 33,
+              color: const Color(0xff000000).withOpacity(0.1),
+              offset: const Offset(1, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            // Leading: custom widget or image
+            leadingImageAddress != null
+                ? Container(
+                  height: 44.w,
+                  width: 44.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(13.2),
+                    image: DecorationImage(
+                      image: AssetImage(leadingImageAddress),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                if (subtitle != null)
-                  Row(
-                    children: [
-                      if (subtitlePreIconAsset != null)
-                        Padding(
-                          padding: EdgeInsets.only(right: 4.w),
-                          child: SvgPicture.asset(
-                            subtitlePreIconAsset,
-                            height: 16.h,
-                            width: 16.w,
+                )
+                : SizedBox(),
+
+            SizedBox(width: 12.w),
+
+            // Title and subtitle section
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (title != null)
+                    Text(
+                      title,
+                      style: textTheme.bodyLarge!.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: colorScheme.primary,
+                      ),
+                    ),
+                  if (subtitle != null)
+                    Row(
+                      children: [
+                        if (subtitlePreIconAsset != null)
+                          Padding(
+                            padding: EdgeInsets.only(right: 4.w),
+                            child: SvgPicture.asset(
+                              subtitlePreIconAsset,
+                              height: 16.h,
+                              width: 16.w,
+                              colorFilter: ColorFilter.mode(AppColors.onSurface, BlendMode.srcIn),
+                            ),
+                          ),
+                        Text(
+                          subtitle,
+                          style: textTheme.bodyMedium!.copyWith(
+                            color: AppColors.onSurface,
                           ),
                         ),
-                      Text(
-                        subtitle,
-                        style: textTheme.bodyMedium!.copyWith(
-                          color: colorScheme.onSurface,
-                        ),
-                      ),
-                    ],
-                  ),
-              ],
+                      ],
+                    ),
+                ],
+              ),
             ),
-          ),
 
-          // Trailing actions
-          if (trailing != null)
-            Row(mainAxisSize: MainAxisSize.min, children: trailing),
-        ],
+            // Trailing actions
+            if (trailing != null)
+              Row(mainAxisSize: MainAxisSize.min, children: trailing),
+          ],
+        ),
       ),
     );
   }
@@ -123,6 +128,7 @@ class Utils {
   static Widget secondaryButton({
     required VoidCallback onPressed,
     required String imageAsset,
+    EdgeInsets? padding,
     String? buttonName,
     Color? backgroundColor,
     TextStyle? textStyle,
@@ -130,20 +136,26 @@ class Utils {
     double? width,
     BorderRadius? borderRadius,
     required BuildContext context,
-  }) {
+    Color? iconColor,
+  })
+  {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          height: height ??72.w,
-          width: width??74.w,
-          padding: EdgeInsets.symmetric(horizontal: 16.2.w, vertical: 17.1.h),
+        //  height: height ??72.w,
+        //  width: width??74.w,
+          padding: padding ?? EdgeInsets.symmetric(horizontal: 16.2.w, vertical: 17.1.h),
           decoration: BoxDecoration(
             borderRadius: borderRadius ?? BorderRadius.circular(12),
             color: backgroundColor ?? colorScheme.surface.withOpacity(0.08),
           ),
-          child: SvgPicture.asset(imageAsset),
+          child: SvgPicture.asset(imageAsset,
+          colorFilter: ColorFilter.mode(iconColor ?? colorScheme.primary, BlendMode.srcIn),
+          ),
         ),
         if (buttonName != null) ...[SizedBox(height: 12.h), Text(buttonName,style: textTheme.bodySmall,)],
       ],
@@ -158,7 +170,14 @@ class Utils {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: ImageIcon(AssetImage('assets/icons/back.png',),size: 26.r, ),
+        // icon: ImageIcon(AssetImage('assets/icons/back.png',),size: 26.r, ),
+        icon:  SvgPicture.asset(AppIcons.BackButton,
+        
+        color: Color(0xff000000),
+       
+       height: 24, 
+        width: 24,
+        ),
       ),
 
       ///size: 20.r

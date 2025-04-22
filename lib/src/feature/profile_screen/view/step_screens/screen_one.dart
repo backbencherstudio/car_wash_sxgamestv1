@@ -1,3 +1,4 @@
+import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
@@ -6,6 +7,7 @@ import 'package:car_wash/src/feature/profile_screen/view_model/profile_provider.
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ScreenOne extends StatelessWidget {
   const ScreenOne({super.key});
@@ -60,10 +62,7 @@ class ScreenOne extends StatelessWidget {
                         fillColor: Color(0xffffffff),
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: ImageIcon(
-                            AssetImage(AppImages.personIcon),
-                            size: 18.r,
-                          ),
+                          child: SvgPicture.asset(AppIcons.mail)
                         ),
                       ),
                 ),
@@ -77,10 +76,7 @@ class ScreenOne extends StatelessWidget {
                         fillColor: Color(0xffffffff),
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: ImageIcon(
-                            AssetImage(AppImages.emailIcon),
-                            size: 18.r,
-                          ),
+                          child: SvgPicture.asset(AppIcons.person)
                         ),
                       ),
                 ),

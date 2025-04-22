@@ -37,13 +37,20 @@ dependencies:
   go_router: ^15.0.0
   google_fonts: ^6.2.1
   flutter_screenutil: ^5.9.3
-  flutter_svg: ^2.0.17
+  flutter_svg: ^2.1.0
   flutter_riverpod: ^2.6.1
   pin_code_fields: ^8.0.1
   shared_preferences: ^2.5.3
   dotted_border: ^2.1.0
+  flutter_launcher_icons: ^0.14.3
   step_progress_indicator: ^1.0.2
-
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png"
+  min_sdk_android: 24 # android min sdk min:16, default 21
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/app_icon.png"
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -70,9 +77,10 @@ flutter:
   assets:
   
      - assets/icons/
-     - assets/icons/social_media/
      - assets/images/
-   
+     - assets/images/home_screen/
+     - assets/
+
      - assets/images/signup/
     
      - assets/images/forgot_password/
