@@ -18,6 +18,8 @@ class ScreenTwo extends StatelessWidget {
       builder: (context, ref, _) {
         final stepState = ref.watch(StepControllerProvider);
         final stepNotifier = ref.read(StepControllerProvider.notifier);
+        final imageState = ref.watch(imagePickerProvider);
+        final imagePicker = ref.read(imagePickerProvider.notifier);
 
         return Center(
           child: Padding(
@@ -50,120 +52,98 @@ class ScreenTwo extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
 
-              
-                Consumer(
-                  builder: (context, ref, _) {
-                    final imageFile = ref.watch(imagePickerProvider);
-                    final imagePicker = ref.read(imagePickerProvider.notifier);
-
-                    return GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(16)),
-                          ),
-                          builder: (_) => ImageSourcePicker(ref: ref, provider: imagePickerProvider,),
-                        );
-                      },
-                      child: DottedBorder(
-                        color: AppColors.primary,
-                        strokeWidth: 1,
-                        borderType: BorderType.RRect,
-                        radius: Radius.circular(12),
-                        dashPattern: [6, 6],
-                        child: Container(
-                          height: 263.h,
-                          width: 400.w,
-                          child: Column(
-                            children: [
-                              imageFile != null
-                                  ? Expanded(
-                                      child: Stack(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            child: Image.file(
-                                              imageFile,
-                                              height: 263.h,
-                                              width: 400.w,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 8,
-                                            right: 8,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                imagePicker.clearImage();
-                                                stepNotifier
-                                                    .markStepComplete(false);
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: Colors.black54,
-                                                ),
-                                                child: const Icon(Icons.close,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  : Padding(
-                                      padding: const EdgeInsets.all(11),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Image.asset(
-                                              "assets/images/bag.png",
-                                              height: 48.h,
-                                              width: 48.w,
-                                            ),
-                                          ),
-                                          SizedBox(height: 48.h),
-                                          Image.asset(
-                                            "assets/images/upload.png",
-                                            height: 40.h,
-                                            width: 40.w,
-                                          ),
-                                          SizedBox(height: 12.h),
-                                          Text(
-                                            "Upload Your Profile Photo",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                  fontSize: 14.sp,
-                                                  color: AppColors.onSecondary,
-                                                ),
-                                          ),
-                                          SizedBox(height: 8.h),
-                                          Text(
-                                            "Only support .jpg, .png and .svg and zip files",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall!
-                                                .copyWith(
-                                                  color: AppColors.onSecondary,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                            ],
-                          ),
-                        ),
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(16)),
                       ),
+                      builder: (_) => ImageSourcePicker(ref: ref, id: 'profile'),
                     );
                   },
+                  child: DottedBorder(
+                    color: AppColors.primary,
+                    strokeWidth: 1,
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(12),
+                    dashPattern: [6, 6],
+                    child: Container(
+                      height: 263.h,
+                      width: 400.w,
+                      child: imageState.profile != null
+                          ? SizedBox(
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.file(
+                                    imageState.profile!,
+                                    height: 263.h,
+                                    width: 400.w,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 8,
+                                  right: 8,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      imagePicker.clearImage('profile');
+                                      stepNotifier.markStepComplete(false);
+                                    },
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.black54,
+                                      ),
+                                      child: const Icon(Icons.close, color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                          : Padding(
+                              padding: const EdgeInsets.all(11),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Image.asset(
+                                      "assets/images/bag.png",
+                                      height: 48.h,
+                                      width: 48.w,
+                                    ),
+                                  ),
+                                  SizedBox(height: 48.h),
+                                  Image.asset(
+                                    "assets/images/upload.png",
+                                    height: 40.h,
+                                    width: 40.w,
+                                  ),
+                                  SizedBox(height: 12.h),
+                                  Text(
+                                    "Upload Your Profile Photo",
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                          fontSize: 14.sp,
+                                          color: AppColors.onSecondary,
+                                        ),
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  Text(
+                                    "Only support .jpg, .png and .svg and zip files",
+                                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                          color: AppColors.onSecondary,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                    ),
+                  ),
                 ),
 
                 SizedBox(height: 24.h),
