@@ -31,9 +31,9 @@ class TabNavigationNotifier extends StateNotifier<TabNavigationState> {
     state = state.copyWith(currentIndex: index);
   }
 
-  // void onPageChanged(int index) {
-  //   state = state.copyWith(currentIndex: index);
-  // }
+  void onPageChanged(int index) {
+    state = state.copyWith(currentIndex: index);
+  }
 }
 
 final tabNavigationProvider =
