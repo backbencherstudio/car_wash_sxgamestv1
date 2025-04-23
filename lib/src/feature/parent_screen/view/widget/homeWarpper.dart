@@ -1,7 +1,10 @@
 import 'package:car_wash/src/feature/home_screen/view/home_screen.dart';
 import 'package:car_wash/src/feature/parent_screen/view/widget/customNavBar.dart';
+import 'package:car_wash/src/feature/home_screen/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:car_wash/src/feature/home_screen/view/home_screen.dart' show bottomNavVisibilityProvider;
 
 class HomeWrapper extends ConsumerStatefulWidget {
   const HomeWrapper({super.key});
@@ -22,10 +25,12 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
   @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(bottomNavProvider);
+    final isBottomVisible = ref.watch(bottomNavVisibilityProvider); 
 
+    // keep in sync
     ref.listen<int>(bottomNavProvider, (previous, next) {
       if (_pageController.hasClients && _pageController.page?.round() != next) {
-        _pageController.jumpToPage(next); 
+        _pageController.jumpToPage(next);
       }
     });
 
@@ -35,7 +40,7 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
           Expanded(
             child: PageView(
               controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(), // disables swipe
+              physics: const NeverScrollableScrollPhysics(),
               onPageChanged: (index) {
                 ref.read(bottomNavProvider.notifier).state = index;
               },
@@ -47,10 +52,11 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(12.0),
-            child: CustomBottomNavBar(),
-          ),
+          if (isBottomVisible) 
+            const Padding(
+              padding: EdgeInsets.all(12.0),
+              child: CustomBottomNavBar(),
+            ),
         ],
       ),
     );
