@@ -14,8 +14,10 @@ class ScreenThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer(
       builder: (_, ref, __) {
+        
         final stepState = ref.watch(StepControllerProvider);
         final stepNotifier = ref.read(StepControllerProvider.notifier);
         final imageState = ref.watch(imagePickerProvider);
@@ -36,6 +38,7 @@ class ScreenThree extends StatelessWidget {
               );
             },
             child: DottedBorder(
+              
               color: AppColors.primary,
               strokeWidth: 1,
               borderType: BorderType.RRect,

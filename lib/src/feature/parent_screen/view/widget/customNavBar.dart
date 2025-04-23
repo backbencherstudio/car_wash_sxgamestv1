@@ -37,7 +37,7 @@ class CustomBottomNavBar extends ConsumerWidget {
           return GestureDetector(
             onTap: () => notifier.state = index,
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
+              duration:  Duration(milliseconds: 200),
               padding: EdgeInsets.symmetric(horizontal: isActive ? 16 : 0, vertical: 10),
               decoration: BoxDecoration(
                 color: isActive ? AppColors.primary : Colors.transparent,

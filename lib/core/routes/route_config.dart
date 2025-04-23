@@ -20,7 +20,7 @@ import '../../src/feature/home_screen/view/home_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/step_screens/screen_four.dart';
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.parentsScreen,
+     initialLocation: RouteName.splashScreen,
      routes: [
       GoRoute(
           name: RouteName.splashScreen,
