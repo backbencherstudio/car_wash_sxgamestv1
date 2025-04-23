@@ -24,7 +24,7 @@ class CustomBottomNavBar extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(color: Colors.black12, blurRadius: 6),
         ],
@@ -41,7 +41,7 @@ class CustomBottomNavBar extends ConsumerWidget {
               padding: EdgeInsets.symmetric(horizontal: isActive ? 16 : 0, vertical: 10),
               decoration: BoxDecoration(
                 color: isActive ? AppColors.primary : Colors.transparent,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
                 children: [
