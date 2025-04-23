@@ -9,7 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageSourcePicker extends StatelessWidget {
   final WidgetRef ref;
-  const ImageSourcePicker({required this.ref, required StateNotifierProvider<ImagePickerNotifier, File?> provider});
+  final String id;
+  const ImageSourcePicker({required this.ref, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ child: Wrap(
             ),
             onTap: () async {
               Navigator.pop(context);
-              await imagePicker.pickFromGallery();
+              await imagePicker.pickFromGallery(id);
               if (ref.read(imagePickerProvider) != null) {
                 stepNotifier.markStepComplete(true);
               }
@@ -54,7 +55,7 @@ child: Wrap(
             ),
             onTap: () async {
               Navigator.pop(context);
-              await imagePicker.pickFromCamera();
+              await imagePicker.pickFromCamera(id);
               if (ref.read(imagePickerProvider) != null) {
                 stepNotifier.markStepComplete(true);
               }
