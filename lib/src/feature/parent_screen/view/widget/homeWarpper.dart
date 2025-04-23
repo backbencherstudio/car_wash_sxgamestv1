@@ -1,7 +1,6 @@
 import 'package:car_wash/src/feature/home_screen/view/home_screen.dart';
 import 'package:car_wash/src/feature/parent_screen/view/widget/customNavBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeWrapper extends ConsumerStatefulWidget {
@@ -24,13 +23,9 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(bottomNavProvider);
 
-    ref.listen<int>(bottomNavProvider, (prev, next) {
-      if (_pageController.hasClients) {
-        _pageController.animateToPage(
-          next,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        );
+    ref.listen<int>(bottomNavProvider, (previous, next) {
+      if (_pageController.hasClients && _pageController.page?.round() != next) {
+        _pageController.jumpToPage(next); 
       }
     });
 
@@ -39,11 +34,13 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
         children: [
           Expanded(
             child: PageView(
-              physics: const NeverScrollableScrollPhysics(),
               controller: _pageController,
-              onPageChanged: (index) => ref.read(bottomNavProvider.notifier).state = index,
+              physics: const NeverScrollableScrollPhysics(), // disables swipe
+              onPageChanged: (index) {
+                ref.read(bottomNavProvider.notifier).state = index;
+              },
               children: const [
-                Center(child: HomeScreen()),
+                HomeScreen(),
                 Center(child: Text("Favorites Screen")),
                 Center(child: Text("Services Screen")),
                 Center(child: Text("Profile Screen")),
