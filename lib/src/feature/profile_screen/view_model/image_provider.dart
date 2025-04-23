@@ -6,7 +6,6 @@ final imagePickerProvider = StateNotifierProvider<ImagePickerNotifier, ImagePick
   (ref) => ImagePickerNotifier(),
 );
 
-// State class to hold all 3 files
 class ImagePickerState {
   final File? profile;
   final File? licenseFront;
