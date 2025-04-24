@@ -17,6 +17,7 @@ class StepPageNotifier extends StateNotifier<StepPageState> {
     state = state.copyWith(stepCompleted: updateList);
   }
 
+
   void nextStep() {
     if (state.currentStep < 3) {
       final newStep = state.currentStep + 1;
