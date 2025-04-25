@@ -1,4 +1,6 @@
+import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
+import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,11 +26,13 @@ class CustomBottomNavBar extends ConsumerWidget {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
-        ),
+       margin: AppPadding.screenHorizontal,
+        decoration: Utils.commonBoxDecoration(),
+        // BoxDecoration(
+        //   color: Colors.white,
+        //   borderRadius: BorderRadius.circular(18),
+        //   boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
+        // ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(items.length, (index) {
