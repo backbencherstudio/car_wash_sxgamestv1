@@ -1,9 +1,10 @@
+import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
+import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-
 
 final bottomNavProvider = StateProvider<int>((ref) => 0);
 
@@ -22,53 +23,72 @@ class CustomBottomNavBar extends ConsumerWidget {
       {'icon': 'assets/icons/pp.svg', 'label': 'Profile'},
     ];
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 6),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(items.length, (index) {
-          final isActive = index == currentIndex;
-
-          return GestureDetector(
-            onTap: () => notifier.state = index,
-            child: AnimatedContainer(
-              duration:  Duration(milliseconds: 200),
-              padding: EdgeInsets.symmetric(horizontal: isActive ? 16 : 0, vertical: 10),
-              decoration: BoxDecoration(
-                color: isActive ? AppColors.primary : Colors.transparent,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    items[index]['icon']!,
-                    colorFilter: ColorFilter.mode(
-                      isActive ? Colors.white : Colors.black54,
-                      BlendMode.srcIn,
-                    ),
-                    height: 24,
-                    width: 24,
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+       margin: AppPadding.screenHorizontal,
+        decoration: Utils.commonBoxDecoration(),
+        // BoxDecoration(
+        //   color: Colors.white,
+        //   borderRadius: BorderRadius.circular(18),
+        //   boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
+        // ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(items.length, (index) {
+            final isActive = index == currentIndex;
+      
+            return AnimatedScale(
+              scale: isActive ? 1.1 : 1.0, 
+              duration: Duration(milliseconds: 500),
+              curve: Curves.elasticOut, 
+              child: ElevatedButton(
+                
+                onPressed: () => notifier.state = index,
+                style: ElevatedButton.styleFrom(
+            
+                  enableFeedback: false,
+                  overlayColor: Colors.transparent, // this one for fade effect
+                  shadowColor: Colors.transparent,  // this one is also for the fade effect
+                  surfaceTintColor: Colors.transparent,
+            
+            
+                  backgroundColor: isActive ? AppColors.primary : Colors.transparent, 
+                  elevation: 0, 
+                  padding: EdgeInsets.symmetric(
+                    horizontal: isActive ? 16 : 0,
+                    vertical: 10,
                   ),
-                  if (isActive)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        items[index]['label']!,
-                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Row(
+                  spacing: 8.w,
+                  children: [
+                    SvgPicture.asset(
+                      items[index]['icon']!,
+                      colorFilter: ColorFilter.mode(
+                        isActive ? Colors.white : Colors.black54,
+                        BlendMode.srcIn,
                       ),
+                      height: 24.h,
+                      width: 24.w,
                     ),
-                ],
+                    if (isActive)
+                      Text(
+                        items[index]['label']!,
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                  ],
+                ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
       ),
     );
   }
