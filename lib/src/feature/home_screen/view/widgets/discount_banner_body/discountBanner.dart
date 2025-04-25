@@ -50,7 +50,7 @@ class DiscountBanner extends StatelessWidget {
 
                   Utils.secondaryButton(
                     onPressed: () {},
-                    imageAsset: AppIcons.arrowUpRight,
+                    imageAsset: AppIcons.arrowUpRight,iconColor: Colors.white,
                     context: context,
                     backgroundColor: Color.fromRGBO(255, 255, 255, 0.26),
                   ),

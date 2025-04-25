@@ -13,7 +13,7 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Utils.customAppBar(
       context: context,
-      title: "Hello Dr. Shakin",
+      title: "Hello Dr. Yunus",
       leadingImageAddress: AppImages.shakin,
       subtitle: "zinzira",
       subtitlePreIconAsset: AppIcons.locationIcon,

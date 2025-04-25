@@ -18,4 +18,11 @@ static const arrowUpRight = 'assets/icons/arrow-up-right.svg';
 static const mail = 'assets/icons/mail.svg';
 static const person = 'assets/icons/person.svg';
 static const BackButton = "assets/icons/backbutton.svg";
+
+static const exteriorWash = "assets/icons/exterior_wash.svg";
+static const handDrying = "assets/icons/hand_drying.svg";
+static const tireCleaning = "assets/icons/tire_cleaning.svg";
+static const tireDressing = "assets/icons/tire_dressing.svg";
+static const interiorWash = "assets/icons/interior_wash.svg";
+static const engineWash = "assets/icons/engine_wash.svg";
 }
