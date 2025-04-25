@@ -14,4 +14,7 @@ class AppImages{
   static const beautifulCarWashingService = "assets/images/home_screen/beautiful-car-washing-service.png";
   static const banner = "assets/images/home_screen/banner.png";
   static const banner2 = "assets/images/home_screen/banner-2.png";
+
+  static const blogPhoto = "assets/images/home_screen/blog_picture.png";
+  static const blogPhoto2 = "assets/images/home_screen/blog_picture2.png";
 }
