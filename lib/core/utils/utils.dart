@@ -183,6 +183,27 @@ class Utils {
       ///size: 20.r
     );
   }
+
+
+  static Decoration commonBoxDecoration({
+    Color? backgroundColor,
+    BorderRadius? borderRadius,
+    Color? shadowColor
+}){
+    return BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(12.r),
+      boxShadow: [
+        BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.04),
+          blurRadius: 10.r,
+          spreadRadius: 10.r,
+          offset: Offset(4, 8),
+        ),
+
+      ],
+    );
+  }
+
 }
 
 

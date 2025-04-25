@@ -9,6 +9,6 @@ class AppImages{
   static const successfullyResetPassword = "assets/images/forgot_password/success.png";
 
   /// Homne Screen
-  static const shakin = "assets/images/home_screen/shakin.jpeg";
+  static const shakin = "assets/images/home_screen/funny_face.jpeg";
   static const carWashBanner = "assets/images/home_screen/car_wash.png";
 }
