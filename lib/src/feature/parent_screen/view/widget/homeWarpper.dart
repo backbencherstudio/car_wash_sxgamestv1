@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:car_wash/src/feature/home_screen/view/home_screen.dart' show bottomNavVisibilityProvider;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeWrapper extends ConsumerStatefulWidget {
   const HomeWrapper({super.key});
@@ -35,9 +36,9 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
     });
 
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
+          Positioned.fill(
             child: PageView(
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
@@ -53,10 +54,9 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
             ),
           ),
           if (isBottomVisible) 
-            const Padding(
-              padding: EdgeInsets.all(12.0),
-              child: CustomBottomNavBar(),
-            ),
+             Align(
+                 alignment: Alignment.bottomCenter,
+                 child: CustomBottomNavBar()),
         ],
       ),
     );

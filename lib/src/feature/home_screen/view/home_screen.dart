@@ -32,10 +32,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: Column(
         children: [
           HomeHeader(),
-          SizedBox(height: 24.h),
-          DiscountBannerListView(),
-          SizedBox(height: 32.h),
-          ServicesList(),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 24.h),
+                  DiscountBannerListView(),
+                  SizedBox(height: 32.h),
+                  ServicesList(),
+
+                  SizedBox(height: 150.h,)
+                ],
+              ),
+            ),
+          )
+
+
         ],
       ),
     );
