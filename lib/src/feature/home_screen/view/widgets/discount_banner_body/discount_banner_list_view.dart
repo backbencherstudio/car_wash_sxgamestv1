@@ -12,7 +12,7 @@ class DiscountBannerListView extends StatelessWidget {
       height: 240.h,
       width: double.infinity,
       child: ListView.builder(
-        padding: AppPadding.screenHorizontal,
+        padding: EdgeInsets.zero,
         itemCount: 5,
         scrollDirection: Axis.horizontal,
         physics: ClampingScrollPhysics(),

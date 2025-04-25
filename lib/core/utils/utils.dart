@@ -20,7 +20,6 @@ class Utils {
       child: Container(
         //height: 64.h,
         padding: EdgeInsets.all(10.r),
-        margin: EdgeInsets.symmetric(horizontal: 16.w),
         decoration: BoxDecoration(
           color: AppColors.onPrimary,
           borderRadius: BorderRadius.circular(16.r),
@@ -206,10 +205,10 @@ class Utils {
       borderRadius: borderRadius ?? BorderRadius.circular(12.r),
       boxShadow: [
         BoxShadow(
-          color: shadowColor ?? Color.fromRGBO(0, 0, 0, 0.04),
+          color: shadowColor ?? Color.fromRGBO(0, 0, 0, 0.02),
           blurRadius: 10.r,
           spreadRadius: 10.r,
-          offset: Offset(4, 8),
+          offset: Offset(4, 4),
         ),
       ],
     );
