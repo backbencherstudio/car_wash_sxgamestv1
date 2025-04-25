@@ -28,11 +28,6 @@ class CustomBottomNavBar extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
        margin: AppPadding.screenHorizontal,
         decoration: Utils.commonBoxDecoration(),
-        // BoxDecoration(
-        //   color: Colors.white,
-        //   borderRadius: BorderRadius.circular(18),
-        //   boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
-        // ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(items.length, (index) {
@@ -56,7 +51,7 @@ class CustomBottomNavBar extends ConsumerWidget {
                   backgroundColor: isActive ? AppColors.primary : Colors.transparent, 
                   elevation: 0, 
                   padding: EdgeInsets.symmetric(
-                    horizontal: isActive ? 16 : 0,
+                    horizontal: isActive ? 10 : 0,
                     vertical: 10,
                   ),
                   shape: RoundedRectangleBorder(
