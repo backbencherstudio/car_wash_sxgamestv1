@@ -76,7 +76,10 @@ class Utils {
                               subtitlePreIconAsset,
                               height: 16.h,
                               width: 16.w,
-                              colorFilter: ColorFilter.mode(AppColors.onSurface, BlendMode.srcIn),
+                              colorFilter: ColorFilter.mode(
+                                AppColors.onSurface,
+                                BlendMode.srcIn,
+                              ),
                             ),
                           ),
                         Text(
@@ -137,8 +140,7 @@ class Utils {
     BorderRadius? borderRadius,
     required BuildContext context,
     Color? iconColor,
-  })
-  {
+  }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Column(
@@ -146,18 +148,27 @@ class Utils {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-        //  height: height ??72.w,
-        //  width: width??74.w,
-          padding: padding ?? EdgeInsets.symmetric(horizontal: 16.2.w, vertical: 17.1.h),
+          //  height: height ??72.w,
+          //  width: width??74.w,
+          padding:
+              padding ??
+              EdgeInsets.symmetric(horizontal: 16.2.w, vertical: 17.1.h),
           decoration: BoxDecoration(
             borderRadius: borderRadius ?? BorderRadius.circular(12),
             color: backgroundColor ?? colorScheme.surface.withOpacity(0.08),
           ),
-          child: SvgPicture.asset(imageAsset,
-          colorFilter: ColorFilter.mode(iconColor ?? colorScheme.primary, BlendMode.srcIn),
+          child: SvgPicture.asset(
+            imageAsset,
+            colorFilter: ColorFilter.mode(
+              iconColor ?? colorScheme.primary,
+              BlendMode.srcIn,
+            ),
           ),
         ),
-        if (buttonName != null) ...[SizedBox(height: 12.h), Text(buttonName,style: textTheme.bodySmall,)],
+        if (buttonName != null) ...[
+          SizedBox(height: 12.h),
+          Text(buttonName, style: textTheme.bodySmall),
+        ],
       ],
     );
   }
@@ -171,12 +182,13 @@ class Utils {
           Navigator.pop(context);
         },
         // icon: ImageIcon(AssetImage('assets/icons/back.png',),size: 26.r, ),
-        icon:  SvgPicture.asset(AppIcons.BackButton,
-        
-        color: Color(0xff000000),
-       
-       height: 24, 
-        width: 24,
+        icon: SvgPicture.asset(
+          AppIcons.BackButton,
+
+          color: Color(0xff000000),
+
+          height: 24,
+          width: 24,
         ),
       ),
 
@@ -184,26 +196,22 @@ class Utils {
     );
   }
 
-
   static Decoration commonBoxDecoration({
     Color? backgroundColor,
     BorderRadius? borderRadius,
-    Color? shadowColor
-}){
+    Color? shadowColor,
+  }) {
     return BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(12.r),
+      color: backgroundColor ?? Colors.white,
+      borderRadius: borderRadius ?? BorderRadius.circular(12.r),
       boxShadow: [
-        BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.04),
+        BoxShadow(
+          color: shadowColor ?? Color.fromRGBO(0, 0, 0, 0.04),
           blurRadius: 10.r,
           spreadRadius: 10.r,
           offset: Offset(4, 8),
         ),
-
       ],
     );
   }
-
 }
-
-
