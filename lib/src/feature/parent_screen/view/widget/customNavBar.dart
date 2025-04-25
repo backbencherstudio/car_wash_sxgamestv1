@@ -2,8 +2,10 @@ import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-final bottomNavProvider = StateProvider<int>((ref) => 0);
 
+
+
+final bottomNavProvider = StateProvider<int>((ref) => 0);
 
 class CustomBottomNavBar extends ConsumerWidget {
   const CustomBottomNavBar({super.key});
@@ -21,7 +23,7 @@ class CustomBottomNavBar extends ConsumerWidget {
     ];
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
