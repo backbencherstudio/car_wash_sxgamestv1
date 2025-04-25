@@ -25,4 +25,5 @@ static const tireCleaning = "assets/icons/tire_cleaning.svg";
 static const tireDressing = "assets/icons/tire_dressing.svg";
 static const interiorWash = "assets/icons/interior_wash.svg";
 static const engineWash = "assets/icons/engine_wash.svg";
+static const clock = "assets/icons/clock.svg";
 }

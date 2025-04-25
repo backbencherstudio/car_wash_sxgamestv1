@@ -11,4 +11,7 @@ class AppImages{
   /// Homne Screen
   static const shakin = "assets/images/home_screen/funny_face.jpeg";
   static const carWashBanner = "assets/images/home_screen/car_wash.png";
+  static const beautifulCarWashingService = "assets/images/home_screen/beautiful-car-washing-service.png";
+  static const banner = "assets/images/home_screen/banner.png";
+  static const banner2 = "assets/images/home_screen/banner-2.png";
 }
