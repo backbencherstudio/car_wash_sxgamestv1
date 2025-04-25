@@ -1,9 +1,7 @@
 import 'package:car_wash/src/feature/home_screen/view/home_screen.dart';
 import 'package:car_wash/src/feature/parent_screen/view/widget/customNavBar.dart';
-import 'package:car_wash/src/feature/home_screen/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:car_wash/src/feature/home_screen/view/home_screen.dart' show bottomNavVisibilityProvider;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,10 +23,10 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final currentIndex = ref.watch(bottomNavProvider);
     final isBottomVisible = ref.watch(bottomNavVisibilityProvider); 
 
-    // keep in sync
     ref.listen<int>(bottomNavProvider, (previous, next) {
       if (_pageController.hasClients && _pageController.page?.round() != next) {
         _pageController.jumpToPage(next);
