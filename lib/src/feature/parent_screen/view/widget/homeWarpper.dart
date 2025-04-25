@@ -29,7 +29,11 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
 
     ref.listen<int>(bottomNavProvider, (previous, next) {
       if (_pageController.hasClients && _pageController.page?.round() != next) {
-        _pageController.jumpToPage(next);
+         _pageController.animateToPage(
+          next,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.ease, 
+        );
       }
     });
 
