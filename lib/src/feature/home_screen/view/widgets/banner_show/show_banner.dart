@@ -1,4 +1,5 @@
 import 'package:car_wash/core/constant/images.dart';
+import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ class ShowBanner extends StatelessWidget{
   Widget build(BuildContext context) {
     return SizedBox(height: 240.h,
     child: ListView.builder(
+      padding: AppPadding.screenHorizontal,
       scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (_, index){

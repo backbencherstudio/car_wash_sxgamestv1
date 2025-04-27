@@ -48,8 +48,8 @@ class _ServicesListState extends State<ServicesList> {
         ),
         Container(
           height: 330.h,
-            width: double.infinity,
-          padding: EdgeInsets.all(16.r),
+            width: 400.w,
+           padding: EdgeInsets.only(bottom:  16.h),
           decoration: Utils.commonBoxDecoration(),
 
           child: Consumer(
@@ -82,7 +82,7 @@ class _ServicesListState extends State<ServicesList> {
                         final pageItems = pages[pageIndex];
                         return  GridView.count(
                           crossAxisCount: 3,
-                            padding: EdgeInsets.zero,
+                            padding: EdgeInsets.all(16.r),
                             crossAxisSpacing: 16..w,
                             mainAxisSpacing: 24.h,
                                 physics: NeverScrollableScrollPhysics(),

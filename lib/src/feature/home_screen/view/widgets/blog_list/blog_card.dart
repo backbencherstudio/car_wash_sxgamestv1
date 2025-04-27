@@ -12,15 +12,16 @@ class BlogCard extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     TextStyle subTitleTextStyle = Theme.of(context).textTheme.bodyMedium!.copyWith(color: Color(0xff93979A));
-    TextStyle headerTextStyle = Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 18.sp,);
 
     return Container(
-      height: 407.h,
+      //height: 437.h,
       width: 285.w,
       padding: EdgeInsets.all(12.r),
       margin: EdgeInsets.only(right: 16.w),
       decoration: Utils.commonBoxDecoration(),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 5.h,
         children: [
           ClipRRect(
@@ -52,7 +53,7 @@ class BlogCard extends StatelessWidget{
 
           Row(
             children: [
-              Text("Read More",style: headerTextStyle.copyWith(color: AppColors.primary),),
+              Text("Read More",style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600,color: AppColors.primary),),
               SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
             ],
           ),

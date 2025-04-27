@@ -23,7 +23,9 @@ class AppColors {
   static const Color warningColor = Color(0xffF9C80E);
   static const Color successColor = Color(0xff22CAAD);
   static const Color darkBorder = Color(0xff071B55);
-  static const Color iconColor = Color(0xff1D1F2C);
+  static const Color mainIconColor = Color(0xff1D1F2C);
+  static const Color semiIconColor = Color(0xff434343);
+  static const Color lightIconColor = Color(0xff777980);
   static const Color textColor = Color(0xff151C24);
   static const Color secondaryButtonBgColor = Color.fromRGBO(0, 124, 240, 0.08);
 }

@@ -1,4 +1,5 @@
 import 'package:car_wash/core/constant/icons.dart';
+import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,17 +19,20 @@ class BookService extends StatelessWidget{
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 22.h,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("Select service you want",style: headerTextStyle,),
-            Row(
-              children: [
-                Text("View All",style: headerTextStyle.copyWith(color: AppColors.primary),),
-                SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
-              ],
-            ),
-          ],
+        Padding(
+          padding: AppPadding.screenHorizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Select service you want",style: headerTextStyle,),
+              Row(
+                children: [
+                  Text("View All",style: headerTextStyle.copyWith(color: AppColors.primary),),
+                  SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
+                ],
+              ),
+            ],
+          ),
         ),
         BookServiceCard(serviceName: "Exterior Wash",),
         BookServiceCard(serviceName: "Hand Drying",),
