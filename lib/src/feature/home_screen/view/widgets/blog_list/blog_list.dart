@@ -1,4 +1,5 @@
 import 'package:car_wash/core/constant/images.dart';
+import 'package:car_wash/core/constant/padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,29 +17,35 @@ class BlogList extends StatelessWidget{
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      spacing: 13.h,
+      //spacing: 13.h,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("Recent Blogs",style: headerTextStyle,),
-            Row(
-              children: [
-                Text("View All",style: headerTextStyle.copyWith(color: AppColors.primary),),
-                SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
-              ],
-            ),
-          ],
+        Padding(
+          padding: AppPadding.screenHorizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Recent Blogs",style: headerTextStyle,),
+              Row(
+                children: [
+                  Text("View All",style: headerTextStyle.copyWith(color: AppColors.primary),),
+                  SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
+                ],
+              ),
+            ],
+          ),
         ),
 
         SizedBox(
-          height: 407.h,
+          height: 449.h,
             child: ListView.builder(
+              padding: EdgeInsets.all(20.r),
               itemCount: 5,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, index){
-                return BlogCard(
-                  imagePath:AppImages.blogPhoto ,
+                return FittedBox(
+                  child: BlogCard(
+                    imagePath:AppImages.blogPhoto ,
+                  ),
                 );
                 }
             ),
