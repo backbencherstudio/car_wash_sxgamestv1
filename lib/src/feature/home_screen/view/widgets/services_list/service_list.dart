@@ -11,6 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../model/service_list_model.dart';
 
 class ServicesList extends StatefulWidget {
+  const ServicesList({super.key});
+
 
   @override
   State<ServicesList> createState() => _ServicesListState();
@@ -47,8 +49,8 @@ class _ServicesListState extends State<ServicesList> {
           ),
         ),
         Container(
-          height: 330.h,
             width: 400.w,
+            height: MediaQuery.of(context).size.height > 700 ?  335.h : 370.h,
            padding: EdgeInsets.only(bottom:  16.h),
           decoration: Utils.commonBoxDecoration(),
 
@@ -89,20 +91,20 @@ class _ServicesListState extends State<ServicesList> {
 
                                 children: pageItems.map((service){
                                 TextStyle textStyle = Theme.of(context).textTheme.bodyMedium!;
-                                return Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  spacing: 12.h,
-                                  children: [
-                                    Utils.secondaryButton(
+                                return SizedBox(
+                                  width: 112.w,
+                                  height: 106.h,
+                                  child: FittedBox(
+                                    child: Utils.secondaryButton(
                                         onPressed: (){},
                                         imageAsset: service.iconPath,
                                         context: context,
                                       backgroundColor: Color.fromRGBO(0, 124, 240, 0.08),
-                                      iconColor: AppColors.primary
+                                      iconColor: AppColors.primary,
+                                      buttonName: service.serviceName,
+                                      buttonNameTextStyle: textStyle
                                     ),
-                                    Text(service.serviceName,style: textStyle,)
-                                  ],
+                                  ),
                                 );
                           }).toList());
                         }
