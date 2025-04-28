@@ -35,7 +35,7 @@ class CustomBottomNavBar extends ConsumerWidget {
       
             return AnimatedScale(
               scale: isActive ? 1.1 : 1.0, 
-              duration: Duration(milliseconds: 500),
+              duration: Duration(milliseconds: 300),
               curve: Curves.elasticOut, 
               child: ElevatedButton(
                 
@@ -46,8 +46,6 @@ class CustomBottomNavBar extends ConsumerWidget {
                   overlayColor: Colors.transparent, // this one for fade effect
                   shadowColor: Colors.transparent,  // this one is also for the fade effect
                   surfaceTintColor: Colors.transparent,
-            
-            
                   backgroundColor: isActive ? AppColors.primary : Colors.transparent, 
                   elevation: 0, 
                   padding: EdgeInsets.symmetric(
