@@ -16,13 +16,19 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late final TextEditingController nameController;
-  final TextEditingController dobController = TextEditingController(text: "abc@gmail.com");
-  final TextEditingController nidController = TextEditingController(text: "123456789");
-  final TextEditingController licenseController = TextEditingController(text: "123456789");
-  final TextEditingController businessLocController = TextEditingController(text: "4319 Wakefield Street, Philadelphia, PA 19126");
+  late TextEditingController dobController;
+  late TextEditingController nidController;
+  late TextEditingController licenseController;
+  late TextEditingController businessLocController;
 @override
   void initState() {
     nameController = TextEditingController( text: "John Abraham");
+    dobController = TextEditingController(text: "abc@gmail.com");
+    nidController = TextEditingController(text: "123456789");
+    nidController = TextEditingController(text: "123456789");
+    licenseController = TextEditingController(text: "123456789");
+    businessLocController = TextEditingController(text: "4319 Wakefield Street, Philadelphia, PA 19126");
+
     super.initState();
   }
   @override
