@@ -1,5 +1,3 @@
-import 'package:car_wash/core/constant/icons.dart';
-import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/feature/home_screen/riverpod/home_riverpod.dart';

@@ -3,7 +3,7 @@ import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_input_decoration_theme.dart';
-import 'package:car_wash/src/feature/profile_screen/view_model/profile_provider.dart';
+import 'package:car_wash/src/feature/profile_Create_screen/view_model/profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
