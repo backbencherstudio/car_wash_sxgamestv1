@@ -1,9 +1,10 @@
 import 'package:car_wash/src/feature/home_screen/view/home_screen.dart';
 import 'package:car_wash/src/feature/parent_screen/view/widget/customNavBar.dart';
+import 'package:car_wash/src/feature/profile_Create_screen/view/profile_screen.dart';
+import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:car_wash/src/feature/home_screen/view/home_screen.dart' show bottomNavVisibilityProvider;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeWrapper extends ConsumerStatefulWidget {
   const HomeWrapper({super.key});
@@ -51,9 +52,9 @@ class _HomeWrapperState extends ConsumerState<HomeWrapper> {
                 HomeScreen(),
                 Center(child: Text("Favorites Screen")),
                 Center(child: Text("Services Screen")),
-                Center(child: Text("Profile Screen")),
+                ProfileScreen(),
               ],
-            ),
+            )
           ),
           if (isBottomVisible) 
              Align(

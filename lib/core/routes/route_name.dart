@@ -22,5 +22,5 @@ class RouteName {
   static const String ScreenTwo = '/ScreenTwo';
   static const String ScreenThree = '/ScreenThree';
   static const String ScreenFour = '/ScreenFour';
-  static const String ProfileScreen = '/ProfileScreen';
+  static const String ProfileCreateScreen = '/ProfileCreateScreen';
 }
