@@ -40,7 +40,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           Expanded(
             child: SingleChildScrollView(
-              reverse: true,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -70,24 +69,3 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 }
-
-
-// class HomeScreen extends StatelessWidget {
-//   const HomeScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       endDrawer: appDrawer(context: context),
-//       body: Column(
-//         children: [
-//           HomeHeader(),
-//           SizedBox(height: 24.h),
-//           DiscountBannerListView(),
-//           SizedBox(height: 32.h),
-//           ServicesList(),
-//         ],
-//       ),
-//     );
-//   }
-// }

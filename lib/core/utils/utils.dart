@@ -133,7 +133,7 @@ class Utils {
     EdgeInsets? padding,
     String? buttonName,
     Color? backgroundColor,
-    TextStyle? textStyle,
+    TextStyle? buttonNameTextStyle,
     double? height,
     double? width,
     BorderRadius? borderRadius,
@@ -153,7 +153,7 @@ class Utils {
               padding ??
               EdgeInsets.symmetric(horizontal: 16.2.w, vertical: 17.1.h),
           decoration: BoxDecoration(
-            borderRadius: borderRadius ?? BorderRadius.circular(12),
+            borderRadius: borderRadius ?? BorderRadius.circular(12.r),
             color: backgroundColor ?? colorScheme.surface.withOpacity(0.08),
           ),
           child: SvgPicture.asset(
@@ -166,7 +166,7 @@ class Utils {
         ),
         if (buttonName != null) ...[
           SizedBox(height: 12.h),
-          Text(buttonName, style: textTheme.bodySmall),
+          Text(buttonName, style: buttonNameTextStyle ?? textTheme.bodySmall),
         ],
       ],
     );
