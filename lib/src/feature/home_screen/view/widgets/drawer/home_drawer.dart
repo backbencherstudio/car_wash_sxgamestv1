@@ -28,7 +28,7 @@ Drawer appDrawer({required BuildContext context}) {
                   onPressed: (){
                     Navigator.pop(context);
                   },
-                  icon: Icon( Icons.close, color: AppColors.iconColor,size: 28.r,))
+                  icon: Icon( Icons.close, color: AppColors.mainIconColor,size: 28.r,))
               ],
             ),
           ),

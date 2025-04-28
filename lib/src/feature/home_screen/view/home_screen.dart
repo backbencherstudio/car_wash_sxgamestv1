@@ -1,3 +1,8 @@
+import 'package:car_wash/core/constant/padding.dart';
+import 'package:car_wash/src/feature/home_screen/view/widgets/banner_show/show_banner.dart';
+import 'package:car_wash/src/feature/home_screen/view/widgets/blog_list/blog_list.dart';
+import 'package:car_wash/src/feature/home_screen/view/widgets/book_service/book_service.dart';
+import 'package:car_wash/src/feature/home_screen/view/widgets/client_rivew_list/clients_rivew_list.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/discount_banner_body/discount_banner_list_view.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/drawer/home_drawer.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/home_header/home_header.dart';
@@ -35,12 +40,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           Expanded(
             child: SingleChildScrollView(
+              reverse: true,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(height: 24.h),
                   DiscountBannerListView(),
                   SizedBox(height: 32.h),
                   ServicesList(),
+
+                  SizedBox(height: 33.h),
+                  BookService(),
+                  SizedBox(height: 33.h),
+                  ShowBanner(),
+                  SizedBox(height: 33.h),
+                  BlogList(),
+                  SizedBox(height: 23.h),
+                  ClientsReviewList(),
 
                   SizedBox(height: 150.h,)
                 ],
