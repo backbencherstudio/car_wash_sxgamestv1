@@ -33,6 +33,8 @@ class Utils {
           ],
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
           children: [
             // Leading: custom widget or image
             leadingImageAddress != null
@@ -52,6 +54,7 @@ class Utils {
             SizedBox(width: 12.w),
 
             // Title and subtitle section
+            if(title != null || subtitle != null)
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +98,7 @@ class Utils {
 
             // Trailing actions
             if (trailing != null)
-              Row(mainAxisSize: MainAxisSize.min, children: trailing),
+              Row(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.end, children: trailing),
           ],
         ),
       ),

@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
           body: Column(
             children: [
-              HomeHeader(),
+              HomeHeader(isOnlyTrailing: false,),
 
               Expanded(
                 child: SingleChildScrollView(
