@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
-import 'package:car_wash/src/feature/profile_screen/view/widget/bottomSheet.dart';
-import 'package:car_wash/src/feature/profile_screen/view_model/image_provider.dart';
-import 'package:car_wash/src/feature/profile_screen/view_model/profile_provider.dart';
+import 'package:car_wash/src/feature/profile_Create_screen/view/widget/bottomSheet.dart';
+import 'package:car_wash/src/feature/profile_Create_screen/view_model/image_provider.dart';
+import 'package:car_wash/src/feature/profile_Create_screen/view_model/profile_provider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

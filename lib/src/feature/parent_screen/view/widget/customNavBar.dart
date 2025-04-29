@@ -7,15 +7,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// final bottomNavProvider = StateProvider<int>((ref) => 0);
-
 class CustomBottomNavBar extends ConsumerWidget {
   const CustomBottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final currentIndex = ref.watch(bottomNavProvider);
-    // final notifier = ref.read(bottomNavProvider.notifier);
+
     final parentScreenNotifier = ref.read(parentsScreenProvider.notifier);
     final parentScreenState = ref.watch(parentsScreenProvider);
 
@@ -49,7 +46,6 @@ class CustomBottomNavBar extends ConsumerWidget {
                   overlayColor: Colors.transparent, // this one for fade effect
                   shadowColor: Colors.transparent,  // this one is also for the fade effect
                   surfaceTintColor: Colors.transparent,
-            
             
                   backgroundColor: isActive ? AppColors.primary : Colors.transparent, 
                   elevation: 0, 
