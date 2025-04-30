@@ -8,7 +8,6 @@ import 'package:car_wash/src/feature/service_details_screen/view/widget/truckCon
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../home_screen/view/widgets/client_rivew_list/clients_rivew_list.dart';
 import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart'
@@ -33,54 +32,41 @@ class ServiceDetailsScreen extends StatelessWidget {
           body: Stack(
             children: [
               SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 300.h,
-                      child: Image.asset(
-                        "assets/images/serviceDetails/maskGroup.png",
-                        fit: BoxFit.cover,
+              child: Column(
+              children: [
+              SizedBox(
+              height: 300.h,
+              width: MediaQuery.sizeOf(context).width,
+              child: Image.asset(
+              "assets/images/serviceDetails/maskGroup.png",
+              fit: BoxFit.cover,
                       ),
                     ),
 
-                    //below image content
-                    Padding(
-                      padding: EdgeInsets.only(top: 25.h, right: 20.w),
-                      child: SizedBox(
-                        height: 84.h,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: AppPadding.screenHorizontal,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Exterior Wash",
-                                    style:
-                                        Theme.of(
-                                          context,
-                                        ).textTheme.headlineSmall,
-                                  ),
-                                  SizedBox(height: 2.h),
-                                  Text(
-                                    "CarFlix",
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodyLarge!.copyWith(
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff62676C),
-                                    ),
-                                  ),
-                                  FiveStar(),
+              //below image content
+              Padding(
+              padding: EdgeInsets.only(top: 25.h, right: 20.w),
+              child: SizedBox(
+              height: 84.h,
+              child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+              Padding(
+              padding: AppPadding.screenHorizontal,
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Text("Exterior Wash",style:Theme.of(context).textTheme.headlineSmall,),
+              SizedBox(height: 2.h),
+              Text("CarFlix", style: Theme.of(context).textTheme.bodyLarge!.copyWith( fontWeight: FontWeight.w400,color: Color(0xff62676C))),
+              FiveStar(),
                                 ],
                               ),
                             ),
-                            SizedBox(width: 17.w),
-                            Utils.primaryButton(
+               SizedBox(width: 17.w),
+               Utils.primaryButton(
                               onPressed: () {},
                               text: "Book Now",
                               width: 153.w,
@@ -176,7 +162,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Padding(
-                      padding:  EdgeInsets.only(left:20.w ),
+                      padding:  EdgeInsets.only(left:30.w , top: 20),
                       child: Utils.backButton(context: context),
                     ),
                     Spacer(),

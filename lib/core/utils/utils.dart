@@ -273,6 +273,8 @@ class Utils {
         Navigator.pop(context);
       },
       child: SvgPicture.asset("assets/icons/backbutton.svg",
+      height: 28.h,
+      width: 28.w,
       color: color ?? Color(0xffffffff),
       ),
     );
