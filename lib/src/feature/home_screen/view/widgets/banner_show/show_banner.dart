@@ -14,13 +14,17 @@ class ShowBanner extends StatelessWidget{
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         /// Heading
         if(heading!=null)
-        Text(heading!,style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-          color: AppColors.primary
-        ),),
-
+        Padding(
+          padding: AppPadding.screenHorizontal,
+          child: Text(heading!,style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            color: AppColors.primary
+          ),),
+        ),
+       SizedBox(height:23.h ,),
         /// Banner horizontal list view
         SizedBox(height: 240.h,
         child: ListView.builder(

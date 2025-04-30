@@ -83,7 +83,7 @@ flutter:
      - assets/icons/
      - assets/images/
      - assets/images/home_screen/
-     - assets/
+     - assets/images/serviceDetails/
 
      - assets/images/signup/
     
