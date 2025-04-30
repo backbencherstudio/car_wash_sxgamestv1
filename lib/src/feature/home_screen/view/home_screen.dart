@@ -27,6 +27,8 @@ class HomeScreen extends StatelessWidget {
           body: Stack(
             // fit: StackFit.expand,
             children: [
+
+              /// Body
               SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -54,6 +56,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
+              /// App bar
               Align(
                 alignment: Alignment.topCenter,
                 child: HomeHeader(isOnlyTrailing: false),

@@ -61,15 +61,19 @@ class Utils {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (title != null)
-                    Text(
-                      title,
-                      style: textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: colorScheme.primary,
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: textTheme.bodyLarge!.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: colorScheme.primary,
+                        ),
                       ),
                     ),
                   if (subtitle != null)
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         if (subtitlePreIconAsset != null)
                           Padding(
