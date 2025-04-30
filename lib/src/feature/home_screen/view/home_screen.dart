@@ -24,33 +24,35 @@ class HomeScreen extends StatelessWidget {
           endDrawer: appDrawer(context: context),
           onEndDrawerChanged:
               ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
-          body: Column(
+          body: Stack(
+           // fit: StackFit.expand,
             children: [
-              HomeHeader(isOnlyTrailing: false,),
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 145.h),
+                    DiscountBannerListView(),
+                    SizedBox(height: 32.h),
+                    ServicesList(),
 
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 24.h),
-                      DiscountBannerListView(),
-                      SizedBox(height: 32.h),
-                      ServicesList(),
+                    SizedBox(height: 33.h),
+                    BookService(),
+                    SizedBox(height: 33.h),
+                    ShowBanner(),
+                    SizedBox(height: 33.h),
+                    BlogList(),
+                    SizedBox(height: 23.h),
+                    ClientsReviewList(),
 
-                      SizedBox(height: 33.h),
-                      BookService(),
-                      SizedBox(height: 33.h),
-                      ShowBanner(),
-                      SizedBox(height: 33.h),
-                      BlogList(),
-                      SizedBox(height: 23.h),
-                      ClientsReviewList(),
-
-                      SizedBox(height: 150.h),
-                    ],
-                  ),
+                    SizedBox(height: 150.h),
+                  ],
                 ),
+              ),
+
+              Align(
+                alignment: Alignment.topCenter,
+                child:  HomeHeader(isOnlyTrailing: false,),
               ),
             ],
           ),
