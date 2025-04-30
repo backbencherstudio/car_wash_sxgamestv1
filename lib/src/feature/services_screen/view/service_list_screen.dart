@@ -22,40 +22,44 @@ class ServiceListScreen extends ConsumerWidget{
       key: _scaffoldKey,
       endDrawer: appDrawer(context: context),
       onEndDrawerChanged: ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
-      body: Column(
+      body: Stack(
         children: [
-          HomeHeader(isOnlyTrailing: true,),
 
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
+          SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(height: 124.h),
 
-                  /// Service's list
-                  ServicesList(),
-                  SizedBox(height: 33.h),
 
-                  /// Booked a service
-                  BookService(),
-                  SizedBox(height: 33.h),
+                /// Service's list
+                ServicesList(),
+                SizedBox(height: 33.h),
 
-                  /// Show company service's banner
-                  ShowBanner(),
-                  SizedBox(height: 33.h),
+                /// Booked a service
+                BookService(),
+                SizedBox(height: 33.h),
 
-                  /// Show blog
-                  BlogList(),
-                  SizedBox(height: 23.h),
+                /// Show company service's banner
+                ShowBanner(),
+                SizedBox(height: 33.h),
 
-                  /// Client's review on services
-                  ClientsReviewList(),
+                /// Show blog
+                BlogList(),
+                SizedBox(height: 23.h),
 
-                  SizedBox(height: 150.h,)
-                ],
-              ),
+                /// Client's review on services
+                ClientsReviewList(),
+
+                SizedBox(height: 150.h,)
+              ],
             ),
-          )
+          ),
+
+          Align(
+            alignment: Alignment.topRight,
+            child:  HomeHeader(isOnlyTrailing: true,),
+          ),
 
 
         ],

@@ -18,7 +18,7 @@ class Utils {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return SafeArea(
       child: Container(
-        //height: 64.h,
+        height: 64.h,
         padding: EdgeInsets.all(10.r),
         decoration: BoxDecoration(
           color: AppColors.onPrimary,
@@ -28,7 +28,7 @@ class Utils {
             BoxShadow(
               blurRadius: 33,
               color: const Color(0xff000000).withOpacity(0.1),
-              offset: const Offset(1, 4),
+              offset: const Offset(0, 15),
             ),
           ],
         ),
