@@ -1,9 +1,10 @@
+import 'package:car_wash/src/feature/parent_screen/dummy_screens/dummy1.dart';
 import 'package:car_wash/src/feature/parent_screen/riverpod/parent_screen_state.dart';
-<<<<<<< HEAD
+
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
-=======
+
 import 'package:car_wash/src/feature/services_screen/view/service_list_screen.dart';
->>>>>>> e3a58765818e85f3f0bd44a2092ded4fbc550fed
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../home_screen/view/home_screen.dart';
@@ -23,13 +24,12 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
   /// List of Parent screen
   List<Widget> pageList = [
     HomeScreen(),
-<<<<<<< HEAD
+
     Love(),
     FavouriteScreen(),
-=======
+
     FavouriteScreen(),
     ServiceListScreen(),
->>>>>>> e3a58765818e85f3f0bd44a2092ded4fbc550fed
     ProfileScreen(),
   ];
 
