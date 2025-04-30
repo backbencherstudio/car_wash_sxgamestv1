@@ -15,16 +15,7 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
   ParentsScreenProvider() : super(ParentScreenState());
 
   final PageController pageController = PageController(initialPage: 0);
-  // late final TabController tabController;
-  //
-  // void initializeTabController(TickerProvider vsync){
-  //   tabController =  TabController(length: 4, vsync: vsync);
-  // }
 
-  /// Safrid bhai should fix this
-  /// Please change ProfileScreen() to CompleteProfileScreen() and insert the real ProfileScreen class
-  /// to below list,
-  ///
   /// List of Parent screen
   List<Widget> pageList = [
     HomeScreen(),
