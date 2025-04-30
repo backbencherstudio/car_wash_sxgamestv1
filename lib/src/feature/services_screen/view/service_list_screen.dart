@@ -7,36 +7,24 @@ import 'package:car_wash/src/feature/home_screen/view/widgets/discount_banner_bo
 import 'package:car_wash/src/feature/home_screen/view/widgets/drawer/home_drawer.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/home_header/home_header.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/services_list/service_list.dart';
+import 'package:car_wash/src/feature/parent_screen/riverpod/parent_screen_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-final bottomNavVisibilityProvider = StateProvider<bool>((ref) => true);
-
-class ServiceListScreen extends ConsumerStatefulWidget {
-  const ServiceListScreen({super.key});
-
-  @override
-  ConsumerState<ServiceListScreen> createState() => _ServiceListScreenState();
-}
-
-class _ServiceListScreenState extends ConsumerState<ServiceListScreen> {
+class ServiceListScreen extends ConsumerWidget{
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void _handleDrawerCallback(bool isOpened) {
-    ref.read(bottomNavVisibilityProvider.notifier).state = !isOpened;
-  }
+  ServiceListScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: appDrawer(context: context),
-      onEndDrawerChanged: _handleDrawerCallback,
+      onEndDrawerChanged: ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
       body: Column(
         children: [
-          HomeHeader(),
+          HomeHeader(isOnlyTrailing: true,),
 
           Expanded(
             child: SingleChildScrollView(

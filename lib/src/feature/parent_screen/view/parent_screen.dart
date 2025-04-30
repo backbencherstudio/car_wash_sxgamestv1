@@ -5,15 +5,29 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../riverpod/parent_screen_riverpod.dart';
 
-class ParentScreen extends StatelessWidget{
+class ParentScreen extends ConsumerStatefulWidget{
   const ParentScreen({super.key});
+
+  @override
+  ConsumerState<ParentScreen> createState() => _ParentScreenState();
+}
+
+class _ParentScreenState extends ConsumerState<ParentScreen> with TickerProviderStateMixin  {
+
+  @override
+  void initState() {
+//     WidgetsBinding.instance.addPostFrameCallback((_){
+// ref.read(parentsScreenProvider.notifier).initializeTabController(this);
+//     });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+
       body: HomeWrapper()
-      
+
       // Consumer(
       //     builder: (_, ref, _){
       //       final parentScreenState = ref.watch(parentsScreenProvider);

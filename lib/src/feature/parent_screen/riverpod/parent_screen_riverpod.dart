@@ -1,8 +1,9 @@
 import 'package:car_wash/src/feature/parent_screen/riverpod/parent_screen_state.dart';
+import 'package:car_wash/src/feature/services_screen/view/service_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../home_screen/view/home_screen.dart';
-import '../dummy_screens/dummy1.dart';
+import '../../profile_screen/view/profile_screen.dart';
 import '../dummy_screens/dummy2.dart';
 
 final parentsScreenProvider =
@@ -13,7 +14,12 @@ final parentsScreenProvider =
 class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
   ParentsScreenProvider() : super(ParentScreenState());
 
-  PageController pageController = PageController(initialPage: 0);
+  final PageController pageController = PageController(initialPage: 0);
+  // late final TabController tabController;
+  //
+  // void initializeTabController(TickerProvider vsync){
+  //   tabController =  TabController(length: 4, vsync: vsync);
+  // }
 
   /// Safrid bhai should fix this
   /// Please change ProfileScreen() to CompleteProfileScreen() and insert the real ProfileScreen class
@@ -22,9 +28,9 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
   /// List of Parent screen
   List<Widget> pageList = [
     HomeScreen(),
-    Love(),
+    ServiceListScreen(),
     FavouriteScreen(),
-    FavouriteScreen(),
+    ProfileScreen(),
   ];
 
   /// Call this method from bottom nav bar button
@@ -35,6 +41,7 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
 
     /// If difference between pages is greater than 2 then jump to that page
     /// or normally animate to that page
+   // tabController.animateTo(index);
     if (indexDifference > 2) {
       pageController.jumpToPage(index);
     } else {
