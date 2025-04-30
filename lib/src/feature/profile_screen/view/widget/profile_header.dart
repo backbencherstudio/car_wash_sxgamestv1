@@ -37,7 +37,7 @@ class ProfileHeader extends StatelessWidget {
                               builder: (context) => FullScreenImage(
                                 imageUrl: profileImage is String
                                     ? profileImage // For assets
-                                    : profileImage.toString() ?? AppImages.shakin, // For File, use its path
+                                    : profileImage.toString(), // For File, use its path
                                 isNetworkImage: false, // Assuming local image
                               ),
                             ),
