@@ -11,6 +11,7 @@ class TruckContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width:400.w ,
       decoration: Utils.commonBoxDecoration(),
 
       child: Padding(

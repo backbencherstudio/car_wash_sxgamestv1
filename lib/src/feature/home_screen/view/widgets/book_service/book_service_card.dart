@@ -1,10 +1,12 @@
 import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/constant/images.dart';
+import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class BookServiceCard extends StatelessWidget {
   final String serviceName;
@@ -63,7 +65,9 @@ class BookServiceCard extends StatelessWidget {
                     ],
                   ),
 
-                  Utils.primaryButton(onPressed: (){}, text: "Book Now")
+                  Utils.primaryButton(onPressed: (){
+                    context.push(RouteName.ServiceDetailsScreen);
+                  }, text: "Book Now")
                 ],
               )
 

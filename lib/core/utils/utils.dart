@@ -263,4 +263,14 @@ class Utils {
       ),
     );
   }
+  static GestureDetector backButton({Color ? color, context }){
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: SvgPicture.asset("assets/icons/backbutton.svg",
+      color: color ?? Color(0xffffffff),
+      ),
+    );
+  }
 }
