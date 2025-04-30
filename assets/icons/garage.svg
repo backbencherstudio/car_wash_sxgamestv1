@@ -1,0 +1,9 @@
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="garage">
+<path id="Vector" d="M7.3359 2.32325L4.25385 4.42027C3.27293 5.08769 2.78246 5.4214 2.51623 5.92911C2.25 6.43681 2.25 7.03842 2.25 8.2416V13.4382C2.25 14.8816 2.25 15.6032 2.68934 16.0516C3.12868 16.5 3.83579 16.5 5.25 16.5H12.75C14.1642 16.5 14.8713 16.5 15.3106 16.0516C15.75 15.6032 15.75 14.8816 15.75 13.4382V8.2416C15.75 7.03842 15.75 6.43681 15.4838 5.92911C15.2175 5.4214 14.7271 5.08769 13.7461 4.42027L10.6641 2.32325C9.85747 1.77442 9.4542 1.5 9 1.5C8.5458 1.5 8.14253 1.77442 7.3359 2.32325Z" stroke="#1141CB" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M5.25 16.5V11.25C5.25 9.8358 5.25 9.1287 5.68934 8.68935C6.12868 8.25 6.83579 8.25 8.25 8.25H9.75C11.1642 8.25 11.8713 8.25 12.3106 8.68935C12.75 9.1287 12.75 9.8358 12.75 11.25V16.5" stroke="#1141CB" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M5.25 10.5H12.75" stroke="#1141CB" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M5.25 13.5H12.75" stroke="#1141CB" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M9.00675 5.25H9" stroke="#1141CB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

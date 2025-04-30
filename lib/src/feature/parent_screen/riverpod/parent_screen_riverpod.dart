@@ -8,7 +8,6 @@ import 'package:car_wash/src/feature/services_screen/view/service_list_screen.da
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../home_screen/view/home_screen.dart';
-import '../../profile_screen/view/profile_screen.dart';
 import '../dummy_screens/dummy2.dart';
 
 final parentsScreenProvider =
@@ -26,9 +25,8 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
     HomeScreen(),
 
     Love(),
-    FavouriteScreen(),
-
-    FavouriteScreen(),
+  
+   
     ServiceListScreen(),
     ProfileScreen(),
   ];
