@@ -1,9 +1,13 @@
 import 'package:car_wash/src/feature/parent_screen/riverpod/parent_screen_state.dart';
+<<<<<<< HEAD
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
+=======
+import 'package:car_wash/src/feature/services_screen/view/service_list_screen.dart';
+>>>>>>> e3a58765818e85f3f0bd44a2092ded4fbc550fed
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../home_screen/view/home_screen.dart';
-import '../dummy_screens/dummy1.dart';
+import '../../profile_screen/view/profile_screen.dart';
 import '../dummy_screens/dummy2.dart';
 
 final parentsScreenProvider =
@@ -14,17 +18,18 @@ final parentsScreenProvider =
 class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
   ParentsScreenProvider() : super(ParentScreenState());
 
-  PageController pageController = PageController(initialPage: 0);
+  final PageController pageController = PageController(initialPage: 0);
 
-  /// Safrid bhai should fix this
-  /// Please change ProfileScreen() to CompleteProfileScreen() and insert the real ProfileScreen class
-  /// to below list,
-  ///
   /// List of Parent screen
   List<Widget> pageList = [
     HomeScreen(),
+<<<<<<< HEAD
     Love(),
     FavouriteScreen(),
+=======
+    FavouriteScreen(),
+    ServiceListScreen(),
+>>>>>>> e3a58765818e85f3f0bd44a2092ded4fbc550fed
     ProfileScreen(),
   ];
 
