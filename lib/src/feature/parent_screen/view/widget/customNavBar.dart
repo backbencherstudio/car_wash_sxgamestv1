@@ -1,20 +1,20 @@
 import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
+import 'package:car_wash/src/feature/parent_screen/riverpod/parent_screen_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-final bottomNavProvider = StateProvider<int>((ref) => 0);
 
 class CustomBottomNavBar extends ConsumerWidget {
   const CustomBottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentIndex = ref.watch(bottomNavProvider);
-    final notifier = ref.read(bottomNavProvider.notifier);
+
+    final parentScreenNotifier = ref.read(parentsScreenProvider.notifier);
+    final parentScreenState = ref.watch(parentsScreenProvider);
 
     final items = [
       {'icon': 'assets/icons/home.svg', 'label': 'Home'},
@@ -31,21 +31,22 @@ class CustomBottomNavBar extends ConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(items.length, (index) {
-            final isActive = index == currentIndex;
-      
+            final isActive = index == parentScreenState.selectedIndex;
+
             return AnimatedScale(
-              scale: isActive ? 1.1 : 1.0, 
-              duration: Duration(milliseconds: 300),
+              scale: isActive ? 1.1 : 1.0,
+              duration: Duration(milliseconds: 500),
               curve: Curves.elasticOut, 
               child: ElevatedButton(
                 
-                onPressed: () => notifier.state = index,
+                onPressed: () => parentScreenNotifier.onPageChange(index: index),
                 style: ElevatedButton.styleFrom(
             
                   enableFeedback: false,
                   overlayColor: Colors.transparent, // this one for fade effect
                   shadowColor: Colors.transparent,  // this one is also for the fade effect
                   surfaceTintColor: Colors.transparent,
+            
                   backgroundColor: isActive ? AppColors.primary : Colors.transparent, 
                   elevation: 0, 
                   padding: EdgeInsets.symmetric(

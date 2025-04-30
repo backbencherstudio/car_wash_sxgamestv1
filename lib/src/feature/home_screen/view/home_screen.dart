@@ -7,65 +7,55 @@ import 'package:car_wash/src/feature/home_screen/view/widgets/discount_banner_bo
 import 'package:car_wash/src/feature/home_screen/view/widgets/drawer/home_drawer.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/home_header/home_header.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/services_list/service_list.dart';
+import 'package:car_wash/src/feature/parent_screen/riverpod/parent_screen_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-final bottomNavVisibilityProvider = StateProvider<bool>((ref) => true);
-
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends ConsumerState<HomeScreen> {
+class HomeScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void _handleDrawerCallback(bool isOpened) {
-    ref.read(bottomNavVisibilityProvider.notifier).state = !isOpened;
-  }
-
+  HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      endDrawer: appDrawer(context: context),
-      onEndDrawerChanged: _handleDrawerCallback, 
-      body: Column(
-        children: [
-          HomeHeader(),
+    return Consumer(
+      builder: (_, ref, _) {
+        return Scaffold(
+          key: _scaffoldKey,
+          endDrawer: appDrawer(context: context),
+          onEndDrawerChanged:
+              ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
+          body: Column(
+            children: [
+              HomeHeader(),
 
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 24.h),
-                  DiscountBannerListView(),
-                  SizedBox(height: 32.h),
-                  ServicesList(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 24.h),
+                      DiscountBannerListView(),
+                      SizedBox(height: 32.h),
+                      ServicesList(),
 
-                  SizedBox(height: 33.h),
-                  BookService(),
-                  SizedBox(height: 33.h),
-                  ShowBanner(),
-                  SizedBox(height: 33.h),
-                  BlogList(),
-                  SizedBox(height: 23.h),
-                  ClientsReviewList(),
+                      SizedBox(height: 33.h),
+                      BookService(),
+                      SizedBox(height: 33.h),
+                      ShowBanner(),
+                      SizedBox(height: 33.h),
+                      BlogList(),
+                      SizedBox(height: 23.h),
+                      ClientsReviewList(),
 
-                  SizedBox(height: 150.h,)
-                ],
+                      SizedBox(height: 150.h),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          )
-
-
-        ],
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
