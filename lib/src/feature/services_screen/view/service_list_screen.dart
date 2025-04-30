@@ -31,17 +31,24 @@ class ServiceListScreen extends ConsumerWidget{
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(height: 24.h),
 
+                  /// Service's list
                   ServicesList(),
-
                   SizedBox(height: 33.h),
+
+                  /// Booked a service
                   BookService(),
                   SizedBox(height: 33.h),
+
+                  /// Show company service's banner
                   ShowBanner(),
                   SizedBox(height: 33.h),
+
+                  /// Show blog
                   BlogList(),
                   SizedBox(height: 23.h),
+
+                  /// Client's review on services
                   ClientsReviewList(),
 
                   SizedBox(height: 150.h,)

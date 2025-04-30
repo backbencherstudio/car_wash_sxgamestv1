@@ -19,8 +19,8 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
   /// List of Parent screen
   List<Widget> pageList = [
     HomeScreen(),
-    ServiceListScreen(),
     FavouriteScreen(),
+    ServiceListScreen(),
     ProfileScreen(),
   ];
 
