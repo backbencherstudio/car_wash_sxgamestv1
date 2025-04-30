@@ -1,4 +1,5 @@
 import 'package:car_wash/src/feature/parent_screen/riverpod/parent_screen_state.dart';
+import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../home_screen/view/home_screen.dart';
@@ -24,7 +25,7 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
     HomeScreen(),
     Love(),
     FavouriteScreen(),
-    FavouriteScreen(),
+    ProfileScreen(),
   ];
 
   /// Call this method from bottom nav bar button
@@ -34,7 +35,7 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
     state = state.copyWith(selectedIndex: index);
 
     /// If difference between pages is greater than 2 then jump to that page
-    /// or normally animate to that page
+    /// or normally animate to that page08
     if (indexDifference > 2) {
       pageController.jumpToPage(index);
     } else {
@@ -48,7 +49,7 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
 
   /// call this method during drawer open or close event
   void onDrawerOpenOrClose(bool value) {
-    state = state.copyWith(isDrawerOpened: value);
+    state = state.copyWith(isDrawerOpened: value); 
     debugPrint(
       "\nafter changing the endDrawerValue, value is : ${state.isDrawerOpened}\n",
     );

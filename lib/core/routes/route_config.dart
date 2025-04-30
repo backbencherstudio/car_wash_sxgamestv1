@@ -12,6 +12,7 @@ import 'package:car_wash/src/feature/parent_screen/view/parent_screen.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_one.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_three.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_two.dart';
+import 'package:car_wash/src/feature/service_details_screen/view/details_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -124,6 +125,12 @@ class RouteConfig{
            path: RouteName.parentsScreen,
            pageBuilder: (context, state) {
              return  MaterialPage(child: ParentScreen());
+           }),
+            GoRoute(
+           name: RouteName.ServiceDetailsScreen,
+           path: RouteName.ServiceDetailsScreen,
+           pageBuilder: (context, state) {
+             return  MaterialPage(child: ServiceDetailsScreen());
            }),
 
      ]);

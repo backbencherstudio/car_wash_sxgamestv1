@@ -213,4 +213,51 @@ class Utils {
       ],
     );
   }
+
+  static Container appBarButtons({Color? buttonColor, Color? backgroundColor}) {
+    return Container(
+      height: 64.h,
+      width: 112.w,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16.r),
+        color: backgroundColor ?? const Color(0xFFFFFFFF),
+        boxShadow: [
+          BoxShadow(
+            color: const Color.fromRGBO(0, 0, 0, 0.04),
+            offset: const Offset(0, 4),
+            blurRadius: 33,
+            spreadRadius: 8,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          children: [
+            Container(
+              height: 44.h,
+              width: 44.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.r),
+                color: buttonColor ?? const Color(0xFFFFFFFF),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 2,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: SvgPicture.asset("assets/icons/notification.svg"),
+              ),
+            ),
+            SizedBox(width: 4.w),
+            SvgPicture.asset("assets/icons/menu.svg"),
+          ],
+        ),
+      ),
+    );
+  }
 }
