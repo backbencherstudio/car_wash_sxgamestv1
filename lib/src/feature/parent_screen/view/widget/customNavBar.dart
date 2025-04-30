@@ -14,14 +14,8 @@ class CustomBottomNavBar extends ConsumerStatefulWidget {
   ConsumerState<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
 }
 
-class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar>
-    with TickerProviderStateMixin {
-  late final TabController tabController;
-  @override
-  void initState() {
-    tabController = TabController(length: 4, vsync: this);
-    super.initState();
-  }
+class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar>{
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +29,6 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar>
       {'icon': 'assets/icons/pp.svg', 'label': 'Profile'},
     ];
 
-    /// Get the width of each button (divide the screen width by the number of items)
-    final itemWidth = MediaQuery.of(context).size.width / items.length;
-
-    /// Create a GlobalKey to reference the first button's size
-    /// List of GlobalKeys to get the width of each button
-    final List<GlobalKey> buttonKeys = List.generate(
-      items.length,
-      (_) => GlobalKey(),
-    );
-
     return SafeArea(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
@@ -56,7 +40,6 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar>
             final isActive = index == parentScreenState.selectedIndex;
 
             return ElevatedButton(
-              key: buttonKeys[index],
 
               /// Only assign key to the first button
               onPressed: () {
