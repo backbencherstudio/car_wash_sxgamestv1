@@ -25,26 +25,30 @@ class HomeScreen extends StatelessWidget {
           onEndDrawerChanged:
               ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
           body: Stack(
-           // fit: StackFit.expand,
+            // fit: StackFit.expand,
             children: [
               SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(height: 145.h),
+
                     DiscountBannerListView(),
                     SizedBox(height: 32.h),
-                    ServicesList(),
 
+                    ServicesList(),
                     SizedBox(height: 33.h),
+
                     BookService(),
                     SizedBox(height: 33.h),
+
                     ShowBanner(),
                     SizedBox(height: 33.h),
+
                     BlogList(),
                     SizedBox(height: 23.h),
-                    ClientsReviewList(),
 
+                    ClientsReviewList(),
                     SizedBox(height: 150.h),
                   ],
                 ),
@@ -52,7 +56,7 @@ class HomeScreen extends StatelessWidget {
 
               Align(
                 alignment: Alignment.topCenter,
-                child:  HomeHeader(isOnlyTrailing: false,),
+                child: HomeHeader(isOnlyTrailing: false),
               ),
             ],
           ),
