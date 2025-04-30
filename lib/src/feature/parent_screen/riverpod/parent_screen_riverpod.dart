@@ -32,7 +32,6 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
 
     /// If difference between pages is greater than 2 then jump to that page
     /// or normally animate to that page
-   // tabController.animateTo(index);
     if (indexDifference > 2) {
       pageController.jumpToPage(index);
     } else {
