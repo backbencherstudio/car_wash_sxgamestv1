@@ -67,7 +67,8 @@ class ServiceDetailsScreen extends StatelessWidget {
                             ),
                SizedBox(width: 17.w),
                Utils.primaryButton(
-                              onPressed: () {},
+                              onPressed: () {
+                              },
                               text: "Book Now",
                               width: 153.w,
                               height: 49.h,
