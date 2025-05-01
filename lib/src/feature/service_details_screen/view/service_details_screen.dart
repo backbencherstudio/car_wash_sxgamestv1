@@ -8,7 +8,6 @@ import 'package:car_wash/src/feature/service_details_screen/view/widget/truckCon
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../demo_location_screen/view/demo_location_screen.dart';
 import '../../home_screen/view/widgets/client_rivew_list/clients_rivew_list.dart';
 import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart'
@@ -69,7 +68,6 @@ class ServiceDetailsScreen extends StatelessWidget {
                SizedBox(width: 17.w),
                Utils.primaryButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>DemoLocationScreen()));
                               },
                               text: "Book Now",
                               width: 153.w,
