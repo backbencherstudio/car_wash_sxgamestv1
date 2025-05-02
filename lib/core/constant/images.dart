@@ -3,7 +3,7 @@ import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 
 class AppImages{
   /// all should be static
-  static const screenBackground = "assets/images/whitebgm.png";
+  static const screenBackgroundImage = "assets/images/Onboarding.png";
   static const appLogo = "assets/logo.svg";
 
   static const successfullyRegisteredImage = "assets/images/signup/register.png";
@@ -25,7 +25,7 @@ class AppImages{
    static const successfullyDone = "assets/images/forgot_password/success.png";
    //service details
    static const bently = "assets/images/serviceDetails/bently.png";
-   static const washCarBanner = "assets/images/serviceDetails/maskGroup.png";
+   static const washCarBanner = "assets/images/serviceDetails/mask_Group.png";
    //signup
    static const registerPage = "assets/images/signup/register.png";
    //timlineScreen
@@ -33,6 +33,9 @@ class AppImages{
    //splash screen
    static const splashScreen = "assets/images/splash.png";
    //profile screen
-   static const profile = "assets/images/profilepic.png";
+   static const profile = "assets/images/profile_pic.png";
+   //white background
+   static const whiteBackground= "assets/images/whitebgm.png";
+ 
 
 }

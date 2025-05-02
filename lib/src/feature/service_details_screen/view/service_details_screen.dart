@@ -1,3 +1,4 @@
+import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
@@ -40,7 +41,7 @@ class ServiceDetailsScreen extends StatelessWidget {
               height: 300.h,
               width: MediaQuery.sizeOf(context).width,
               child: Image.asset(
-              "assets/images/serviceDetails/maskGroup.png",
+              AppImages.carWashBanner,
               fit: BoxFit.cover,
                       ),
                     ),

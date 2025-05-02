@@ -22,7 +22,7 @@ import '../../src/feature/home_screen/view/home_screen.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_four.dart';
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.parentsScreen,
+     initialLocation: RouteName.onboardingScreen,
      routes: [
       GoRoute(
           name: RouteName.splashScreen,
@@ -31,32 +31,32 @@ class RouteConfig{
            return const MaterialPage(child: SplashScreen());
           }),
             GoRoute(
-          name: RouteName.ProfileCreateScreen,
-          path: RouteName.ProfileCreateScreen,
+          name: RouteName.profileCreateScreen,
+          path: RouteName.profileCreateScreen,
           pageBuilder: (context, state) {
            return const MaterialPage(child: ProfileCreateScreen());
           }),
           GoRoute(
-          name: RouteName.ScreenOne,
-          path: RouteName.ScreenOne,
+          name: RouteName.screenOne,
+          path: RouteName.screenOne,
           pageBuilder: (context, state) {
            return const MaterialPage(child: ScreenOne());
           }),
             GoRoute(
-          name: RouteName.ScreenFour,
-          path: RouteName.ScreenFour,
+          name: RouteName.screenFour,
+          path: RouteName.screenFour,
           pageBuilder: (context, state) {
            return const MaterialPage(child: ScreenFour());
           }),
           GoRoute(
-          name: RouteName.ScreenThree,
-          path: RouteName.ScreenThree,
+          name: RouteName.screenThree,
+          path: RouteName.screenThree,
           pageBuilder: (context, state) {
            return const MaterialPage(child: ScreenThree());
           }),
            GoRoute(
-          name: RouteName.ScreenTwo,
-          path: RouteName.ScreenTwo,
+          name: RouteName.screenTwo,
+          path: RouteName.screenTwo,
           pageBuilder: (context, state) {
            return const MaterialPage(child: ScreenTwo());
           }),
@@ -128,8 +128,8 @@ class RouteConfig{
              return  MaterialPage(child: ParentScreen());
            }),
             GoRoute(
-           name: RouteName.ServiceDetailsScreen,
-           path: RouteName.ServiceDetailsScreen,
+           name: RouteName.serviceDetailsScreen,
+           path: RouteName.serviceDetailsScreen,
            pageBuilder: (context, state) {
              return  MaterialPage(child: ServiceDetailsScreen());
            }),

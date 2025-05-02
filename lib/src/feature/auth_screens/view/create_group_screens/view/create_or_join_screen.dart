@@ -90,7 +90,7 @@ class CreateOrJoinScreen extends StatelessWidget {
                        ),
                        SizedBox(height: 32.h,),
                        Utils.primaryButton(onPressed: (){
-                        context.pushNamed(RouteName.ProfileCreateScreen);
+                        context.pushNamed(RouteName.profileCreateScreen);
                        }, text: "Done"),
                        SizedBox(height: 10.h,)
                       ],
