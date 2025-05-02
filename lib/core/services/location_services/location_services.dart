@@ -6,9 +6,12 @@ class LocationService {
   /// Singleton instance
   static final LocationService instance = LocationService._internal();
 
-  /// Private constructor
+  /// Private constructor for Singletor instance
   LocationService._internal();
 
+  /// This method will detect latitude and longtitude first using geolocator package,
+  /// Then convert it to human readable address using geocoding package
+  /// And finally return the address
   Future<String> getCurrentLocation() async {
     String currentLocation = "";
     try {
@@ -16,7 +19,9 @@ class LocationService {
       /// if not enabled then return
       bool isServiceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!isServiceEnabled) {
-        debugPrint("\nLocation service is not enabled. Opening location settings.\n");
+        debugPrint(
+          "\nLocation service is not enabled. Opening location settings.\n",
+        );
         await Geolocator.openLocationSettings();
         return "Location service is not enabled";
       }
@@ -26,8 +31,9 @@ class LocationService {
           await Geolocator.checkPermission();
       if (locationPermission == LocationPermission.denied ||
           locationPermission == LocationPermission.deniedForever) {
-
-        debugPrint("\nLocation permission is denied. Asking for location permission.\n");
+        debugPrint(
+          "\nLocation permission is denied. Asking for location permission.\n",
+        );
 
         /// if denied then ask permission
         locationPermission = await Geolocator.requestPermission();
@@ -44,7 +50,9 @@ class LocationService {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
-      debugPrint("\nLatitude : ${position.latitude}\nLongitude : ${position.longitude}\n");
+      debugPrint(
+        "\nLatitude : ${position.latitude}\nLongitude : ${position.longitude}\n",
+      );
 
       /// Detecting location place marks using latitude and longitude
       List<Placemark> placeMarks = await placemarkFromCoordinates(
