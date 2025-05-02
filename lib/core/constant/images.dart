@@ -3,7 +3,7 @@ import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 
 class AppImages{
   /// all should be static
-  static const screenBackgroundImage = "assets/images/background.png";
+  static const screenBackground = "assets/images/whitebgm.png";
   static const appLogo = "assets/logo.svg";
 
   static const successfullyRegisteredImage = "assets/images/signup/register.png";
@@ -34,8 +34,5 @@ class AppImages{
    static const splashScreen = "assets/images/splash.png";
    //profile screen
    static const profile = "assets/images/profilepic.png";
-   //white background
-   static const whiteBackground= "assets/images/whitebgm.png";
- 
 
 }

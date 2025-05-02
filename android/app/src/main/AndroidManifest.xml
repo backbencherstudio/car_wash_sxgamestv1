@@ -11,6 +11,9 @@
         android:label="CarFlix"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDUjNaRwWEUbn__efy3duv9cFQak66jI4o"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
