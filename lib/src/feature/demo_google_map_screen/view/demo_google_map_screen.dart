@@ -1,3 +1,4 @@
+import 'package:car_wash/core/services/location_services/location_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -12,7 +13,6 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   GoogleMapController? _mapController;
-  final Location _location = Location();
   Marker? _selectedMarker;
 
 
@@ -23,33 +23,27 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<void> _moveToUserLocation() async {
-    final hasPermission = await _location.hasPermission();
-    if (hasPermission == PermissionStatus.denied) {
-      await _location.requestPermission();
-    }
 
-    final serviceEnabled = await _location.serviceEnabled();
-    if (!serviceEnabled) {
-      await _location.requestService();
-    }
+    final userLocation = await LocationService.instance.getCurrentLocation();
+    if(userLocation != null){
+      final cameraUpdate = CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(userLocation.latitude, userLocation.longitude),
+          zoom: 16.0,
+        ),
 
-    final userLocation = await _location.getLocation();
-    final cameraUpdate = CameraUpdate.newCameraPosition(
-      CameraPosition(
-        target: LatLng(userLocation.latitude!, userLocation.longitude!),
-        zoom: 16.0,
-      ),
-
-    );
-    setState(() {
-      _selectedMarker = Marker(
-        markerId: const MarkerId('selected-location'),
-        position: LatLng(userLocation.latitude!, userLocation.longitude!),
       );
-    });
+      setState(() {
+        _selectedMarker = Marker(
+          markerId: const MarkerId('selected-location'),
+          position: LatLng(userLocation.latitude, userLocation.longitude),
+        );
+      });
 
 
-    _mapController?.animateCamera(cameraUpdate);
+      _mapController?.animateCamera(cameraUpdate);
+    }
+
   }
 
   void _onTap(LatLng tappedPoint) {

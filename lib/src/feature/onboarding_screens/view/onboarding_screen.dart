@@ -22,7 +22,7 @@ class OnboardingScreen extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         /// background image
-        Positioned.fill(child: Image.asset(AppImages.screenBackgroundImage, fit: BoxFit.cover)),
+        Positioned.fill(child: Image.asset(AppImages.screenBackground, fit: BoxFit.cover)),
 
 
         Align(

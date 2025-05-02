@@ -88,7 +88,7 @@ flutter:
      - assets/images/
      - assets/images/home_screen/
      - assets/images/serviceDetails/
-
+     - assets/
      - assets/images/signup/
     
      - assets/images/forgot_password/

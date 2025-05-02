@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:car_wash/core/constant/images.dart';
+import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,16 +24,11 @@ class FullScreenImage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Container(
-            margin: EdgeInsets.all(16.r),
-            child: SvgPicture.asset("assets/icons/backbutton.svg"),
-            height: 28.h,
-            width: 28.w,
-          ),
+        leading: Utils.backButton(context: context, color: Color(0xff000000),
+        size: Size(18.w, 18.h)
+        
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: SafeArea(

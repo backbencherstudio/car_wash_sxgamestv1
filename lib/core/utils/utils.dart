@@ -270,14 +270,14 @@ class Utils {
       ),
     );
   }
-  static GestureDetector backButton({Color ? color, context }){
+  static GestureDetector backButton({Color ? color, context ,Size? size}){
     return GestureDetector(
       onTap: () {
         Navigator.pop(context);
       },
       child: SvgPicture.asset("assets/icons/backbutton.svg",
-      height: 28.h,
-      width: 28.w,
+      height:size?.height ?? 28.h,
+      width:size?.width ?? 28.w,
       color: color ?? Color(0xffffffff),
       ),
     );
