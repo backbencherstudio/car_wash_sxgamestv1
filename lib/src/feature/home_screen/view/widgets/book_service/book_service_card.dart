@@ -66,7 +66,7 @@ class BookServiceCard extends StatelessWidget {
                   ),
 
                   Utils.primaryButton(onPressed: (){
-                    context.push(RouteName.ServiceDetailsScreen);
+                    context.push(RouteName.serviceDetailsScreen);
                   }, text: "Book Now")
                 ],
               )
