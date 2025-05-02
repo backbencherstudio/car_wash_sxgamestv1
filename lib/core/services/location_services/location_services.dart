@@ -9,8 +9,7 @@ class LocationService {
   /// Private constructor for Singletor instance
   LocationService._internal();
 
-  /// This method will detect latitude and longtitude first using geolocator package,
-  /// Then convert it to human readable address using geocoding package
+  /// This method will detect latitude and longtitude using geolocator package,
   /// And finally return the address
   Future<String> getCurrentLocation() async {
     String currentLocation = "";
@@ -81,4 +80,6 @@ class LocationService {
 
     return "";
   }
+
+  /// This method will convert latitude and longtitude to human readable address
 }

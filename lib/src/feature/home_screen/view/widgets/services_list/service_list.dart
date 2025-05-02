@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../model/service_list_model.dart';
+import '../../../../demo_google_map_screen/view/demo_google_map_screen.dart';
 
 class ServicesList extends StatefulWidget {
   const ServicesList({super.key});
@@ -94,7 +95,10 @@ class _ServicesListState extends State<ServicesList> {
                                   height: 106.h,
                                   child: FittedBox(
                                     child: Utils.secondaryButton(
-                                        onPressed: (){},
+                                        onPressed: (){
+                                          debugPrint("\nservice list button pressed\n");
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MapScreen(),),);
+                                        },
                                         imageAsset: service.iconPath,
                                         context: context,
                                       backgroundColor: Color.fromRGBO(0, 124, 240, 0.08),

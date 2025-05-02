@@ -153,21 +153,24 @@ class Utils {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(
-          //  height: height ??72.w,
-          //  width: width??74.w,
-          padding:
-              padding ??
-              EdgeInsets.symmetric(horizontal: 16.2.w, vertical: 17.1.h),
-          decoration: BoxDecoration(
-            borderRadius: borderRadius ?? BorderRadius.circular(12.r),
-            color: backgroundColor ?? colorScheme.surface.withOpacity(0.08),
-          ),
-          child: SvgPicture.asset(
-            imageAsset,
-            colorFilter: ColorFilter.mode(
-              iconColor ?? colorScheme.primary,
-              BlendMode.srcIn,
+        GestureDetector(
+          onTap: onPressed,
+          child: Container(
+            //  height: height ??72.w,
+            //  width: width??74.w,
+            padding:
+                padding ??
+                EdgeInsets.symmetric(horizontal: 16.2.w, vertical: 17.1.h),
+            decoration: BoxDecoration(
+              borderRadius: borderRadius ?? BorderRadius.circular(12.r),
+              color: backgroundColor ?? colorScheme.surface.withOpacity(0.08),
+            ),
+            child: SvgPicture.asset(
+              imageAsset,
+              colorFilter: ColorFilter.mode(
+                iconColor ?? colorScheme.primary,
+                BlendMode.srcIn,
+              ),
             ),
           ),
         ),
