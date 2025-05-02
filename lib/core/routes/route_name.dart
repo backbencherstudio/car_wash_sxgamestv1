@@ -24,4 +24,5 @@ class RouteName {
   static const String screenFour = '/ScreenFour';
   static const String profileCreateScreen = '/ProfileCreateScreen';
   static const String serviceDetailsScreen = '/ServiceDetailsScreen';
+  static const String googleMapScreen = '/GoogleMapScreen';
 }

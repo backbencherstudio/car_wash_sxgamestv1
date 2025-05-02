@@ -1,3 +1,4 @@
+import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/feature/home_screen/riverpod/home_riverpod.dart';
@@ -5,8 +6,10 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../model/service_list_model.dart';
+import '../../../../demo_google_map_screen/view/demo_google_map_screen.dart';
 
 class ServicesList extends StatefulWidget {
   const ServicesList({super.key});
@@ -94,7 +97,10 @@ class _ServicesListState extends State<ServicesList> {
                                   height: 106.h,
                                   child: FittedBox(
                                     child: Utils.secondaryButton(
-                                        onPressed: (){},
+                                        onPressed: (){
+                                          debugPrint("\nservice list button pressed\n");
+                                          // context.push(RouteName.googleMapScreen);
+                                          },
                                         imageAsset: service.iconPath,
                                         context: context,
                                       backgroundColor: Color.fromRGBO(0, 124, 240, 0.08),

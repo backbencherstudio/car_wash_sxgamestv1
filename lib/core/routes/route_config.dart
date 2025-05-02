@@ -7,6 +7,7 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_up_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
+import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
 import 'package:car_wash/src/feature/parent_screen/view/parent_screen.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_one.dart';
@@ -131,6 +132,13 @@ class RouteConfig{
            path: RouteName.serviceDetailsScreen,
            pageBuilder: (context, state) {
              return  MaterialPage(child: ServiceDetailsScreen());
+           }),
+
+       GoRoute(
+           name: RouteName.googleMapScreen,
+           path: RouteName.googleMapScreen,
+           pageBuilder: (context, state) {
+             return  MaterialPage(child: GoogleMapScreen());
            }),
 
      ]);
