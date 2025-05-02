@@ -99,7 +99,7 @@ class _ServicesListState extends State<ServicesList> {
                                     child: Utils.secondaryButton(
                                         onPressed: (){
                                           debugPrint("\nservice list button pressed\n");
-                                          context.push(RouteName.googleMapScreen);
+                                          // context.push(RouteName.googleMapScreen);
                                           },
                                         imageAsset: service.iconPath,
                                         context: context,

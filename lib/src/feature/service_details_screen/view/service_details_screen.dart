@@ -8,6 +8,8 @@ import 'package:car_wash/src/feature/service_details_screen/view/widget/truckCon
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/routes/route_name.dart';
 import '../../home_screen/view/widgets/client_rivew_list/clients_rivew_list.dart';
 import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart'
@@ -68,6 +70,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                SizedBox(width: 17.w),
                Utils.primaryButton(
                               onPressed: () {
+                                context.push(RouteName.googleMapScreen);
                               },
                               text: "Book Now",
                               width: 153.w,
