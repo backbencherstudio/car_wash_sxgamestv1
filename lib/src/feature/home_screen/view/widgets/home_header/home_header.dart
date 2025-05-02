@@ -1,9 +1,6 @@
-import 'package:car_wash/src/feature/parent_screen/riverpod/parent_screen_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../../../core/constant/icons.dart';
 import '../../../../../../core/constant/images.dart';
 import '../../../../../../core/constant/padding.dart';
