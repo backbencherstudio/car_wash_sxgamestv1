@@ -16,13 +16,14 @@ class RouteName {
   static const String parentsScreen = '/parentsScreen';
   static const String vibeCheckScreen = '/vibeCheckScreen';
   static const String accountScreen = '/accountScreen';
-  static const String splashScreen = '/SplashScreen';
+  static const String splashScreen = '/splashScreen';
   static const String groupPollsScreen = '/groupPollsScreen';
-  static const String screenOne = '/ScreenOne';
-  static const String screenTwo = '/ScreenTwo';
-  static const String screenThree = '/ScreenThree';
-  static const String screenFour = '/ScreenFour';
-  static const String profileCreateScreen = '/ProfileCreateScreen';
-  static const String serviceDetailsScreen = '/ServiceDetailsScreen';
-  static const String googleMapScreen = '/GoogleMapScreen';
+  static const String screenOne = '/screenOne';
+  static const String screenTwo = '/screenTwo';
+  static const String screenThree = '/screenThree';
+  static const String screenFour = '/screenFour';
+  static const String profileCreateScreen = '/profileCreateScreen';
+  static const String serviceDetailsScreen = '/serviceDetailsScreen';
+  static const String googleMapScreen = '/googleMapScreen';
+  static const String serviceBookingScreen = '/serviceBookingScreen';
 }

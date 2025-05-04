@@ -19,6 +19,7 @@ class GoogleMapScreen extends StatelessWidget{
       body: Stack(
         children: [
 
+          /// Map View
           Positioned.fill(
               child: Consumer(
                 builder: (_, ref, _) {
@@ -39,11 +40,13 @@ class GoogleMapScreen extends StatelessWidget{
               )
           ),
 
+          /// Home header
           Align(
             alignment: Alignment.topRight,
             child:  HomeHeader(isOnlyTrailing: true,),
           ),
-          
+
+          /// Footer, containing location details
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
