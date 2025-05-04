@@ -2,6 +2,7 @@ import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/services/location_services/location_services.dart';
 import 'package:car_wash/core/utils/utils.dart';
+import 'package:car_wash/src/feature/google_map_screen/riverpod/google_map_riverpod.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/widgets/custom_selection_widget.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/widgets/service_booking_body.dart';
 import 'package:flutter/material.dart';
@@ -81,12 +82,13 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                   child: Consumer(
                     builder: (_, ref, _) {
                       final serviceBookingState = ref.watch(serviceBookingRiverpod);
+                      final googleMapNotifier = ref.read(gMapRiverpod.notifier);
                       return Utils.primaryButton(
                         onPressed:
                             () async {
                           if(tabController.index+1 == tabController.length){
                             if(serviceBookingState.locationDetectType == LocationDetectType.auto){
-                              final address = await LocationService.instance.getCurrentAddress();
+                              googleMapNotifier.onAutoDetectLocation();
 
                             }
                             else{

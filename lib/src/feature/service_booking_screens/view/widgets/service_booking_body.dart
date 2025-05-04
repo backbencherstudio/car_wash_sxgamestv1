@@ -27,7 +27,7 @@ class ServiceBookingBody extends StatelessWidget{
               final serviceSelectionState = ref.watch(
                 serviceBookingRiverpod,
               );
-              final serviceSelectionNotifier = ref.watch(
+              final serviceSelectionNotifier = ref.read(
                 serviceBookingRiverpod.notifier,
               );
               return customSelectionWidget(
@@ -77,7 +77,7 @@ class ServiceBookingBody extends StatelessWidget{
               final serviceSelectionState = ref.watch(
                 serviceBookingRiverpod,
               );
-              final serviceSelectionNotifier = ref.watch(
+              final serviceSelectionNotifier = ref.read(
                 serviceBookingRiverpod.notifier,
               );
               return customSelectionWidget(
@@ -109,13 +109,13 @@ class ServiceBookingBody extends StatelessWidget{
               final serviceSelectionState = ref.watch(
                 serviceBookingRiverpod,
               );
-              final serviceSelectionNotifier = ref.watch(
+              final serviceSelectionNotifier = ref.read(
                 serviceBookingRiverpod.notifier,
               );
               final locationState = ref.watch(gMapRiverpod);
               return customSelectionWidget(
                 context: context,
-                firstBodyText: "Auto Detect Location",
+                firstBodyText: locationState.autoDetectLocation ?? "Auto Detect Location",
                 firstLeadingIconPath: AppIcons.car,
                 headingText: "Please Select Your Location",
                 isFirstOneActive:
