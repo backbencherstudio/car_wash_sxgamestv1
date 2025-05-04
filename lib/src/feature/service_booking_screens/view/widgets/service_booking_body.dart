@@ -16,7 +16,7 @@ class ServiceBookingBody extends StatelessWidget{
   Widget build(BuildContext context) {
     return SizedBox(
       width: 400.w,
-      height: 250.h,
+      height: 245.h,
       child: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         controller: tabController,

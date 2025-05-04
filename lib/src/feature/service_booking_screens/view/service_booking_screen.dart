@@ -74,6 +74,8 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
 
                 ServiceBookingBody(tabController:tabController),
 
+                SizedBox(height: 28.h),
+
                 SizedBox(
                   width: 360.w,
                   child: Consumer(
