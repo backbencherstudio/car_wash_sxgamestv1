@@ -56,4 +56,11 @@ class GoogleMapRiverpod extends StateNotifier<GoogleMapState>{
     );
   }
 
+  Future<void> onAutoDetectLocation() async {
+    final autoDetectedLocation = await LocationService.instance.getCurrentAddress();
+    state = state.copyWith(
+      autoDetectLocation: autoDetectedLocation ?? "No Address Found"
+    );
+  }
+
 }
