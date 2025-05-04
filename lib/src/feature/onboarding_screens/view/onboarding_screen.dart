@@ -68,13 +68,13 @@ class OnboardingScreen extends StatelessWidget {
                         color: Color(0xff1141CB), 
                         textColor: Color(0xffffffff),
                          onPressed: (){
-                          context.go(RouteName.signInScreen);
+                          context.push(RouteName.signInScreen);
                          }),
 
                          SizedBox(height: 12.h,),
                          GestureDetector(
                           onTap: () {
-                            context.go(RouteName.signUpScreen);
+                            context.push(RouteName.signUpScreen);
                           },
                            child: Text("New User? Sign Up",
                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(

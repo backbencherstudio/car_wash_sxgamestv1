@@ -4,6 +4,7 @@ import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/banner_show/show_banner.dart';
 import 'package:car_wash/src/feature/service_details_screen/view/widget/bridge.dart';
+import 'package:car_wash/src/feature/service_details_screen/view/widget/custom_calender.dart';
 import 'package:car_wash/src/feature/service_details_screen/view/widget/five_star.dart';
 import 'package:car_wash/src/feature/service_details_screen/view/widget/truckContainer.dart';
 import 'package:flutter/material.dart';
@@ -175,6 +176,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              // CustomCalendarWidget(),
             ],
           ),
         );
