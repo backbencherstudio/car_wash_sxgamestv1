@@ -3,6 +3,7 @@ import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class Utils {
   static Widget customAppBar({
@@ -13,6 +14,7 @@ class Utils {
     List<Widget>? trailing,
     Border? appBarBgColor,
     required BuildContext context,
+    bool? isBackButton
   }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
@@ -49,7 +51,8 @@ class Utils {
                     ),
                   ),
                 )
-                : SizedBox(),
+                :
+            SizedBox(),
 
             SizedBox(width: 12.w),
 
@@ -117,12 +120,14 @@ class Utils {
     double? height,
     double? width,
     BorderRadius? borderRadius,
-  }) {
+  })
+  {
     return SizedBox(
       height: height,
       width: width ?? double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.symmetric(horizontal: 28.w,vertical: 12.h),
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: borderRadius ?? BorderRadius.circular(12.r),
@@ -146,7 +151,8 @@ class Utils {
     BorderRadius? borderRadius,
     required BuildContext context,
     Color? iconColor,
-  }) {
+  })
+  {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Column(
@@ -209,7 +215,8 @@ class Utils {
     Color? backgroundColor,
     BorderRadius? borderRadius,
     Color? shadowColor,
-  }) {
+  })
+  {
     return BoxDecoration(
       color: backgroundColor ?? Colors.white,
       borderRadius: borderRadius ?? BorderRadius.circular(12.r),
@@ -224,62 +231,85 @@ class Utils {
     );
   }
 
-  static Container appBarButtons({Color? buttonColor, Color? backgroundColor}) {
-    return Container(
-      height: 64.h,
-      width: 112.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-        color: backgroundColor ?? const Color(0xFFFFFFFF),
-        boxShadow: [
-          BoxShadow(
-            color: const Color.fromRGBO(0, 0, 0, 0.04),
-            offset: const Offset(0, 4),
-            blurRadius: 33,
-            spreadRadius: 8,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          children: [
-            Container(
-              height: 44.h,
-              width: 44.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                color: buttonColor ?? const Color(0xFFFFFFFF),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 2,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: SvgPicture.asset("assets/icons/notification.svg"),
-              ),
+  // static Container appBarButtons({Color? buttonColor, Color? backgroundColor}) {
+  //   return Container(
+  //     height: 64.h,
+  //     width: 112.w,
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(16.r),
+  //       color: backgroundColor ?? const Color(0xFFFFFFFF),
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: const Color.fromRGBO(0, 0, 0, 0.04),
+  //           offset: const Offset(0, 4),
+  //           blurRadius: 33,
+  //           spreadRadius: 8,
+  //         ),
+  //       ],
+  //     ),
+  //     child: Padding(
+  //       padding: const EdgeInsets.all(10),
+  //       child: Row(
+  //         children: [
+  //           Container(
+  //             height: 44.h,
+  //             width: 44.w,
+  //             decoration: BoxDecoration(
+  //               borderRadius: BorderRadius.circular(12.r),
+  //               color: buttonColor ?? const Color(0xFFFFFFFF),
+  //               boxShadow: [
+  //                 BoxShadow(
+  //                   color: Colors.black.withOpacity(0.05),
+  //                   blurRadius: 2,
+  //                   offset: Offset(0, 0),
+  //                 ),
+  //               ],
+  //             ),
+  //             child: Padding(
+  //               padding: const EdgeInsets.all(10),
+  //               child: SvgPicture.asset("assets/icons/notification.svg"),
+  //             ),
+  //           ),
+  //           SizedBox(width: 4.w),
+  //           SvgPicture.asset("assets/icons/menu.svg"),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+  static Widget backButton({Color ? color,required BuildContext context ,Size? size}){
+    return   GestureDetector(
+      onTap: (){
+        context.pop();
+        },
+      child: Container(
+        width: 44.w,
+        height: 44.h,
+        padding: EdgeInsets.all(12.r),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 33,
+              color: const Color(0xff000000).withOpacity(0.1),
+              offset: const Offset(0, 15),
             ),
-            SizedBox(width: 4.w),
-            SvgPicture.asset("assets/icons/menu.svg"),
           ],
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.r),
         ),
+        child: SvgPicture.asset(AppIcons.arrowLeft,width: 7.w,height: 14.h,),
       ),
     );
-  }
-  static GestureDetector backButton({Color ? color, context ,Size? size}){
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: SvgPicture.asset("assets/icons/backbutton.svg",
-      height:size?.height ?? 28.h,
-      width:size?.width ?? 28.w,
-      color: color ?? Color(0xffffffff),
-      ),
-    );
+
+    //   GestureDetector(
+    //   onTap: () {
+    //     Navigator.pop(context);
+    //   },
+    //   child: SvgPicture.asset("assets/icons/backbutton.svg",
+    //   height:size?.height ?? 28.h,
+    //   width:size?.width ?? 28.w,
+    //   color: color ?? Color(0xffffffff),
+    //   ),
+    // );
   }
 }

@@ -26,4 +26,10 @@ static const tireDressing = "assets/icons/tire_dressing.svg";
 static const interiorWash = "assets/icons/interior_wash.svg";
 static const engineWash = "assets/icons/engine_wash.svg";
 static const clock = "assets/icons/clock.svg";
+
+static const instant = "assets/icons/instant.svg";
+static const calendar = "assets/icons/calendar.svg";
+static const car = "assets/icons/car.svg";
+static const steering = "assets/icons/streering-wheel.svg";
+static const arrowLeft = "assets/icons/backbutton.svg";
 }
