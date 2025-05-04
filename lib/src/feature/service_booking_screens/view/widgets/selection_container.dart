@@ -54,7 +54,10 @@ class CustomSelectionContainer extends StatelessWidget {
           bodyText,
           style: textTheme?.copyWith(
             color: isSelected ? selectedTextColor : unSelectedColor,
+
           ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
         trailing: Container(
           padding: EdgeInsets.all(3.r),
