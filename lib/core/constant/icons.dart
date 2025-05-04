@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class AppIcons{
 static const locationIcon = 'assets/icons/location-outlined.svg';
@@ -32,4 +31,6 @@ static const calendar = "assets/icons/calendar.svg";
 static const car = "assets/icons/car.svg";
 static const steering = "assets/icons/streering-wheel.svg";
 static const arrowLeft = "assets/icons/backbutton.svg";
+
+static const tab = "assets/icons/plus-circle.svg";
 }
