@@ -30,7 +30,7 @@ class CustomSelectionContainer extends StatelessWidget {
     );
     return Container(
       width: 360.w,
-      height: 76.h,
+   //   height: 76.h,
       padding: EdgeInsets.all(10.r),
       decoration: BoxDecoration(
         border: Border.all(
