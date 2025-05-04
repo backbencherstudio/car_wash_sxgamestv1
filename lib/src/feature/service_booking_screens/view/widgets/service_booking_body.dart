@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/constant/icons.dart';
+import '../../../service_details_screen/view/widget/custom_calender.dart';
 import '../../riverpod/service_booking_screens_riverpod.dart';
 import '../../riverpod/service_booking_screens_state.dart';
 import 'custom_selection_widget.dart';
@@ -44,11 +45,28 @@ class ServiceBookingBody extends StatelessWidget{
                 secondBodyText: "Schedule Service",
                 secondLeadingIconPath: AppIcons.calendar,
                 secondOneTap:
-                    () => serviceSelectionNotifier
+                    () async  {
+                  serviceSelectionNotifier
                     .onSelectServiceTime(
                   selectedService:
                   ServiceTime.scheduledService,
-                ),
+                );
+
+                  // await   showDialog(
+                  // context: context,
+                  // barrierDismissible: true,
+                  // builder: (context) {
+                  //   return Dialog(
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(12),
+                  //     ),
+                  //     insetPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
+                  //     child: CustomCalendarWidget(),
+                  //   );
+                  // },
+                  // );
+
+                }
               );
             },
           ),
@@ -95,27 +113,29 @@ class ServiceBookingBody extends StatelessWidget{
               );
               return customSelectionWidget(
                 context: context,
-                firstBodyText: "Car Wash",
+                firstBodyText: "Auto Detect Location",
                 firstLeadingIconPath: AppIcons.car,
-                headingText: "Select Service Type",
+                headingText: "Please Select Your Location",
                 isFirstOneActive:
-                serviceSelectionState.selectedServiceType ==
-                    ServiceType.carWash,
+                serviceSelectionState.locationDetectType ==
+                    LocationDetectType.auto,
                 firstOneTap: () {
-                  serviceSelectionNotifier.onSelectServiceType(
-                    selectedServiceType: ServiceType.carWash,
+                  serviceSelectionNotifier.onSelectLocationDetectType(
+                    locationDetectType: LocationDetectType.auto,
                   );
                 },
-                secondBodyText: "Wheel Fixing",
+                secondBodyText: "Manual Selection",
                 secondLeadingIconPath: AppIcons.steering,
                 secondOneTap:
                     () => serviceSelectionNotifier
-                    .onSelectServiceType(
-                  selectedServiceType: ServiceType.wheelFixing,
+                    .onSelectLocationDetectType(
+                  locationDetectType: LocationDetectType.manual,
                 ),
               );
             },
           ),
+
+
         ],
       ),
     );

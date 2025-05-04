@@ -1,10 +1,13 @@
 import 'package:car_wash/core/constant/padding.dart';
+import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/services/location_services/location_services.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/widgets/custom_selection_widget.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/widgets/service_booking_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/constant/icons.dart';
 import '../../../../core/constant/images.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
@@ -26,6 +29,11 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
   void initState() {
     tabController = TabController(length: 3, vsync: this);
     super.initState();
+  }
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -68,13 +76,31 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
 
                 SizedBox(
                   width: 360.w,
-                  child: Utils.primaryButton(
-                    onPressed:
-                        () => tabController.animateTo(
-                          tabController.index+1 == tabController.length ? 0 :
-                            tabController.index + 1
-                        ),
-                    text: "Continue",
+                  child: Consumer(
+                    builder: (_, ref, _) {
+                      final serviceBookingState = ref.watch(serviceBookingRiverpod);
+                      return Utils.primaryButton(
+                        onPressed:
+                            () async {
+                          if(tabController.index+1 == tabController.length){
+                            if(serviceBookingState.locationDetectType == LocationDetectType.auto){
+                              final address = await LocationService.instance.getCurrentAddress();
+
+                            }
+                            else{
+                              context.push(RouteName.googleMapScreen);
+                            }
+                          }
+                          else{
+                            tabController.animateTo(
+                                tabController.index+1
+                            );
+                          }
+
+                                },
+                        text: "Continue",
+                      );
+                    }
                   ),
                 ),
               ],

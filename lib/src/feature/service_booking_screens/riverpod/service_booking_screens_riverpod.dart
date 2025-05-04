@@ -11,9 +11,10 @@ final serviceBookingRiverpod = StateNotifierProvider<ServiceBookingRiverpod, Ser
 class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState>{
   ServiceBookingRiverpod() : super(ServiceBookingState());
 
-  //ServiceTime selectedService = ServiceTime.instantService;
 
   void onSelectServiceTime({required ServiceTime selectedService}){
+
+
     if(selectedService == state.selectedServiceTime) return;
     state = state.copyWith(selectedServiceTime : selectedService);
   }
@@ -21,6 +22,11 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState>{
   void onSelectServiceType({required ServiceType selectedServiceType}){
     if(selectedServiceType == state.selectedServiceType) return;
     state = state.copyWith(selectedServiceType : selectedServiceType);
+  }
+
+  void onSelectLocationDetectType({required LocationDetectType locationDetectType}) {
+    if(locationDetectType == state.locationDetectType) return;
+    state = state.copyWith(locationDetectType : locationDetectType);
   }
 
 

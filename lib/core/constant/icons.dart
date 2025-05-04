@@ -33,4 +33,7 @@ static const steering = "assets/icons/streering-wheel.svg";
 static const arrowLeft = "assets/icons/backbutton.svg";
 
 static const tab = "assets/icons/plus-circle.svg";
+
+static const autoDetectLocation = "assets/icons/auto-detect-location.svg";
+static const manualSelectLocation = "assets/icons/manual-select-location.svg";
 }
