@@ -18,12 +18,11 @@ class RouteName {
   static const String accountScreen = '/accountScreen';
   static const String splashScreen = '/SplashScreen';
   static const String groupPollsScreen = '/groupPollsScreen';
-  static const String ScreenOne = '/ScreenOne';
-  static const String ScreenTwo = '/ScreenTwo';
-  static const String ScreenThree = '/ScreenThree';
-  static const String ScreenFour = '/ScreenFour';
-  static const String ProfileCreateScreen = '/ProfileCreateScreen';
-  static const String ServiceDetailsScreen = '/ServiceDetailsScreen';
-
-  static const String googleMapScreen = '/googleMapScreen';
+  static const String screenOne = '/ScreenOne';
+  static const String screenTwo = '/ScreenTwo';
+  static const String screenThree = '/ScreenThree';
+  static const String screenFour = '/ScreenFour';
+  static const String profileCreateScreen = '/ProfileCreateScreen';
+  static const String serviceDetailsScreen = '/ServiceDetailsScreen';
+  static const String googleMapScreen = '/GoogleMapScreen';
 }
