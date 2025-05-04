@@ -1,3 +1,4 @@
+import 'package:car_wash/src/feature/google_map_screen/riverpod/google_map_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -111,6 +112,7 @@ class ServiceBookingBody extends StatelessWidget{
               final serviceSelectionNotifier = ref.watch(
                 serviceBookingRiverpod.notifier,
               );
+              final locationState = ref.watch(gMapRiverpod);
               return customSelectionWidget(
                 context: context,
                 firstBodyText: "Auto Detect Location",
@@ -124,7 +126,7 @@ class ServiceBookingBody extends StatelessWidget{
                     locationDetectType: LocationDetectType.auto,
                   );
                 },
-                secondBodyText: "Manual Selection",
+                secondBodyText: locationState.userAddress ??  "Manual Selection",
                 secondLeadingIconPath: AppIcons.steering,
                 secondOneTap:
                     () => serviceSelectionNotifier
