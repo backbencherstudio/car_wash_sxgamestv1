@@ -277,7 +277,8 @@ class Utils {
   //     ),
   //   );
   // }
-  static Widget backButton({Color ? color,required BuildContext context ,Size? size}){
+  static Widget backButton({Color ? color,required BuildContext context ,Size? size})
+  {
     return   GestureDetector(
       onTap: (){
         context.pop();
@@ -312,4 +313,22 @@ class Utils {
     //   ),
     // );
   }
+
+  static String weekdayToString(int weekday) {
+    const days = [
+      'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+      'Friday', 'Saturday', 'Sunday'
+    ];
+    return days[weekday - 1];
+  }
+
+  static String monthToString(int month) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return months[month - 1];
+  }
+
+
 }

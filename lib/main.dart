@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:car_wash/core/theme/theme.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart' as gps;
 import 'core/routes/route_config.dart';
 
 void main() async {
@@ -14,6 +16,26 @@ void main() async {
 
   //ensuring screen size for screen util package to implement pixel perfect UI
   await ScreenUtil.ensureScreenSize();
+
+  LocationPermission locationPermission =
+  await Geolocator.checkPermission();
+  if (locationPermission == LocationPermission.denied ||
+      locationPermission == LocationPermission.deniedForever) {
+    debugPrint(
+      "\nLocation permission is denied. Asking for location permission.\n",
+    );
+
+    /// if denied then ask permission
+    locationPermission = await Geolocator.requestPermission();}
+
+  bool isServiceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!isServiceEnabled) {
+    debugPrint(
+      "\nLocation service is not enabled. Opening location settings.\n",
+    );
+     gps.Location().requestService();
+  }
+
   runApp(const ProviderScope(child: MyApp(),),);
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/constant/icons.dart';
-import '../../../service_details_screen/view/widget/custom_calender.dart';
+import 'custom_calender.dart';
 import '../../riverpod/service_booking_screens_riverpod.dart';
 import '../../riverpod/service_booking_screens_state.dart';
 import 'custom_selection_widget.dart';
@@ -36,10 +36,10 @@ class ServiceBookingBody extends StatelessWidget{
                 firstLeadingIconPath: AppIcons.instant,
                 headingText: "Select Service Time",
                 isFirstOneActive:
-                serviceSelectionState.selectedServiceTime ==
+                serviceSelectionState.selectedServiceTimeType ==
                     ServiceTime.instantService,
                 firstOneTap: () {
-                  serviceSelectionNotifier.onSelectServiceTime(
+                  serviceSelectionNotifier.onSelectServiceTimeType(
                     selectedService: ServiceTime.instantService,
                   );
                 },
@@ -48,7 +48,7 @@ class ServiceBookingBody extends StatelessWidget{
                 secondOneTap:
                     () async  {
                   serviceSelectionNotifier
-                    .onSelectServiceTime(
+                    .onSelectServiceTimeType(
                   selectedService:
                   ServiceTime.scheduledService,
                 );

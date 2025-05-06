@@ -12,11 +12,9 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState>{
   ServiceBookingRiverpod() : super(ServiceBookingState());
 
 
-  void onSelectServiceTime({required ServiceTime selectedService}){
-
-
-    if(selectedService == state.selectedServiceTime) return;
-    state = state.copyWith(selectedServiceTime : selectedService);
+  void onSelectServiceTimeType({required ServiceTime selectedService}){
+    if(selectedService == state.selectedServiceTimeType) return;
+    state = state.copyWith(selectedServiceTimeType : selectedService);
   }
 
   void onSelectServiceType({required ServiceType selectedServiceType}){
@@ -30,5 +28,17 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState>{
   }
 
 
-  void onConfirmServiceTime(){}
+  void pickedDate({required DateTime pickedDate,}){
+    state = state.copyWith(
+      pickedDate: pickedDate,
+    );
+  }
+
+  void pickedTime({  required TimeOfDay pickedTime}){
+    state = state.copyWith(
+      pickedTime: pickedTime,
+    );
+  }
+
+
 }
