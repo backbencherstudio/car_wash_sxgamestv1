@@ -2,6 +2,7 @@ import 'package:car_wash/core/services/location_services/location_services.dart'
 import 'package:car_wash/src/feature/google_map_screen/riverpod/google_map_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 final gMapRiverpod = StateNotifierProvider<GoogleMapRiverpod, GoogleMapState>((ref)=>GoogleMapRiverpod(),);
@@ -13,30 +14,47 @@ class GoogleMapRiverpod extends StateNotifier<GoogleMapState>{
 
   Future<void> moveToUserLocation(GoogleMapController mapController) async {
     try{
-      final userLocation = await LocationService.instance.getCurrentLocation();
+      late final Position? userLocation;
+      late final String? userAddress;
+      late final CameraUpdate cameraUpdate;
+      if(state.latitude == null || state.longitude == null){
+         userLocation = await LocationService.instance.getCurrentLocation();
+         if(userLocation != null){
+           cameraUpdate = CameraUpdate.newCameraPosition(
+             CameraPosition(target: LatLng(userLocation.latitude, userLocation.longitude),
+               zoom: 16,),
+           );
+           mapController.animateCamera(cameraUpdate);
+           userAddress = await LocationService.instance.getAddress(latitude: userLocation.latitude, longitude: userLocation.longitude);
 
-      if(userLocation != null){
-        final userAddress = await LocationService.instance.getAddress(latitude: userLocation.latitude, longitude: userLocation.longitude);
+         }
+         else{
+           debugPrint("\nFailed to detect user location.\n");
+         }
 
-        /// zoom and move to user location on google map
-        final cameraUpdate = CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(userLocation.latitude, userLocation.longitude),
-          zoom: 16,),
+      }
+      else{
+        cameraUpdate = CameraUpdate.newCameraPosition(
+          CameraPosition(target: LatLng(state.latitude!, state.longitude!),
+            zoom: 16,),
         );
         mapController.animateCamera(cameraUpdate);
+        if(state.userAddress == null){
+          userAddress = await LocationService.instance.getAddress(latitude: state.latitude!, longitude: state.longitude!);
+        }
+      }
+
         state = state.copyWith(
             selectedMarker: Marker(
               markerId: const MarkerId(markerId),
-              position: LatLng(userLocation.latitude, userLocation.longitude),
+              position: userLocation == null ? LatLng(state.latitude!, state.longitude!) : LatLng(userLocation.latitude, userLocation.longitude),
             ),
-          latitude: userLocation.latitude,
-          longitude: userLocation.longitude,
+          latitude: userLocation?.latitude,
+          longitude: userLocation?.longitude,
           userAddress: userAddress,
         );
-      }
-      else{
-        debugPrint("\nFailed to detect user location.\n");
-      }
+
+
     }catch(error){
       debugPrint("\nFailed to move to user location.\n");
     }
