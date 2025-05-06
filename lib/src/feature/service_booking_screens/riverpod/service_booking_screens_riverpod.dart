@@ -97,6 +97,7 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState>{
 
     if(tabController.index == 0 && state.selectedServiceTimeType == ServiceTime.instantService){
       tabController.animateTo(1);
+      return;
     }
 
     /// If Tab index is the last one, and location detection type is selected to auto
@@ -124,7 +125,7 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState>{
     /// if index is 1 just animate to next tab
     if(tabController.index == 1){
       tabController.animateTo(tabController.index + 1);
-
+      return;
     }
   }
 
