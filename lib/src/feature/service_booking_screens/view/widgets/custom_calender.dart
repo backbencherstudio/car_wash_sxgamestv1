@@ -93,7 +93,7 @@ class CustomCalendarWidget extends StatelessWidget {
                       onDaySelected: (selected, focused) {
                      //   if(selected.day < DateTime.now().day) return;
                         calendarNotifier.selectDay(selectedDay: selected);
-                        ref.read(serviceBookingRiverpod.notifier).pickedDate(pickedDate: selected);
+                        ref.read(serviceBookingRiverpod.notifier).onPickedDate(pickedDate: selected);
                         debugPrint("\nIn Calendar, selected day : ${calendarState.selectedDay}\n");
                       },
                       headerVisible: false,
