@@ -1,8 +1,5 @@
-import 'package:car_wash/core/constant/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../common_style/timeline_style/timeline_color.dart';
 
 class CommonWidgets {
   /// App primary button
@@ -71,126 +68,7 @@ class CommonWidgets {
 
 
 
-  /// Confirmation dialog, when call, will open a bottom sheet
-  static Future<bool> customConfirmationBottomSheet({
-    required BuildContext context,
-    String? iconPath,
-    String? bodyText,
-    required String confirmButtonText,
-    String? headerText,
-    Function? onCancel,
-    required Function onConfirm,
-    Color? confirmationButtonColor,
-    Color? iconColor,
-    Widget? bodyWidget,
-    double? maxBottomSheetHeight
-  }) async
-  {
-    bool isConfirm = false;
-    var value = await showModalBottomSheet(
-      useSafeArea: true,
-      constraints: BoxConstraints(maxHeight: maxBottomSheetHeight ?? 350.h),
-      context: context,
-      backgroundColor: Colors.transparent,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
-      ),
-      builder: (BuildContext context) {
-        return Container(
-          width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 20.h),
-          padding: EdgeInsets.only(
-            left: 16.w,
-            right: 16.w,
-            bottom: 20.h,
-            top: 12.h,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(24.r),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: 40.w,
-                height: 5.h,
-                decoration: BoxDecoration(
-                  color: TimelineColor.iconColor,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-              ),
-              SizedBox(height: 25.h),
 
-              bodyWidget ??
-              Column(
-                children: [
-                  Image.asset(
-                    iconPath ?? "Icons.question_answer",
-                    color: iconColor,
-                    fit: BoxFit.contain,
-                    width: 72.w,
-                    height: 72.h,
-                  ),
-                  SizedBox(height: 25.h),
-                  Text(
-                    headerText ?? "Are You Sure?",
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: TimelineColor.textColor,
-                    ),
-                  ),
-                  SizedBox(height: 5.h),
-                  Text(
-                    bodyText ?? "",
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: TimelineColor.lightTextColor,
-                    ),
-                  ),
-
-                ],
-              ),
-              SizedBox(height: 35.h),
-              Expanded(
-                child: Row(
-                  spacing: 12.w,
-                  children: [
-                    Expanded(
-                      child: primaryButton(
-                        context: context,
-                        title: "Cancel",
-                        color:
-                        confirmationButtonColor ??
-                            TimelineColor.secondaryColor,
-                        textColor: TimelineColor.textColor,
-                        onPressed: () {
-                          isConfirm = false;
-                          onCancel ?? Navigator.pop(context);
-                        },
-                      ),
-                    ),
-                    Expanded(
-                      child: primaryButton(
-                        context: context,
-                        title: confirmButtonText,
-                        color: TimelineColor.primaryColor,
-                        textColor: TimelineColor.onPrimaryColor,
-                        onPressed: () {
-                          isConfirm = true;
-                          onConfirm();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-    return isConfirm;
-  }
 
 
 

@@ -25,7 +25,7 @@ import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/scr
 import 'build_page_with_transition.dart';
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.parentsScreen,
+     initialLocation: RouteName.homeScreen,
      routes: [
       GoRoute(
           name: RouteName.splashScreen,
@@ -130,12 +130,12 @@ class RouteConfig{
            pageBuilder: (context, state) {
              return  MaterialPage(child: ParentScreen());
            }),
-            GoRoute(
-           name: RouteName.serviceDetailsScreen,
-           path: RouteName.serviceDetailsScreen,
-           pageBuilder: (context, state) {
-             return  MaterialPage(child: ServiceDetailsScreen());
-           }),
+           //  GoRoute(
+           // name: RouteName.serviceDetailsScreen,
+           // path: RouteName.serviceDetailsScreen,
+           // pageBuilder: (context, state) {
+           //   return  MaterialPage(child: ServiceDetailsScreen());
+           // }),
 
        GoRoute(
            name: RouteName.googleMapScreen,

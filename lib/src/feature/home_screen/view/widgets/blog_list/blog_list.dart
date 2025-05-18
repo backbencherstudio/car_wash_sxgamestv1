@@ -13,7 +13,7 @@ class BlogList extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    TextStyle headerTextStyle = Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 18.sp,);
+    TextStyle headerTextStyle = Theme.of(context).textTheme.titleSmall!;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -39,12 +39,12 @@ class BlogList extends StatelessWidget{
           height: 449.h,
             child: ListView.builder(
               padding: EdgeInsets.all(20.r),
-              itemCount: 5,
+              itemCount: 2,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, index){
                 return FittedBox(
                   child: BlogCard(
-                    imagePath:AppImages.blogPhoto ,
+                    imagePath: index == 0 ? AppImages.carWash : AppImages.carWash3 ,
                   ),
                 );
                 }

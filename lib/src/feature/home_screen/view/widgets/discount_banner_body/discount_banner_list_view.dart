@@ -1,3 +1,4 @@
+import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/discount_banner_body/discountBanner.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +13,14 @@ class DiscountBannerListView extends StatelessWidget {
       height: 240.h,
       width: double.infinity,
 
-      child: ListView.builder(
+      child: ListView(
         padding: AppPadding.screenHorizontal,
-        itemCount: 5,
         scrollDirection: Axis.horizontal,
         physics: ClampingScrollPhysics(),
-        itemBuilder: (_, index) {
-          return DiscountBanner();
-        },
+        children: [
+          DiscountBanner(imagePath: AppImages.wheelFix2),
+          DiscountBanner(imagePath: AppImages.carWash),
+        ],
       ),
     );
   }
