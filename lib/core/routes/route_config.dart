@@ -18,6 +18,7 @@ import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
 import 'package:car_wash/src/feature/service_details_screen/view/service_details_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
+import 'package:car_wash/src/order_history/view/order_history.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/profile_screen.dart';
@@ -27,7 +28,7 @@ import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/scr
 import 'build_page_with_transition.dart';
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.homeScreen,
+     initialLocation: RouteName.orderHistoryScreen,
      routes: [
       GoRoute(
           name: RouteName.splashScreen,
@@ -82,6 +83,13 @@ class RouteConfig{
            path: RouteName.emailVerifyScreen,
            pageBuilder: (context, state) {
              return const MaterialPage(child: EmailVerifyScreen());
+           }),
+
+              GoRoute(
+           name: RouteName.orderHistoryScreen,
+           path: RouteName.orderHistoryScreen,
+           pageBuilder: (context, state) {
+             return const MaterialPage(child: OrderHistoryScreen());
            }),
        GoRoute(
            name: RouteName.otpVerifyScreen,
