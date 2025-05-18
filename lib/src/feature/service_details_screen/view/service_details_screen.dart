@@ -72,7 +72,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                SizedBox(width: 17.w),
                Utils.primaryButton(
                               onPressed: () {
-                                context.push(RouteName.serviceBookingScreen);
+                                context.push(RouteName.googleMapScreen);
                               },
                               text: "Book Now",
                               width: 153.w,
@@ -167,8 +167,8 @@ class ServiceDetailsScreen extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: Row(
                   children: [
-                    Padding(
-                      padding:  EdgeInsets.only(left:20.w , top: 20),
+                    Padding(   
+                      padding:  EdgeInsets.only(left:30.w , top: 20),
                       child: Utils.backButton(context: context),
                     ),
                     Spacer(),
