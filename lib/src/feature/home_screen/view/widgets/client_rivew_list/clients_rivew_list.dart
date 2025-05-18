@@ -16,7 +16,7 @@ class ClientsReviewList extends StatelessWidget{
       children: [
         Padding(
             padding: AppPadding.screenHorizontal,
-          child: Text("Clients Sayings",style: Theme.of(context).textTheme.headlineSmall,),
+          child: Text("Clients Sayings",style: Theme.of(context).textTheme.titleSmall,),
         ),
         SizedBox(
           height: 260.h,

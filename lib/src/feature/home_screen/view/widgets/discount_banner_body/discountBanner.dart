@@ -27,33 +27,20 @@ class DiscountBanner extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: EdgeInsets.all(16.r),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "30% OFF*",
-                        style: Theme.of(context).textTheme.headlineLarge
-                            ?.copyWith(color: Colors.white, fontSize: 32.sp),
-                      ),
-                      Text(
-                        "Car Wash & Detailing",
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-                      ),
-                    ],
+                  Text(
+                    "30% OFF*",
+                    style: Theme.of(context).textTheme.headlineLarge
+                        ?.copyWith(color: Colors.white, fontSize: 32.sp),
                   ),
-
-                  Utils.secondaryButton(
-                    onPressed: () {},
-                    imageAsset: AppIcons.arrowUpRight,iconColor: Colors.white,
-                    context: context,
-                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.26),
+                  Text(
+                    "Car Wash & Detailing",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(color: Colors.white),
                   ),
                 ],
               ),

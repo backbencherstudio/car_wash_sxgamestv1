@@ -13,7 +13,7 @@ class BlogList extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    TextStyle headerTextStyle = Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 18.sp,);
+    TextStyle headerTextStyle = Theme.of(context).textTheme.titleSmall!;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
