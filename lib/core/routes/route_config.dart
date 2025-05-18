@@ -7,12 +7,14 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_up_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
+import 'package:car_wash/src/feature/blog_list_screen/view/blog_list_screen.dart';
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
 import 'package:car_wash/src/feature/parent_screen/view/parent_screen.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_one.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_three.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_two.dart';
+import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
 import 'package:car_wash/src/feature/service_details_screen/view/service_details_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
@@ -151,6 +153,24 @@ class RouteConfig{
              return buildPageWithTransition(context: context, state: state, child: ServiceBookingScreen());
                //MaterialPage(child: ServiceBookingScreen());
            }),
+
+
+       GoRoute(
+           name: RouteName.profileScreen,
+           path: RouteName.profileScreen,
+           pageBuilder: (context, state) {
+             return buildPageWithTransition(context: context, state: state, child: ProfileScreen());
+             //MaterialPage(child: ServiceBookingScreen());
+           }),
+
+       GoRoute(
+           name: RouteName.blogListScreen,
+           path: RouteName.blogListScreen,
+           pageBuilder: (context, state) {
+             return buildPageWithTransition(context: context, state: state, child: BlogListScreen());
+             //MaterialPage(child: ServiceBookingScreen());
+           }),
+
 
 
      ]);
