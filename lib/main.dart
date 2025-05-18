@@ -9,12 +9,12 @@ import 'core/routes/route_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //set device orientation to portraitUp during app running for better user experience of the UI
+  ///set device orientation to portraitUp during app running for better user experience of the UI
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
 
-  //ensuring screen size for screen util package to implement pixel perfect UI
+  ///ensuring screen size for screen util package to implement pixel perfect UI
   await ScreenUtil.ensureScreenSize();
 
   LocationPermission locationPermission =
