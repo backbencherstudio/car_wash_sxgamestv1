@@ -96,7 +96,7 @@ class _ServicesListState extends State<ServicesList> {
                       height: 32.h,
                       colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),),
 
-                    Text("Car Wash",
+                    Text("Wheel Fixing",
                     style: subTitleTextTheme,
                     )
                   ],

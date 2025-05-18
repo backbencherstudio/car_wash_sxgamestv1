@@ -37,7 +37,7 @@ Drawer appDrawer({required BuildContext context}) {
         ),
 
         ListTile(
-        //  onTap: ()=>context.push(RouteName.profileScreen),
+          onTap: ()=>context.push(RouteName.profileScreen),
           leading: Utils.secondaryButton(
               onPressed: (){},
               imageAsset: AppIcons.userFill,

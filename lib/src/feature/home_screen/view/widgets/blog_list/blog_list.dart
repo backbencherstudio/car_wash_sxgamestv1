@@ -3,8 +3,10 @@ import 'package:car_wash/core/constant/padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constant/icons.dart';
+import '../../../../../../core/routes/route_name.dart';
 import '../../../../../../core/theme/theme_extension/app_colors.dart';
 import 'blog_card.dart';
 
@@ -25,11 +27,14 @@ class BlogList extends StatelessWidget{
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Recent Blogs",style: headerTextStyle,),
-              Row(
-                children: [
-                  Text("View All",style: headerTextStyle.copyWith(color: AppColors.primary),),
-                  SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
-                ],
+              GestureDetector(
+                onTap: ()=>context.push(RouteName.blogListScreen),
+                child: Row(
+                  children: [
+                    Text("View All",style: headerTextStyle.copyWith(color: AppColors.primary),),
+                    SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
+                  ],
+                ),
               ),
             ],
           ),
