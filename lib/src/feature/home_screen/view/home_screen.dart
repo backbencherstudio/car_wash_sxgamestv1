@@ -22,8 +22,6 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           key: _scaffoldKey,
           endDrawer: appDrawer(context: context),
-          onEndDrawerChanged:
-              ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
           body: Stack(
             // fit: StackFit.expand,
             children: [

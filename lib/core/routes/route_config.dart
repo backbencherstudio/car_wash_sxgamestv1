@@ -130,12 +130,12 @@ class RouteConfig{
            pageBuilder: (context, state) {
              return  MaterialPage(child: ParentScreen());
            }),
-            GoRoute(
-           name: RouteName.serviceDetailsScreen,
-           path: RouteName.serviceDetailsScreen,
-           pageBuilder: (context, state) {
-             return  MaterialPage(child: ServiceDetailsScreen());
-           }),
+           //  GoRoute(
+           // name: RouteName.serviceDetailsScreen,
+           // path: RouteName.serviceDetailsScreen,
+           // pageBuilder: (context, state) {
+           //   return  MaterialPage(child: ServiceDetailsScreen());
+           // }),
 
        GoRoute(
            name: RouteName.googleMapScreen,

@@ -39,7 +39,7 @@ class ClientsReviewList extends StatelessWidget{
                         spacing : 8.w,
                         children: [
                           ClipOval(
-                            child: Image.asset(AppImages.shakin,width: 60.w,height: 60.w,fit: BoxFit.cover,),
+                            child: Image.asset(AppImages.client,width: 60.w,height: 60.w,fit: BoxFit.cover,),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

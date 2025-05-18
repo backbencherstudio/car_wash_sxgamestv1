@@ -11,15 +11,18 @@ class AppImages{
   /// forgot password screen images
   static const successfullyResetPassword = "assets/images/forgot_password/success.png";
 
-  /// Homne Screen
-  static const shakin = "assets/images/home_screen/funny_face.jpeg";
-  static const carWashBanner = "assets/images/home_screen/car_wash.png";
+  /// Home Screen
+  static const shakin = "assets/images/home_screen/shakin.jpeg";
+  static const client = "assets/images/home_screen/client.png";
+  static const carWash = "assets/images/home_screen/car_wash.png";
   static const beautifulCarWashingService = "assets/images/home_screen/beautiful-car-washing-service.png";
   static const banner = "assets/images/home_screen/banner.png";
   static const banner2 = "assets/images/home_screen/banner-2.png";
+  static const carWash2 = "assets/images/home_screen/car_wash_2.png";
+  static const carWash3 = "assets/images/home_screen/car_wash_3.png";
+  static const wheelFix = "assets/images/home_screen/wheel_fix.png";
+  static const wheelFix2 = "assets/images/home_screen/wheel_fix_2.png";
 
-  static const blogPhoto = "assets/images/home_screen/blog_picture.png";
-  static const blogPhoto2 = "assets/images/home_screen/blog_picture2.png";
 
   //forget pass
    static const successfullyDone = "assets/images/forgot_password/success.png";

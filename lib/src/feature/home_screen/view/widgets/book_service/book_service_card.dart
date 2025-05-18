@@ -10,7 +10,12 @@ import 'package:go_router/go_router.dart';
 
 class BookServiceCard extends StatelessWidget {
   final String serviceName;
-  const BookServiceCard({super.key, required this.serviceName});
+  final String imagePath;
+  const BookServiceCard({
+    super.key,
+    required this.serviceName,
+    required this.imagePath,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,57 +25,77 @@ class BookServiceCard extends StatelessWidget {
         padding: EdgeInsets.all(12.r),
         decoration: Utils.commonBoxDecoration(),
         child: Row(
-         // spacing: 16.w,
+          // spacing: 16.w,
           children: [
             Expanded(
               child: Image.asset(
-                AppImages.beautifulCarWashingService,
+                imagePath,
+                //  AppImages.beautifulCarWashingService,
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 16.w,),
+            SizedBox(width: 16.w),
             Expanded(
               child: Column(
                 spacing: 10.h,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(serviceName,style: Theme.of(context).textTheme.headlineSmall,),
+                  Text(
+                    serviceName,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SvgPicture.asset(AppIcons.locationIcon,
+                      SvgPicture.asset(
+                        AppIcons.locationIcon,
                         width: 16.w,
                         height: 16.h,
                         colorFilter: ColorFilter.mode(
                           Color(0xff434343),
-                          BlendMode.srcIn
-                      ),),
-                      SizedBox(width: 4.w,),
-                      Text("Ney York City",style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Color(0xff62676C)),),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        "Ney York City",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Color(0xff62676C),
+                        ),
+                      ),
                     ],
                   ),
 
                   Row(
                     children: [
-                      SvgPicture.asset(AppIcons.clock,
+                      SvgPicture.asset(
+                        AppIcons.clock,
                         width: 16.w,
                         height: 16.h,
                         colorFilter: ColorFilter.mode(
                           Color(0xff434343),
-                          BlendMode.srcIn
-                      ),),
-                      SizedBox(width: 4.w,),
-                      Text("9.30 AM - 11 PM",style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Color(0xff62676C)),),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        "9.30 AM - 11 PM",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Color(0xff62676C),
+                        ),
+                      ),
                     ],
                   ),
 
-                  Utils.primaryButton(onPressed: (){
-                    context.push(RouteName.serviceDetailsScreen);
-                  }, text: "Book Now")
+                  Utils.primaryButton(
+                    onPressed: () {
+                      context.push(RouteName.serviceBookingScreen);
+                    },
+                    text: "Book Now",
+                  ),
                 ],
-              )
-
+              ),
             ),
           ],
         ),

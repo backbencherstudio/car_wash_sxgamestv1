@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DiscountBanner extends StatelessWidget {
-  const DiscountBanner({super.key});
+  final String imagePath;
+  const DiscountBanner({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class DiscountBanner extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
-            child: Image.asset(AppImages.carWashBanner, fit: BoxFit.cover),
+            child: Image.asset(imagePath, fit: BoxFit.cover),
           ),
 
           Align(
