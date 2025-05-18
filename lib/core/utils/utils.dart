@@ -277,27 +277,30 @@ class Utils {
   //     ),
   //   );
   // }
-  static Widget backButton({Color ? color,required BuildContext context ,Size? size}){
-    return   GestureDetector(
-      onTap: (){
-        context.pop();
-        },
-      child: Container(
-        width: 44.w,
-        height: 44.h,
-        padding: EdgeInsets.all(12.r),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 33,
-              color: const Color(0xff000000).withOpacity(0.1),
-              offset: const Offset(0, 15),
-            ),
-          ],
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.r),
+  static Widget backButton({Color ? color,required BuildContext context ,Size? size})
+  {
+    return   SafeArea(
+      child: GestureDetector(
+        onTap: (){
+          context.pop();
+          },
+        child: Container(
+          width: 44.w,
+          height: 44.h,
+          padding: EdgeInsets.all(12.r),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 33,
+                color: const Color(0xff000000).withOpacity(0.1),
+                offset: const Offset(0, 15),
+              ),
+            ],
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          child: SvgPicture.asset(AppIcons.arrowLeft,width: 7.w,height: 14.h,),
         ),
-        child: SvgPicture.asset(AppIcons.arrowLeft,width: 7.w,height: 14.h,),
       ),
     );
 
@@ -312,4 +315,22 @@ class Utils {
     //   ),
     // );
   }
+
+  static String weekdayToString(int weekday) {
+    const days = [
+      'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+      'Friday', 'Saturday', 'Sunday'
+    ];
+    return days[weekday - 1];
+  }
+
+  static String monthToString(int month) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return months[month - 1];
+  }
+
+
 }

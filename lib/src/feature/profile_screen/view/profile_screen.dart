@@ -7,6 +7,7 @@ import 'package:car_wash/src/feature/profile_screen/view/widget/customTextField.
 import 'package:car_wash/src/feature/profile_screen/view/widget/profile_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -44,23 +45,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        title: Text(
-          "Profile",
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-            color: AppColors.textColor,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
-      ),
+
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: AppPadding.screenHorizontal,
           child: Column(
             children: [
+
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: Utils.backButton(context: context)),
+             // SizedBox(height: 25.h,),
               ProfileHeader(),
               SizedBox(height: 25.h),
               Column(
@@ -73,7 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   customTextfield("Passwords",licenseController,context,true),
                   customTextfield("Location",businessLocController,context,true),
                   SizedBox(height: 24.h),
-                  Utils.primaryButton(onPressed: () {}, text: "Save & Change"),
+                  Utils.primaryButton(onPressed: () {context.pop();}, text: "Save & Change"),
                    SizedBox(height: 150.h),
                 ],
               ),

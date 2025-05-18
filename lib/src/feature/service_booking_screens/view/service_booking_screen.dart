@@ -3,6 +3,8 @@ import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/services/location_services/location_services.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/feature/google_map_screen/riverpod/google_map_riverpod.dart';
+import 'package:car_wash/src/feature/service_booking_screens/riverpod/calendar_riverpod.dart';
+import 'package:car_wash/src/feature/service_booking_screens/view/widgets/custom_calender.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/widgets/custom_selection_widget.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/widgets/service_booking_body.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +33,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
     tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
+
   @override
   void dispose() {
     tabController.dispose();
@@ -42,6 +45,8 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
     return Scaffold(
       body: Stack(
         children: [
+
+          /// Background
           Positioned.fill(
             child: Image.asset(
               AppImages.whiteBackground,
@@ -51,60 +56,51 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
             ),
           ),
 
+          /// Foreground
           Positioned.fill(
             child: Column(
               children: [
+
+                /// Header
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding:  EdgeInsets.only(left:20.w , top: 20),
+                      padding: EdgeInsets.only(left: 20.w, top: 20),
                       child: Utils.backButton(context: context),
                     ),
 
-                    HomeHeader(isOnlyTrailing: true)
+                    HomeHeader(isOnlyTrailing: true),
                   ],
                 ),
-                // Align(
-                //   alignment: Alignment.topRight,
-                //   child: HomeHeader(isOnlyTrailing: true),
-                // ),
 
                 SizedBox(height: 99.h),
 
-                ServiceBookingBody(tabController:tabController),
+                /// Body with Tab Bar View
+                ServiceBookingBody(tabController: tabController),
 
                 SizedBox(height: 28.h),
 
+                /// Continue button
                 SizedBox(
                   width: 360.w,
                   child: Consumer(
                     builder: (_, ref, _) {
+
                       final serviceBookingState = ref.watch(serviceBookingRiverpod);
+
+                      final serviceBookingNotifier = ref.watch(serviceBookingRiverpod.notifier);
+
                       final googleMapNotifier = ref.read(gMapRiverpod.notifier);
+
                       return Utils.primaryButton(
-                        onPressed:
-                            () async {
-                          if(tabController.index+1 == tabController.length){
-                            if(serviceBookingState.locationDetectType == LocationDetectType.auto){
-                              googleMapNotifier.onAutoDetectLocation();
-
-                            }
-                            else{
-                              context.push(RouteName.googleMapScreen);
-                            }
-                          }
-                          else{
-                            tabController.animateTo(
-                                tabController.index+1
-                            );
-                          }
-
-                                },
+                        onPressed: () async{
+                          serviceBookingNotifier.onContinueToBooking(context: context, tabController: tabController, onAutoDetectLocation: googleMapNotifier.onAutoDetectLocation);
+                        },
                         text: "Continue",
                       );
-                    }
+                    },
                   ),
                 ),
               ],

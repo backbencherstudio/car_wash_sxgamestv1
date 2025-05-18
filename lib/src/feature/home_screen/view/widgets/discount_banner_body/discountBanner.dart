@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DiscountBanner extends StatelessWidget {
-  const DiscountBanner({super.key});
+  final String imagePath;
+  const DiscountBanner({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -19,40 +20,27 @@ class DiscountBanner extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
-            child: Image.asset(AppImages.carWashBanner, fit: BoxFit.cover),
+            child: Image.asset(imagePath, fit: BoxFit.cover),
           ),
 
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: EdgeInsets.all(16.r),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "30% OFF*",
-                        style: Theme.of(context).textTheme.headlineLarge
-                            ?.copyWith(color: Colors.white, fontSize: 32.sp),
-                      ),
-                      Text(
-                        "Car Wash & Detailing",
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-                      ),
-                    ],
+                  Text(
+                    "30% OFF*",
+                    style: Theme.of(context).textTheme.headlineLarge
+                        ?.copyWith(color: Colors.white, fontSize: 32.sp),
                   ),
-
-                  Utils.secondaryButton(
-                    onPressed: () {},
-                    imageAsset: AppIcons.arrowUpRight,iconColor: Colors.white,
-                    context: context,
-                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.26),
+                  Text(
+                    "Car Wash & Detailing",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(color: Colors.white),
                   ),
                 ],
               ),

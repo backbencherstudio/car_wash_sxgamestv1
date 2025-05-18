@@ -3,8 +3,10 @@ import 'package:car_wash/core/constant/padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constant/icons.dart';
+import '../../../../../../core/routes/route_name.dart';
 import '../../../../../../core/theme/theme_extension/app_colors.dart';
 import 'blog_card.dart';
 
@@ -13,7 +15,7 @@ class BlogList extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    TextStyle headerTextStyle = Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 18.sp,);
+    TextStyle headerTextStyle = Theme.of(context).textTheme.titleSmall!;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -25,11 +27,14 @@ class BlogList extends StatelessWidget{
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Recent Blogs",style: headerTextStyle,),
-              Row(
-                children: [
-                  Text("View All",style: headerTextStyle.copyWith(color: AppColors.primary),),
-                  SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
-                ],
+              GestureDetector(
+                onTap: ()=>context.push(RouteName.blogListScreen),
+                child: Row(
+                  children: [
+                    Text("View All",style: headerTextStyle.copyWith(color: AppColors.primary),),
+                    SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
+                  ],
+                ),
               ),
             ],
           ),
@@ -39,12 +44,12 @@ class BlogList extends StatelessWidget{
           height: 449.h,
             child: ListView.builder(
               padding: EdgeInsets.all(20.r),
-              itemCount: 5,
+              itemCount: 2,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, index){
                 return FittedBox(
                   child: BlogCard(
-                    imagePath:AppImages.blogPhoto ,
+                    imagePath: index == 0 ? AppImages.carWash : AppImages.carWash3 ,
                   ),
                 );
                 }

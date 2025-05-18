@@ -30,7 +30,7 @@ class ShowBanner extends StatelessWidget{
         child: ListView.builder(
           padding: AppPadding.screenHorizontal,
           scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: 2,
             itemBuilder: (_, index){
             return Container(
                 height: 240.h,
