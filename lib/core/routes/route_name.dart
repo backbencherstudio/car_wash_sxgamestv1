@@ -28,5 +28,8 @@ class RouteName {
   static const String serviceBookingScreen = '/serviceBookingScreen';
   static const String profileScreen = '/profileScreen';
   static const String blogListScreen = '/blogListScreen';
+
+  static const String blogDetailsScreen = '/blogDetailsScreen';
+
   static const String orderHistoryScreen = '/OrderHistoryScreen';
 }

@@ -54,6 +54,7 @@ dependencies:
   location: ^8.0.0
   table_calendar: ^3.2.0
   intl: ^0.20.2
+  flutter_html: ^3.0.0
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
@@ -92,7 +93,7 @@ flutter:
      - assets/images/serviceDetails/
      - assets/
      - assets/images/signup/
-    
+     - assets/images/blog/
      - assets/images/forgot_password/
     
    
