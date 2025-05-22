@@ -92,9 +92,9 @@ class RouteConfig{
               GoRoute(
            name: RouteName.orderHistoryScreen,
            path: RouteName.orderHistoryScreen,
-           pageBuilder: (context, state) {
-             return const MaterialPage(child: OrderHistoryScreen());
-           }),
+                  pageBuilder: (context, state) {
+                    return buildPageWithTransition(context: context, state: state, child: OrderHistoryScreen());
+                  }),
        GoRoute(
            name: RouteName.otpVerifyScreen,
            path: RouteName.otpVerifyScreen,

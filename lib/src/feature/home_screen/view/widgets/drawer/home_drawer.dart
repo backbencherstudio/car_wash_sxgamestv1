@@ -57,10 +57,11 @@ Drawer appDrawer({required BuildContext context}) {
         ),
         SizedBox(height: 8.h,),
         ListTile(
+          onTap: (){
+            context.push(RouteName.orderHistoryScreen);
+          },
           leading: Utils.secondaryButton(
-              onPressed: (){
-                context.push(RouteName.orderHistoryScreen);
-              },
+              onPressed: (){},
               imageAsset: AppIcons.order,
               padding: EdgeInsets.all(8.r),
               context: context,
