@@ -59,7 +59,7 @@ Drawer appDrawer({required BuildContext context}) {
         ListTile(
           leading: Utils.secondaryButton(
               onPressed: (){
-              /*  context.push(RouteName.ord)*/
+                context.push(RouteName.orderHistoryScreen);
               },
               imageAsset: AppIcons.order,
               padding: EdgeInsets.all(8.r),
