@@ -26,7 +26,6 @@ class SignUpScreen extends StatelessWidget {
     final bodyMedium = Theme.of(context).textTheme.bodyMedium;
 
     return Scaffold(
-      appBar: Utils.appBarBackButton(context),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.r, vertical: 16.h),

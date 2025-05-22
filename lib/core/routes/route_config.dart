@@ -30,7 +30,7 @@ import 'build_page_with_transition.dart';
 class RouteConfig{
  GoRouter goRouter = GoRouter(
 
-     initialLocation: RouteName.parentsScreen,
+     initialLocation: RouteName.splashScreen,
 
      routes: [
 
