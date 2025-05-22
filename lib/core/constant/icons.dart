@@ -39,4 +39,6 @@ static const tab = "assets/icons/plus-circle.svg";
 
 static const autoDetectLocation = "assets/icons/auto-detect-location.svg";
 static const manualSelectLocation = "assets/icons/manual-select-location.svg";
+static const heart = "assets/icons/heart.svg";
+static const share = "assets/icons/share.svg";
 }

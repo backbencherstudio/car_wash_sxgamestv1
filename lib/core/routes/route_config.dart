@@ -21,14 +21,16 @@ import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/profile_screen.dart';
+import '../../src/feature/blog_details_screen/view/blog_details_screen.dart';
 import '../../src/feature/home_screen/view/home_screen.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_four.dart';
 
 import 'build_page_with_transition.dart';
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.homeScreen,
+     initialLocation: RouteName.parentsScreen,
      routes: [
+
       GoRoute(
           name: RouteName.splashScreen,
           path: RouteName.splashScreen,
@@ -168,8 +170,16 @@ class RouteConfig{
            path: RouteName.blogListScreen,
            pageBuilder: (context, state) {
              return buildPageWithTransition(context: context, state: state, child: BlogListScreen());
-             //MaterialPage(child: ServiceBookingScreen());
            }),
+
+       GoRoute(
+           name: RouteName.blogDetailsScreen,
+           path: RouteName.blogDetailsScreen,
+           pageBuilder: (context, state) {
+             return buildPageWithTransition(context: context, state: state, child: BlogDetailsScreen());
+           }),
+
+
 
 
 
