@@ -10,17 +10,21 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signu
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
 import 'package:car_wash/src/feature/blog_list_screen/view/blog_list_screen.dart';
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
+import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
-import 'package:car_wash/src/order_history/view/order_history.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/profile_screen.dart';
 import '../../src/feature/blog_details_screen/view/blog_details_screen.dart';
 import '../../src/feature/home_screen/view/home_screen.dart';
+<<<<<<< HEAD
 
+=======
+import '../../src/feature/order_history/view/order_history.dart';
+>>>>>>> c7930115b5af2a8192bd076e4c122ee989ab3d80
 import 'build_page_with_transition.dart';
 
 class RouteConfig {
@@ -208,6 +212,18 @@ GoRoute(
             context: context,
             state: state,
             child: BlogDetailsScreen(),
+          );
+        },
+      ),
+
+      GoRoute(
+        name: RouteName.notificationScreen,
+        path: RouteName.notificationScreen,
+        pageBuilder: (context, state) {
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: NotificationScreen(),
           );
         },
       ),

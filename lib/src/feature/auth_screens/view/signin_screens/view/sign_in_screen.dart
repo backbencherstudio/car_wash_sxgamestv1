@@ -198,12 +198,12 @@ class SignInScreen extends StatelessWidget {
 
                   title: "Continue with Google",
                 ),
-                SizedBox(height: 16.h),
-                buildLoginButton(
-                  context: context,
-                  imagePath: AppIcons.apple,
-                  title: "Continue with Apple",
-                ),
+                // SizedBox(height: 16.h),
+                // buildLoginButton(
+                //   context: context,
+                //   imagePath: AppIcons.apple,
+                //   title: "Continue with Apple",
+                // ),
                 SizedBox(height: 32.h),
 
                 footerText(
