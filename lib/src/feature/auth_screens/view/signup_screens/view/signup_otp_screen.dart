@@ -78,7 +78,7 @@ class SignupOtpScreen extends StatelessWidget {
                   onPressed: () {
                   
                   
-                     context.go(RouteName.successfullyRegisteredScreen);
+                     context.go(RouteName.paymentSlectionScreen);
                   },
                 ),
                 SizedBox(height: 32.h),

@@ -2,6 +2,8 @@ import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/view/email_verify_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/view/otp_verify_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/view/successfully_reset_password_screen.dart';
+import 'package:car_wash/src/feature/auth_screens/view/payment/view/payment_form.dart';
+import 'package:car_wash/src/feature/auth_screens/view/payment/view/select_option.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/sign_in_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_up_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
@@ -18,7 +20,11 @@ import 'package:go_router/go_router.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/profile_screen.dart';
 import '../../src/feature/blog_details_screen/view/blog_details_screen.dart';
 import '../../src/feature/home_screen/view/home_screen.dart';
+<<<<<<< HEAD
+
+=======
 import '../../src/feature/order_history/view/order_history.dart';
+>>>>>>> c7930115b5af2a8192bd076e4c122ee989ab3d80
 import 'build_page_with_transition.dart';
 
 class RouteConfig {
@@ -146,7 +152,20 @@ class RouteConfig {
           return MaterialPage(child: GoogleMapScreen());
         },
       ),
-
+GoRoute(
+        name: RouteName.paymentSlectionScreen,
+        path: RouteName.paymentSlectionScreen,
+        pageBuilder: (context, state) {
+          return MaterialPage(child: PaymentSlectionScreen());
+        },
+      ),
+      GoRoute(
+        name: RouteName.paymentSlectionFormScreen,
+        path: RouteName.paymentSlectionFormScreen,
+        pageBuilder: (context, state) {
+          return MaterialPage(child: PaymentSelectionFormScreen());
+        },
+      ),
       GoRoute(
         name: RouteName.serviceBookingScreen,
         path: RouteName.serviceBookingScreen,
