@@ -28,7 +28,7 @@ import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/scr
 import 'build_page_with_transition.dart';
 class RouteConfig{
  GoRouter goRouter = GoRouter(
-     initialLocation: RouteName.orderHistoryScreen,
+     initialLocation: RouteName.homeScreen,
      routes: [
       GoRoute(
           name: RouteName.splashScreen,
