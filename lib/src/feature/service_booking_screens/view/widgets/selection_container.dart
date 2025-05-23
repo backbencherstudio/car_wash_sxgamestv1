@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CustomSelectionContainer extends StatelessWidget {
   final bool isSelected;
   final String leadingSvgIconPath;
+  final bool isImage;
   final String bodyText;
   final VoidCallback onTap;
 
@@ -20,6 +21,7 @@ class CustomSelectionContainer extends StatelessWidget {
     required this.leadingSvgIconPath,
     required this.bodyText,
     required this.onTap,
+    this.isImage = false
   });
 
   @override
@@ -41,7 +43,7 @@ class CustomSelectionContainer extends StatelessWidget {
       ),
       child: ListTile(
         onTap: onTap,
-        leading: SvgPicture.asset(
+        leading: !isImage ? SvgPicture.asset(
           leadingSvgIconPath,
           width: 24.w,
           height: 24.h,
@@ -49,7 +51,14 @@ class CustomSelectionContainer extends StatelessWidget {
             isSelected ? selectedColor : unSelectedColor,
             BlendMode.srcIn,
           ),
-        ),
+        )
+        :
+        Image.asset(
+          leadingSvgIconPath,
+          width: 24.w,
+          height: 24.h,
+        )
+        ,
         title: Text(
           bodyText,
           style: textTheme?.copyWith(

@@ -45,12 +45,12 @@ class AppTextTheme {
     bodySmall: GoogleFonts.roboto(fontSize: 12.sp, fontWeight: FontWeight.w400,
         color: AppColors.textColor),
     labelLarge: GoogleFonts.roboto(
-      fontSize: 14,
+      fontSize: 14.sp,
       color: Color(0xff4A4C56),
       fontWeight: FontWeight.w500,
     ),
     labelMedium: GoogleFonts.roboto(
-      fontSize: 12,
+      fontSize: 12.sp,
       color: Color(0xff4A4C56),
       fontWeight: FontWeight.w500,
     ),

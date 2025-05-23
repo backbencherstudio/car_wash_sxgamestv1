@@ -41,7 +41,7 @@ static const autoDetectLocation = "assets/icons/auto-detect-location.svg";
 static const manualSelectLocation = "assets/icons/manual-select-location.svg";
 static const heart = "assets/icons/heart.svg";
 static const share = "assets/icons/share.svg";
-static const master = "assets/icons/master.svg";
+static const master = "assets/icons/master.png";
 static const visa = "assets/icons/visa.svg";
 static const check ="assets/icons/check.svg";
 

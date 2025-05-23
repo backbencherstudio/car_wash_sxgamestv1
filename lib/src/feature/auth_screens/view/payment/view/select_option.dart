@@ -54,6 +54,7 @@ class PaymentSlectionScreen extends StatelessWidget {
             
                  CustomSelectionContainer(
                   leadingSvgIconPath: AppIcons.master,
+                  isImage: true,
                   isSelected: selected == 1,
                   bodyText: "Master Card",
                   onTap: () {
