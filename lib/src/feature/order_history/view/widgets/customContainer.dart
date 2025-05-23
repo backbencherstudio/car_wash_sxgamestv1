@@ -1,7 +1,7 @@
 import 'package:car_wash/core/utils/utils.dart';
-import 'package:car_wash/src/order_history/view/widgets/custom_row_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'custom_row_tile.dart';
 
 class Customcontainer extends StatelessWidget {
   const Customcontainer({super.key});

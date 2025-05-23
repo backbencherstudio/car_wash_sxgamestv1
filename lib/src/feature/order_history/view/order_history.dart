@@ -1,16 +1,21 @@
 import 'package:car_wash/core/utils/utils.dart';
-import 'package:car_wash/src/order_history/view/widgets/customContainer.dart';
+import 'package:car_wash/src/feature/order_history/view/widgets/customContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../feature/home_screen/view/widgets/home_header/home_header.dart';
+import '../../home_screen/view/widgets/drawer/home_drawer.dart';
+import '../../home_screen/view/widgets/home_header/home_header.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
-  const OrderHistoryScreen({super.key});
+   OrderHistoryScreen({super.key});
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: appDrawer(context: context),
       body: Column(
         children: [
           Row(
