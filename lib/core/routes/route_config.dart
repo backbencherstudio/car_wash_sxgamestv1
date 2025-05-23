@@ -1,5 +1,4 @@
 import 'package:car_wash/core/routes/route_name.dart';
-import 'package:car_wash/src/feature/auth_screens/view/create_group_screens/view/create_or_join_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/view/email_verify_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/view/otp_verify_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/view/successfully_reset_password_screen.dart';
@@ -10,22 +9,15 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/succe
 import 'package:car_wash/src/feature/blog_list_screen/view/blog_list_screen.dart';
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
-import 'package:car_wash/src/feature/parent_screen/view/parent_screen.dart';
-import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_one.dart';
-import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_three.dart';
-import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_two.dart';
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
-import 'package:car_wash/src/feature/service_details_screen/view/service_details_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
-import 'package:car_wash/src/order_history/view/order_history.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/profile_screen.dart';
 import '../../src/feature/blog_details_screen/view/blog_details_screen.dart';
 import '../../src/feature/home_screen/view/home_screen.dart';
-import 'package:car_wash/src/feature/profile_Create_screen/view/step_screens/screen_four.dart';
-
+import '../../src/feature/order_history/view/order_history.dart';
 import 'build_page_with_transition.dart';
 
 class RouteConfig {

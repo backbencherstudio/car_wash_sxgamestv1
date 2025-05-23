@@ -71,19 +71,19 @@ Drawer appDrawer({required BuildContext context}) {
           trailing: SvgPicture.asset(AppIcons.arrowRight,
             colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
         ),
-        SizedBox(height: 8.h,),
-        ListTile(
-          leading: Utils.secondaryButton(
-              onPressed: (){},
-              imageAsset: AppIcons.crown,
-              padding: EdgeInsets.all(8.r),
-              context: context,
-              backgroundColor: AppColors.secondaryButtonBgColor
-          ),
-          title: Text("Premium",style: Theme.of(context).textTheme.bodyLarge?.copyWith()),
-          trailing: SvgPicture.asset(AppIcons.arrowRight,
-            colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
-        ),
+        // SizedBox(height: 8.h,),
+        // ListTile(
+        //   leading: Utils.secondaryButton(
+        //       onPressed: (){},
+        //       imageAsset: AppIcons.crown,
+        //       padding: EdgeInsets.all(8.r),
+        //       context: context,
+        //       backgroundColor: AppColors.secondaryButtonBgColor
+        //   ),
+        //   title: Text("Premium",style: Theme.of(context).textTheme.bodyLarge?.copyWith()),
+        //   trailing: SvgPicture.asset(AppIcons.arrowRight,
+        //     colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
+        // ),
         SizedBox(height: 8.h,),
         ListTile(
           onTap: ()=> context.go(RouteName.signInScreen),
