@@ -27,4 +27,5 @@ class RouteName {
   static const String blogDetailsScreen = '/blogDetailsScreen';
 
   static const String orderHistoryScreen = '/OrderHistoryScreen';
+  static const String notificationScreen = '/notificationScreen';
 }
