@@ -8,6 +8,7 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signu
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
 import 'package:car_wash/src/feature/blog_list_screen/view/blog_list_screen.dart';
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
+import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
@@ -192,6 +193,18 @@ class RouteConfig {
             context: context,
             state: state,
             child: BlogDetailsScreen(),
+          );
+        },
+      ),
+
+      GoRoute(
+        name: RouteName.notificationScreen,
+        path: RouteName.notificationScreen,
+        pageBuilder: (context, state) {
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: NotificationScreen(),
           );
         },
       ),
