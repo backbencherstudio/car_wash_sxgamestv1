@@ -11,36 +11,44 @@ class Agreement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Consumer(
-                builder: (context, ref, _) {
-                  final isChecked = ref.watch(isCheckedProvider);
-                  return GestureDetector(
-                    onTap: () {
-                      ref.read(isCheckedProvider.notifier).isChecked();
-                    },
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          AppIcons.check,
-                          color:
-                              isChecked ? AppColors.primary : Color(0xff62676C),
-                        ),
-                        SizedBox(width: 12.w),
-                        Text(
-                          "I Agree",
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodySmall!.copyWith(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400,
-                            color:
-                                isChecked
-                                    ? AppColors.primary
-                                    : Color(0xff62676C),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );}}
+    return Consumer(
+      builder: (context, ref, _) {
+        final isChecked = ref.watch(isCheckedProvider);
+        return GestureDetector(
+          onTap: () {
+            ref.read(isCheckedProvider.notifier).isChecked();
+          },
+          child:
+
+          Row(
+            children: [
+
+              Transform.scale(
+               scale: 1.2,
+                child: Checkbox(
+                  shape: OvalBorder(),
+                    value: isChecked,
+                    onChanged: (_){},
+                ),
+              ),
+
+              // SvgPicture.asset(
+              //   AppIcons.check,
+              //   color: isChecked ? AppColors.primary : Color(0xff62676C),
+              // ),
+              SizedBox(width: 5.w),
+              Text(
+                "I Agree",
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                  color: isChecked ? AppColors.primary : Color(0xff62676C),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
