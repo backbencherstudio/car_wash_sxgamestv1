@@ -62,11 +62,11 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
                Spacer(),
                 CommonWidgets.primaryButton(
                   context: context,
-                  title: "Create or Join?",
+                  title: "Log in now",
                   color: AppColors.primary,
                   textColor: Color(0xffffffff),
                   onPressed: () {
-                    context.go(RouteName.crateOrJoinScreen);
+                    context.go(RouteName.signInScreen);
                   },
                 ),
                 SizedBox(height: 56.h),

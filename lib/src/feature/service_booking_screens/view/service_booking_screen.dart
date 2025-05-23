@@ -13,6 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constant/icons.dart';
 import '../../../../core/constant/images.dart';
+import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
 import '../riverpod/service_booking_screens_riverpod.dart';
 import '../riverpod/service_booking_screens_state.dart';
@@ -27,6 +28,8 @@ class ServiceBookingScreen extends StatefulWidget {
 class _ServiceBookingScreenState extends State<ServiceBookingScreen>
     with SingleTickerProviderStateMixin {
   late final TabController tabController;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -43,6 +46,8 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: appDrawer(context: context),
       body: Stack(
         children: [
 

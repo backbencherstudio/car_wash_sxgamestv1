@@ -2,8 +2,10 @@ import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constant/icons.dart';
+import '../../../../../../core/routes/route_name.dart';
 import '../../../../../../core/theme/theme_extension/app_colors.dart';
 
 class BlogCard extends StatelessWidget{
@@ -51,11 +53,14 @@ class BlogCard extends StatelessWidget{
             maxLines: 2,
           ),
 
-          Row(
-            children: [
-              Text("Read More",style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600,color: AppColors.primary),),
-              SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
-            ],
+          GestureDetector(
+            onTap: ()=> context.push(RouteName.blogDetailsScreen),
+            child: Row(
+              children: [
+                Text("Read More",style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600,color: AppColors.primary),),
+                SvgPicture.asset(AppIcons.arrowRight,colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),)
+              ],
+            ),
           ),
 
         ],

@@ -20,7 +20,6 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     /// text theme
     final headlineSmall = Theme.of(context).textTheme.headlineSmall;
     final titleSmall = Theme.of(context).textTheme.titleSmall;
@@ -28,7 +27,6 @@ class SignInScreen extends StatelessWidget {
     final bodyMedium = Theme.of(context).textTheme.bodyMedium;
 
     return Scaffold(
-      appBar: Utils.appBarBackButton(context),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(24.r),
@@ -40,61 +38,67 @@ class SignInScreen extends StatelessWidget {
                   'Hi! Welcome Back',
                   style: headlineSmall?.copyWith(
                     color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.w600
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
                   "Log in to your account",
                   style: titleSmall?.copyWith(
                     color: Theme.of(context).colorScheme.onSecondary,
-                    fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(height: 40.h),
                 TextFormField(
-                  decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
-                    context: context,
-                    hintText: "Your Email",
-                    fillColor: Color(0xffffffff),
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                      child: SvgPicture.asset(AppIcons.mail)
-                    ),
-                  ),
+                  decoration:
+                      AuthInputDecorationTheme.lightInputDecorationTheme(
+                        context: context,
+                        hintText: "Your Email",
+                        fillColor: Color(0xffffffff),
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                          child: SvgPicture.asset(AppIcons.mail),
+                        ),
+                      ),
                 ),
                 SizedBox(height: 16.h),
-               Consumer(
-                 builder: (context,ref,child) {
+                Consumer(
+                  builder: (context, ref, child) {
+                    final isPasswordVisible =
+                        ref.watch(signInProvider).isPasswordVisible;
+                    final notifier = ref.read(signInProvider.notifier);
 
-                   final isPasswordVisible = ref.watch(signInProvider).isPasswordVisible;
-                   final notifier = ref.read(signInProvider.notifier);
-
-                   return TextFormField(
-                     obscureText: !isPasswordVisible,
-                     decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
-                       context: context,
-                       hintText: "Enter your password",
-                       fillColor: Color(0xffffffff),
-                       prefixIcon: Padding(
-                         padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                         child: SvgPicture.asset(AppIcons.lockOutlined,width: 18.w,height: 18.w,)
-
-                       
-                       ),
-                       suffixIcon: GestureDetector(
-                         onTap: (){
-                           notifier.togglePasswordVisibility();
-                         },
-                         child: Icon(
-                           isPasswordVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                           size: 20.r,
-                           color: AuthColorPalette.bodyTextColor,
-                         ),
-                       ),
-                     ),
-                   );
-                 }
-               ),
+                    return TextFormField(
+                      obscureText: !isPasswordVisible,
+                      decoration:
+                          AuthInputDecorationTheme.lightInputDecorationTheme(
+                            context: context,
+                            hintText: "Enter your password",
+                            fillColor: Color(0xffffffff),
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                              child: SvgPicture.asset(
+                                AppIcons.lockOutlined,
+                                width: 18.w,
+                                height: 18.w,
+                              ),
+                            ),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                notifier.togglePasswordVisibility();
+                              },
+                              child: Icon(
+                                isPasswordVisible
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                                size: 20.r,
+                                color: AuthColorPalette.bodyTextColor,
+                              ),
+                            ),
+                          ),
+                    );
+                  },
+                ),
                 SizedBox(height: 16.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,32 +107,35 @@ class SignInScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Consumer(
-                          builder: (context,ref,child) {
-                            final isRemember = ref.watch(signInProvider).isRemember;
+                          builder: (context, ref, child) {
+                            final isRemember =
+                                ref.watch(signInProvider).isRemember;
                             final notifier = ref.read(signInProvider.notifier);
 
                             return GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 notifier.toggleIsRemember();
                               },
                               child: Icon(
-                                isRemember ? Icons.check_circle_rounded : Icons.circle_outlined,
+                                isRemember
+                                    ? Icons.check_circle_rounded
+                                    : Icons.circle_outlined,
                                 color: AppColors.primary,
                               ),
                             );
-                          }
+                          },
                         ),
                         SizedBox(width: 4.w),
                         Text(
                           "Remember me",
                           style: bodyLarge?.copyWith(
-                            color: AuthColorPalette.textColorGrey
+                            color: AuthColorPalette.textColorGrey,
                           ),
                         ),
                       ],
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         context.go(RouteName.emailVerifyScreen);
                       },
                       child: Text(
@@ -140,46 +147,73 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 44.h),
                 Consumer(
-                  builder: (context,ref,child) {
-                    return CommonWidgets.primaryButton(context: context, title: "Log in", color: AppColors.primary,textColor: AuthColorPalette.white, onPressed: (){
-                      context.go(RouteName.parentsScreen);
+                  builder: (context, ref, child) {
+                    return CommonWidgets.primaryButton(
+                      context: context,
+                      title: "Log in",
+                      color: AppColors.primary,
+                      textColor: AuthColorPalette.white,
+                      onPressed: () {
+                        context.go(RouteName.homeScreen);
 
-                    //   ref.read(parentsScreenProvider.notifier).onSelectedIndex(2);
+                        //   ref.read(parentsScreenProvider.notifier).onSelectedIndex(2);
 
-                    //   debugPrint("Selected index: ${ref.read(parentsScreenProvider).selectedIndex}");
-                    });
-                  }
+                        //   debugPrint("Selected index: ${ref.read(parentsScreenProvider).selectedIndex}");
+                      },
+                    );
+                  },
                 ),
                 SizedBox(height: 44.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(child: Divider(color: AuthColorPalette.greyscale200,height: 1,)),
+                    Expanded(
+                      child: Divider(
+                        color: AuthColorPalette.greyscale200,
+                        height: 1,
+                      ),
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 17.w),
-                      child: Text("Or",style: bodyMedium?.copyWith(color: AuthColorPalette.textColorGrey, fontWeight: FontWeight.w500),),
+                      child: Text(
+                        "Or",
+                        style: bodyMedium?.copyWith(
+                          color: AuthColorPalette.textColorGrey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                    Expanded(child: Divider(color: AuthColorPalette.greyscale200,height: 1,)),
+                    Expanded(
+                      child: Divider(
+                        color: AuthColorPalette.greyscale200,
+                        height: 1,
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(height: 44.h,),
-                buildLoginButton(context: context,imagePath:
-                AppIcons.google,
-               
-                title: "Continue with Google"),
-                SizedBox(height: 16.h,),
-                buildLoginButton(context: context,
-                imagePath:
-                AppIcons.apple
-             
-                ,
-                title: "Continue with Apple"),
-                SizedBox(height: 32.h,),
+                SizedBox(height: 44.h),
+                buildLoginButton(
+                  context: context,
+                  imagePath: AppIcons.google,
 
-                footerText(context: context, text1: "Don't have an account? ", text2: 'Sign Up', onTap: (){
-                  context.push(RouteName.signUpScreen);
-                }),
+                  title: "Continue with Google",
+                ),
+                SizedBox(height: 16.h),
+                buildLoginButton(
+                  context: context,
+                  imagePath: AppIcons.apple,
+                  title: "Continue with Apple",
+                ),
+                SizedBox(height: 32.h),
 
+                footerText(
+                  context: context,
+                  text1: "Don't have an account? ",
+                  text2: 'Sign Up',
+                  onTap: () {
+                    context.push(RouteName.signUpScreen);
+                  },
+                ),
               ],
             ),
           ),
@@ -187,6 +221,4 @@ class SignInScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

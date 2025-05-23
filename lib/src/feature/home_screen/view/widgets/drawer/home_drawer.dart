@@ -57,6 +57,9 @@ Drawer appDrawer({required BuildContext context}) {
         ),
         SizedBox(height: 8.h,),
         ListTile(
+          onTap: (){
+            context.push(RouteName.orderHistoryScreen);
+          },
           leading: Utils.secondaryButton(
               onPressed: (){},
               imageAsset: AppIcons.order,

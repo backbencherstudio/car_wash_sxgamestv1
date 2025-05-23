@@ -40,6 +40,9 @@ class AppImages{
    static const profile = "assets/images/profile_pic.png";
    //white background
    static const whiteBackground= "assets/images/whitebgm.png";
+
+   /// Blog
+    static const indoorCarClean = "assets/images/blog/indoor_car_clean.png";
  
 
 }

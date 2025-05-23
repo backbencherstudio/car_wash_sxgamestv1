@@ -4,15 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/utils.dart';
+import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
 
 class BlogListScreen extends StatelessWidget{
-  const BlogListScreen({super.key});
+   BlogListScreen({super.key});
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: appDrawer(context: context),
       body: Stack(
         fit: StackFit.expand,
         children: [
