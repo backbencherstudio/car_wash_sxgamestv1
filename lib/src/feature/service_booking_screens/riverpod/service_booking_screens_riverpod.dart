@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/routes/route_name.dart';
+import '../view/widgets/extra_payment_bottom_sheet.dart';
 
 final serviceBookingRiverpod = StateNotifierProvider<ServiceBookingRiverpod, ServiceBookingState>(
 (ref)=>ServiceBookingRiverpod()
@@ -94,6 +95,9 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState>{
         );
       }
     }
+    else if(tabController.index == 0 && state.selectedServiceTimeType == ServiceTime.instantService){
+      await showPaymentBottomSheet(context: context);
+    }
 
     if(tabController.index == 0 && state.selectedServiceTimeType == ServiceTime.instantService){
       tabController.animateTo(1);
@@ -122,11 +126,7 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState>{
       tabController.animateTo(tabController.index + 1);
       return;
     }
-    /// if index is 1 just animate to next tab
-    if(tabController.index == 1){
-      tabController.animateTo(tabController.index + 1);
-      return;
-    }
+
   }
 
 }

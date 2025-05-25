@@ -16,7 +16,8 @@ class PaymentSelectionFormScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: AppPadding.screenHorizontal,
-        child: SingleChildScrollView(
+        child:
+        SingleChildScrollView(
           child: Column(
             children: [
             SizedBox(height: 100.h),

@@ -29,6 +29,8 @@ class BookService extends StatelessWidget{
         ),
         BookServiceCard(serviceName: "Wheel Fix",
         imagePath: AppImages.wheelFix,),
+        BookServiceCard(serviceName: "Store",
+          imagePath: AppImages.store,),
       ],
     );
   }

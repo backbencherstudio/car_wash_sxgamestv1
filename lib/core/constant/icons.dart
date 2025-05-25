@@ -32,6 +32,7 @@ static const clock = "assets/icons/clock.svg";
 static const instant = "assets/icons/instant.svg";
 static const calendar = "assets/icons/calendar.svg";
 static const car = "assets/icons/car.svg";
+static const store = "assets/icons/store.svg";
 static const steering = "assets/icons/streering-wheel.svg";
 static const arrowLeft = "assets/icons/backbutton.svg";
 
