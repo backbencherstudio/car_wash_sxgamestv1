@@ -8,6 +8,7 @@ import 'custom_calender.dart';
 import '../../riverpod/service_booking_screens_riverpod.dart';
 import '../../riverpod/service_booking_screens_state.dart';
 import 'custom_selection_widget.dart';
+import 'extra_payment_bottom_sheet.dart';
 
 class ServiceBookingBody extends StatelessWidget{
   final TabController tabController;
@@ -17,7 +18,7 @@ class ServiceBookingBody extends StatelessWidget{
   Widget build(BuildContext context) {
     return SizedBox(
       width: 400.w,
-      height: 245.h,
+      height: 272.h,
       child: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         controller: tabController,
@@ -38,7 +39,7 @@ class ServiceBookingBody extends StatelessWidget{
                 isFirstOneActive:
                 serviceSelectionState.selectedServiceTimeType ==
                     ServiceTime.instantService,
-                firstOneTap: () {
+                firstOneTap: () async {
                   serviceSelectionNotifier.onSelectServiceTimeType(
                     selectedService: ServiceTime.instantService,
                   );
@@ -53,56 +54,42 @@ class ServiceBookingBody extends StatelessWidget{
                   ServiceTime.scheduledService,
                 );
 
-                  // await   showDialog(
-                  // context: context,
-                  // barrierDismissible: true,
-                  // builder: (context) {
-                  //   return Dialog(
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(12),
-                  //     ),
-                  //     insetPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
-                  //     child: CustomCalendarWidget(),
-                  //   );
-                  // },
-                  // );
-
                 }
               );
             },
           ),
 
-          Consumer(
-            builder: (_, ref, _) {
-              final serviceSelectionState = ref.watch(
-                serviceBookingRiverpod,
-              );
-              final serviceSelectionNotifier = ref.read(
-                serviceBookingRiverpod.notifier,
-              );
-              return customSelectionWidget(
-                context: context,
-                firstBodyText: "Car Wash",
-                firstLeadingIconPath: AppIcons.car,
-                headingText: "Select Service Type",
-                isFirstOneActive:
-                serviceSelectionState.selectedServiceType ==
-                    ServiceType.carWash,
-                firstOneTap: () {
-                  serviceSelectionNotifier.onSelectServiceType(
-                    selectedServiceType: ServiceType.carWash,
-                  );
-                },
-                secondBodyText: "Wheel Fixing",
-                secondLeadingIconPath: AppIcons.steering,
-                secondOneTap:
-                    () => serviceSelectionNotifier
-                    .onSelectServiceType(
-                      selectedServiceType: ServiceType.wheelFixing,
-                ),
-              );
-            },
-          ),
+          // Consumer(
+          //   builder: (_, ref, _) {
+          //     final serviceSelectionState = ref.watch(
+          //       serviceBookingRiverpod,
+          //     );
+          //     final serviceSelectionNotifier = ref.read(
+          //       serviceBookingRiverpod.notifier,
+          //     );
+          //     return customSelectionWidget(
+          //       context: context,
+          //       firstBodyText: "Car Wash",
+          //       firstLeadingIconPath: AppIcons.car,
+          //       headingText: "Select Service Type",
+          //       isFirstOneActive:
+          //       serviceSelectionState.selectedServiceType ==
+          //           ServiceType.carWash,
+          //       firstOneTap: () {
+          //         serviceSelectionNotifier.onSelectServiceType(
+          //           selectedServiceType: ServiceType.carWash,
+          //         );
+          //       },
+          //       secondBodyText: "Wheel Fixing",
+          //       secondLeadingIconPath: AppIcons.steering,
+          //       secondOneTap:
+          //           () => serviceSelectionNotifier
+          //           .onSelectServiceType(
+          //             selectedServiceType: ServiceType.wheelFixing,
+          //       ),
+          //     );
+          //   },
+          // ),
 
           Consumer(
             builder: (_, ref, _) {

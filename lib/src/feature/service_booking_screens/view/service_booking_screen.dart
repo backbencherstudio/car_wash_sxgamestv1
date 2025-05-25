@@ -33,7 +33,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
 
   @override
   void initState() {
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 

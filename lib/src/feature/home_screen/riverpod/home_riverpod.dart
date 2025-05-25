@@ -12,53 +12,17 @@ class HomeRiverpod extends StateNotifier<HomeState>{
 
   final List<Map<String, dynamic>> dummyServiceList = const [
     {
-      "serviceName": "Exterior Wash",
+      "serviceName": "Car Wash",
       "iconPath": AppIcons.exteriorWash
     },
     {
-      "serviceName": "Tire Dressing",
+      "serviceName": "Wheel Fixing",
       "iconPath": AppIcons.tireDressing
     },
     {
-      "serviceName": "Hand Drying",
-      "iconPath": AppIcons.handDrying
+      "serviceName": "Store",
+      "iconPath": AppIcons.store
     },
-    {
-      "serviceName": "Interior Wash",
-      "iconPath": AppIcons.interiorWash
-    },
-    {
-      "serviceName": "Tire Cleaning",
-      "iconPath": AppIcons.tireCleaning
-    },
-    {
-      "serviceName": "Engine Wash",
-      "iconPath": AppIcons.engineWash
-    },
-    {
-      "serviceName": "Exterior Wash",
-      "iconPath": AppIcons.exteriorWash
-    },
-    {
-      "serviceName": "Tire Dressing",
-      "iconPath": AppIcons.tireDressing
-    },
-    {
-      "serviceName": "Hand Drying",
-      "iconPath": AppIcons.handDrying
-    },
-    {
-      "serviceName": "Interior Wash",
-      "iconPath": AppIcons.interiorWash
-    },
-    {
-      "serviceName": "Tire Cleaning",
-      "iconPath": AppIcons.tireCleaning
-    },
-    {
-      "serviceName": "Engine Wash",
-      "iconPath": AppIcons.engineWash
-    }
   ];
 
   void fetchServiceItem(){

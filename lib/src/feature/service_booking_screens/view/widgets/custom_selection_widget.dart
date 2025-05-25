@@ -1,3 +1,5 @@
+import 'package:car_wash/core/constant/padding.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/widgets/selection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,6 +26,19 @@ Widget customSelectionWidget({
         isSelected: isFirstOneActive,
         leadingSvgIconPath: firstLeadingIconPath,
       ),
+      if(firstBodyText == "Instant Service")
+        Padding(
+          padding: AppPadding.screenHorizontal,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Column(
+              children: [
+                SizedBox(height: 8.h,),
+                Text("If you want instant service you have to pay \$10",style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.primary),)
+              ],
+            ),
+          ),
+        ),
 
       SizedBox(height: 12.h),
 

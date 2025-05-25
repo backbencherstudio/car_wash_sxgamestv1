@@ -22,6 +22,7 @@ class AppImages{
   static const carWash3 = "assets/images/home_screen/car_wash_3.png";
   static const carWash4 = "assets/images/home_screen/car_wash_4.png";
   static const wheelFix = "assets/images/home_screen/wheel_fix.png";
+  static const store = "assets/images/home_screen/store.png";
   static const wheelFix2 = "assets/images/home_screen/wheel_fix_2.png";
 
 
