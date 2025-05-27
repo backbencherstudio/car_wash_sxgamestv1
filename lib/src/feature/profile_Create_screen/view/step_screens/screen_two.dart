@@ -65,12 +65,7 @@ class ScreenTwo extends StatelessWidget {
                     );
                   },
                   child: DottedBorder(
-                    color: AppColors.primary,
-                    strokeWidth: 1,
-                    borderType: BorderType.RRect,
-                    radius: Radius.circular(12),
-                    dashPattern: [6, 6],
-                    child: Container(
+                    child: SizedBox(
                       height: 263.h,
                       width: 400.w,
                       child:
