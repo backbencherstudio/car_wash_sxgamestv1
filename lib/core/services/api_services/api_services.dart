@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:car_wash/core/services/api_services/api_endpoints.dart';
+import 'package:car_wash/core/utils/utils.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
@@ -19,12 +20,19 @@ class ApiServices {
     required Map<String, String> headers,
   }) async {
     try {
-      final response = await http.post(
-        Uri.parse('${ApiEndPoints.baseUrl}/$endPoint'),
-        headers: headers,
-        body: jsonEncode(body),
-      );
-      return _handleResponse(response);
+      final isOnline = await Utils.isOnline();
+      if(isOnline){
+        final response = await http.post(
+          Uri.parse('${ApiEndPoints.baseUrl}/$endPoint'),
+          headers: headers,
+          body: jsonEncode(body),
+        );
+        return _handleResponse(response);
+      }
+      else{
+        throw Exception('Device is Offline, Please connect to internet.');
+      }
+
     } catch (e) {
       throw Exception("Failed to send data: $e");
     }
