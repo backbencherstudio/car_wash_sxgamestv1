@@ -1,8 +1,11 @@
 import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 class Utils {
@@ -231,52 +234,6 @@ class Utils {
     );
   }
 
-  // static Container appBarButtons({Color? buttonColor, Color? backgroundColor}) {
-  //   return Container(
-  //     height: 64.h,
-  //     width: 112.w,
-  //     decoration: BoxDecoration(
-  //       borderRadius: BorderRadius.circular(16.r),
-  //       color: backgroundColor ?? const Color(0xFFFFFFFF),
-  //       boxShadow: [
-  //         BoxShadow(
-  //           color: const Color.fromRGBO(0, 0, 0, 0.04),
-  //           offset: const Offset(0, 4),
-  //           blurRadius: 33,
-  //           spreadRadius: 8,
-  //         ),
-  //       ],
-  //     ),
-  //     child: Padding(
-  //       padding: const EdgeInsets.all(10),
-  //       child: Row(
-  //         children: [
-  //           Container(
-  //             height: 44.h,
-  //             width: 44.w,
-  //             decoration: BoxDecoration(
-  //               borderRadius: BorderRadius.circular(12.r),
-  //               color: buttonColor ?? const Color(0xFFFFFFFF),
-  //               boxShadow: [
-  //                 BoxShadow(
-  //                   color: Colors.black.withOpacity(0.05),
-  //                   blurRadius: 2,
-  //                   offset: Offset(0, 0),
-  //                 ),
-  //               ],
-  //             ),
-  //             child: Padding(
-  //               padding: const EdgeInsets.all(10),
-  //               child: SvgPicture.asset("assets/icons/notification.svg"),
-  //             ),
-  //           ),
-  //           SizedBox(width: 4.w),
-  //           SvgPicture.asset("assets/icons/menu.svg"),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
   static Widget backButton({
     Color? color,
     required BuildContext context,
@@ -348,5 +305,30 @@ class Utils {
       'December',
     ];
     return months[month - 1];
+  }
+
+  static Future<bool> isOnline() async {
+    try {
+      final result = await Connectivity().checkConnectivity();
+      if (result.contains(ConnectivityResult.wifi) ||
+          result.contains(ConnectivityResult.mobile) ||
+          result.contains(ConnectivityResult.ethernet)) {
+        return true;
+      } else {
+        return false;
+      }
+    } on PlatformException catch (e) {
+      throw Exception('Couldn\'t check connectivity status: $e');
+    }
+  }
+
+  static void alertOfflineActivity() {
+    Fluttertoast.showToast(
+        msg: "Please connect to internet",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.red,
+      textColor: Colors.white
+    );
   }
 }
