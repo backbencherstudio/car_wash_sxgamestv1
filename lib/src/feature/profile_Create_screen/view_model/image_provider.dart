@@ -2,20 +2,17 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-final imagePickerProvider = StateNotifierProvider<ImagePickerNotifier, ImagePickerState>(
-  (ref) => ImagePickerNotifier(),
-);
+final imagePickerProvider =
+    StateNotifierProvider<ImagePickerNotifier, ImagePickerState>(
+      (ref) => ImagePickerNotifier(),
+    );
 
 class ImagePickerState {
   final File? profile;
   final File? licenseFront;
   final File? licenseBack;
 
-  ImagePickerState({
-    this.profile,
-    this.licenseFront,
-    this.licenseBack,
-  });
+  ImagePickerState({this.profile, this.licenseFront, this.licenseBack});
 
   ImagePickerState copyWith({
     File? profile,

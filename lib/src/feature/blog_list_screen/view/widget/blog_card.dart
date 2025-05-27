@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class BlogCard extends StatelessWidget{
+class BlogCard extends StatelessWidget {
   const BlogCard({super.key});
 
   @override
@@ -17,7 +17,7 @@ class BlogCard extends StatelessWidget{
     final Color surfaceColor = Color(0xffF0F3FC);
     final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
-      onTap: ()=> context.push(RouteName.blogDetailsScreen),
+      onTap: () => context.push(RouteName.blogDetailsScreen),
       child: Container(
         width: 400.w,
         margin: EdgeInsets.only(bottom: 16.h),
@@ -42,31 +42,53 @@ class BlogCard extends StatelessWidget{
                 color: surfaceColor,
                 borderRadius: BorderRadius.circular(8.r),
               ),
-              child: Text("Car Wash",style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),),
+              child: Text(
+                "Car Wash",
+                style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
+              ),
             ),
-            Text("Why Regular Car Washing is More Important Than You Think",
+            Text(
+              "Why Regular Car Washing is More Important Than You Think",
               style: textTheme.titleSmall,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
 
-          Text("Keeping your car clean is not just about looking good...",style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-            SizedBox(height: 10.h,),
+            Text(
+              "Keeping your car clean is not just about looking good...",
+              style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: 10.h),
 
             Row(
               children: [
-                SvgPicture.asset(AppIcons.calendar,width: 16.w,height: 16.h,colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),),
-                SizedBox(width: 4.w,),
-                Text("May 11, 2025",style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),),
-                SizedBox(width: 8.w,),
-                SvgPicture.asset(AppIcons.eye,width: 16.w,height: 16.h,colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),),
-                SizedBox(width: 4.w,),
-                Text("22 views",style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),),
+                SvgPicture.asset(
+                  AppIcons.calendar,
+                  width: 16.w,
+                  height: 16.h,
+                  colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+                ),
+                SizedBox(width: 4.w),
+                Text(
+                  "May 11, 2025",
+                  style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
+                ),
+                SizedBox(width: 8.w),
+                SvgPicture.asset(
+                  AppIcons.eye,
+                  width: 16.w,
+                  height: 16.h,
+                  colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+                ),
+                SizedBox(width: 4.w),
+                Text(
+                  "22 views",
+                  style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -16,7 +16,8 @@ class SignUpModel {
   }) {
     return SignUpModel(
       isPasswordVisible: isPasswordVisible ?? this.isPasswordVisible,
-      isConfirmPasswordVisible: isConfirmPasswordVisible ?? this.isConfirmPasswordVisible,
+      isConfirmPasswordVisible:
+          isConfirmPasswordVisible ?? this.isConfirmPasswordVisible,
       isLoading: isLoading ?? this.isLoading,
     );
   }

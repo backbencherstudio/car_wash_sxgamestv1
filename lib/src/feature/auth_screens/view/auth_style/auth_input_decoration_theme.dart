@@ -13,14 +13,11 @@ class AuthInputDecorationTheme {
     Color? fillColor,
     bool? borderColor,
   }) {
-
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
 
     return InputDecoration(
       suffixIcon: suffixIcon,
-      hintStyle: bodyLarge?.copyWith(
-        color: AppColors.onSecondary,
-      ),
+      hintStyle: bodyLarge?.copyWith(color: AppColors.onSecondary),
       contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
       hintText: hintText,
       prefixIconColor: AppColors.onSurface,
@@ -31,19 +28,29 @@ class AuthInputDecorationTheme {
       fillColor: fillColor,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12.r),
-        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : AppColors.onSecondary  ) ,
+        borderSide: BorderSide(
+          color:
+              borderColor == false ? Colors.transparent : AppColors.onSecondary,
+        ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12.r),
-        borderSide: BorderSide(color: borderColor == false ? Colors.transparent :AppColors.primary),
+        borderSide: BorderSide(
+          color: borderColor == false ? Colors.transparent : AppColors.primary,
+        ),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12.r),
-        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : Colors.red),
+        borderSide: BorderSide(
+          color: borderColor == false ? Colors.transparent : Colors.red,
+        ),
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12.r),
-        borderSide: BorderSide(color: borderColor == false ? Colors.transparent : AppColors.onSecondary),
+        borderSide: BorderSide(
+          color:
+              borderColor == false ? Colors.transparent : AppColors.onSecondary,
+        ),
       ),
     );
   }

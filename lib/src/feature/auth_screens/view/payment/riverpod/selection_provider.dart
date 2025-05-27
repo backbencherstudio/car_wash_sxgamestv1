@@ -9,19 +9,20 @@ class SelectionNotifier extends StateNotifier<int> {
 
   void toggle(int index) {
     if (state == index) {
-      state = -1; 
+      state = -1;
     } else {
       state = index;
     }
   }
 }
-final isCheckedProvider = StateNotifierProvider<CheckNotifier,bool>((ref){
+
+final isCheckedProvider = StateNotifierProvider<CheckNotifier, bool>((ref) {
   return CheckNotifier();
 });
 
-class CheckNotifier extends StateNotifier<bool>{
-  CheckNotifier():super(false);
-void isChecked(){
-  state =!state;
-}
+class CheckNotifier extends StateNotifier<bool> {
+  CheckNotifier() : super(false);
+  void isChecked() {
+    state = !state;
+  }
 }

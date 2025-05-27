@@ -17,7 +17,9 @@ class ProfileHeader extends StatelessWidget {
       builder: (context, ref, _) {
         // Watch the profile image from the provider
         final profilepic = ref.watch(profileImagePickerProvider);
-        final profileImage = profilepic.profileImage ?? AppImages.shakin; // Default image if profile image is null
+        final profileImage =
+            profilepic.profileImage ??
+            AppImages.shakin; // Default image if profile image is null
 
         return Column(
           children: [
@@ -28,34 +30,40 @@ class ProfileHeader extends StatelessWidget {
                 children: [
                   ClipOval(
                     child: Hero(
-                      tag: "profileImageHero", 
+                      tag: "profileImageHero",
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => FullScreenImage(
-                                imageUrl: profileImage is String
-                                    ? profileImage // For assets
-                                    : profileImage.toString() ?? AppImages.shakin, // For File, use its path
-                                isNetworkImage: false, // Assuming local image
-                              ),
+                              builder:
+                                  (context) => FullScreenImage(
+                                    imageUrl:
+                                        profileImage is String
+                                            ? profileImage // For assets
+                                            : profileImage.toString() ??
+                                                AppImages
+                                                    .shakin, // For File, use its path
+                                    isNetworkImage:
+                                        false, // Assuming local image
+                                  ),
                             ),
                           );
                         },
-                        child: profileImage is File
-                            ? Image.file(
-                                profileImage,
-                                fit: BoxFit.cover,
-                                height: 118.h,
-                                width: 118.w,
-                              )
-                            : Image.asset(
-                                profileImage.toString(),
-                                fit: BoxFit.cover,
-                                height: 118.h,
-                                width: 118.w,
-                              ),
+                        child:
+                            profileImage is File
+                                ? Image.file(
+                                  profileImage,
+                                  fit: BoxFit.cover,
+                                  height: 118.h,
+                                  width: 118.w,
+                                )
+                                : Image.asset(
+                                  profileImage.toString(),
+                                  fit: BoxFit.cover,
+                                  height: 118.h,
+                                  width: 118.w,
+                                ),
                       ),
                     ),
                   ),

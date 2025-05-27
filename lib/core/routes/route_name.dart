@@ -16,8 +16,8 @@ class RouteName {
   static const String accountScreen = '/accountScreen';
   static const String splashScreen = '/splashScreen';
 
-
   static const String profileCreateScreen = '/profileCreateScreen';
+
   ///static const String serviceDetailsScreen = '/serviceDetailsScreen';
   static const String googleMapScreen = '/googleMapScreen';
   static const String serviceBookingScreen = '/serviceBookingScreen';

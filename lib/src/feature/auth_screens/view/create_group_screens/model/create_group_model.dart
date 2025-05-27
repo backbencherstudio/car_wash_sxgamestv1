@@ -1,9 +1,9 @@
-class CreateGroupModel{
-final String selectedLabel;
+class CreateGroupModel {
+  final String selectedLabel;
 
   CreateGroupModel({this.selectedLabel = " "});
 
-  CreateGroupModel copyWith({String? selectedLabel}){
+  CreateGroupModel copyWith({String? selectedLabel}) {
     return CreateGroupModel(selectedLabel: selectedLabel ?? this.selectedLabel);
   }
 }

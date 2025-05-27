@@ -25,8 +25,7 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
     HomeScreen(),
 
     Love(),
-  
-   
+
     ServiceListScreen(),
     ProfileScreen(),
   ];
@@ -52,7 +51,7 @@ class ParentsScreenProvider extends StateNotifier<ParentScreenState> {
 
   /// call this method during drawer open or close event
   void onDrawerOpenOrClose(bool value) {
-    state = state.copyWith(isDrawerOpened: value); 
+    state = state.copyWith(isDrawerOpened: value);
     debugPrint(
       "\nafter changing the endDrawerValue, value is : ${state.isDrawerOpened}\n",
     );

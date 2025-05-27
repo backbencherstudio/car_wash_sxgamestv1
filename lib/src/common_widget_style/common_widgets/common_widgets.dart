@@ -10,8 +10,7 @@ class CommonWidgets {
     required Color textColor,
     required VoidCallback onPressed,
     EdgeInsets? padding,
-  })
-  {
+  }) {
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
 
     return SizedBox(
@@ -44,9 +43,7 @@ class CommonWidgets {
     EdgeInsets? margin,
     Size? imageSize,
     Color? color,
-  })
-  {
-
+  }) {
     return GestureDetector(
       onTap: () => onTap,
       child: Container(
@@ -57,20 +54,11 @@ class CommonWidgets {
           imgPath,
           height: imageSize?.height ?? 20.h,
 
-          width: imageSize?.width ??  20.w,
-        fit: BoxFit.cover,
+          width: imageSize?.width ?? 20.w,
+          fit: BoxFit.cover,
           color: color,
-
         ),
       ),
     );
   }
-
-
-
-
-
-
-
-
 }

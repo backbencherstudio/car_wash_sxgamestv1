@@ -11,7 +11,7 @@ class TruckContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:400.w ,
+      width: 400.w,
       decoration: Utils.commonBoxDecoration(),
 
       child: Padding(
@@ -20,54 +20,93 @@ class TruckContainer extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: Text("Car Wash Services",
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color:AppColors.primary,
-                 ),      
+              child: Text(
+                "Car Wash Services",
+                style: Theme.of(
+                  context,
+                ).textTheme.headlineSmall!.copyWith(color: AppColors.primary),
               ),
             ),
-            SizedBox(height: 17.h,),
+            SizedBox(height: 17.h),
 
             Align(
               alignment: Alignment.centerLeft,
-              child: Text("Exterior Wash",
-               style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color:AppColors.textColor,
-                   ),     
+              child: Text(
+                "Exterior Wash",
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall!.copyWith(color: AppColors.textColor),
               ),
             ),
 
-            RowContent(img: "assets/icons/suv.svg", text: "Sedan", trailText: "\$20",),
-            RowContent(img: "assets/icons/suv.svg", text: "SUV", trailText: "\$20",),
-            RowContent(img: "assets/icons/suv.svg", text: "Truck", trailText: "\$20",),
-            RowContent(img: "assets/icons/suv.svg", text: "Sedan", trailText: "\$20",),
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "Sedan",
+              trailText: "\$20",
+            ),
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "SUV",
+              trailText: "\$20",
+            ),
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "Truck",
+              trailText: "\$20",
+            ),
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "Sedan",
+              trailText: "\$20",
+            ),
 
-            SizedBox(height: 32.h,),
-             Align(
+            SizedBox(height: 32.h),
+            Align(
               alignment: Alignment.centerLeft,
-              child: Text("Full Interior & Exterior",
-               style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color:AppColors.textColor,
-                   ),     
+              child: Text(
+                "Full Interior & Exterior",
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall!.copyWith(color: AppColors.textColor),
               ),
             ),
 
-            RowContent(img: "assets/icons/suv.svg", text: "Sedan", trailText: "\$20",),
-            RowContent(img: "assets/icons/suv.svg", text: "SUV", trailText: "\$20",),
-            RowContent(img: "assets/icons/suv.svg", text: "Truck", trailText: "\$20",),
-            RowContent(img: "assets/icons/suv.svg", text: "Sedan", trailText: "\$20",),
-              SizedBox(height: 32.h,),
-             Align(
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "Sedan",
+              trailText: "\$20",
+            ),
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "SUV",
+              trailText: "\$20",
+            ),
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "Truck",
+              trailText: "\$20",
+            ),
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "Sedan",
+              trailText: "\$20",
+            ),
+            SizedBox(height: 32.h),
+            Align(
               alignment: Alignment.centerLeft,
-              child: Text("Wheel Alignment",
-               style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color:AppColors.textColor,
-                   ),     
+              child: Text(
+                "Wheel Alignment",
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall!.copyWith(color: AppColors.textColor),
               ),
             ),
 
-            RowContent(img: "assets/icons/suv.svg", text: "Sedan", trailText: "\$20",),
-
+            RowContent(
+              img: "assets/icons/suv.svg",
+              text: "Sedan",
+              trailText: "\$20",
+            ),
           ],
         ),
       ),

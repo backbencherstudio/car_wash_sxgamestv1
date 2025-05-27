@@ -17,7 +17,6 @@ class StepPageNotifier extends StateNotifier<StepPageState> {
     state = state.copyWith(stepCompleted: updateList);
   }
 
-
   void nextStep() {
     if (state.currentStep < 3) {
       final newStep = state.currentStep + 1;
@@ -37,8 +36,7 @@ class StepPageNotifier extends StateNotifier<StepPageState> {
         duration: Duration(microseconds: 300),
         curve: Curves.easeInOut,
       );
-          state = state.copyWith(currentStep: newStep); 
-
+      state = state.copyWith(currentStep: newStep);
     }
   }
 
@@ -47,9 +45,9 @@ class StepPageNotifier extends StateNotifier<StepPageState> {
   }
 
   bool get isStepComplete => state.stepCompleted[state.currentStep];
- 
 }
- final StepControllerProvider =
-      StateNotifierProvider<StepPageNotifier, StepPageState>((ref) {
-        return StepPageNotifier();
-      });
+
+final StepControllerProvider =
+    StateNotifierProvider<StepPageNotifier, StepPageState>((ref) {
+      return StepPageNotifier();
+    });

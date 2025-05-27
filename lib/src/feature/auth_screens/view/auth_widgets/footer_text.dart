@@ -17,14 +17,18 @@ Widget footerText({
     child: RichText(
       text: TextSpan(
         text: text1,
-        style: bodyLarge?.copyWith(color: AppColors.onSecondary, fontWeight: FontWeight.w600),
+        style: bodyLarge?.copyWith(
+          color: AppColors.onSecondary,
+          fontWeight: FontWeight.w600,
+        ),
         children: [
           TextSpan(
             text: text2,
-            style: bodyLarge?.copyWith(color: AppColors.primary, fontWeight: FontWeight.w600),
-            recognizer:
-                TapGestureRecognizer()
-                  ..onTap = onTap
+            style: bodyLarge?.copyWith(
+              color: AppColors.primary,
+              fontWeight: FontWeight.w600,
+            ),
+            recognizer: TapGestureRecognizer()..onTap = onTap,
           ),
         ],
       ),

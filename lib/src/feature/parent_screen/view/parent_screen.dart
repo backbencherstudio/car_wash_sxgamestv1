@@ -5,16 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../riverpod/parent_screen_riverpod.dart';
 
-
-
-class ParentScreen extends StatelessWidget{
+class ParentScreen extends StatelessWidget {
   const ParentScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-      body: HomeWrapper()
-
-    );
+    return Scaffold(body: HomeWrapper());
   }
 }

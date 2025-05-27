@@ -14,7 +14,7 @@ class Utils {
     List<Widget>? trailing,
     Border? appBarBgColor,
     required BuildContext context,
-    bool? isBackButton
+    bool? isBackButton,
   }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
@@ -51,61 +51,64 @@ class Utils {
                     ),
                   ),
                 )
-                :
-            SizedBox(),
+                : SizedBox(),
 
             SizedBox(width: 12.w),
 
             // Title and subtitle section
-            if(title != null || subtitle != null)
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (title != null)
-                    Expanded(
-                      child: Text(
-                        title,
-                        style: textTheme.bodyLarge!.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: colorScheme.primary,
+            if (title != null || subtitle != null)
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (title != null)
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: textTheme.bodyLarge!.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: colorScheme.primary,
+                          ),
                         ),
                       ),
-                    ),
-                  if (subtitle != null)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if (subtitlePreIconAsset != null)
-                          Padding(
-                            padding: EdgeInsets.only(right: 4.w),
-                            child: SvgPicture.asset(
-                              subtitlePreIconAsset,
-                              height: 16.h,
-                              width: 16.w,
-                              colorFilter: ColorFilter.mode(
-                                AppColors.onSurface,
-                                BlendMode.srcIn,
+                    if (subtitle != null)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          if (subtitlePreIconAsset != null)
+                            Padding(
+                              padding: EdgeInsets.only(right: 4.w),
+                              child: SvgPicture.asset(
+                                subtitlePreIconAsset,
+                                height: 16.h,
+                                width: 16.w,
+                                colorFilter: ColorFilter.mode(
+                                  AppColors.onSurface,
+                                  BlendMode.srcIn,
+                                ),
                               ),
                             ),
+                          Text(
+                            subtitle,
+                            style: textTheme.bodyMedium!.copyWith(
+                              color: AppColors.onSurface,
+                            ),
                           ),
-                        Text(
-                          subtitle,
-                          style: textTheme.bodyMedium!.copyWith(
-                            color: AppColors.onSurface,
-                          ),
-                        ),
-                      ],
-                    ),
-                ],
+                        ],
+                      ),
+                  ],
+                ),
               ),
-            ),
 
             // Trailing actions
             if (trailing != null)
-              Row(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.end, children: trailing),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: trailing,
+              ),
           ],
         ),
       ),
@@ -120,14 +123,13 @@ class Utils {
     double? height,
     double? width,
     BorderRadius? borderRadius,
-  })
-  {
+  }) {
     return SizedBox(
       height: height,
       width: width ?? double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 28.w,vertical: 12.h),
+          padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 12.h),
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: borderRadius ?? BorderRadius.circular(12.r),
@@ -151,8 +153,7 @@ class Utils {
     BorderRadius? borderRadius,
     required BuildContext context,
     Color? iconColor,
-  })
-  {
+  }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Column(
@@ -215,8 +216,7 @@ class Utils {
     Color? backgroundColor,
     BorderRadius? borderRadius,
     Color? shadowColor,
-  })
-  {
+  }) {
     return BoxDecoration(
       color: backgroundColor ?? Colors.white,
       borderRadius: borderRadius ?? BorderRadius.circular(12.r),
@@ -277,13 +277,16 @@ class Utils {
   //     ),
   //   );
   // }
-  static Widget backButton({Color ? color,required BuildContext context ,Size? size})
-  {
-    return   SafeArea(
+  static Widget backButton({
+    Color? color,
+    required BuildContext context,
+    Size? size,
+  }) {
+    return SafeArea(
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           context.pop();
-          },
+        },
         child: Container(
           width: 44.w,
           height: 44.h,
@@ -299,7 +302,7 @@ class Utils {
             color: Colors.white,
             borderRadius: BorderRadius.circular(12.r),
           ),
-          child: SvgPicture.asset(AppIcons.arrowLeft,width: 7.w,height: 14.h,),
+          child: SvgPicture.asset(AppIcons.arrowLeft, width: 7.w, height: 14.h),
         ),
       ),
     );
@@ -318,19 +321,32 @@ class Utils {
 
   static String weekdayToString(int weekday) {
     const days = [
-      'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-      'Friday', 'Saturday', 'Sunday'
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
     ];
     return days[weekday - 1];
   }
 
   static String monthToString(int month) {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     return months[month - 1];
   }
-
-
 }

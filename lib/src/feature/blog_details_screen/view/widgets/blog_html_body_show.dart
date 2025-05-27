@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BlogHTMLBodyShow extends StatelessWidget{
+class BlogHTMLBodyShow extends StatelessWidget {
   const BlogHTMLBodyShow({super.key});
 
   final String htmlData = '''
@@ -41,44 +41,46 @@ class BlogHTMLBodyShow extends StatelessWidget{
 </div>
 ''';
 
-
   @override
   Widget build(BuildContext context) {
-
     final bodyTextColor = Color(0xff62676C);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: AppPadding.screenHorizontal,
-          child: Text("Car wash",style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.primary),),
+          child: Text(
+            "Car wash",
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.primary),
+          ),
         ),
 
         //SizedBox(height: 8.h,),
-
         Html(
           data: htmlData,
           shrinkWrap: true,
           style: {
-            "h2" : Style(
+            "h2": Style(
               color: AppColors.textColor,
-              fontSize:  FontSize.xxLarge,
+              fontSize: FontSize.xxLarge,
               fontWeight: FontWeight.w600,
-              lineHeight: LineHeight.normal
+              lineHeight: LineHeight.normal,
             ),
-            "h3" : Style(
+            "h3": Style(
               color: AppColors.textColor,
-              fontSize:  FontSize.xLarge,
+              fontSize: FontSize.xLarge,
               fontWeight: FontWeight.w600,
             ),
             "p": Style(
               color: bodyTextColor,
               fontSize: FontSize.medium,
               fontWeight: FontWeight.w400,
-                lineHeight: LineHeight.number(1.3)
-            )
+              lineHeight: LineHeight.number(1.3),
+            ),
           },
-        )
+        ),
       ],
     );
   }

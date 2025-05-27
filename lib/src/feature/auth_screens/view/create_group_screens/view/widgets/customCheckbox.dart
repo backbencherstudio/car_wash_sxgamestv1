@@ -8,11 +8,7 @@ class CustomCheckbox extends StatelessWidget {
   final bool isSelected;
   void Function()? onTap;
 
-   CustomCheckbox({
-   super.key,
-   required this.onTap,
-   required this.isSelected
-  });
+  CustomCheckbox({super.key, required this.onTap, required this.isSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +20,17 @@ class CustomCheckbox extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: isSelected ? AppColors.primary: Colors.grey,
+            color: isSelected ? AppColors.primary : Colors.grey,
             width: 2,
           ),
-          color: isSelected ? AppColors.primary: Colors.transparent,
+          color: isSelected ? AppColors.primary : Colors.transparent,
         ),
-        child: isSelected
-            ? Center(
-                child: Icon(
-                  Icons.check,
-                  size: 16.sp,
-                  color: Colors.white,
-                ),
-              )
-            : null,
+        child:
+            isSelected
+                ? Center(
+                  child: Icon(Icons.check, size: 16.sp, color: Colors.white),
+                )
+                : null,
       ),
     );
   }

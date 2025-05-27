@@ -21,7 +21,7 @@ class CustomSelectionContainer extends StatelessWidget {
     required this.leadingSvgIconPath,
     required this.bodyText,
     required this.onTap,
-    this.isImage = false
+    this.isImage = false,
   });
 
   @override
@@ -31,8 +31,8 @@ class CustomSelectionContainer extends StatelessWidget {
       fontWeight: FontWeight.w400,
     );
     return Container(
-      width: 360.w,
-   //   height: 76.h,
+      width: double.infinity,
+      //   height: 76.h,
       padding: EdgeInsets.all(10.r),
       decoration: BoxDecoration(
         border: Border.all(
@@ -43,27 +43,22 @@ class CustomSelectionContainer extends StatelessWidget {
       ),
       child: ListTile(
         onTap: onTap,
-        leading: !isImage ? SvgPicture.asset(
-          leadingSvgIconPath,
-          width: 24.w,
-          height: 24.h,
-          colorFilter: ColorFilter.mode(
-            isSelected ? selectedColor : unSelectedColor,
-            BlendMode.srcIn,
-          ),
-        )
-        :
-        Image.asset(
-          leadingSvgIconPath,
-          width: 24.w,
-          height: 24.h,
-        )
-        ,
+        leading:
+            !isImage
+                ? SvgPicture.asset(
+                  leadingSvgIconPath,
+                  width: 24.w,
+                  height: 24.h,
+                  colorFilter: ColorFilter.mode(
+                    isSelected ? selectedColor : unSelectedColor,
+                    BlendMode.srcIn,
+                  ),
+                )
+                : Image.asset(leadingSvgIconPath, width: 24.w, height: 24.h),
         title: Text(
           bodyText,
           style: textTheme?.copyWith(
             color: isSelected ? selectedTextColor : unSelectedColor,
-
           ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,

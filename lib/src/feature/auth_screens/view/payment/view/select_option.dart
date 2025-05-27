@@ -18,30 +18,32 @@ class PaymentSlectionScreen extends StatelessWidget {
       body: Padding(
         padding: AppPadding.screenHorizontal,
         child: Consumer(
-          builder: (context, ref,_) {
+          builder: (context, ref, _) {
             final selected = ref.watch(selectionProvider);
             return Column(
               children: [
-                SizedBox(height: 200.h,),
-                Text("Select Your Payment Method",
-                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                SizedBox(height: 200.h),
+                Text(
+                  "Select Your Payment Method",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w500,
                     color: Color(0xff1F1F1F),
+                  ),
                 ),
-                ),
-                SizedBox(height: 8.h,),
-              Center(
-                child: Text("Choose a Payment Option to Start Your Subscription",
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                SizedBox(height: 8.h),
+                Center(
+                  child: Text(
+                    "Choose a Payment Option to Start Your Subscription",
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
                       color: Color(0xff444950),
+                    ),
                   ),
-                  ),
-              ),
-                        SizedBox(height: 32.h,),
-            
+                ),
+                SizedBox(height: 32.h),
+
                 CustomSelectionContainer(
                   leadingSvgIconPath: AppIcons.visa,
                   isSelected: selected == 0,
@@ -50,27 +52,29 @@ class PaymentSlectionScreen extends StatelessWidget {
                     ref.read(selectionProvider.notifier).toggle(0);
                   },
                 ),
-                SizedBox(height: 8.h,),
-            
-                 CustomSelectionContainer(
+                SizedBox(height: 8.h),
+
+                CustomSelectionContainer(
                   leadingSvgIconPath: AppIcons.master,
                   isImage: true,
                   isSelected: selected == 1,
                   bodyText: "Master Card",
                   onTap: () {
-                 ref.read(selectionProvider.notifier).toggle(1);
-
+                    ref.read(selectionProvider.notifier).toggle(1);
                   },
                 ),
-                                    SizedBox(height: 56.h,),
-            
-                SizedBox(height: 2.h,),
-                  Utils.primaryButton(onPressed: (){
-                              context.pushNamed(RouteName.paymentSlectionFormScreen);
-                             }, text: "Continue"),
+                SizedBox(height: 56.h),
+
+                SizedBox(height: 2.h),
+                Utils.primaryButton(
+                  onPressed: () {
+                    context.pushNamed(RouteName.paymentSlectionFormScreen);
+                  },
+                  text: "Continue",
+                ),
               ],
             );
-          }
+          },
         ),
       ),
     );

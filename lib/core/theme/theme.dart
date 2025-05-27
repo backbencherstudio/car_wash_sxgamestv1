@@ -17,7 +17,7 @@ class AppTheme {
     textTheme: AppTextTheme.lightTextTheme,
     colorScheme: AppColors.lightColorScheme,
     timePickerTheme: CustomTimePickerTheme.timePickerTheme,
-    datePickerTheme:CustomDatePickerTheme.datePickerTheme,
+    datePickerTheme: CustomDatePickerTheme.datePickerTheme,
   );
   static ThemeData darkTheme = ThemeData();
 }

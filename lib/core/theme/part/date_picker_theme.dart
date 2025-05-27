@@ -22,8 +22,10 @@ class CustomDatePickerTheme {
       }
       return Colors.transparent;
     }),
-    todayForegroundColor: WidgetStatePropertyAll(AppColors.primary,),
-    todayBackgroundColor:  WidgetStatePropertyAll(AppColors.primary.withOpacity(0.1),),
+    todayForegroundColor: WidgetStatePropertyAll(AppColors.primary),
+    todayBackgroundColor: WidgetStatePropertyAll(
+      AppColors.primary.withOpacity(0.1),
+    ),
     yearForegroundColor: MaterialStateColor.resolveWith((states) {
       return states.contains(MaterialState.selected)
           ? Colors.white

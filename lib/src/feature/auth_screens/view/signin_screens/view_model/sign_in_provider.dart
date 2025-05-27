@@ -8,11 +8,11 @@ class SignInProvider extends StateNotifier<SignInModel> {
     state = state.copyWith(isPasswordVisible: !state.isPasswordVisible);
   }
 
-  void toggleIsRemember(){
+  void toggleIsRemember() {
     state = state.copyWith(isRemember: !state.isRemember);
   }
 
-  void checkIsLoading(){
+  void checkIsLoading() {
     state = state.copyWith(isLoading: !state.isLoading);
   }
 }

@@ -14,9 +14,7 @@ class CustomBottomNavBar extends ConsumerStatefulWidget {
   ConsumerState<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
 }
 
-class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar>{
-
-
+class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     final parentScreenNotifier = ref.read(parentsScreenProvider.notifier);
@@ -40,7 +38,6 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar>{
             final isActive = index == parentScreenState.selectedIndex;
 
             return ElevatedButton(
-
               /// Only assign key to the first button
               onPressed: () {
                 parentScreenNotifier.onPageChange(index: index);

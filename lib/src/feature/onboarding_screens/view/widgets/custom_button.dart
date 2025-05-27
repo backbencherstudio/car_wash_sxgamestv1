@@ -14,7 +14,6 @@ Widget buildContainerButton({
   Color? iconColor,
   // required Color titleColor,
 }) {
-
   final titleSmall = Theme.of(context).textTheme.titleSmall;
 
   return GestureDetector(
@@ -33,15 +32,23 @@ Widget buildContainerButton({
               color: circleColor,
               shape: BoxShape.circle,
             ),
-            child: ImageIcon(AssetImage(imagePath),color: iconColor),
+            child: ImageIcon(AssetImage(imagePath), color: iconColor),
           ),
           SizedBox(width: 16.w),
           Text(
             title,
-            style: titleSmall?.copyWith(color: textColor), // color == Color(0xFFECEFF3) ? Color(0xFF1D1F2C) : Color(0xFFFFFFFF)),
+            style: titleSmall?.copyWith(
+              color: textColor,
+            ), // color == Color(0xFFECEFF3) ? Color(0xFF1D1F2C) : Color(0xFFFFFFFF)),
           ),
           Spacer(),
-          Icon(Icons.arrow_forward, color:  color == Color(0xFFECEFF3) ? Color(0xFF1D1F2C) : Color(0xFFFFFFFF)),
+          Icon(
+            Icons.arrow_forward,
+            color:
+                color == Color(0xFFECEFF3)
+                    ? Color(0xFF1D1F2C)
+                    : Color(0xFFFFFFFF),
+          ),
           SizedBox(width: 10.w),
         ],
       ),

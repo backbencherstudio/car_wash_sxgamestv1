@@ -17,64 +17,63 @@ class NotificationRiverpod extends StateNotifier<NotificationState> {
 
   final List<Map<String, dynamic>> dummyJsonNotificationData = const [
     {
-      "title":
-          "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-24T14:30:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-24T09:00:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-23T18:45:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-23T11:15:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-22T22:10:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-22T07:40:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-21T12:00:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-21T16:50:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-25T02:00:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-25T10:25:00Z",
     },
 
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-20T02:00:00Z",
     },
     {
-      "title":  "Your order has been complete now",
+      "title": "Your order has been complete now",
       "profilePicture": AppImages.shakin,
       "dateTime": "2025-05-20T10:25:00Z",
     },
@@ -115,6 +114,7 @@ class NotificationRiverpod extends StateNotifier<NotificationState> {
     debugPrint("\nNotification length : ${list.length}\n\n");
     for (int i = 0; i < list.length; i++) {
       debugPrint("\nloop number : $i");
+
       /// If the first item of the list then just add it to sublist
       if (i == 0) {
         subList.add(list[i]);

@@ -30,7 +30,7 @@ class NotificationScreen extends StatelessWidget {
                   SizedBox(height: 115.h),
 
                   Text("Notification", style: textTheme.headlineSmall),
-                  SizedBox(height: 10.h,),
+                  SizedBox(height: 10.h),
 
                   Expanded(
                     child: Consumer(

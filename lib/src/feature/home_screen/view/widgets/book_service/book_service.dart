@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'book_service_card.dart';
 
-class BookService extends StatelessWidget{
+class BookService extends StatelessWidget {
   const BookService({super.key});
 
   @override
@@ -22,15 +22,14 @@ class BookService extends StatelessWidget{
       children: [
         Padding(
           padding: AppPadding.screenHorizontal,
-          child: Text("Select service you want",style: headerTextStyle,),
+          child: Text("Select service you want", style: headerTextStyle),
         ),
-        BookServiceCard(serviceName: "Car Wash",
-        imagePath: AppImages.carWash,
+        BookServiceCard(serviceName: "Car Wash", imagePath: AppImages.carWash),
+        BookServiceCard(
+          serviceName: "Wheel Fix",
+          imagePath: AppImages.wheelFix,
         ),
-        BookServiceCard(serviceName: "Wheel Fix",
-        imagePath: AppImages.wheelFix,),
-        BookServiceCard(serviceName: "Store",
-          imagePath: AppImages.store,),
+        BookServiceCard(serviceName: "Store", imagePath: AppImages.store),
       ],
     );
   }

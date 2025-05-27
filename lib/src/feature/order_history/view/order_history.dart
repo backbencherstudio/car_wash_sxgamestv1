@@ -6,10 +6,9 @@ import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
-   OrderHistoryScreen({super.key});
+  OrderHistoryScreen({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +55,6 @@ class OrderHistoryScreen extends StatelessWidget {
                   SizedBox(height: 12.h),
                   Customcontainer(),
                   SizedBox(height: 100.h),
-
                 ],
               ),
             ),
