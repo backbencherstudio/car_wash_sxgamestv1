@@ -7,8 +7,8 @@ import '../../../../core/utils/utils.dart';
 import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
 
-class BlogListScreen extends StatelessWidget{
-   BlogListScreen({super.key});
+class BlogListScreen extends StatelessWidget {
+  BlogListScreen({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -21,31 +21,29 @@ class BlogListScreen extends StatelessWidget{
       body: Stack(
         fit: StackFit.expand,
         children: [
-
-
           Positioned.fill(
-
-              child:  SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 145.h),
-                    Padding(
-                        padding: AppPadding.screenHorizontal,
-                        child: Text("Our Blog",style: textTheme.headlineSmall,)),
-                    SizedBox(height: 22.h,),
-                    ListView.builder(
-                      itemCount: 10,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: EdgeInsets.only(top: 0,bottom: 30.h),
-                        itemBuilder: (_, index){
-                        return Center(child: BlogCard());
-                        }
-                    )
-                  ],
-                ),
-              )
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 145.h),
+                  Padding(
+                    padding: AppPadding.screenHorizontal,
+                    child: Text("Our Blog", style: textTheme.headlineSmall),
+                  ),
+                  SizedBox(height: 22.h),
+                  ListView.builder(
+                    itemCount: 10,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.only(top: 0, bottom: 30.h),
+                    itemBuilder: (_, index) {
+                      return Center(child: BlogCard());
+                    },
+                  ),
+                ],
+              ),
+            ),
           ),
 
           Align(

@@ -54,7 +54,11 @@ class SignUpScreen extends StatelessWidget {
 
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: SvgPicture.asset(AppIcons.personOutlined,width: 18.w,height: 18.h,)
+                          child: SvgPicture.asset(
+                            AppIcons.personOutlined,
+                            width: 18.w,
+                            height: 18.h,
+                          ),
                         ),
                       ),
                 ),
@@ -68,8 +72,11 @@ class SignUpScreen extends StatelessWidget {
 
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: SvgPicture.asset(AppIcons.mailOutlined,width: 18.w,height: 18.h,)
-
+                          child: SvgPicture.asset(
+                            AppIcons.mailOutlined,
+                            width: 18.w,
+                            height: 18.h,
+                          ),
                         ),
                       ),
                 ),
@@ -98,35 +105,34 @@ class SignUpScreen extends StatelessWidget {
                     final notifier = ref.read(signUpProvider.notifier);
                     return TextFormField(
                       obscureText: !isPasswordVisible,
-                      decoration:
-                          AuthInputDecorationTheme.lightInputDecorationTheme(
-                            context: context,
-                            hintText: "Create your password",
-                            fillColor: Color(0xffffffff),
+                      decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
+                        context: context,
+                        hintText: "Create your password",
+                        fillColor: Color(0xffffffff),
 
-                            // prefixIcon: Padding(
-                            //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                            //   child: ImageIcon(
-                            //     AssetImage(AppImages.lockIcon),
-                            //     size: 18.r,
-                            //   ),
-                            // ),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                notifier.togglePasswordVisibility();
-                                debugPrint(
-                                  "\n\ntoggle password visibility: $isPasswordVisible\n",
-                                );
-                              },
-                              child: Icon(
-                                isPasswordVisible
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
-                                size: 20.r,
-                                color: Color(0xFF777980),
-                              ),
-                            ),
+                        // prefixIcon: Padding(
+                        //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                        //   child: ImageIcon(
+                        //     AssetImage(AppImages.lockIcon),
+                        //     size: 18.r,
+                        //   ),
+                        // ),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            notifier.togglePasswordVisibility();
+                            debugPrint(
+                              "\n\ntoggle password visibility: $isPasswordVisible\n",
+                            );
+                          },
+                          child: Icon(
+                            isPasswordVisible
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            size: 20.r,
+                            color: Color(0xFF777980),
                           ),
+                        ),
+                      ),
                     );
                   },
                 ),

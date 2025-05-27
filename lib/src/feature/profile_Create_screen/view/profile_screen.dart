@@ -21,24 +21,27 @@ class ProfileCreateScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading:
-       Consumer(
-  builder: (context, ref, _) {
-    final stepNotifier = ref.read(StepControllerProvider.notifier);
-    final stepState = ref.watch(StepControllerProvider);
+        leading: Consumer(
+          builder: (context, ref, _) {
+            final stepNotifier = ref.read(StepControllerProvider.notifier);
+            final stepState = ref.watch(StepControllerProvider);
 
-    return IconButton(
-      icon: const Icon(Icons.arrow_back_ios_rounded, color: AppColors.secondary),
-      onPressed: stepState.currentStep == 0
-          ? () => Navigator.pop(context)
-          : stepNotifier.previousStep,
-    );
-  },
-),
+            return IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_rounded,
+                color: AppColors.secondary,
+              ),
+              onPressed:
+                  stepState.currentStep == 0
+                      ? () => Navigator.pop(context)
+                      : stepNotifier.previousStep,
+            );
+          },
+        ),
         title: Padding(
           padding: EdgeInsets.only(right: 150.w),
           child: Consumer(
-            builder: (context, ref,_) {
+            builder: (context, ref, _) {
               final StepState = ref.watch(StepControllerProvider);
               return StepProgressIndicator(
                 totalSteps: pages.length,
@@ -49,7 +52,7 @@ class ProfileCreateScreen extends StatelessWidget {
                 padding: 2,
                 roundedEdges: Radius.circular(99),
               );
-            }
+            },
           ),
         ),
       ),
@@ -64,8 +67,9 @@ class ProfileCreateScreen extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             onPageChanged: stepNotifier.onPageChanged,
             itemCount: pages.length,
-            
-            itemBuilder: (_, index)=> pages[index]);
+
+            itemBuilder: (_, index) => pages[index],
+          );
         },
       ),
     );

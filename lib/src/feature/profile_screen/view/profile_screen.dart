@@ -8,6 +8,7 @@ import 'package:car_wash/src/feature/profile_screen/view/widget/profile_header.d
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -21,17 +22,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late TextEditingController nidController;
   late TextEditingController licenseController;
   late TextEditingController businessLocController;
-@override
+  @override
   void initState() {
-    nameController = TextEditingController( text: "John Abraham");
+    nameController = TextEditingController(text: "John Abraham");
     dobController = TextEditingController(text: "abc@gmail.com");
     nidController = TextEditingController(text: "123456789");
     nidController = TextEditingController(text: "123456789");
     licenseController = TextEditingController(text: "123456789");
-    businessLocController = TextEditingController(text: "4319 Wakefield Street, Philadelphia, PA 19126");
+    businessLocController = TextEditingController(
+      text: "4319 Wakefield Street, Philadelphia, PA 19126",
+    );
 
     super.initState();
   }
+
   @override
   void dispose() {
     nameController.dispose();
@@ -45,17 +49,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Padding(
           padding: AppPadding.screenHorizontal,
           child: Column(
             children: [
-
               Align(
-                  alignment: Alignment.topLeft,
-                  child: Utils.backButton(context: context)),
-             // SizedBox(height: 25.h,),
+                alignment: Alignment.topLeft,
+                child: Utils.backButton(context: context),
+              ),
+              // SizedBox(height: 25.h,),
               ProfileHeader(),
               SizedBox(height: 25.h),
               Column(
@@ -63,13 +66,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   SizedBox(height: 24.h),
                   customTextfield("User Name", nameController, context, true),
-                  customTextfield("Email Address",dobController,context,false),
+                  customTextfield(
+                    "Email Address",
+                    dobController,
+                    context,
+                    false,
+                  ),
                   customTextfield("Phone Number", nidController, context, true),
-                  customTextfield("Passwords",licenseController,context,true),
-                  customTextfield("Location",businessLocController,context,true),
+                  customTextfield(
+                    "Passwords",
+                    licenseController,
+                    context,
+                    true,
+                  ),
+                  customTextfield(
+                    "Location",
+                    businessLocController,
+                    context,
+                    true,
+                  ),
                   SizedBox(height: 24.h),
-                  Utils.primaryButton(onPressed: () {context.pop();}, text: "Save & Change"),
-                   SizedBox(height: 150.h),
+                  Utils.primaryButton(
+                    onPressed: () {
+                      context.pop();
+                    },
+                    text: "Save & Change",
+                  ),
+                  SizedBox(height: 150.h),
                 ],
               ),
             ],
@@ -79,4 +102,3 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-

@@ -26,7 +26,8 @@ class ScreenFour extends StatelessWidget {
         final stepState = ref.watch(StepControllerProvider);
 
         void validateInputs() {
-          final isComplete = nameController.text.isNotEmpty &&
+          final isComplete =
+              nameController.text.isNotEmpty &&
               dobController.text.isNotEmpty &&
               nidController.text.isNotEmpty &&
               licenseController.text.isNotEmpty &&
@@ -52,30 +53,48 @@ class ScreenFour extends StatelessWidget {
               Text(
                 "Complete Profile",
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primary,
-                    ),
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primary,
+                ),
               ),
               SizedBox(height: 2.h),
               Text(
                 "Complete your profile before getting started",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(color: AppColors.secondary),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge!.copyWith(color: AppColors.secondary),
               ),
               SizedBox(height: 24.h),
               customTextfield("Applicant’s Name", nameController, context),
-              customTextfield("Applicant’s Date of Birth", dobController, context),
+              customTextfield(
+                "Applicant’s Date of Birth",
+                dobController,
+                context,
+              ),
               customTextfield("Applicant’s NID Number", nidController, context),
-              customTextfield("Applicant’s License Number", licenseController, context),
-              customTextfield("Applicant’s Business Location", businessLocController, context),
-              customTextfield("Applicant’s Permanent Location", permanentLocController, context),
+              customTextfield(
+                "Applicant’s License Number",
+                licenseController,
+                context,
+              ),
+              customTextfield(
+                "Applicant’s Business Location",
+                businessLocController,
+                context,
+              ),
+              customTextfield(
+                "Applicant’s Permanent Location",
+                permanentLocController,
+                context,
+              ),
               SizedBox(height: 24.h),
               Utils.primaryButton(
-                onPressed: stepState.stepCompleted[stepState.currentStep]
-                    ? () => context.go(RouteName.successfullyResetPasswordScreen)
-                    : null,
+                onPressed:
+                    stepState.stepCompleted[stepState.currentStep]
+                        ? () => context.go(
+                          RouteName.successfullyResetPasswordScreen,
+                        )
+                        : null,
                 text: "Submit Information",
               ),
             ],
@@ -85,7 +104,11 @@ class ScreenFour extends StatelessWidget {
     );
   }
 
-  Widget customTextfield(String label, TextEditingController controller, BuildContext context) {
+  Widget customTextfield(
+    String label,
+    TextEditingController controller,
+    BuildContext context,
+  ) {
     return Padding(
       padding: EdgeInsets.only(bottom: 16.h),
       child: Column(

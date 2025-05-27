@@ -18,17 +18,14 @@ class Agreement extends StatelessWidget {
           onTap: () {
             ref.read(isCheckedProvider.notifier).isChecked();
           },
-          child:
-
-          Row(
+          child: Row(
             children: [
-
               Transform.scale(
-               scale: 1.2,
+                scale: 1.2,
                 child: Checkbox(
                   shape: OvalBorder(),
-                    value: isChecked,
-                    onChanged: (_){},
+                  value: isChecked,
+                  onChanged: (_) {},
                 ),
               ),
 

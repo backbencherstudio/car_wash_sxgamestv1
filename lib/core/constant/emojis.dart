@@ -1,3 +1,1 @@
-class AppEmojis{
-
-}
+class AppEmojis {}

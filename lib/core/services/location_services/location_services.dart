@@ -23,11 +23,10 @@ class LocationService {
         );
         await gps.Location().requestService();
         isServiceEnabled = await Geolocator.isLocationServiceEnabled();
-        if(!isServiceEnabled){
+        if (!isServiceEnabled) {
           await Geolocator.openLocationSettings();
           return null;
         }
-
       }
 
       /// checking location permission and ask necessary permission
@@ -59,7 +58,6 @@ class LocationService {
       );
 
       return position;
-
     } catch (error, stackTrace) {
       debugPrint(
         "\n==================\nError getting location: $error\n$stackTrace\n"
@@ -74,11 +72,10 @@ class LocationService {
   Future<String?> getCurrentAddress() async {
     String? currentLocation;
 
-    try{
-      final Position? position  = await getCurrentLocation();
+    try {
+      final Position? position = await getCurrentLocation();
 
-      if(position!=null){
-
+      if (position != null) {
         /// Detecting location place marks using latitude and longitude
         List<Placemark> placeMarks = await placemarkFromCoordinates(
           position.latitude,
@@ -89,32 +86,34 @@ class LocationService {
         if (placeMarks.isNotEmpty) {
           Placemark place = placeMarks.first;
           currentLocation =
-          "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.postalCode}, ${place.country}";
+              "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.postalCode}, ${place.country}";
           debugPrint("\nCurrent location : $currentLocation\n");
           return currentLocation;
         }
         /// can not found any location using the latitude and longitude
         else {
-          debugPrint("\nCould not find any area name according the location,\nlatitude : ${position.latitude} and longitude : ${position.longitude}.\n");
+          debugPrint(
+            "\nCould not find any area name according the location,\nlatitude : ${position.latitude} and longitude : ${position.longitude}.\n",
+          );
           return null;
         }
-
-      }
-      else{
+      } else {
         debugPrint("\nCould not detect location\n");
         return null;
       }
-
-    }catch(error){
+    } catch (error) {
       debugPrint("\nError while getting current address : $error\n");
     }
     return null;
   }
 
   /// Get address using latitude and longitude
-  Future<String?> getAddress({required double latitude, required double longitude})async{
+  Future<String?> getAddress({
+    required double latitude,
+    required double longitude,
+  }) async {
     String? address;
-    try{
+    try {
       List<Placemark> placeMarks = await placemarkFromCoordinates(
         latitude,
         longitude,
@@ -124,17 +123,18 @@ class LocationService {
       if (placeMarks.isNotEmpty) {
         Placemark place = placeMarks.first;
         address =
-        "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.postalCode}, ${place.country}";
+            "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.postalCode}, ${place.country}";
         debugPrint("\nAddress found : $address\n");
         return address;
       }
       /// can not found any location using the latitude and longitude
       else {
-        debugPrint("\nCould not find any area name according the location,\nlatitude : ${latitude} and longitude : ${longitude}.\n");
+        debugPrint(
+          "\nCould not find any area name according the location,\nlatitude : ${latitude} and longitude : ${longitude}.\n",
+        );
         return null;
       }
-
-    }catch(error){
+    } catch (error) {
       debugPrint("\nError while getting Address : $error\n");
     }
     return null;

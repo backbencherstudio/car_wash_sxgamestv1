@@ -7,61 +7,58 @@ class FormCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final textStyle = Theme.of(context).textTheme;
+    final textStyle = Theme.of(context).textTheme;
 
     return Column(
       children: [
+        BuildLabel(text: "Card Number", textStyle: textStyle),
+        SizedBox(height: 8.h),
+        TextFormField(
+          decoration: InputDecoration(hintText: "Enter Card Number"),
+          keyboardType: TextInputType.number,
+        ),
+        SizedBox(height: 16.h),
 
-              BuildLabel( text:  "Card Number",textStyle:  textStyle),
-              SizedBox(height: 8.h),
-              TextFormField(
-                decoration: InputDecoration(hintText: "Enter Card Number"),
-                keyboardType: TextInputType.number,
-              ),
-              SizedBox(height: 16.h),
+        BuildLabel(text: "Card Holder Name", textStyle: textStyle),
+        SizedBox(height: 8.h),
 
-              BuildLabel(text:  "Card Holder Name",textStyle:  textStyle),
-              SizedBox(height: 8.h),
+        TextFormField(decoration: InputDecoration(hintText: "Enter Full Name")),
+        SizedBox(height: 16.h),
 
-              TextFormField(
-                decoration: InputDecoration(hintText: "Enter Full Name"),
-              ),
-              SizedBox(height: 16.h),
-
-              Row(
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BuildLabel(text:  "Expiry Date",textStyle:  textStyle),
-                        SizedBox(height: 8.h),
+                  BuildLabel(text: "Expiry Date", textStyle: textStyle),
+                  SizedBox(height: 8.h),
 
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "MM/YY"),
-                          keyboardType: TextInputType.datetime,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: 16.w),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BuildLabel(text:  "CVV",textStyle:  textStyle),
-                        SizedBox(height: 8.h),
-
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "CVV"),
-                          obscureText: true,
-                          keyboardType: TextInputType.number,
-                        ),
-                      ],
-                    ),
+                  TextFormField(
+                    decoration: InputDecoration(hintText: "MM/YY"),
+                    keyboardType: TextInputType.datetime,
                   ),
                 ],
               ),
+            ),
+            SizedBox(width: 16.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BuildLabel(text: "CVV", textStyle: textStyle),
+                  SizedBox(height: 8.h),
+
+                  TextFormField(
+                    decoration: InputDecoration(hintText: "CVV"),
+                    obscureText: true,
+                    keyboardType: TextInputType.number,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

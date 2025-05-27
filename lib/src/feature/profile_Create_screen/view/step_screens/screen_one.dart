@@ -62,7 +62,7 @@ class ScreenOne extends StatelessWidget {
                         fillColor: Color(0xffffffff),
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: SvgPicture.asset(AppIcons.mail)
+                          child: SvgPicture.asset(AppIcons.mail),
                         ),
                       ),
                 ),
@@ -76,7 +76,7 @@ class ScreenOne extends StatelessWidget {
                         fillColor: Color(0xffffffff),
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                          child: SvgPicture.asset(AppIcons.person)
+                          child: SvgPicture.asset(AppIcons.person),
                         ),
                       ),
                 ),

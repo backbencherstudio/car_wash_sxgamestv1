@@ -19,12 +19,11 @@ class NotificationTileContainer extends StatelessWidget {
         notificationDate.month == today.month &&
         notificationDate.year == today.year) {
       dateHeading = "Today";
-    }
-    else if(notificationDate.day == today.day - 1 && notificationDate.month == today.month && notificationDate.year == today.year){
+    } else if (notificationDate.day == today.day - 1 &&
+        notificationDate.month == today.month &&
+        notificationDate.year == today.year) {
       dateHeading = "Yesterday";
-    }
-
-    else {
+    } else {
       dateHeading = DateFormat('MMM dd, yyyy').format(notificationDate);
     }
 
@@ -54,7 +53,12 @@ class NotificationTileContainer extends StatelessWidget {
                 spacing: 12.h,
                 children: [
                   if (index != 0)
-                    Column(children: [SizedBox(height: 12.h), Divider(color: Color(0xffEEF3F8),)]),
+                    Column(
+                      children: [
+                        SizedBox(height: 12.h),
+                        Divider(color: Color(0xffEEF3F8)),
+                      ],
+                    ),
 
                   Row(
                     spacing: 12.w,
@@ -74,12 +78,17 @@ class NotificationTileContainer extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           spacing: 6.h,
                           children: [
-                            Text("Carl Steadham",style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w700),),
+                            Text(
+                              "Carl Steadham",
+                              style: textTheme.bodyLarge?.copyWith(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                             SelectableText(
                               notification.title,
                               maxLines: 1,
                               style: textTheme.bodyMedium?.copyWith(
-                                color: Color(0xff4A4C56)
+                                color: Color(0xff4A4C56),
                               ),
                               // overflow: TextOverflow.ellipsis,
                             ),

@@ -20,13 +20,14 @@ class FullScreenImage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Check if the image is a file and if it exists
     final isFileImage = !isNetworkImage && File(imageUrl).existsSync();
-    
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Utils.backButton(context: context, color: Color(0xff000000),
-        size: Size(18.w, 18.h)
-        
+        leading: Utils.backButton(
+          context: context,
+          color: Color(0xff000000),
+          size: Size(18.w, 18.h),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -36,18 +37,17 @@ class FullScreenImage extends StatelessWidget {
           onTap: () => Navigator.pop(context),
           child: Center(
             child: Hero(
-              tag: "fullScreenImage", 
+              tag: "fullScreenImage",
               child: PhotoView(
-                imageProvider: isNetworkImage
-                    ? NetworkImage(imageUrl) 
-                    : isFileImage
-                        ? FileImage(File(imageUrl)) 
-                        : AssetImage(AppImages.shakin) as ImageProvider, 
+                imageProvider:
+                    isNetworkImage
+                        ? NetworkImage(imageUrl)
+                        : isFileImage
+                        ? FileImage(File(imageUrl))
+                        : AssetImage(AppImages.shakin) as ImageProvider,
                 minScale: PhotoViewComputedScale.contained,
                 maxScale: PhotoViewComputedScale.covered * 2,
-                backgroundDecoration: BoxDecoration(
-                  color: Colors.black,
-                ),
+                backgroundDecoration: BoxDecoration(color: Colors.black),
               ),
             ),
           ),

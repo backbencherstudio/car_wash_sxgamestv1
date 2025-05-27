@@ -12,7 +12,6 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     /// Text Theme
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
     final headlineSmall = Theme.of(context).textTheme.headlineSmall;
@@ -33,12 +32,9 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Color(0xFFE2E8F0),
                     shape: BoxShape.circle,
-                    image: DecorationImage(image: AssetImage(
-                   
-                      AppImages.successfullyRegisteredImage
-                      
-                      
-                      ))
+                    image: DecorationImage(
+                      image: AssetImage(AppImages.successfullyRegisteredImage),
+                    ),
                   ),
                 ),
                 SizedBox(height: 40.h),
@@ -46,20 +42,22 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
                   "Successfully Registered",
                   style: headlineSmall?.copyWith(
                     color: AuthColorPalette.titleColor,
-                    fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(height: 8.h),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:  32.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
                   child: Text(
                     "Your account has been registered successfully, now let’s enjoy core features!",
                     textAlign: TextAlign.center,
 
-                    style: bodyLarge?.copyWith(color:AuthColorPalette.bodyTextColor),
+                    style: bodyLarge?.copyWith(
+                      color: AuthColorPalette.bodyTextColor,
+                    ),
                   ),
                 ),
-               Spacer(),
+                Spacer(),
                 CommonWidgets.primaryButton(
                   context: context,
                   title: "Log in now",

@@ -20,10 +20,10 @@ class CustomCheckContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (_, ref,_) {
+      builder: (_, ref, _) {
         final checkBox = ref.watch(checkboxListProvider);
-                     final isSelected = checkBox[index];
-        
+        final isSelected = checkBox[index];
+
         return Container(
           width: 360.w,
           height: 75.h,
@@ -31,21 +31,20 @@ class CustomCheckContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.r),
             color: Color(0xffffffff),
             border: Border.all(
-              color: isSelected ? AppColors.primary : Colors.transparent
-            )
+              color: isSelected ? AppColors.primary : Colors.transparent,
+            ),
           ),
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Row(
               children: [
                 SizedBox(width: 20.w),
-                ImageIcon(AssetImage(img), size: 24,
-                
-                
-                 color: isSelected? AppColors.primary: Color(0xff777980),
-                 
-                 
-                 ),
+                ImageIcon(
+                  AssetImage(img),
+                  size: 24,
+
+                  color: isSelected ? AppColors.primary : Color(0xff777980),
+                ),
                 SizedBox(width: 15.w),
                 Text(
                   text,
@@ -55,13 +54,13 @@ class CustomCheckContainer extends StatelessWidget {
                   ),
                 ),
                 Spacer(),
-        
+
                 CustomCheckbox(
                   isSelected: isSelected,
-                        
+
                   onTap: () {
-                   final updated = [...checkBox];
-                   updated[index] = !updated[index];
+                    final updated = [...checkBox];
+                    updated[index] = !updated[index];
                     ref.read(checkboxListProvider.notifier).state = updated;
                   },
                 ),
@@ -70,7 +69,7 @@ class CustomCheckContainer extends StatelessWidget {
             ),
           ),
         );
-      }
+      },
     );
   }
 }

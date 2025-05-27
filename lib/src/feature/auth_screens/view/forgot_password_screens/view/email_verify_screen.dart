@@ -10,7 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-
 class EmailVerifyScreen extends StatelessWidget {
   const EmailVerifyScreen({super.key});
 
@@ -46,20 +45,25 @@ class EmailVerifyScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 40.h),
                 TextFormField(
-                  decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
-                    context: context,
-                    hintText: "Your Email",
-                    fillColor: Color(0xffffffff),
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                      child: SvgPicture.asset(AppIcons.locationIcon,width: 18.w,height: 18.w,)
+                  decoration:
+                      AuthInputDecorationTheme.lightInputDecorationTheme(
+                        context: context,
+                        hintText: "Your Email",
+                        fillColor: Color(0xffffffff),
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.only(left: 16.w, right: 4.w),
+                          child: SvgPicture.asset(
+                            AppIcons.locationIcon,
+                            width: 18.w,
+                            height: 18.w,
+                          ),
 
-                      // ImageIcon(AssetImage(
-                      //   AppImages.emailIcon
-                      //
-                      //   ),size: 18.r,),
-                    ),
-                  ),
+                          // ImageIcon(AssetImage(
+                          //   AppImages.emailIcon
+                          //
+                          //   ),size: 18.r,),
+                        ),
+                      ),
                 ),
                 SizedBox(height: 16.h),
                 CommonWidgets.primaryButton(

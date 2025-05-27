@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-
 class CreateGroupScreen extends StatefulWidget {
   const CreateGroupScreen({super.key});
 
@@ -22,7 +21,6 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     /// Text theme
     // final bodyLarge = Theme.of(context).textTheme.bodyLarge;
     final headlineSmall = Theme.of(context).textTheme.headlineSmall;
@@ -34,84 +32,83 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset("assets/images/create-group-bg.png",fit: BoxFit.cover,),
+          Image.asset("assets/images/create-group-bg.png", fit: BoxFit.cover),
           Column(
             children: [
               Utils.appBarBackButton(context),
               SizedBox(height: 70.h),
               Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 0.68,
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 44.h),
-              margin: EdgeInsets.symmetric(horizontal: 24.w),
-              decoration: BoxDecoration(
-                color: AuthColorPalette.cardBackground,
-                borderRadius: BorderRadius.circular(24.r),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Create a group for',
-                    style: headlineSmall,
-                  ),
-                  SizedBox(height: 44.h),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'What group do you want to create?',
-                      style: bodyLarge?.copyWith(
+                height: MediaQuery.of(context).size.height * 0.68,
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 44.h),
+                margin: EdgeInsets.symmetric(horizontal: 24.w),
+                decoration: BoxDecoration(
+                  color: AuthColorPalette.cardBackground,
+                  borderRadius: BorderRadius.circular(24.r),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Create a group for', style: headlineSmall),
+                    SizedBox(height: 44.h),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'What group do you want to create?',
+                        style: bodyLarge?.copyWith(
                           color: AuthColorPalette.titleColor,
-                          fontWeight: FontWeight.w500
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 16.h),
-                  groupOptionTile(label: 'Friends',
+                    SizedBox(height: 16.h),
+                    groupOptionTile(
+                      label: 'Friends',
                       iconImage: "assets/icons/friends.png",
-                      context: context),
-                  SizedBox(height: 12.h),
-                  groupOptionTile(label: 'Family',
+                      context: context,
+                    ),
+                    SizedBox(height: 12.h),
+                    groupOptionTile(
+                      label: 'Family',
                       iconImage: "assets/icons/family.png",
-                      context: context),
-                  SizedBox(height: 32.h),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Type your group name',
-                      style: bodyLarge?.copyWith(
+                      context: context,
+                    ),
+                    SizedBox(height: 32.h),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Type your group name',
+                        style: bodyLarge?.copyWith(
                           color: AuthColorPalette.titleColor,
-                          fontWeight: FontWeight.w500
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 12.h),
-                  TextFormField(
-                    decoration: AuthInputDecorationTheme
-                        .lightInputDecorationTheme(
-                      context: context,
-                      hintText: "Input area",
+                    SizedBox(height: 12.h),
+                    TextFormField(
+                      decoration:
+                          AuthInputDecorationTheme.lightInputDecorationTheme(
+                            context: context,
+                            hintText: "Input area",
+                          ),
                     ),
-                  ),
-                  SizedBox(height: 32.h),
-                  CommonWidgets.primaryButton(context: context,
+                    SizedBox(height: 32.h),
+                    CommonWidgets.primaryButton(
+                      context: context,
                       title: "Done",
                       color: AuthColorPalette.primary,
                       textColor: AuthColorPalette.white,
                       onPressed: () {
-                    context.pushNamed(RouteName.congratulationScreen);
-                      }),
-                ],
+                        context.pushNamed(RouteName.congratulationScreen);
+                      },
+                    ),
+                  ],
+                ),
               ),
-            )],
-          )
+            ],
+          ),
         ],
       ),
     );
   }
-
-
 }

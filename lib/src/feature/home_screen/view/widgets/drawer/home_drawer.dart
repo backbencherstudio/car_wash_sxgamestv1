@@ -14,12 +14,11 @@ Drawer appDrawer({required BuildContext context}) {
     child: ListView(
       padding: EdgeInsets.zero,
       children: [
-
         /// Drawer Header
         Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          margin: EdgeInsets.only(top:85.h,bottom: 65.h),
+          margin: EdgeInsets.only(top: 85.h, bottom: 65.h),
           color: Colors.white,
           child: Center(
             child: Row(
@@ -27,49 +26,62 @@ Drawer appDrawer({required BuildContext context}) {
               children: [
                 SvgPicture.asset(AppImages.appLogo),
                 IconButton(
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon( Icons.close, color: AppColors.mainIconColor,size: 28.r,))
+                  icon: Icon(
+                    Icons.close,
+                    color: AppColors.mainIconColor,
+                    size: 28.r,
+                  ),
+                ),
               ],
             ),
           ),
         ),
 
         ListTile(
-          onTap: ()=>context.push(RouteName.profileScreen),
+          onTap: () => context.push(RouteName.profileScreen),
           leading: Utils.secondaryButton(
-              onPressed: (){},
-              imageAsset: AppIcons.userFill,
-              padding: EdgeInsets.all(8.r),
-              context: context,
-              backgroundColor: AppColors.secondaryButtonBgColor
+            onPressed: () {},
+            imageAsset: AppIcons.userFill,
+            padding: EdgeInsets.all(8.r),
+            context: context,
+            backgroundColor: AppColors.secondaryButtonBgColor,
           ),
-          title: Text("Profile",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.onSurface
-          ),),
+          title: Text(
+            "Profile",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w500,
+              color: AppColors.onSurface,
+            ),
+          ),
           trailing: SvgPicture.asset(
             AppIcons.arrowRight,
-            colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
           ),
         ),
-        SizedBox(height: 8.h,),
+        SizedBox(height: 8.h),
         ListTile(
-          onTap: (){
+          onTap: () {
             context.push(RouteName.orderHistoryScreen);
           },
           leading: Utils.secondaryButton(
-              onPressed: (){},
-              imageAsset: AppIcons.order,
-              padding: EdgeInsets.all(8.r),
-              context: context,
-              backgroundColor: AppColors.secondaryButtonBgColor
+            onPressed: () {},
+            imageAsset: AppIcons.order,
+            padding: EdgeInsets.all(8.r),
+            context: context,
+            backgroundColor: AppColors.secondaryButtonBgColor,
           ),
-          title: Text("Orders",style: Theme.of(context).textTheme.bodyLarge?.copyWith()),
-          trailing: SvgPicture.asset(AppIcons.arrowRight,
-            colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
+          title: Text(
+            "Orders",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(),
+          ),
+          trailing: SvgPicture.asset(
+            AppIcons.arrowRight,
+            colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+          ),
         ),
         // SizedBox(height: 8.h,),
         // ListTile(
@@ -84,22 +96,26 @@ Drawer appDrawer({required BuildContext context}) {
         //   trailing: SvgPicture.asset(AppIcons.arrowRight,
         //     colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
         // ),
-        SizedBox(height: 8.h,),
+        SizedBox(height: 8.h),
         ListTile(
-          onTap: ()=> context.go(RouteName.signInScreen),
+          onTap: () => context.go(RouteName.signInScreen),
           leading: Utils.secondaryButton(
-              onPressed: (){},
-              imageAsset: AppIcons.logout,
-              padding: EdgeInsets.all(8.r),
-              context: context,
-              backgroundColor: AppColors.secondaryButtonBgColor
+            onPressed: () {},
+            imageAsset: AppIcons.logout,
+            padding: EdgeInsets.all(8.r),
+            context: context,
+            backgroundColor: AppColors.secondaryButtonBgColor,
           ),
-          title: Text("Logout",style: Theme.of(context).textTheme.bodyLarge?.copyWith()),
-          trailing: SvgPicture.asset(AppIcons.arrowRight,
-            colorFilter: ColorFilter.mode( AppColors.primary, BlendMode.srcIn),),
+          title: Text(
+            "Logout",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(),
+          ),
+          trailing: SvgPicture.asset(
+            AppIcons.arrowRight,
+            colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+          ),
         ),
-        SizedBox(height: 8.h,),
-
+        SizedBox(height: 8.h),
       ],
     ),
   );

@@ -50,7 +50,6 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
       endDrawer: appDrawer(context: context),
       body: Stack(
         children: [
-
           /// Background
           Positioned.fill(
             child: Image.asset(
@@ -65,7 +64,6 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
           Positioned.fill(
             child: Column(
               children: [
-
                 /// Header
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,20 +86,29 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                 SizedBox(height: 28.h),
 
                 /// Continue button
-                SizedBox(
-                  width: 360.w,
+                Padding(
+                  padding: AppPadding.screenHorizontal,
                   child: Consumer(
                     builder: (_, ref, _) {
+                      final serviceBookingState = ref.watch(
+                        serviceBookingRiverpod,
+                      );
 
-                      final serviceBookingState = ref.watch(serviceBookingRiverpod);
-
-                      final serviceBookingNotifier = ref.watch(serviceBookingRiverpod.notifier);
+                      final serviceBookingNotifier = ref.watch(
+                        serviceBookingRiverpod.notifier,
+                      );
 
                       final googleMapNotifier = ref.read(gMapRiverpod.notifier);
 
                       return Utils.primaryButton(
-                        onPressed: () async{
-                          serviceBookingNotifier.onContinueToBooking(context: context, tabController: tabController, onAutoDetectLocation: googleMapNotifier.onAutoDetectLocation);
+                        height: 48.h,
+                        onPressed: () async {
+                          serviceBookingNotifier.onContinueToBooking(
+                            context: context,
+                            tabController: tabController,
+                            onAutoDetectLocation:
+                                googleMapNotifier.onAutoDetectLocation,
+                          );
                         },
                         text: "Continue",
                       );

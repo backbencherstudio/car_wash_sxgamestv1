@@ -33,8 +33,10 @@ class DiscountBanner extends StatelessWidget {
                 children: [
                   Text(
                     "30% OFF*",
-                    style: Theme.of(context).textTheme.headlineLarge
-                        ?.copyWith(color: Colors.white, fontSize: 32.sp),
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: Colors.white,
+                      fontSize: 32.sp,
+                    ),
                   ),
                   Text(
                     "Car Wash & Detailing",

@@ -25,7 +25,6 @@ class HomeScreen extends StatelessWidget {
           body: Stack(
             // fit: StackFit.expand,
             children: [
-
               /// Body
               SingleChildScrollView(
                 child: Column(

@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-
 class SignupOtpScreen extends StatelessWidget {
   const SignupOtpScreen({super.key});
 
@@ -76,9 +75,7 @@ class SignupOtpScreen extends StatelessWidget {
                   color: AppColors.primary,
                   textColor: Color(0xffffffff),
                   onPressed: () {
-                  
-                  
-                     context.go(RouteName.paymentSlectionScreen);
+                    context.go(RouteName.paymentSlectionScreen);
                   },
                 ),
                 SizedBox(height: 32.h),

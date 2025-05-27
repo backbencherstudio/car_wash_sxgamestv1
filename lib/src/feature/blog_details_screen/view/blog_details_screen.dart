@@ -7,11 +7,10 @@ import '../../../../core/utils/utils.dart';
 import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
 
-class BlogDetailsScreen extends StatelessWidget{
-   BlogDetailsScreen({super.key});
+class BlogDetailsScreen extends StatelessWidget {
+  BlogDetailsScreen({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,21 +20,20 @@ class BlogDetailsScreen extends StatelessWidget{
       body: Stack(
         fit: StackFit.expand,
         children: [
+          Positioned.fill(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 145.h),
+                  BlogDetailsHeader(),
+                  SizedBox(height: 10.h),
 
-          Positioned.fill(child: SingleChildScrollView(
-
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 145.h),
-                BlogDetailsHeader(),
-                SizedBox(height: 10.h,),
-
-                BlogHTMLBodyShow(),
-              ],
+                  BlogHTMLBodyShow(),
+                ],
+              ),
             ),
-          ),),
-
+          ),
 
           Align(
             alignment: Alignment.topCenter,

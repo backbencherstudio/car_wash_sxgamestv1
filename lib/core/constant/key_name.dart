@@ -1,3 +1,1 @@
-class KeyNames{
-
-}
+class KeyNames {}

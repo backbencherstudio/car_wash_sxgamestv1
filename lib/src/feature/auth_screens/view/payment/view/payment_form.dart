@@ -8,6 +8,7 @@ import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/terms
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 class PaymentSelectionFormScreen extends StatelessWidget {
   const PaymentSelectionFormScreen({super.key});
   @override
@@ -16,12 +17,11 @@ class PaymentSelectionFormScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: AppPadding.screenHorizontal,
-        child:
-        SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             children: [
-            SizedBox(height: 100.h),
-            Text(
+              SizedBox(height: 100.h),
+              Text(
                 "Set Up Your Card",
                 style: textStyle.headlineMedium!.copyWith(
                   fontSize: 24.sp,
@@ -29,8 +29,8 @@ class PaymentSelectionFormScreen extends StatelessWidget {
                   color: Color(0xff1F1F1F),
                 ),
               ),
-            SizedBox(height: 8.h),
-            Text(
+              SizedBox(height: 8.h),
+              Text(
                 "Choose a Payment Option to Start Your Subscription",
                 style: textStyle.bodySmall!.copyWith(
                   fontSize: 16.sp,
@@ -38,16 +38,16 @@ class PaymentSelectionFormScreen extends StatelessWidget {
                   color: Color(0xff444950),
                 ),
               ),
-            SizedBox(height: 32.h),
-            FormCard(),
-            SizedBox(height: 16.h),
-            PriceContainer(),
-            SizedBox(height: 16),
-            TermsAndCondition(),
-            SizedBox(height: 16.h),
-            Agreement(),
-            SizedBox(height: 16.h),
-            Utils.primaryButton(
+              SizedBox(height: 32.h),
+              FormCard(),
+              SizedBox(height: 16.h),
+              PriceContainer(),
+              SizedBox(height: 16),
+              TermsAndCondition(),
+              SizedBox(height: 16.h),
+              Agreement(),
+              SizedBox(height: 16.h),
+              Utils.primaryButton(
                 onPressed: () {
                   context.pushNamed(RouteName.successfullyRegisteredScreen);
                 },

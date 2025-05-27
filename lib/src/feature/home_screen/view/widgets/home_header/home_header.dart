@@ -10,10 +10,10 @@ import '../../../../../../core/utils/utils.dart';
 
 class HomeHeader extends StatelessWidget {
   final bool isOnlyTrailing;
-   const HomeHeader({super.key, required this.isOnlyTrailing});
+  const HomeHeader({super.key, required this.isOnlyTrailing});
 
   @override
-  Widget build(BuildContext context,  ) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: AppPadding.screenHorizontal,
       child: Utils.customAppBar(
@@ -21,10 +21,10 @@ class HomeHeader extends StatelessWidget {
         title: !isOnlyTrailing ? "Hello Dr. Yunus" : null,
         leadingImageAddress: !isOnlyTrailing ? AppImages.shakin : null,
         subtitle: !isOnlyTrailing ? "zinzira" : null,
-        subtitlePreIconAsset:  !isOnlyTrailing ? AppIcons.locationIcon : null,
+        subtitlePreIconAsset: !isOnlyTrailing ? AppIcons.locationIcon : null,
         trailing: [
           GestureDetector(
-            onTap: ()=> context.push(RouteName.notificationScreen),
+            onTap: () => context.push(RouteName.notificationScreen),
             child: Container(
               padding: EdgeInsets.all(10.r),
               decoration: BoxDecoration(

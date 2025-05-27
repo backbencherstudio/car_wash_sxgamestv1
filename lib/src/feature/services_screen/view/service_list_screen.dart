@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ServiceListScreen extends ConsumerWidget{
+class ServiceListScreen extends ConsumerWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   ServiceListScreen({super.key});
 
@@ -21,16 +21,15 @@ class ServiceListScreen extends ConsumerWidget{
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: appDrawer(context: context),
-      onEndDrawerChanged: ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
+      onEndDrawerChanged:
+          ref.read(parentsScreenProvider.notifier).onDrawerOpenOrClose,
       body: Stack(
         children: [
-
           SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 124.h),
-
 
                 /// Service's list
                 ServicesList(),
@@ -51,17 +50,15 @@ class ServiceListScreen extends ConsumerWidget{
                 /// Client's review on services
                 ClientsReviewList(),
 
-                SizedBox(height: 150.h,)
+                SizedBox(height: 150.h),
               ],
             ),
           ),
 
           Align(
             alignment: Alignment.topRight,
-            child:  HomeHeader(isOnlyTrailing: true,),
+            child: HomeHeader(isOnlyTrailing: true),
           ),
-
-
         ],
       ),
     );

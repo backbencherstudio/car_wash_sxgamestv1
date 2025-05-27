@@ -9,16 +9,14 @@ import 'core/routes/route_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   ///set device orientation to portraitUp during app running for better user experience of the UI
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   ///ensuring screen size for screen util package to implement pixel perfect UI
   await ScreenUtil.ensureScreenSize();
 
-  LocationPermission locationPermission =
-  await Geolocator.checkPermission();
+  LocationPermission locationPermission = await Geolocator.checkPermission();
   if (locationPermission == LocationPermission.denied ||
       locationPermission == LocationPermission.deniedForever) {
     debugPrint(
@@ -26,17 +24,18 @@ void main() async {
     );
 
     /// if denied then ask permission
-    locationPermission = await Geolocator.requestPermission();}
+    locationPermission = await Geolocator.requestPermission();
+  }
 
   bool isServiceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!isServiceEnabled) {
     debugPrint(
       "\nLocation service is not enabled. Opening location settings.\n",
     );
-     gps.Location().requestService();
+    gps.Location().requestService();
   }
 
-  runApp(const ProviderScope(child: MyApp(),),);
+  runApp(const ProviderScope(child: MyApp()));
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // Transparent status bar
@@ -52,7 +51,6 @@ class MyApp extends StatelessWidget {
   static const double deviceWidth = 440.0;
   static const double deviceHeight = 977.0;
 
-  
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

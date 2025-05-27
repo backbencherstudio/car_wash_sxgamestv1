@@ -1,3 +1,4 @@
+import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/src/feature/google_map_screen/riverpod/google_map_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,24 +11,27 @@ import '../../riverpod/service_booking_screens_state.dart';
 import 'custom_selection_widget.dart';
 import 'extra_payment_bottom_sheet.dart';
 
-class ServiceBookingBody extends StatelessWidget{
+class ServiceBookingBody extends StatelessWidget {
   final TabController tabController;
   const ServiceBookingBody({super.key, required this.tabController});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 400.w,
-      height: 272.h,
+    final deviceWidth = MediaQuery.of(context).size.width;
+    debugPrint("\nDevice Width : $deviceWidth\n");
+    final deviceHeight = MediaQuery.of(context).size.height;
+    debugPrint("\nDevice Height : $deviceHeight\n");
+    return Container(
+      //width: 400.w,
+      height: deviceHeight < 700 ? 325.h : 275.h,
+      margin: AppPadding.screenHorizontal,
       child: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         controller: tabController,
         children: [
           Consumer(
             builder: (_, ref, _) {
-              final serviceSelectionState = ref.watch(
-                serviceBookingRiverpod,
-              );
+              final serviceSelectionState = ref.watch(serviceBookingRiverpod);
               final serviceSelectionNotifier = ref.read(
                 serviceBookingRiverpod.notifier,
               );
@@ -37,7 +41,7 @@ class ServiceBookingBody extends StatelessWidget{
                 firstLeadingIconPath: AppIcons.instant,
                 headingText: "Select Service Time",
                 isFirstOneActive:
-                serviceSelectionState.selectedServiceTimeType ==
+                    serviceSelectionState.selectedServiceTimeType ==
                     ServiceTime.instantService,
                 firstOneTap: () async {
                   serviceSelectionNotifier.onSelectServiceTimeType(
@@ -46,15 +50,11 @@ class ServiceBookingBody extends StatelessWidget{
                 },
                 secondBodyText: "Schedule Service",
                 secondLeadingIconPath: AppIcons.calendar,
-                secondOneTap:
-                    () async  {
-                  serviceSelectionNotifier
-                    .onSelectServiceTimeType(
-                  selectedService:
-                  ServiceTime.scheduledService,
-                );
-
-                }
+                secondOneTap: () async {
+                  serviceSelectionNotifier.onSelectServiceTimeType(
+                    selectedService: ServiceTime.scheduledService,
+                  );
+                },
               );
             },
           ),
@@ -90,41 +90,36 @@ class ServiceBookingBody extends StatelessWidget{
           //     );
           //   },
           // ),
-
           Consumer(
             builder: (_, ref, _) {
-              final serviceSelectionState = ref.watch(
-                serviceBookingRiverpod,
-              );
+              final serviceSelectionState = ref.watch(serviceBookingRiverpod);
               final serviceSelectionNotifier = ref.read(
                 serviceBookingRiverpod.notifier,
               );
               final locationState = ref.watch(gMapRiverpod);
               return customSelectionWidget(
                 context: context,
-                firstBodyText: locationState.autoDetectLocation ?? "Auto Detect Location",
+                firstBodyText:
+                    locationState.autoDetectLocation ?? "Auto Detect Location",
                 firstLeadingIconPath: AppIcons.car,
                 headingText: "Please Select Your Location",
                 isFirstOneActive:
-                serviceSelectionState.locationDetectType ==
+                    serviceSelectionState.locationDetectType ==
                     LocationDetectType.auto,
                 firstOneTap: () {
                   serviceSelectionNotifier.onSelectLocationDetectType(
                     locationDetectType: LocationDetectType.auto,
                   );
                 },
-                secondBodyText: locationState.userAddress ??  "Manual Selection",
+                secondBodyText: locationState.userAddress ?? "Manual Selection",
                 secondLeadingIconPath: AppIcons.steering,
                 secondOneTap:
-                    () => serviceSelectionNotifier
-                    .onSelectLocationDetectType(
-                  locationDetectType: LocationDetectType.manual,
-                ),
+                    () => serviceSelectionNotifier.onSelectLocationDetectType(
+                      locationDetectType: LocationDetectType.manual,
+                    ),
               );
             },
           ),
-
-
         ],
       ),
     );

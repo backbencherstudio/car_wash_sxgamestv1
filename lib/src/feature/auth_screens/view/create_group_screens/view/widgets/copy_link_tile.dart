@@ -15,8 +15,7 @@ class CopyLinkTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
-      padding: EdgeInsets.only(left: 12.w,),
+      padding: EdgeInsets.only(left: 12.w),
       decoration: BoxDecoration(
         color: AuthColorPalette.white, // Light background
         borderRadius: BorderRadius.circular(99.r),
@@ -42,9 +41,7 @@ class CopyLinkTile extends StatelessWidget {
             ),
             child: Text(
               'Copy Link',
-              style: bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w500
-              ),
+              style: bodyLarge?.copyWith(fontWeight: FontWeight.w500),
             ),
           ),
         ],

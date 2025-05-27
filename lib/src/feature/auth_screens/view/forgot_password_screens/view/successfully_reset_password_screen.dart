@@ -25,7 +25,6 @@ class SuccessfullyResetPasswordScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 Container(
                   width: 265.w,
                   height: 140.h,
@@ -33,11 +32,7 @@ class SuccessfullyResetPasswordScreen extends StatelessWidget {
                     color: Colors.transparent,
                     // shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage(
-                        
-                        AppImages.successfullyResetPassword
-                        
-                        ),
+                      image: AssetImage(AppImages.successfullyResetPassword),
                     ),
                   ),
                 ),
@@ -63,7 +58,7 @@ Continue to login''',
                     ),
                   ),
                 ),
-                SizedBox(height: 40.h,),
+                SizedBox(height: 40.h),
                 CommonWidgets.primaryButton(
                   context: context,
                   title: "Continue",
@@ -73,7 +68,6 @@ Continue to login''',
                     context.go(RouteName.signInScreen);
                   },
                 ),
-
               ],
             ),
           ),

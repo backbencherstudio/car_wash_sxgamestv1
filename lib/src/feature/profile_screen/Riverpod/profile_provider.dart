@@ -3,9 +3,10 @@ import 'package:car_wash/src/feature/profile_screen/Riverpod/profile_provider_st
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-final profileImagePickerProvider = StateNotifierProvider<ProfileImagePicker, ProfileImagePickerState>((ref) {
-  return ProfileImagePicker();
-});
+final profileImagePickerProvider =
+    StateNotifierProvider<ProfileImagePicker, ProfileImagePickerState>((ref) {
+      return ProfileImagePicker();
+    });
 
 class ProfileImagePicker extends StateNotifier<ProfileImagePickerState> {
   ProfileImagePicker() : super(ProfileImagePickerState());
@@ -30,6 +31,6 @@ class ProfileImagePicker extends StateNotifier<ProfileImagePickerState> {
   }
 
   void clearImage() {
-   state = state.clear(); 
+    state = state.clear();
   }
 }

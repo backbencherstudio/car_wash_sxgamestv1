@@ -148,7 +148,7 @@ class RouteConfig {
           return MaterialPage(child: GoogleMapScreen());
         },
       ),
-GoRoute(
+      GoRoute(
         name: RouteName.paymentSlectionScreen,
         path: RouteName.paymentSlectionScreen,
         pageBuilder: (context, state) {

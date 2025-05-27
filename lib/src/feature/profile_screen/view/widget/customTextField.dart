@@ -16,9 +16,9 @@ Widget customTextfield(
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-            color: Color(0xffB4B4B4),
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium!.copyWith(color: Color(0xffB4B4B4)),
         ),
         SizedBox(height: 8.h),
         TextFormField(

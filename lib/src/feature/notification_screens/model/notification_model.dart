@@ -9,7 +9,7 @@ class NotificationModel {
     required this.dateTime,
   });
 
-  factory NotificationModel.fromJson(Map<String, dynamic> json,) {
+  factory NotificationModel.fromJson(Map<String, dynamic> json) {
     return NotificationModel(
       title: json['title'] ?? '',
       profilePicture: json['profilePicture'] ?? '',
