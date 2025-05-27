@@ -1,5 +1,6 @@
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,7 @@ class OnboardingScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      "If you want to join the conversation, \nplease log in or sign up.",
+                      "To book a service for your car, please\nlog in or sign up.",
                       style: bodyLarge?.copyWith(
                         color: AuthColorPalette.bodyTextColor,
                         fontWeight: FontWeight.w500,
@@ -69,21 +70,35 @@ class OnboardingScreen extends StatelessWidget {
                       color: Color(0xff1141CB),
                       textColor: Color(0xffffffff),
                       onPressed: () {
-                        context.push(RouteName.signInScreen);
+                        context.go(RouteName.signInScreen);
                       },
                     ),
 
-                    SizedBox(height: 12.h),
+                    SizedBox(height: 20.h),
                     GestureDetector(
                       onTap: () {
-                        context.push(RouteName.signUpScreen);
+                        context.go(RouteName.signUpScreen);
                       },
-                      child: Text(
-                        "New User? Sign Up",
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Color(0xffB4B4B4),
+                      child: RichText(
+                        text: TextSpan(
+                          text: "New to our service?  ",
+                          style: Theme.of(context).textTheme.bodyLarge!
+                              .copyWith(color: Color(0xffB4B4B4)),
+                          children: [
+                            TextSpan(
+                              text: "Sign Up",
+                              style: Theme.of(context).textTheme.bodyLarge!
+                                  .copyWith(color: AppColors.primary,fontWeight: FontWeight.w500),
+                            ),
+                          ],
                         ),
                       ),
+                      // Text(
+                      //   "New User? Sign Up",
+                      //   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      //     color: Color(0xffB4B4B4),
+                      //   ),
+                      // ),
                     ),
 
                     SizedBox(height: 10.h),
