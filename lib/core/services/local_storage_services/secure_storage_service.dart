@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SecureStorageService{
+class SecureAuthTokenStorageService{
   static final _flutterSecureStorage = FlutterSecureStorage();
   static final String _authTokenKey = 'auth_token';
 
