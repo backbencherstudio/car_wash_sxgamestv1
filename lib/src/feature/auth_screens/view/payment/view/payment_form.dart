@@ -1,5 +1,7 @@
 import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/services/payment_services/stripe_services.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/agreement.dart';
 import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/box_container.dart';
@@ -7,10 +9,12 @@ import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/form.
 import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/terms&condition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:go_router/go_router.dart';
 
 class PaymentSelectionFormScreen extends StatelessWidget {
   const PaymentSelectionFormScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
@@ -21,6 +25,7 @@ class PaymentSelectionFormScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 100.h),
+
               Text(
                 "Set Up Your Card",
                 style: textStyle.headlineMedium!.copyWith(
@@ -31,7 +36,7 @@ class PaymentSelectionFormScreen extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               Text(
-                "Choose a Payment Option to Start Your Subscription",
+                "Enter your Card Information",
                 style: textStyle.bodySmall!.copyWith(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w400,
@@ -39,17 +44,23 @@ class PaymentSelectionFormScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32.h),
-              FormCard(),
-              SizedBox(height: 16.h),
-              PriceContainer(),
-              SizedBox(height: 16),
-              TermsAndCondition(),
-              SizedBox(height: 16.h),
-              Agreement(),
+              CardFormField(
+                style: CardFormStyle(
+                  borderRadius: 15,
+                  backgroundColor: Colors.white,
+                  textColor: AppColors.textColor,
+                  borderColor: AppColors.primary,
+                  borderWidth: 2,
+                  cursorColor: AppColors.primary,
+                  textErrorColor: Colors.red,
+                  placeholderColor: AppColors.primary,
+                ),
+              ),
               SizedBox(height: 16.h),
               Utils.primaryButton(
-                onPressed: () {
-                  context.pushNamed(RouteName.successfullyRegisteredScreen);
+                onPressed: () async {
+                  final String? paymentId = await StripeServices.instance.createPaymentMethod();
+                  //  context.pushNamed(RouteName.successfullyRegisteredScreen);
                 },
                 text: "Start Membership",
               ),
