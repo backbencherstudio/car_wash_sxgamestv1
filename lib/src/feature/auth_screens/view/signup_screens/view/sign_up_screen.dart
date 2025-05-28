@@ -80,59 +80,34 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                 ),
+                
                 SizedBox(height: 16.h),
-                TextFormField(
-                  decoration:
-                      AuthInputDecorationTheme.lightInputDecorationTheme(
-                        context: context,
-                        hintText: "Date of birth",
-                        fillColor: Color(0xffffffff),
-
-                        // prefixIcon: Padding(
-                        //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                        //   child: ImageIcon(
-                        //     AssetImage(AppImages.calendarIcon),
-                        //     size: 18.r,
-                        //   ),
-                        // ),
-                      ),
-                ),
-                SizedBox(height: 16.h),
-                Consumer(
+        Consumer(
                   builder: (context, ref, child) {
                     final isPasswordVisible =
                         ref.watch(signUpProvider).isPasswordVisible;
                     final notifier = ref.read(signUpProvider.notifier);
-                    return TextFormField(
-                      obscureText: !isPasswordVisible,
-                      decoration: AuthInputDecorationTheme.lightInputDecorationTheme(
-                        context: context,
-                        hintText: "Create your password",
-                        fillColor: Color(0xffffffff),
 
-                        // prefixIcon: Padding(
-                        //   padding: EdgeInsets.only(left: 16.w, right: 4.w),
-                        //   child: ImageIcon(
-                        //     AssetImage(AppImages.lockIcon),
-                        //     size: 18.r,
-                        //   ),
-                        // ),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            notifier.togglePasswordVisibility();
-                            debugPrint(
-                              "\n\ntoggle password visibility: $isPasswordVisible\n",
-                            );
-                          },
-                          child: Icon(
-                            isPasswordVisible
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
-                            size: 20.r,
-                            color: Color(0xFF777980),
+                    return TextFormField(
+                      obscureText: isPasswordVisible,
+                      decoration:
+                          AuthInputDecorationTheme.lightInputDecorationTheme(
+                            context: context,
+                            hintText: "Create your password",
+                            fillColor: Color(0xffffffff),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                notifier.togglePasswordVisibility();
+                              },
+                              child: Icon(
+                                isPasswordVisible
+                                    ?Icons.visibility_off_outlined
+                                    : Icons.visibility_outlined,
+                                size: 20.r,
+                                color: Color(0xFF777980),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
                     );
                   },
                 ),

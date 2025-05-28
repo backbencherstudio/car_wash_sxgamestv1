@@ -69,7 +69,7 @@ class SignInScreen extends StatelessWidget {
                     final notifier = ref.read(signInProvider.notifier);
 
                     return TextFormField(
-                      obscureText: !isPasswordVisible,
+                      obscureText: isPasswordVisible,
                       decoration:
                           AuthInputDecorationTheme.lightInputDecorationTheme(
                             context: context,
@@ -89,8 +89,8 @@ class SignInScreen extends StatelessWidget {
                               },
                               child: Icon(
                                 isPasswordVisible
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
+                                    ? Icons.visibility_off_outlined  
+                                    :   Icons.visibility_outlined,
                                 size: 20.r,
                                 color: AuthColorPalette.bodyTextColor,
                               ),
