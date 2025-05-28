@@ -30,7 +30,7 @@ class StripeServices {
       debugPrint("\npayment method id : ${paymentMethod.id}\n");
       return paymentMethod.id;
     }catch(e){
-      throw Exception('Failed to create payment method: $e');
+      throw Exception('\nFailed to create payment method: $e\n',);
     }
   }
 
