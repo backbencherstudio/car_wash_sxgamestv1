@@ -75,7 +75,7 @@ class SignupOtpScreen extends StatelessWidget {
                   color: AppColors.primary,
                   textColor: Color(0xffffffff),
                   onPressed: () {
-                    context.go(RouteName.paymentSlectionScreen);
+                    context.go(RouteName.paymentSlectionFormScreen);
                   },
                 ),
                 SizedBox(height: 32.h),
