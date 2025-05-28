@@ -47,4 +47,20 @@ class HiveSecureStorageService {
       );
     }
   }
+
+
+  /// get from hive
+  static Future<dynamic> getFromHive({required String key}) async {
+    try{
+      final box = Hive.box(_boxName);
+      final jsonString = await box.get(key);
+      if(jsonString == null) return null;
+      return Map<String, dynamic>.from(jsonDecode(jsonString));
+    }catch(e){
+      throw Exception('\nFailed to get from hive box: $e\n');
+    }
+
+  }
+
+
 }
