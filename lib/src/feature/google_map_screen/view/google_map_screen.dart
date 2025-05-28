@@ -79,16 +79,6 @@ class GoogleMapScreen extends StatelessWidget {
                           vertical: 14.h,
                         ),
                         decoration: Utils.commonBoxDecoration(),
-                        // BoxDecoration(
-                        //   borderRadius: BorderRadius.circular(24.r),
-                        //   color: Colors.white,
-                        //   boxShadow: [
-                        //     BoxShadow(
-                        //       color: Colors.grey.withValues(alpha: 0.1),
-                        //
-                        //     )
-                        //   ]
-                        // ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           spacing: 6.w,
