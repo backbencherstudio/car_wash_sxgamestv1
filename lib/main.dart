@@ -1,3 +1,5 @@
+import 'package:car_wash/core/services/local_storage_services/hive_services.dart';
+import 'package:car_wash/core/services/payment_services/stripe_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +11,9 @@ import 'core/routes/route_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await StripeServices.instance.initialize();
+  await HiveSecureStorageService.init();
 
   ///set device orientation to portraitUp during app running for better user experience of the UI
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -62,6 +67,7 @@ class MyApp extends StatelessWidget {
           title: 'CARFLIX',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
+          themeMode: ThemeMode.light,
           routerConfig: RouteConfig().goRouter,
         );
       },

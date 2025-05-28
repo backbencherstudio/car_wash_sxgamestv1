@@ -18,7 +18,8 @@ class ApiServices {
     required String endPoint,
     required Map<String, dynamic> body,
     required Map<String, String> headers,
-  }) async {
+  }) async
+  {
     try {
       final isOnline = await Utils.isOnline();
       if(isOnline){
@@ -42,7 +43,8 @@ class ApiServices {
   static Future<dynamic> getData({
     required String endPoint,
     required Map<String, String> headers,
-  }) async {
+  }) async
+  {
     try {
       final response = await http.get(
         Uri.parse('${ApiEndPoints.baseUrl}/$endPoint'),
@@ -59,7 +61,8 @@ class ApiServices {
     required String endPoint,
     required Map<String, dynamic> body,
     required Map<String, String> headers,
-  }) async {
+  }) async
+  {
     try {
       final response = await http.put(
         Uri.parse('${ApiEndPoints.baseUrl}/$endPoint'),
