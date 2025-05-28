@@ -60,7 +60,7 @@ class PaymentSelectionFormScreen extends StatelessWidget {
               Utils.primaryButton(
                 onPressed: () async {
                   final String? paymentId = await StripeServices.instance.createPaymentMethod();
-                  //  context.pushNamed(RouteName.successfullyRegisteredScreen);
+                    context.go(RouteName.successfullyRegisteredScreen);
                 },
                 text: "Start Membership",
               ),
