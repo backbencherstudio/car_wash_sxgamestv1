@@ -15,7 +15,6 @@ import 'package:go_router/go_router.dart';
 class PaymentSelectionFormScreen extends StatelessWidget {
   const PaymentSelectionFormScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
@@ -25,57 +24,43 @@ class PaymentSelectionFormScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 100.h),
 
-              // Text(
-              //   "Set Up Your Card",
-              //   style: textStyle.headlineMedium!.copyWith(
-              //     fontSize: 24.sp,
-              //     fontWeight: FontWeight.w500,
-              //     color: Color(0xff1F1F1F),
-              //   ),
-              // ),
-              // SizedBox(height: 8.h),
-              // Text(
-              //   "Choose a Payment Option to Start Your Subscription",
-              //   style: textStyle.bodySmall!.copyWith(
-              //     fontSize: 16.sp,
-              //     fontWeight: FontWeight.w400,
-              //     color: Color(0xff444950),
-              //   ),
-              // ),
-              // SizedBox(height: 32.h),
-              // FormCard(),
-              // SizedBox(height: 16.h),
-              // PriceContainer(),
-              // SizedBox(height: 16),
-              // TermsAndCondition(),
-              // SizedBox(height: 16.h),
-              // Agreement(),
-              // SizedBox(height: 16.h),
-
-              // CardField(),
-              //
-
-
-           //   CardFormField(),
-
-
-             SizedBox(height: 100.h),
-              Container(
-                // decoration: BoxDecoration(
-                //   border: Border.all(color: AppColors.primary),
-                //   borderRadius: BorderRadius.circular(15)
-                // ),
-                child: CardFormField(
-
+              Text(
+                "Set Up Your Card",
+                style: textStyle.headlineMedium!.copyWith(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xff1F1F1F),
                 ),
               ),
-
+              SizedBox(height: 8.h),
+              Text(
+                "Enter your Card Information",
+                style: textStyle.bodySmall!.copyWith(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff444950),
+                ),
+              ),
+              SizedBox(height: 32.h),
+              CardFormField(
+                style: CardFormStyle(
+                  borderRadius: 15,
+                  backgroundColor: Colors.white,
+                  textColor: AppColors.textColor,
+                  borderColor: AppColors.primary,
+                  borderWidth: 2,
+                  cursorColor: AppColors.primary,
+                  textErrorColor: Colors.red,
+                  placeholderColor: AppColors.primary,
+                ),
+              ),
               SizedBox(height: 16.h),
               Utils.primaryButton(
                 onPressed: () async {
-                  await StripeServices.instance.createPaymentMethod();
-                //  context.pushNamed(RouteName.successfullyRegisteredScreen);
+                  final String? paymentId = await StripeServices.instance.createPaymentMethod();
+                  //  context.pushNamed(RouteName.successfullyRegisteredScreen);
                 },
                 text: "Start Membership",
               ),
