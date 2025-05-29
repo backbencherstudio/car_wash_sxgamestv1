@@ -25,7 +25,7 @@ class GoogleMapRiverpod extends StateNotifier<GoogleMapState> {
           cameraUpdate = CameraUpdate.newCameraPosition(
             CameraPosition(
               target: LatLng(userLocation.latitude, userLocation.longitude),
-              zoom: 16,
+              zoom: 18,
             ),
           );
           mapController.animateCamera(cameraUpdate);

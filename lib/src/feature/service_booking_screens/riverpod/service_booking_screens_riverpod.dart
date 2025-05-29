@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/routes/route_name.dart';
+import '../../../../core/services/payment_services/stripe_services.dart';
 import '../view/widgets/extra_payment_bottom_sheet.dart';
 
 final serviceBookingRiverpod =
@@ -42,13 +43,12 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
   void onContinueToBooking({
     required BuildContext context,
     required TabController tabController,
-    required VoidCallback onAutoDetectLocation,
+    required Function onAutoDetectLocation,
   }) async {
+    state = state.copyWith(isContinueButtonLoading:  true);
     DateTime? pickedDate;
     TimeOfDay? picked;
-    // if(tabController.index==1){
-    //   tabController.animateTo(2);
-    // }
+
     /// If user select "Schedule Service then show date picker and time picker
     /// Default picked date is today
     /// after picked date and time, store it in service booking state's variable
@@ -85,14 +85,22 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
         onPickedDate(pickedDate: pickedDate);
         onPickedTime(pickedTime: picked);
       }
-    } else if (tabController.index == 0 &&
+    }
+    else if (tabController.index == 0 &&
         state.selectedServiceTimeType == ServiceTime.instantService) {
       await showPaymentBottomSheet(context: context);
     }
 
     if (tabController.index == 0 &&
         state.selectedServiceTimeType == ServiceTime.instantService) {
+      state = state.copyWith(isContinueButtonLoading:  false);
       tabController.animateTo(1);
+      return;
+    }
+    else if ((state.selectedServiceTimeType == ServiceTime.scheduledService) &&
+        (pickedDate != null || picked != null)) {
+      tabController.animateTo(1);
+      state = state.copyWith(isContinueButtonLoading:  false);
       return;
     }
 
@@ -102,18 +110,54 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
     if (tabController.index + 1 == tabController.length) {
       /// Automatically detecting location
       if (state.locationDetectType == LocationDetectType.auto) {
-        onAutoDetectLocation();
+        debugPrint("\nDetecting Location automatically.\n");
+        await onAutoDetectLocation();
       } else {
+        debugPrint("\nDetecting Location manually.\n");
+        state = state.copyWith(isContinueButtonLoading:  false);
         /// Navigate to the google map screen
         context.push(RouteName.googleMapScreen);
       }
     }
     /// Checking and assuring if the service time is selected to schedule service
     /// the picked date and time is not  null
-    else if ((state.selectedServiceTimeType == ServiceTime.scheduledService) &&
-        (pickedDate != null || picked != null)) {
-      tabController.animateTo(tabController.index + 1);
-      return;
+
+    state = state.copyWith(isContinueButtonLoading:  false);
+  }
+
+  /// payment method
+  Future<bool> onExtraPayment() async {
+    try{
+      debugPrint("\nPayment Method is called. Payment processing is starting...\n");
+      state = state.copyWith(isPaymentProcessing: true);
+      final String? paymentMethodId = await StripeServices.instance.createPaymentMethod();
+      if(paymentMethodId != null){
+        state = state.copyWith(isPaymentProcessing: false);
+        debugPrint("\nPayment completed. Payment id : $paymentMethodId\n");
+        return true;
+      }
+      else {
+        state = state.copyWith(isPaymentProcessing: false);
+        return false;
+      }
+    }catch(e){
+      state = state.copyWith(isPaymentProcessing: false);
+      throw Exception('\nFailed to complete payment on Extra payment for instant service\nError: $e\n');
     }
+
+  }
+
+  /// clear booking data
+  void clearBookingData(){
+    state = state.copyWith(
+      pickedDate: null,
+      pickedTime: null,
+      selectedServiceTimeType: ServiceTime.instantService,
+      selectedServiceType: ServiceType.carWash,
+      locationDetectType: LocationDetectType.auto,
+      isContinueButtonLoading: false,
+      isPaymentProcessing: false,
+      paymentId: null,
+    );
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Utils {
   static Widget customAppBar({
@@ -263,17 +264,6 @@ class Utils {
         ),
       ),
     );
-
-    //   GestureDetector(
-    //   onTap: () {
-    //     Navigator.pop(context);
-    //   },
-    //   child: SvgPicture.asset("assets/icons/backbutton.svg",
-    //   height:size?.height ?? 28.h,
-    //   width:size?.width ?? 28.w,
-    //   color: color ?? Color(0xffffffff),
-    //   ),
-    // );
   }
 
   static String weekdayToString(int weekday) {
@@ -329,6 +319,25 @@ class Utils {
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.red,
       textColor: Colors.white
+    );
+  }
+
+
+  static Widget loadingButton({double? height, EdgeInsets? padding, double? loadingAnimationWidgetSize}){
+    return Container(
+      height: height ?? 48.h,
+      width: double.infinity,
+      padding: padding ?? EdgeInsets.symmetric(vertical: 12.h),
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: Center(
+        child: LoadingAnimationWidget.staggeredDotsWave(
+          color: Colors.white,
+          size: loadingAnimationWidgetSize ?? 50.sp,
+        ),
+      ),
     );
   }
 }

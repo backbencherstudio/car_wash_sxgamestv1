@@ -13,6 +13,7 @@ import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.da
 import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
+import 'package:car_wash/src/feature/service_booking_screens/view/confirm_booking_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -223,6 +224,19 @@ class RouteConfig {
           );
         },
       ),
+
+      GoRoute(
+        name: RouteName.confirmBookingScreen,
+        path: RouteName.confirmBookingScreen,
+        pageBuilder: (context, state) {
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: ConfirmServiceBookingScreen(),
+          );
+        },
+      ),
+
     ],
   );
 }
