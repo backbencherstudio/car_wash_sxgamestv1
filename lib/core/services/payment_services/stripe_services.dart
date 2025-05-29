@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 class StripeServices {
@@ -30,6 +32,11 @@ class StripeServices {
       debugPrint("\npayment method id : ${paymentMethod.id}\n");
       return paymentMethod.id;
     }catch(e){
+      Fluttertoast.showToast(
+          msg: "Failed to create payment method",
+        backgroundColor: Colors.red,
+        fontSize: 14.sp,
+      );
       throw Exception('\nFailed to create payment method: $e\n',);
     }
   }
