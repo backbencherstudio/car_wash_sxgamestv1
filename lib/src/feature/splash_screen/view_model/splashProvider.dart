@@ -9,7 +9,7 @@ final splashViewModelProvider = Provider<SplashViewModel>((ref) {
 });
 
 class SplashViewModel {
-  static const String isOpenFirstKey = "isOpenFirst";
+  static const String firstOpenKey = "isFirstOpen"; 
 
   Future<void> handleSplashNavigation(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
@@ -18,13 +18,15 @@ class SplashViewModel {
 
     if (!context.mounted) return;
 
-    final isFirstOpen = prefs.getBool(isOpenFirstKey);
+    final isFirstOpen = prefs.getInt(firstOpenKey) ?? 0;
 
-    if (isFirstOpen == null || isFirstOpen == false) {
-      await prefs.setBool(isOpenFirstKey, true);
+    if (isFirstOpen == 0) {
+      // First time opening the app
+      await prefs.setInt(firstOpenKey, 1);
       context.go(RouteName.onboardingScreen);
     } else {
-      context.go(RouteName.onboardingScreen);
+      // Not first time
+      context.go(RouteName.signInScreen);
     }
   }
 }
