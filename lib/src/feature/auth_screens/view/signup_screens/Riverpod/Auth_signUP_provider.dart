@@ -24,7 +24,7 @@ class SignupController extends StateNotifier<SignupState> {
         'password': password,
         'name': name,
       };
-      final response = await ApiServices.postData(
+      final response = await ApiServices.instance.postData(
         endPoint: ApiEndPoints.registration,
         body: payload,
         headers: {'Content-Type': 'application/json'},
