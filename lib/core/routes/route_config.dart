@@ -106,7 +106,13 @@ class RouteConfig {
         name: RouteName.signUpOTPScreen,
         path: RouteName.signUpOTPScreen,
         pageBuilder: (context, state) {
-          return const MaterialPage(child: SignupOtpScreen());
+          final email =
+              state.uri.queryParameters['email']; 
+          return MaterialPage(
+            child: SignupOtpScreen(
+              email: email,
+            ),
+          );
         },
       ),
       GoRoute(
@@ -236,7 +242,6 @@ class RouteConfig {
           );
         },
       ),
-
     ],
   );
 }

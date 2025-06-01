@@ -14,7 +14,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
@@ -69,7 +68,7 @@ class SignInScreen extends StatelessWidget {
                     final notifier = ref.read(signInProvider.notifier);
 
                     return TextFormField(
-                      obscureText: !isPasswordVisible,
+                      obscureText: isPasswordVisible,
                       decoration:
                           AuthInputDecorationTheme.lightInputDecorationTheme(
                             context: context,
@@ -89,8 +88,8 @@ class SignInScreen extends StatelessWidget {
                               },
                               child: Icon(
                                 isPasswordVisible
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
+                                    ? Icons.visibility_off_outlined  
+                                    :   Icons.visibility_outlined,
                                 size: 20.r,
                                 color: AuthColorPalette.bodyTextColor,
                               ),

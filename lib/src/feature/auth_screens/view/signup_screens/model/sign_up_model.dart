@@ -1,6 +1,7 @@
 class SignUpModel {
   final bool isPasswordVisible;
   final bool isConfirmPasswordVisible;
+
   final bool isLoading;
 
   const SignUpModel({
@@ -13,6 +14,7 @@ class SignUpModel {
     bool? isPasswordVisible,
     bool? isConfirmPasswordVisible,
     bool? isLoading,
+    bool? isPassvis
   }) {
     return SignUpModel(
       isPasswordVisible: isPasswordVisible ?? this.isPasswordVisible,

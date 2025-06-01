@@ -7,7 +7,6 @@ class SignUpProvider extends StateNotifier<SignUpModel> {
 
   void togglePasswordVisibility() {
     state = state.copyWith(isPasswordVisible: !state.isPasswordVisible);
-    // debugPrint("toggle password visibility: $state}");
   }
 
   void toggleConfirmPasswordVisibility() {
