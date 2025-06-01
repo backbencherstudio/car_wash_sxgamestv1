@@ -11,8 +11,10 @@ class ApiServices {
 
 
   /// Helper method to handle the response
-   dynamic _handleResponse(http.Response response) {
-    if (response.statusCode == 200) {
+
+  static dynamic _handleResponse(http.Response response) {
+    if (response.statusCode == 200 || response.statusCode == 201){
+
       return jsonDecode(response.body);
     } else {
       throw Exception('Error: ${response.statusCode}, ${response.body}');
