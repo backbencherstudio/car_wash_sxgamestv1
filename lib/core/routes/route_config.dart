@@ -59,9 +59,16 @@ class RouteConfig {
         name: RouteName.signInScreen,
         path: RouteName.signInScreen,
         pageBuilder: (context, state) {
-          return MaterialPage(child: SignInScreen());
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: SignInScreen(),
+          );
         },
       ),
+
+
+
       GoRoute(
         name: RouteName.emailVerifyScreen,
         path: RouteName.emailVerifyScreen,
@@ -99,7 +106,11 @@ class RouteConfig {
         name: RouteName.signUpScreen,
         path: RouteName.signUpScreen,
         pageBuilder: (context, state) {
-          return const MaterialPage(child: SignUpScreen());
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: SignUpScreen(),
+          );
         },
       ),
       GoRoute(
