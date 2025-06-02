@@ -62,7 +62,7 @@ class PaymentSelectionFormScreen extends StatelessWidget {
                   /// payment id paile registraion e hit korum naile toast marum ...river pod dia kora lagbo
                   /// 
                   final String? paymentId = await StripeServices.instance.createPaymentMethod();
-                    context.go(RouteName.successfullyRegisteredScreen);
+                    context.go(RouteName.homeScreen);
                 },
                 text: "Start Membership",
               ),

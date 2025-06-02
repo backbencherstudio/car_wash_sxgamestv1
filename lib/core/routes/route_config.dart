@@ -89,11 +89,17 @@ class RouteConfig {
           );
         },
       ),
-      GoRoute(
+       GoRoute(
         name: RouteName.otpVerifyScreen,
         path: RouteName.otpVerifyScreen,
         pageBuilder: (context, state) {
-          return const MaterialPage(child: OTPVerifyScreen());
+          final email =
+              state.uri.queryParameters['email']; 
+          return MaterialPage(
+            child: OTPVerifyScreen(
+              email: email,
+            ),
+          );
         },
       ),
       GoRoute(

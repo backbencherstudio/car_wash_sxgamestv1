@@ -5,6 +5,7 @@ import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
+import 'package:car_wash/src/feature/auth_screens/view/auth_widgets/footer_text.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/Riverpod/Auth_otp_email_verification_provider.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/Riverpod/resend_otp_provider.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class SignupOtpScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8.h),
                 Text(
-                  "4 digit OTP has been sent to your email",
+                  "6 digit OTP has been sent to your email",
                   style: titleSmall?.copyWith(
                     color: AuthColorPalette.textColorGreyscale,
                     fontWeight: FontWeight.w400,
@@ -50,7 +51,7 @@ class SignupOtpScreen extends StatelessWidget {
                 SizedBox(height: 32.h),
                 PinCodeTextField(
                   controller: otpController,
-                  length: 4,
+                  length: 6,
                   obscureText: false,
                   animationType: AnimationType.fade,
                   pinTheme: PinTheme(
@@ -103,15 +104,21 @@ class SignupOtpScreen extends StatelessWidget {
                               otp: otpController.text,
                             );
                             if (!context.mounted) return;
-                            if (otpVerify.success) {
-                              // Proceed to payment screen if OTP is verified
-                              context.go(RouteName.paymentSlectionFormScreen);
+                            final upadteOtpVerify = ref.watch(
+                              otpEmailverifyProvider,
+                            );
+
+                            if (upadteOtpVerify.success) {
+                              context.go(
+                                RouteName.successfullyRegisteredScreen,
+                              );
                             } else {
-                              // Show error if OTP verification fails
+                              // Show error
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    "OTP verification failed. Please try again.",
+                                    upadteOtpVerify.message ??
+                                        "OTP verification failed. Please try again.",
                                     style: TextStyle(color: Color(0xff000000)),
                                   ),
                                   backgroundColor: Colors.red,
@@ -122,48 +129,66 @@ class SignupOtpScreen extends StatelessWidget {
                         );
                   },
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Didnt got the OTP?",
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: AppColors.lightIconColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(width: 10.w),
-                    Consumer(
-                      builder: (context, ref, _) {
-                        final resend = ref.watch(resendOtpProvider);
-                        final resendNotifier = ref.read(
-                          resendOtpProvider.notifier,
+                SizedBox(height: 20.h),
+                Consumer(
+                  builder: (context, ref, _) {
+                    final resend = ref.watch(resendOtpProvider);
+                    final resendNotifier = ref.read(resendOtpProvider.notifier);
+                    return footerText(
+                      text1: "Haven’t you got the OTP yet? ",
+                      text2: resend.isLoading ? "Loading...." : "Resend Code",
+                      context: context,
+                      onTap: () async {
+                        await resendNotifier.hitTheResend(
+                          email: email.toString(),
                         );
-                        return GestureDetector(
-                          onTap: () async {
-                            await resendNotifier.hitTheResend(email: email.toString());
-                          },
-                          child:
-                              resend.isLoading
-                                  ? CircularProgressIndicator() // Show a loading indicator when the request is in progress
-                                  : Center(
-                                    child: Text(
-                                      "Click here \n ${resend.message}", 
-                                      softWrap: true,
-                                      overflow: TextOverflow.ellipsis,// If success is true, show confirmation message, otherwise "Click here"
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.bodyMedium!.copyWith(
-                                        color: AppColors.primary,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                        );
+                        debugPrint("\n\n\n ${resend.message}\n\n\n");
                       },
-                    ),
-                  ],
+                    );
+                  },
                 ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text(
+                //       "Didnt got the OTP?",
+                //       style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                //         color: AppColors.lightIconColor,
+                //         fontWeight: FontWeight.w500,
+                //       ),
+                //     ),
+                //     SizedBox(width: 15.w),
+                //     Consumer(
+                //       builder: (context, ref, _) {
+                // final resend = ref.watch(resendOtpProvider);
+                // final resendNotifier = ref.read(
+                //   resendOtpProvider.notifier,
+                // );
+                //         return GestureDetector(
+                //           onTap: () async {
+                //             await resendNotifier.hitTheResend(email: email.toString());
+                //           },
+                //           child:
+                //               resend.isLoading
+                //                   ? CircularProgressIndicator() // Show a loading indicator when the request is in progress
+                //                   : Center(
+                //                     child: Text(
+                //                       "Click here",
+                //                       softWrap: true,
+                //                       overflow: TextOverflow.ellipsis,// If success is true, show confirmation message, otherwise "Click here"
+                //                       style: Theme.of(
+                //                         context,
+                //                       ).textTheme.bodyMedium!.copyWith(
+                //                         color: AppColors.primary,
+                //                         fontWeight: FontWeight.w500,
+                //                       ),
+                //                     ),
+                //                   ),
+                //         );
+                //       },
+                //     ),
+                //   ],
+                // ),
                 SizedBox(height: 32.h),
               ],
             ),
