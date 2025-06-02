@@ -1,14 +1,18 @@
 import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/services/api_services/api_endpoints.dart';
+import 'package:car_wash/core/services/api_services/api_services.dart';
 import 'package:car_wash/core/utils/utils.dart';
+import 'package:car_wash/src/feature/blog_list_screen/model/blog_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class BlogCard extends StatelessWidget {
-  const BlogCard({super.key});
+  final BlogModel blog;
+  const BlogCard({super.key, required this.blog});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class BlogCard extends StatelessWidget {
     final Color surfaceColor = Color(0xffF0F3FC);
     final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
-      onTap: () => context.push(RouteName.blogDetailsScreen),
+      onTap: () => context.push(RouteName.blogDetailsScreen, extra:  blog),
       child: Container(
         width: 400.w,
         margin: EdgeInsets.only(bottom: 16.h),
@@ -29,12 +33,45 @@ class BlogCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
-              child: Image.asset(
-                AppImages.carWash4,
+              child:
+              Image.network(
+                // 'https://car-wash-backend.signalsmind.com/public/storage/avatar/e8f6578776d1f9352ae5d1baab11faccimage2.webp',
+               '${ApiEndPoints.baseUrl}/blog.thumbnail!',
                 width: 368.w,
                 height: 177.h,
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child,
+                    loadingProgress) {
+                  if (loadingProgress == null)
+                    return child; // Image is fully loaded
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress
+                          .expectedTotalBytes !=
+                          null
+                          ? loadingProgress
+                          .cumulativeBytesLoaded /
+                          (loadingProgress
+                              .expectedTotalBytes ??
+                              1)
+                          : null,
+                    ),
+                  );
+                },
+                errorBuilder:
+                    (context, error, stackTrace) {
+                  return Icon(Icons
+                      .error); // Show an error icon if the image fails to load
+                },
+
               ),
+
+              // Image.asset(
+              //   AppImages.carWash4,
+              //   width: 368.w,
+              //   height: 177.h,
+              //   fit: BoxFit.cover,
+              // ),
             ),
             Container(
               padding: EdgeInsets.all(6.r),
@@ -43,24 +80,24 @@ class BlogCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Text(
-                "Car Wash",
+                blog.category ?? "Category",
                 style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
               ),
             ),
             Text(
-              "Why Regular Car Washing is More Important Than You Think",
+              blog.title ?? "Title",
               style: textTheme.titleSmall,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
 
-            Text(
-              "Keeping your car clean is not just about looking good...",
-              style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            SizedBox(height: 10.h),
+            // Text(
+            //   "Keeping your car clean is not just about looking good...",
+            //   style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
+            //   maxLines: 2,
+            //   overflow: TextOverflow.ellipsis,
+            // ),
+            SizedBox(height: 5.h),
 
             Row(
               children: [
@@ -72,7 +109,7 @@ class BlogCard extends StatelessWidget {
                 ),
                 SizedBox(width: 4.w),
                 Text(
-                  "May 11, 2025",
+                  Utils.dateFormat(date: DateTime.parse(blog.createdAt!)),
                   style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
                 ),
                 SizedBox(width: 8.w),
@@ -84,7 +121,7 @@ class BlogCard extends StatelessWidget {
                 ),
                 SizedBox(width: 4.w),
                 Text(
-                  "22 views",
+                  blog.views.toString(),
                   style: textTheme.bodyMedium?.copyWith(color: bodyTextColor),
                 ),
               ],

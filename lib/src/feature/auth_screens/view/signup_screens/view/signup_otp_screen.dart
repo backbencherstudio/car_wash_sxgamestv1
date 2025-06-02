@@ -104,17 +104,21 @@ class SignupOtpScreen extends StatelessWidget {
                               otp: otpController.text,
                             );
                             if (!context.mounted) return;
-                    final upadteOtpVerify = ref.watch(otpEmailverifyProvider);
+                            final upadteOtpVerify = ref.watch(
+                              otpEmailverifyProvider,
+                            );
 
                             if (upadteOtpVerify.success) {
-                              
-                              context.go(RouteName.successfullyRegisteredScreen);
+                              context.go(
+                                RouteName.successfullyRegisteredScreen,
+                              );
                             } else {
-                              // Show error 
+                              // Show error
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                               upadteOtpVerify.message??  "OTP verification failed. Please try again.",
+                                    upadteOtpVerify.message ??
+                                        "OTP verification failed. Please try again.",
                                     style: TextStyle(color: Color(0xff000000)),
                                   ),
                                   backgroundColor: Colors.red,
@@ -125,25 +129,24 @@ class SignupOtpScreen extends StatelessWidget {
                         );
                   },
                 ),
-
-                 Consumer(
-                   builder: (context, ref,_) {
-                         final resend = ref.watch(resendOtpProvider);
-                        final resendNotifier = ref.read(
-                          resendOtpProvider.notifier,
-                        );
-                     return footerText(
+                SizedBox(height: 20.h),
+                Consumer(
+                  builder: (context, ref, _) {
+                    final resend = ref.watch(resendOtpProvider);
+                    final resendNotifier = ref.read(resendOtpProvider.notifier);
+                    return footerText(
                       text1: "Haven’t you got the OTP yet? ",
-                      text2: resend.isLoading? "Loading....":  "Resend Code",
+                      text2: resend.isLoading ? "Loading...." : "Resend Code",
                       context: context,
-                      onTap: ()async {
-                    await resendNotifier.hitTheResend(email: email.toString());
-                  debugPrint("\n\n\n ${resend.message}\n\n\n");
-
-                       },
-                                     );
-                   }
-                 ),
+                      onTap: () async {
+                        await resendNotifier.hitTheResend(
+                          email: email.toString(),
+                        );
+                        debugPrint("\n\n\n ${resend.message}\n\n\n");
+                      },
+                    );
+                  },
+                ),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //   children: [
@@ -157,10 +160,10 @@ class SignupOtpScreen extends StatelessWidget {
                 //     SizedBox(width: 15.w),
                 //     Consumer(
                 //       builder: (context, ref, _) {
-                        // final resend = ref.watch(resendOtpProvider);
-                        // final resendNotifier = ref.read(
-                        //   resendOtpProvider.notifier,
-                        // );
+                // final resend = ref.watch(resendOtpProvider);
+                // final resendNotifier = ref.read(
+                //   resendOtpProvider.notifier,
+                // );
                 //         return GestureDetector(
                 //           onTap: () async {
                 //             await resendNotifier.hitTheResend(email: email.toString());
@@ -170,7 +173,7 @@ class SignupOtpScreen extends StatelessWidget {
                 //                   ? CircularProgressIndicator() // Show a loading indicator when the request is in progress
                 //                   : Center(
                 //                     child: Text(
-                //                       "Click here", 
+                //                       "Click here",
                 //                       softWrap: true,
                 //                       overflow: TextOverflow.ellipsis,// If success is true, show confirmation message, otherwise "Click here"
                 //                       style: Theme.of(

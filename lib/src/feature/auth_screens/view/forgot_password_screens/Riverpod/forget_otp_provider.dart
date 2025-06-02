@@ -22,7 +22,7 @@ class ForgetOtpNotifier extends StateNotifier<ForgetOtpState> {
     state = ForgetOtpState(isLoading: true);
     try {
       final payload = {"email": email, "token": otp};
-      final response = await ApiServices.postData(
+      final response = await ApiServices.instance.postData(
         endPoint: ApiEndPoints.forgetOtp,
         body: payload,
         headers: {'Content-Type': 'application/json'},

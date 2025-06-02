@@ -27,7 +27,7 @@ class ResendNotifier extends StateNotifier<EmailOtpStateModel>{
           	"email" : email
 
         };
-        final response = await ApiServices.postData(
+        final response = await ApiServices.instance.postData(
           endPoint: ApiEndPoints.resendOtp,
            body: payload,
             headers: {'Content-Type':'application/json' }

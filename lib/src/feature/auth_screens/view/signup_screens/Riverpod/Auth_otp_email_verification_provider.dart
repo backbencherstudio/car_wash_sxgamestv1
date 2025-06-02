@@ -22,7 +22,7 @@ class EmailOtpNotifier extends StateNotifier<EmailOtpStateModel> {
     state = EmailOtpStateModel(isLoading: true);
     try {
       final payload = {"email": email, "token": otp};
-      final response = await ApiServices.postData(
+      final response = await ApiServices.instance.postData(
         endPoint: ApiEndPoints.emailOtpVerify,
         body: payload,
         headers: {'Content-Type': 'application/json'},

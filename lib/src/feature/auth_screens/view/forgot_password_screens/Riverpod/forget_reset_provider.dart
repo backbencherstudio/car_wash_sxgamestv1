@@ -27,7 +27,7 @@ class ResendForgetOtpNotifier extends StateNotifier<ForgetEmailOtpStateModel>{
           	"email" : email
 
         };
-        final response = await ApiServices.postData(
+        final response = await ApiServices.instance.postData(
           endPoint: ApiEndPoints.forgetPass,
            body: payload,
             headers: {'Content-Type':'application/json' }

@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Utils {
@@ -19,7 +20,8 @@ class Utils {
     Border? appBarBgColor,
     required BuildContext context,
     bool? isBackButton,
-  }) {
+  })
+  {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return SafeArea(
@@ -127,7 +129,8 @@ class Utils {
     double? height,
     double? width,
     BorderRadius? borderRadius,
-  }) {
+  })
+  {
     return SizedBox(
       height: height,
       width: width ?? double.infinity,
@@ -157,7 +160,8 @@ class Utils {
     BorderRadius? borderRadius,
     required BuildContext context,
     Color? iconColor,
-  }) {
+  })
+  {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Column(
@@ -220,7 +224,8 @@ class Utils {
     Color? backgroundColor,
     BorderRadius? borderRadius,
     Color? shadowColor,
-  }) {
+  })
+  {
     return BoxDecoration(
       color: backgroundColor ?? Colors.white,
       borderRadius: borderRadius ?? BorderRadius.circular(12.r),
@@ -239,7 +244,8 @@ class Utils {
     Color? color,
     required BuildContext context,
     Size? size,
-  }) {
+  })
+  {
     return SafeArea(
       child: GestureDetector(
         onTap: () {
@@ -340,4 +346,44 @@ class Utils {
       ),
     );
   }
+
+
+  static String dateFormat({required DateTime date, String? format}){
+    return DateFormat( format ?? 'MMM dd, yyyy').format(date);
+  }
+
+  static Widget networkImage({required String imageUrl, double? width, double? height}){
+    return  Image.network(
+      // 'https://car-wash-backend.signalsmind.com/public/storage/avatar/e8f6578776d1f9352ae5d1baab11faccimage2.webp',
+      imageUrl,
+      width: width,
+      height: height,
+      fit: BoxFit.cover,
+      loadingBuilder: (context, child,
+          loadingProgress) {
+        if (loadingProgress == null)
+          return child; // Image is fully loaded
+        return Center(
+          child: CircularProgressIndicator(
+            value: loadingProgress
+                .expectedTotalBytes !=
+                null
+                ? loadingProgress
+                .cumulativeBytesLoaded /
+                (loadingProgress
+                    .expectedTotalBytes ??
+                    1)
+                : null,
+          ),
+        );
+      },
+      errorBuilder:
+          (context, error, stackTrace) {
+        return Icon(Icons
+            .image_not_supported,size: 35.sp,); // Show an error icon if the image fails to load
+      },
+
+    );
+  }
+
 }
