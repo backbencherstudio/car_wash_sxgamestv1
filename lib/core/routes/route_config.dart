@@ -8,6 +8,7 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_up_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
+import 'package:car_wash/src/feature/blog_list_screen/model/blog_model.dart';
 import 'package:car_wash/src/feature/blog_list_screen/view/blog_list_screen.dart';
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
@@ -222,10 +223,11 @@ class RouteConfig {
         name: RouteName.blogDetailsScreen,
         path: RouteName.blogDetailsScreen,
         pageBuilder: (context, state) {
+          final blog = state.extra as BlogModel;
           return buildPageWithTransition(
             context: context,
             state: state,
-            child: BlogDetailsScreen(),
+            child: BlogDetailsScreen(blog: blog,),
           );
         },
       ),

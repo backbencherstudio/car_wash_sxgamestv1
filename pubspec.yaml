@@ -66,6 +66,7 @@ dependencies:
   firebase_auth: ^5.5.4
   google_sign_in: ^6.3.0
   shimmer_animation: ^2.2.2
+  share_plus: ^11.0.0
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true

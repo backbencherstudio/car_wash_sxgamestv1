@@ -349,6 +349,41 @@ class Utils {
 
 
   static String dateFormat({required DateTime date, String? format}){
-    return DateFormat( format ?? 'MMM dd, YYYY').format(date);
+    return DateFormat( format ?? 'MMM dd, yyyy').format(date);
   }
+
+  static Widget networkImage({required String imageUrl, double? width, double? height}){
+    return  Image.network(
+      // 'https://car-wash-backend.signalsmind.com/public/storage/avatar/e8f6578776d1f9352ae5d1baab11faccimage2.webp',
+      imageUrl,
+      width: width,
+      height: height,
+      fit: BoxFit.cover,
+      loadingBuilder: (context, child,
+          loadingProgress) {
+        if (loadingProgress == null)
+          return child; // Image is fully loaded
+        return Center(
+          child: CircularProgressIndicator(
+            value: loadingProgress
+                .expectedTotalBytes !=
+                null
+                ? loadingProgress
+                .cumulativeBytesLoaded /
+                (loadingProgress
+                    .expectedTotalBytes ??
+                    1)
+                : null,
+          ),
+        );
+      },
+      errorBuilder:
+          (context, error, stackTrace) {
+        return Icon(Icons
+            .image_not_supported,size: 35.sp,); // Show an error icon if the image fails to load
+      },
+
+    );
+  }
+
 }
