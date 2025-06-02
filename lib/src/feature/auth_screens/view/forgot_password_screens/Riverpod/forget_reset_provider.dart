@@ -2,25 +2,25 @@
 
 import 'package:car_wash/core/services/api_services/api_endpoints.dart';
 import 'package:car_wash/core/services/api_services/api_services.dart';
-import 'package:car_wash/src/feature/auth_screens/view/signup_screens/model/email_otp_state_model.dart';
+import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/model/forget_pass_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-final resendOtpProvider = StateNotifierProvider< ResendNotifier,EmailOtpStateModel>(
+final resendForgetOtpProvider = StateNotifierProvider< ResendForgetOtpNotifier,ForgetEmailOtpStateModel>(
 
   (ref){
-    return ResendNotifier();
+    return ResendForgetOtpNotifier();
   }
 );
 
-class ResendNotifier extends StateNotifier<EmailOtpStateModel>{
-  ResendNotifier():super(EmailOtpStateModel());
+class ResendForgetOtpNotifier extends StateNotifier<ForgetEmailOtpStateModel>{
+  ResendForgetOtpNotifier():super(ForgetEmailOtpStateModel());
 
   Future<void> hitTheResend({
     required String email,
   })async{
-      state = EmailOtpStateModel(isLoading: true);
+      state = ForgetEmailOtpStateModel(isLoading: true);
 
       try {
         final payload = {
@@ -28,19 +28,19 @@ class ResendNotifier extends StateNotifier<EmailOtpStateModel>{
 
         };
         final response = await ApiServices.postData(
-          endPoint: ApiEndPoints.resendOtp,
+          endPoint: ApiEndPoints.forgetPass,
            body: payload,
             headers: {'Content-Type':'application/json' }
             );
 
             if(response['success']== true || response['success']== "true"){
               debugPrint("\n\n $response \n\n");
-              state = EmailOtpStateModel(isLoading: false,
+              state = ForgetEmailOtpStateModel(isLoading: false,
               message: response['message'],
               success: true,
               );
             }else{
-               state = EmailOtpStateModel(
+               state = ForgetEmailOtpStateModel(
               isLoading: false,
               error: response['message'] ?? "error sending the code",
               success: true,

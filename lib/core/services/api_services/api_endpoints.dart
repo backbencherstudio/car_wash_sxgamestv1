@@ -5,4 +5,7 @@ class ApiEndPoints{
  static const String registration = 'auth/register';
  static const String emailOtpVerify = 'auth/verify-email';
  static const String resendOtp = 'auth/resend-verification-email';
+ static const String forgetPass ='auth/forgot-password';
+ static const String forgetOtp = 'auth/verify-email';
+
 }

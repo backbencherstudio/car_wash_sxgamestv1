@@ -60,11 +60,11 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
                 Spacer(),
                 CommonWidgets.primaryButton(
                   context: context,
-                  title: "Log in now",
+                  title: "Continue to Membership",
                   color: AppColors.primary,
                   textColor: Color(0xffffffff),
                   onPressed: () {
-                    context.go(RouteName.signInScreen);
+                    context.go(RouteName.paymentSlectionFormScreen);
                   },
                 ),
                 SizedBox(height: 56.h),
