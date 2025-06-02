@@ -1,12 +1,18 @@
 import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/constant/padding.dart';
+import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:share_plus/share_plus.dart';
 
 class BlogDetailsHeader extends StatelessWidget {
-  const BlogDetailsHeader({super.key});
+  final String adminName;
+  final String publishedDate;
+  final String thumbnailImage;
+
+  const BlogDetailsHeader({super.key, required this.adminName, required this.publishedDate, required this.thumbnailImage, });
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +35,14 @@ class BlogDetailsHeader extends StatelessWidget {
               SizedBox(width: 10.w),
 
               Text(
-                "By: Shafrid Bhondo",
+                "By: $adminName",
                 style: bodyTextTheme?.copyWith(fontWeight: FontWeight.w500),
               ),
 
               Spacer(),
 
               Text(
-                "Published: May 13, 2025",
+                "Published: ${Utils.dateFormat(date: DateTime.parse( publishedDate))}",
                 style: bodyTextTheme?.copyWith(fontWeight: FontWeight.w500),
               ),
             ],
@@ -45,17 +51,21 @@ class BlogDetailsHeader extends StatelessWidget {
           SizedBox(height: 12.h),
 
           /// Thumbnail Image
-          Image.asset(AppImages.indoorCarClean, width: 400.w, height: 300.h),
+          Utils.networkImage(imageUrl: thumbnailImage, width: 400.w, height: 300.h),
           SizedBox(height: 12.h),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            spacing: 12.w,
-            children: [
-              SvgPicture.asset(AppIcons.heart, width: 20.w, height: 20.w),
-              SvgPicture.asset(AppIcons.share, width: 20.w, height: 20.h),
-            ],
-          ),
+          Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                  onTap: (){
+                    SharePlus.instance.share(
+                      ShareParams(
+                        text: 'https://bd.linkedin.com/in/nahidul-islam-shakin',
+                        title: "Connect with Nahidul Islam Shakin"
+                      )
+                    );
+                  },
+                  child: SvgPicture.asset(AppIcons.share, width: 20.w, height: 20.h))),
         ],
       ),
     );

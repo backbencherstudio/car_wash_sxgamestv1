@@ -21,7 +21,7 @@ class BlogCard extends StatelessWidget {
     final Color surfaceColor = Color(0xffF0F3FC);
     final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
-      onTap: () => context.push(RouteName.blogDetailsScreen),
+      onTap: () => context.push(RouteName.blogDetailsScreen, extra:  blog),
       child: Container(
         width: 400.w,
         margin: EdgeInsets.only(bottom: 16.h),
@@ -33,7 +33,8 @@ class BlogCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
-              child: Image.network(
+              child:
+              Image.network(
                 // 'https://car-wash-backend.signalsmind.com/public/storage/avatar/e8f6578776d1f9352ae5d1baab11faccimage2.webp',
                '${ApiEndPoints.baseUrl}/blog.thumbnail!',
                 width: 368.w,
