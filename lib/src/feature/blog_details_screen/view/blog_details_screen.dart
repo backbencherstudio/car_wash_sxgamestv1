@@ -1,3 +1,4 @@
+import 'package:car_wash/core/services/api_services/api_endpoints.dart';
 import 'package:car_wash/src/feature/blog_details_screen/view/widgets/blog_details_header.dart';
 import 'package:car_wash/src/feature/blog_details_screen/view/widgets/blog_html_body_show.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class BlogDetailsScreen extends StatelessWidget {
                   BlogDetailsHeader(
                     adminName: "sxgamestv1",
                     publishedDate: blog.createdAt!,
-                    thumbnailImage: blog.thumbnail!,
+                    thumbnailImage: '${ApiEndPoints.baseUrl}/${blog.thumbnailUrl}',
                   ),
                   SizedBox(height: 10.h),
 
