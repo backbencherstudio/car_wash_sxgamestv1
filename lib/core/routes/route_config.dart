@@ -12,6 +12,7 @@ import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/succe
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
+import 'package:car_wash/src/feature/order_history/feedback%20screen/feedback_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/model/service_booking_model.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/confirm_booking_screen.dart';
@@ -37,6 +38,13 @@ class RouteConfig {
         path: RouteName.splashScreen,
         pageBuilder: (context, state) {
           return const MaterialPage(child: SplashScreen());
+        },
+      ),
+       GoRoute(
+        name: RouteName.feedbackScreen,
+        path: RouteName.feedbackScreen,
+        pageBuilder: (context, state) {
+          return const MaterialPage(child: FeedbackScreen());
         },
       ),
       GoRoute(

@@ -167,6 +167,19 @@ class SignUpScreen extends StatelessWidget {
                           color: AppColors.primary,
                           textColor: AuthColorPalette.white,
                           onPressed: () async {
+                            if (passwordController.text.trim() !=
+                                confirmPasswordController.text.trim()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    "password doesnt match",
+
+                                    style: const TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                              );
+                              return;
+                            }
                             await signUpNotifier.signUp(
                               email: emailController.text.trim(),
                               password: passwordController.text.trim(),
@@ -178,11 +191,11 @@ class SignUpScreen extends StatelessWidget {
                             );
 
                             if (updatedState.success) {
-                         
-                            debugPrint("🚀 Navigating to OTP page...");
+                              debugPrint("🚀 Navigating to OTP page...");
 
-                             context.push('${RouteName.signUpOTPScreen}?email=${emailController.text.trim()}');
-             
+                              context.push(
+                                '${RouteName.signUpOTPScreen}?email=${emailController.text.trim()}',
+                              );
                             } else if (updatedState.error != null) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
