@@ -1,4 +1,3 @@
-
 class ApiEndPoints {
   static const String baseUrl = 'https://car-wash-backend.signalsmind.com';
   static const String bookInstant = 'api/service-booking/instant';
