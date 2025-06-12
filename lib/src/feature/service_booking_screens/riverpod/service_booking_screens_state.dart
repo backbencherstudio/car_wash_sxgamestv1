@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../model/service_booking_model.dart';
+
 enum ServiceTime { instantService, scheduledService }
 
 enum ServiceType { carWash, wheelFixing }
@@ -10,21 +12,19 @@ class ServiceBookingState {
   ServiceTime selectedServiceTimeType;
   ServiceType selectedServiceType;
   LocationDetectType locationDetectType;
-  DateTime? pickedDate;
-  TimeOfDay? pickedTime;
   bool isContinueButtonLoading;
   bool isPaymentProcessing;
   String? paymentId;
+  ServiceBookingModel? serviceBookingModel;
 
   ServiceBookingState({
-    this.pickedDate,
-    this.pickedTime,
     this.selectedServiceTimeType = ServiceTime.instantService,
     this.selectedServiceType = ServiceType.carWash,
     this.locationDetectType = LocationDetectType.auto,
     this.isContinueButtonLoading = false,
     this.isPaymentProcessing = false,
     this.paymentId,
+    this.serviceBookingModel,
   });
 
   ServiceBookingState copyWith({
@@ -36,10 +36,9 @@ class ServiceBookingState {
     bool? isContinueButtonLoading,
     bool? isPaymentProcessing,
     String? paymentId,
+    ServiceBookingModel? serviceBookingModel,
   }) {
     return ServiceBookingState(
-      pickedDate: pickedDate ?? this.pickedDate,
-      pickedTime: pickedTime ?? this.pickedTime,
       selectedServiceTimeType:
           selectedServiceTimeType ?? this.selectedServiceTimeType,
       selectedServiceType: selectedServiceType ?? this.selectedServiceType,
@@ -47,6 +46,7 @@ class ServiceBookingState {
       isContinueButtonLoading: isContinueButtonLoading ?? this.isContinueButtonLoading,
       isPaymentProcessing: isPaymentProcessing ?? this.isPaymentProcessing,
       paymentId: paymentId ?? this.paymentId,
+      serviceBookingModel: serviceBookingModel ?? this.serviceBookingModel,
     );
   }
 }

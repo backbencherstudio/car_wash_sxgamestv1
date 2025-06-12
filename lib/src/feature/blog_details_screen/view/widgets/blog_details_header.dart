@@ -51,7 +51,14 @@ class BlogDetailsHeader extends StatelessWidget {
           SizedBox(height: 12.h),
 
           /// Thumbnail Image
-          Utils.networkImage(imageUrl: thumbnailImage, width: 400.w, height: 300.h),
+          ///
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12.r),
+            child: Utils.networkImage(
+                width: 400.w, height: 300.h,
+                imageUrl: thumbnailImage),
+          ),
+
           SizedBox(height: 12.h),
 
           Align(

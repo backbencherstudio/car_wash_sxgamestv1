@@ -9,5 +9,6 @@ class ApiEndPoints {
   static const String resendOtp = 'api/auth/resend-verification-email';
   static const String forgetPass = 'api/auth/forgot-password';
   static const String forgetOtp = 'api/auth/verify-email';
+  static const String extraPayment = 'api/payment/stripe/instant-payment';
   static const String login = 'api/auth/login';
 }
