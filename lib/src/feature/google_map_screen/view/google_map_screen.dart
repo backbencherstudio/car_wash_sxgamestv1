@@ -81,7 +81,7 @@ class GoogleMapScreen extends StatelessWidget {
 
                 Utils.primaryButton(
                   onPressed: () {
-                    context.push(RouteName.confirmBookingScreen);
+                    context.pop();
                   },
                   text: "Confirm Location",
                 ),

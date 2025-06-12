@@ -8,18 +8,21 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_up_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
-import 'package:car_wash/src/feature/blog_list_screen/model/blog_model.dart';
-import 'package:car_wash/src/feature/blog_list_screen/view/blog_list_screen.dart';
+
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
+import 'package:car_wash/src/feature/order_history/feedback%20screen/feedback_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
+import 'package:car_wash/src/feature/service_booking_screens/model/service_booking_model.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/confirm_booking_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:car_wash/src/feature/profile_Create_screen/view/profile_screen.dart';
+import '../../src/feature/all_blog_list_screen/model/blog_model.dart';
+import '../../src/feature/all_blog_list_screen/view/all_blog_list_screen.dart';
 import '../../src/feature/blog_details_screen/view/blog_details_screen.dart';
 import '../../src/feature/home_screen/view/home_screen.dart';
 import '../../src/feature/order_history/view/order_history.dart';
@@ -35,6 +38,13 @@ class RouteConfig {
         path: RouteName.splashScreen,
         pageBuilder: (context, state) {
           return const MaterialPage(child: SplashScreen());
+        },
+      ),
+       GoRoute(
+        name: RouteName.feedbackScreen,
+        path: RouteName.feedbackScreen,
+        pageBuilder: (context, state) {
+          return const MaterialPage(child: FeedbackScreen());
         },
       ),
       GoRoute(
@@ -254,10 +264,11 @@ class RouteConfig {
         name: RouteName.confirmBookingScreen,
         path: RouteName.confirmBookingScreen,
         pageBuilder: (context, state) {
+          final ServiceBookingModel serviceBookingModel = state.extra as ServiceBookingModel;
           return buildPageWithTransition(
             context: context,
             state: state,
-            child: ConfirmServiceBookingScreen(),
+            child: ConfirmServiceBookingScreen(serviceBookingModel: serviceBookingModel,),
           );
         },
       ),

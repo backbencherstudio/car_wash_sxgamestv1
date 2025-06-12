@@ -3,9 +3,8 @@ import 'package:car_wash/src/feature/blog_details_screen/view/widgets/blog_detai
 import 'package:car_wash/src/feature/blog_details_screen/view/widgets/blog_html_body_show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/utils/utils.dart';
-import '../../blog_list_screen/model/blog_model.dart';
+import '../../all_blog_list_screen/model/blog_model.dart';
 import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
 

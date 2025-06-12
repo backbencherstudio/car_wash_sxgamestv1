@@ -1,6 +1,6 @@
 import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/banner_show/show_banner.dart';
-import 'package:car_wash/src/feature/home_screen/view/widgets/blog_list/blog_list.dart';
+import 'package:car_wash/src/feature/home_screen/view/widgets/blog_list/horizontal_blog_list.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/book_service/book_service.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/client_rivew_list/clients_rivew_list.dart';
 import 'package:car_wash/src/feature/home_screen/view/widgets/discount_banner_body/discount_banner_list_view.dart';
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                     // ShowBanner(),
                     // SizedBox(height: 33.h),
 
-                    BlogList(),
+                    HorizontalBlogList(),
                     SizedBox(height: 23.h),
 
                     ClientsReviewList(),
