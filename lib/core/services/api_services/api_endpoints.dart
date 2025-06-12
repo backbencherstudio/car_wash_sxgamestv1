@@ -1,12 +1,13 @@
 class ApiEndPoints {
-  static const String baseUrl = 'https://car-wash-backend.signalsmind.com/api';
-  static const String bookInstant = 'service-booking/instant';
-  static const String bookScheduled = 'service-booking/scheduled';
-  static const String blogList = 'blog';
+  static const String baseUrl = 'https://car-wash-backend.signalsmind.com';
+  static const String bookInstant = 'api/service-booking/instant';
+  static const String bookScheduled = 'api/service-booking/scheduled';
+  static const String blogList = 'api/blog';
   static const String blogById = '';
-  static const String registration = 'auth/register';
-  static const String emailOtpVerify = 'auth/verify-email';
-  static const String resendOtp = 'auth/resend-verification-email';
-  static const String forgetPass = 'auth/forgot-password';
-  static const String forgetOtp = 'auth/verify-email';
+  static const String registration = 'api/auth/register';
+  static const String emailOtpVerify = 'api/auth/verify-email';
+  static const String resendOtp = 'api/auth/resend-verification-email';
+  static const String forgetPass = 'api/auth/forgot-password';
+  static const String forgetOtp = 'api/auth/verify-email';
+  static const String login = 'api/auth/login';
 }

@@ -36,7 +36,7 @@ class BlogCard extends StatelessWidget {
               child:
               Image.network(
                 // 'https://car-wash-backend.signalsmind.com/public/storage/avatar/e8f6578776d1f9352ae5d1baab11faccimage2.webp',
-               '${ApiEndPoints.baseUrl}/blog.thumbnail!',
+               '${ApiEndPoints.baseUrl}/${blog.thumbnailUrl!}',
                 width: 368.w,
                 height: 177.h,
                 fit: BoxFit.cover,

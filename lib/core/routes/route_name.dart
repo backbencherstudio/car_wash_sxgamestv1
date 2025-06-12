@@ -31,4 +31,5 @@ class RouteName {
   static const String paymentSlectionFormScreen = '/PaymentSlectionFormScreen';
   static const String notificationScreen = '/notificationScreen';
   static const String confirmBookingScreen = '/confirmBookingScreen';
+  static const String feedbackScreen  ="/FeedbackScreen";
 }

@@ -44,4 +44,5 @@ class AppIcons {
   static const master = "assets/icons/master.png";
   static const visa = "assets/icons/visa.svg";
   static const check = "assets/icons/check.svg";
+   static const pen = "assets/icons/pen.svg";
 }
