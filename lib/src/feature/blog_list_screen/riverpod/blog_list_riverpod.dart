@@ -47,7 +47,7 @@ final blogListProvider = FutureProvider<List<BlogModel>>((ref) async {
   try {
     final headers = {
       'Authorization':
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvcnBheW1lbnRAZ21haWwuY29tIiwic3ViIjoiY21iZDV5NXJpMDAwNGpoc2xxYnRjeXJ5NiIsImlhdCI6MTc0ODc1NTIzOCwiZXhwIjoxNzQ4ODQxNjM4fQ.CkS_QFKI9AcZGWSWZTxsmpltzm6NeuaYCs7QjnhVDAE',
+      'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvcnBheW1lbnRAZ21haWwuY29tIiwic3ViIjoiY21iZDV5NXJpMDAwNGpoc2xxYnRjeXJ5NiIsImlhdCI6MTc0ODc1NTIzOCwiZXhwIjoxNzQ4ODQxNjM4fQ.CkS_QFKI9AcZGWSWZTxsmpltzm6NeuaYCs7QjnhVDAE',
     };
 
     final data = await ApiServices.instance.getData(
