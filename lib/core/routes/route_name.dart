@@ -6,7 +6,7 @@ class RouteName {
   static const String successfullyResetPasswordScreen =
       '/successfullyResetPasswordScreen';
   static const String signUpScreen = '/signUpScreen';
-  static const String signUpOTPScreen = '/signUpOTPScreen';
+  static const String signUpOTPScreen = '/SignupOtpScreen';
   static const String successfullyRegisteredScreen =
       '/successfullyRegisteredScreen';
 
@@ -30,4 +30,5 @@ class RouteName {
   static const String paymentSlectionScreen = '/PaymentSlectionScreen';
   static const String paymentSlectionFormScreen = '/PaymentSlectionFormScreen';
   static const String notificationScreen = '/notificationScreen';
+  static const String confirmBookingScreen = '/confirmBookingScreen';
 }

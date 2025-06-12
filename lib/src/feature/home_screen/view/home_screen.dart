@@ -32,17 +32,14 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 145.h),
 
-                    DiscountBannerListView(),
-                    SizedBox(height: 32.h),
-
                     ServicesList(),
                     SizedBox(height: 33.h),
 
                     BookService(),
                     SizedBox(height: 33.h),
-
-                    ShowBanner(),
-                    SizedBox(height: 33.h),
+                    //
+                    // ShowBanner(),
+                    // SizedBox(height: 33.h),
 
                     BlogList(),
                     SizedBox(height: 23.h),

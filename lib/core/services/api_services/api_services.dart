@@ -4,9 +4,17 @@ import 'package:car_wash/core/utils/utils.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
+
+  /// Singleton instance
+  static final ApiServices instance = ApiServices._internal();
+  ApiServices._internal();
+
+
   /// Helper method to handle the response
+
   static dynamic _handleResponse(http.Response response) {
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201){
+
       return jsonDecode(response.body);
     } else {
       throw Exception('Error: ${response.statusCode}, ${response.body}');
@@ -14,7 +22,7 @@ class ApiServices {
   }
 
   /// http Post request service
-  static Future<dynamic> postData({
+   Future<dynamic> postData({
     required String endPoint,
     required Map<String, dynamic> body,
     required Map<String, String> headers,
@@ -40,7 +48,7 @@ class ApiServices {
   }
 
   /// http get request service
-  static Future<dynamic> getData({
+   Future<dynamic> getData({
     required String endPoint,
     required Map<String, String> headers,
   }) async
@@ -57,7 +65,7 @@ class ApiServices {
   }
 
   /// http Put request service
-  static Future<dynamic> putData({
+   Future<dynamic> putData({
     required String endPoint,
     required Map<String, dynamic> body,
     required Map<String, String> headers,

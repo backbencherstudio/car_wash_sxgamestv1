@@ -8,11 +8,13 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/sign_
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_up_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
+import 'package:car_wash/src/feature/blog_list_screen/model/blog_model.dart';
 import 'package:car_wash/src/feature/blog_list_screen/view/blog_list_screen.dart';
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
+import 'package:car_wash/src/feature/service_booking_screens/view/confirm_booking_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -58,9 +60,16 @@ class RouteConfig {
         name: RouteName.signInScreen,
         path: RouteName.signInScreen,
         pageBuilder: (context, state) {
-          return MaterialPage(child: SignInScreen());
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: SignInScreen(),
+          );
         },
       ),
+
+
+
       GoRoute(
         name: RouteName.emailVerifyScreen,
         path: RouteName.emailVerifyScreen,
@@ -80,11 +89,17 @@ class RouteConfig {
           );
         },
       ),
-      GoRoute(
+       GoRoute(
         name: RouteName.otpVerifyScreen,
         path: RouteName.otpVerifyScreen,
         pageBuilder: (context, state) {
-          return const MaterialPage(child: OTPVerifyScreen());
+          final email =
+              state.uri.queryParameters['email']; 
+          return MaterialPage(
+            child: OTPVerifyScreen(
+              email: email,
+            ),
+          );
         },
       ),
       GoRoute(
@@ -98,14 +113,24 @@ class RouteConfig {
         name: RouteName.signUpScreen,
         path: RouteName.signUpScreen,
         pageBuilder: (context, state) {
-          return const MaterialPage(child: SignUpScreen());
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: SignUpScreen(),
+          );
         },
       ),
       GoRoute(
         name: RouteName.signUpOTPScreen,
         path: RouteName.signUpOTPScreen,
         pageBuilder: (context, state) {
-          return const MaterialPage(child: SignupOtpScreen());
+          final email =
+              state.uri.queryParameters['email']; 
+          return MaterialPage(
+            child: SignupOtpScreen(
+              email: email,
+            ),
+          );
         },
       ),
       GoRoute(
@@ -204,10 +229,11 @@ class RouteConfig {
         name: RouteName.blogDetailsScreen,
         path: RouteName.blogDetailsScreen,
         pageBuilder: (context, state) {
+          final blog = state.extra as BlogModel;
           return buildPageWithTransition(
             context: context,
             state: state,
-            child: BlogDetailsScreen(),
+            child: BlogDetailsScreen(blog: blog,),
           );
         },
       ),
@@ -220,6 +246,18 @@ class RouteConfig {
             context: context,
             state: state,
             child: NotificationScreen(),
+          );
+        },
+      ),
+
+      GoRoute(
+        name: RouteName.confirmBookingScreen,
+        path: RouteName.confirmBookingScreen,
+        pageBuilder: (context, state) {
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: ConfirmServiceBookingScreen(),
           );
         },
       ),

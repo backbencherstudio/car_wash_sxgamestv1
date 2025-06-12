@@ -1,14 +1,13 @@
 import 'package:car_wash/core/constant/padding.dart';
+import 'package:car_wash/src/feature/service_booking_screens/riverpod/service_booking_screens_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../core/routes/route_name.dart';
+import '../../../../../core/theme/theme_extension/app_colors.dart';
 import '../../../../../core/utils/utils.dart';
-import '../../../auth_screens/view/payment/view/widget/agreement.dart';
-import '../../../auth_screens/view/payment/view/widget/box_container.dart';
-import '../../../auth_screens/view/payment/view/widget/form.dart';
-import '../../../auth_screens/view/payment/view/widget/terms&condition.dart';
+
 
 Future<void> showPaymentBottomSheet({required BuildContext context}) async {
   await showModalBottomSheet(
@@ -20,7 +19,10 @@ Future<void> showPaymentBottomSheet({required BuildContext context}) async {
       final textStyle = Theme.of(context).textTheme;
       return Container(
         padding: AppPadding.screenHorizontal,
-        constraints: BoxConstraints(maxHeight: 810.h, minHeight: 810.h),
+        constraints: BoxConstraints( minHeight: 610.h),
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -43,7 +45,7 @@ Future<void> showPaymentBottomSheet({required BuildContext context}) async {
               ),
               SizedBox(height: 8.h),
               Text(
-                "Choose a Payment Option to Start Your Subscription",
+                "Enter your card information for payment",
                 style: textStyle.bodySmall!.copyWith(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w400,
@@ -51,19 +53,37 @@ Future<void> showPaymentBottomSheet({required BuildContext context}) async {
                 ),
               ),
               SizedBox(height: 32.h),
-              FormCard(),
+              CardFormField(
+                style: CardFormStyle(
+                  borderRadius: 15,
+                  backgroundColor: Colors.white,
+                  textColor: AppColors.textColor,
+                  borderColor: AppColors.primary,
+                  borderWidth: 2,
+                  cursorColor: AppColors.primary,
+                  textErrorColor: Colors.red,
+                  placeholderColor: AppColors.primary,
+                ),
+              ),
+
               SizedBox(height: 16.h),
-              PriceContainer(),
-              SizedBox(height: 16),
-              TermsAndCondition(),
-              SizedBox(height: 16.h),
-              Agreement(),
-              SizedBox(height: 16.h),
-              Utils.primaryButton(
-                onPressed: () {
-                  context.pop();
-                },
-                text: "Continue",
+              Consumer(
+                builder: (_, ref, _) {
+                  debugPrint("\nIs payment processing : ${ref.watch(serviceBookingRiverpod).isPaymentProcessing}\n");
+                  return ref.watch(serviceBookingRiverpod).isPaymentProcessing ?
+                  Utils.loadingButton()
+                  :
+                  Utils.primaryButton(
+                    onPressed: () async {
+                      final bool isPaymentCompleted = await ref.read(serviceBookingRiverpod.notifier).onExtraPayment();
+                      if(isPaymentCompleted){
+                        context.pop();
+                      }
+
+                    },
+                    text: "Continue",
+                  );
+                }
               ),
             ],
           ),

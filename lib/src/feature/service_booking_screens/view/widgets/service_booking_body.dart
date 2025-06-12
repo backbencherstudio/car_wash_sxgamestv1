@@ -59,37 +59,7 @@ class ServiceBookingBody extends StatelessWidget {
             },
           ),
 
-          // Consumer(
-          //   builder: (_, ref, _) {
-          //     final serviceSelectionState = ref.watch(
-          //       serviceBookingRiverpod,
-          //     );
-          //     final serviceSelectionNotifier = ref.read(
-          //       serviceBookingRiverpod.notifier,
-          //     );
-          //     return customSelectionWidget(
-          //       context: context,
-          //       firstBodyText: "Car Wash",
-          //       firstLeadingIconPath: AppIcons.car,
-          //       headingText: "Select Service Type",
-          //       isFirstOneActive:
-          //       serviceSelectionState.selectedServiceType ==
-          //           ServiceType.carWash,
-          //       firstOneTap: () {
-          //         serviceSelectionNotifier.onSelectServiceType(
-          //           selectedServiceType: ServiceType.carWash,
-          //         );
-          //       },
-          //       secondBodyText: "Wheel Fixing",
-          //       secondLeadingIconPath: AppIcons.steering,
-          //       secondOneTap:
-          //           () => serviceSelectionNotifier
-          //           .onSelectServiceType(
-          //             selectedServiceType: ServiceType.wheelFixing,
-          //       ),
-          //     );
-          //   },
-          // ),
+
           Consumer(
             builder: (_, ref, _) {
               final serviceSelectionState = ref.watch(serviceBookingRiverpod);
