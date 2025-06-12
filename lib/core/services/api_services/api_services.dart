@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:car_wash/core/services/api_services/api_endpoints.dart';
 import 'package:car_wash/core/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
@@ -17,6 +19,7 @@ class ApiServices {
 
       return jsonDecode(response.body);
     } else {
+      Fluttertoast.showToast(msg: "Failed, Please try again!",backgroundColor: Colors.red, textColor: Colors.white);
       throw Exception('Error: ${response.statusCode}, ${response.body}');
     }
   }
@@ -34,11 +37,12 @@ class ApiServices {
         final response = await http.post(
           Uri.parse('${ApiEndPoints.baseUrl}/$endPoint'),
           headers: headers,
-          body: jsonEncode(body),
+          body: body,
         );
         return _handleResponse(response);
       }
       else{
+        Fluttertoast.showToast(msg: "Failed, Please try again!",backgroundColor: Colors.red, textColor: Colors.white);
         throw Exception('Device is Offline, Please connect to internet.');
       }
 

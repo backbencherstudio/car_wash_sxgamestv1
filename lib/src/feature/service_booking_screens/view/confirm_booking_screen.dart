@@ -2,12 +2,14 @@ import 'package:car_wash/core/constant/padding.dart';
 import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
+import 'package:car_wash/src/feature/service_booking_screens/model/service_booking_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class ConfirmServiceBookingScreen extends StatelessWidget {
-  const ConfirmServiceBookingScreen({super.key});
+  final ServiceBookingModel serviceBookingModel;
+  const ConfirmServiceBookingScreen({super.key, required this.serviceBookingModel});
 
   Widget customListTile({
     required String title,
@@ -16,11 +18,17 @@ class ConfirmServiceBookingScreen extends StatelessWidget {
   }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      spacing: 20.w,
       children: [
         Text(title, style: textTheme.bodyMedium),
-        Text(
-          value,
-          style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+        Expanded(
+          child: Text(
+            value,
+            style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.right,
+          ),
         ),
       ],
     );
@@ -29,6 +37,7 @@ class ConfirmServiceBookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    debugPrint("\nlocation : ${serviceBookingModel.location}\n");
     return Scaffold(
       body: Center(
         child: Column(
@@ -54,31 +63,31 @@ class ConfirmServiceBookingScreen extends StatelessWidget {
                   SizedBox(height: 12.h),
                   customListTile(
                     title: "Service Name",
-                    value: "Car Wash",
+                    value: serviceBookingModel.serviceType.toString(),
                     textTheme: textTheme,
                   ),
                   SizedBox(height: 16.h),
                   customListTile(
                     title: "Order Location",
-                    value: "New York City",
+                    value: serviceBookingModel.location.toString(),
                     textTheme: textTheme,
                   ),
                   SizedBox(height: 16.h),
                   customListTile(
                     title: "Order Date",
-                    value: "02-05-2025",
+                    value: serviceBookingModel.scheduleDate.toString(),
                     textTheme: textTheme,
                   ),
                   SizedBox(height: 16.h),
                   customListTile(
                     title: "Order Time",
-                    value: "08:00 AM",
+                    value: serviceBookingModel.scheduleTime.toString(),
                     textTheme: textTheme,
                   ),
                   SizedBox(height: 16.h),
                   customListTile(
                     title: "Service Type",
-                    value: "Schedule Service",
+                    value: serviceBookingModel.serviceTiming.toString(),
                     textTheme: textTheme,
                   ),
                 ],

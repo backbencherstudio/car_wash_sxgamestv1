@@ -19,7 +19,7 @@ Future<void> showPaymentBottomSheet({required BuildContext context}) async {
       final textStyle = Theme.of(context).textTheme;
       return Container(
         padding: AppPadding.screenHorizontal,
-        constraints: BoxConstraints( minHeight: 610.h),
+       // constraints: BoxConstraints( minHeight: 610.h),
         margin: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
@@ -31,62 +31,67 @@ Future<void> showPaymentBottomSheet({required BuildContext context}) async {
           ),
         ),
 
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 24.h),
-              Text(
-                "Set Up Your Card",
-                style: textStyle.headlineMedium!.copyWith(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xff1F1F1F),
+        child: ListView(
+          children: [
+            SizedBox(height: 24.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Set Up Your Card",
+                  style: textStyle.headlineMedium!.copyWith(
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff1F1F1F),
+                  ),
                 ),
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                "Enter your card information for payment",
-                style: textStyle.bodySmall!.copyWith(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xff444950),
-                ),
-              ),
-              SizedBox(height: 32.h),
-              CardFormField(
-                style: CardFormStyle(
-                  borderRadius: 15,
-                  backgroundColor: Colors.white,
-                  textColor: AppColors.textColor,
-                  borderColor: AppColors.primary,
-                  borderWidth: 2,
-                  cursorColor: AppColors.primary,
-                  textErrorColor: Colors.red,
-                  placeholderColor: AppColors.primary,
-                ),
-              ),
+                IconButton(onPressed: ()=> context.pop(), icon: Icon(Icons.close,color: AppColors.primary,size: 30.sp,),),
 
-              SizedBox(height: 16.h),
-              Consumer(
-                builder: (_, ref, _) {
-                  debugPrint("\nIs payment processing : ${ref.watch(serviceBookingRiverpod).isPaymentProcessing}\n");
-                  return ref.watch(serviceBookingRiverpod).isPaymentProcessing ?
-                  Utils.loadingButton()
-                  :
-                  Utils.primaryButton(
-                    onPressed: () async {
-                      final bool isPaymentCompleted = await ref.read(serviceBookingRiverpod.notifier).onExtraPayment();
-                      if(isPaymentCompleted){
-                        context.pop();
-                      }
-
-                    },
-                    text: "Continue",
-                  );
-                }
+              ],
+            ),
+            SizedBox(height: 8.h),
+            Text(
+              "Enter your card information for payment",
+              style: textStyle.bodySmall!.copyWith(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w400,
+                color: Color(0xff444950),
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 32.h),
+            CardFormField(
+              style: CardFormStyle(
+                borderRadius: 15,
+                backgroundColor: Colors.white,
+                textColor: AppColors.textColor,
+                borderColor: AppColors.primary,
+                borderWidth: 2,
+                cursorColor: AppColors.primary,
+                textErrorColor: Colors.red,
+                placeholderColor: AppColors.primary,
+              ),
+            ),
+
+            SizedBox(height: 16.h),
+            Consumer(
+              builder: (_, ref, _) {
+                debugPrint("\nIs payment processing : ${ref.watch(serviceBookingRiverpod).isPaymentProcessing}\n");
+                return ref.watch(serviceBookingRiverpod).isPaymentProcessing ?
+                Utils.loadingButton()
+                :
+                Utils.primaryButton(
+                  onPressed: () async {
+                    final String? paymentMethodId = await ref.read(serviceBookingRiverpod.notifier).onExtraPayment();
+                    if(paymentMethodId != null){
+                      context.pop();
+                    }
+
+                  },
+                  text: "Continue",
+                );
+              }
+            ),
+          ],
         ),
       );
     },
