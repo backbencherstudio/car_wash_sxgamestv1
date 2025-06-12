@@ -13,6 +13,7 @@ import 'package:car_wash/src/feature/blog_list_screen/view/blog_list_screen.dart
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
+import 'package:car_wash/src/feature/order_history/feedback%20screen/feedback_screen.dart';
 import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/confirm_booking_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
@@ -27,7 +28,7 @@ import 'build_page_with_transition.dart';
 
 class RouteConfig {
   GoRouter goRouter = GoRouter(
-    initialLocation: RouteName.splashScreen,
+    initialLocation: RouteName.orderHistoryScreen,
 
     routes: [
       GoRoute(
@@ -35,6 +36,13 @@ class RouteConfig {
         path: RouteName.splashScreen,
         pageBuilder: (context, state) {
           return const MaterialPage(child: SplashScreen());
+        },
+      ),
+       GoRoute(
+        name: RouteName.feedbackScreen,
+        path: RouteName.feedbackScreen,
+        pageBuilder: (context, state) {
+          return const MaterialPage(child: FeedbackScreen());
         },
       ),
       GoRoute(

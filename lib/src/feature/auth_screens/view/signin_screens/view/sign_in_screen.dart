@@ -7,6 +7,7 @@ import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_co
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_input_decoration_theme.dart';
 import 'package:car_wash/src/common_widget_style/common_widgets/common_widgets.dart';
 import 'package:car_wash/src/feature/auth_screens/view/auth_widgets/footer_text.dart';
+import 'package:car_wash/src/feature/auth_screens/view/signin_screens/Riverpod/login_provider.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/widgets/custom_login_button.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view_model/sign_in_provider.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
@@ -24,7 +26,8 @@ class SignInScreen extends StatelessWidget {
     final titleSmall = Theme.of(context).textTheme.titleSmall;
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
     final bodyMedium = Theme.of(context).textTheme.bodyMedium;
-
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -49,6 +52,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 40.h),
                 TextFormField(
+                  controller: emailController,
                   decoration:
                       AuthInputDecorationTheme.lightInputDecorationTheme(
                         context: context,
@@ -68,6 +72,7 @@ class SignInScreen extends StatelessWidget {
                     final notifier = ref.read(signInProvider.notifier);
 
                     return TextFormField(
+                      controller: passwordController,
                       obscureText: isPasswordVisible,
                       decoration:
                           AuthInputDecorationTheme.lightInputDecorationTheme(
@@ -88,8 +93,8 @@ class SignInScreen extends StatelessWidget {
                               },
                               child: Icon(
                                 isPasswordVisible
-                                    ? Icons.visibility_off_outlined  
-                                    :   Icons.visibility_outlined,
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility_outlined,
                                 size: 20.r,
                                 color: AuthColorPalette.bodyTextColor,
                               ),
@@ -147,19 +152,37 @@ class SignInScreen extends StatelessWidget {
                 SizedBox(height: 44.h),
                 Consumer(
                   builder: (context, ref, child) {
-                    return CommonWidgets.primaryButton(
-                      context: context,
-                      title: "Log in",
-                      color: AppColors.primary,
-                      textColor: AuthColorPalette.white,
-                      onPressed: () {
-                        context.go(RouteName.homeScreen);
+                    final initlogin = ref.watch(loginProvider);
 
-                        //   ref.read(parentsScreenProvider.notifier).onSelectedIndex(2);
+                    final logNotifier = ref.read(loginProvider.notifier);
+                    return initlogin.isLoading
+                        ? Utils.loadingButton()
+                        : CommonWidgets.primaryButton(
+                          context: context,
+                          title: "Log in",
+                          color: AppColors.primary,
+                          textColor: AuthColorPalette.white,
+                          onPressed: () async {
+                            await logNotifier.login(
+                              email: emailController.text.trim(),
+                              password: passwordController.text.trim(),
+                            );
+                            final login = ref.watch(loginProvider);
 
-                        //   debugPrint("Selected index: ${ref.read(parentsScreenProvider).selectedIndex}");
-                      },
-                    );
+                            if (login.success) {
+                              context.go(RouteName.homeScreen);
+                            } else if (login.error != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    login.error!,
+                                    style: const TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        );
                   },
                 ),
                 SizedBox(height: 44.h),
