@@ -1,14 +1,13 @@
 import 'package:car_wash/core/constant/icons.dart';
-import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/services/api_services/api_endpoints.dart';
-import 'package:car_wash/core/services/api_services/api_services.dart';
 import 'package:car_wash/core/utils/utils.dart';
-import 'package:car_wash/src/feature/blog_list_screen/model/blog_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../model/blog_model.dart';
 
 class BlogCard extends StatelessWidget {
   final BlogModel blog;
