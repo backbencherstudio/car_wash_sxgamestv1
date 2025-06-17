@@ -1,27 +1,37 @@
-class LoginstateModel {
+import 'package:car_wash/src/feature/auth_screens/model/user_model.dart';
 
-final bool isLoading;
+class LoginStateModel {
+  final bool isLoading;
   final String? message;
   final String? error;
-    final bool success;
+  final bool success;
+  final UserModel? userModel;
+  final String? userToken;
 
-  LoginstateModel({this.isLoading = false, this.message, this.error, this.success = false});
+  LoginStateModel({
+    this.isLoading = false,
+    this.message,
+    this.error,
+    this.success = false,
+    this.userModel,
+    this.userToken,
+  });
 
-  LoginstateModel copyWith({bool? isLoading, String? message, String? error, bool? success,
-}) {
-    return LoginstateModel(
+  LoginStateModel copyWith({
+    bool? isLoading,
+    String? message,
+    String? error,
+    bool? success,
+    UserModel? userModel,
+    String? userToken,
+  }) {
+    return LoginStateModel(
       isLoading: isLoading ?? this.isLoading,
       message: message ?? this.message,
       error: error ?? this.error,
       success: success ?? this.success,
-
+      userModel: userModel ?? this.userModel,
+      userToken: userToken ?? this.userToken
     );
   }
 }
-
-
-
-
-
-
-

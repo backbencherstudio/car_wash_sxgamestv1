@@ -13,7 +13,7 @@ class CustomOrderButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(99.r),
-        color: AppColors.primary.withOpacity(.3)
+        color: AppColors.primary.withValues(alpha: .03)
       ),
       child: Padding(
         padding:  EdgeInsets.all(8.0),
