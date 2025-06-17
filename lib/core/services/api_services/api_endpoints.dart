@@ -11,4 +11,5 @@ class ApiEndPoints {
   static const String forgetOtp = 'api/auth/verify-email';
   static const String extraPayment = 'api/payment/stripe/instant-payment';
   static const String login = 'api/auth/login';
+  static const String updateUserData = 'api/auth/me';
 }
