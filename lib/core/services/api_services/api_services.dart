@@ -37,7 +37,7 @@ class ApiServices {
         final response = await http.post(
           Uri.parse('${ApiEndPoints.baseUrl}/$endPoint'),
           headers: headers,
-          body: body,
+          body: jsonEncode(body),
         );
         return _handleResponse(response);
       }
