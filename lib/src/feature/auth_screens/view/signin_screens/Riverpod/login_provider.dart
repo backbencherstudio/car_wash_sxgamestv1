@@ -1,12 +1,13 @@
-import 'dart:convert';
-
 import 'package:car_wash/core/services/api_services/api_endpoints.dart';
 import 'package:car_wash/core/services/api_services/api_services.dart';
+import 'package:car_wash/core/services/local_storage_services/secure_storage_service.dart';
+import 'package:car_wash/src/feature/auth_screens/model/user_model.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signin_screens/model/loginState_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../core/routes/route_name.dart';
 
 final loginProvider = StateNotifierProvider<LoginNotifier, LoginStateModel>((
   ref,
@@ -17,53 +18,63 @@ final loginProvider = StateNotifierProvider<LoginNotifier, LoginStateModel>((
 class LoginNotifier extends StateNotifier<LoginStateModel> {
   LoginNotifier() : super(LoginStateModel());
 
-  Future<void> login({required String email, required String password}) async {
+  Future<void> login({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) async {
+    state = state.copyWith(isLoading: true, success: false, error: null);
+
     try {
-      state = state.copyWith(
-        isLoading: true
-      );
       final payload = {"email": email, "password": password};
 
-      final raw = await post(Uri.parse('${ApiEndPoints.baseUrl}/${ApiEndPoints.login}',),
-      body: jsonEncode(payload),
-          headers:{'Content-Type': 'application/json'}
+      final response = await ApiServices.instance.postData(
+        endPoint: ApiEndPoints.login,
+        body: payload,
+        headers: {'Content-Type': 'application/json'},
       );
 
-      final response = jsonDecode(raw.body);
+      final success = response['success'].toString().toLowerCase() == 'true';
 
-      // final response = await ApiServices.instance.postData(
-      //   endPoint: ApiEndPoints.login ,
-      //    body: payload,
-      //     headers:{'Content-Type': 'application/json'} );
+      if (success) {
+        final token = response['authorization']?['token'];
+        final userJson = response['data'];
 
-      if (response['success'] == true || response['success'] == "true") {
-       debugPrint("\n Signup successful: ${response['message']} \n");
+        if (token != null) {
+          await SecureAuthTokenStorageService.saveAuthToken(token);
+        }
 
-      debugPrint("\n  Signup successful: ${response['message']} \n ");
-      state = state.copyWith(
-        isLoading: false,
-        message: response['message'],
-        success: true,
-      );
-      } else {
         state = state.copyWith(
           isLoading: false,
-          error: response['message'] ?? 'Signup failed',
-          success: false,
+          success: true,
+          message: response['message'],
+          userToken: token,
+          userModel: UserModel.fromJson(userJson),
         );
+
+        debugPrint("Login successful. User ID: ${state.userModel?.id}");
+        if (context.mounted) {
+          context.go(RouteName.homeScreen);
+        }
+      } else {
+        _handleError(response['message'] ?? 'Login failed');
       }
     } catch (e) {
-      state = state.copyWith(
-        isLoading: false,
-        error: e.toString(),
-        success: false,
-      );
-      Fluttertoast.showToast(
-        msg: "Sign Up failed: $e",
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-      );
-      throw Exception('\nSign up failed: $e\n');
+      _handleError('Login exception: ${e.toString()}');
     }
   }
+
+  void _handleError(String message) {
+    state = state.copyWith(
+      isLoading: false,
+      error: message,
+      success: false,
+    );
+    Fluttertoast.showToast(
+      msg: message,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+    );
+  }
 }
+

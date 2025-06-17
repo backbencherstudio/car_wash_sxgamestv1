@@ -16,8 +16,38 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
+
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+  late final FocusNode _emailFocusNode;
+  late final FocusNode _passwordFocusNode;
+
+  @override
+  void initState() {
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _emailFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +56,6 @@ class SignInScreen extends StatelessWidget {
     final titleSmall = Theme.of(context).textTheme.titleSmall;
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
     final bodyMedium = Theme.of(context).textTheme.bodyMedium;
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -52,7 +80,9 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 40.h),
                 TextFormField(
-                  controller: emailController,
+                  controller: _emailController,
+                  focusNode: _emailFocusNode,
+                  onTapOutside: (_)=>_emailFocusNode.unfocus(),
                   decoration:
                       AuthInputDecorationTheme.lightInputDecorationTheme(
                         context: context,
@@ -72,7 +102,9 @@ class SignInScreen extends StatelessWidget {
                     final notifier = ref.read(signInProvider.notifier);
 
                     return TextFormField(
-                      controller: passwordController,
+                      controller: _passwordController,
+                      focusNode: _passwordFocusNode,
+                      onTapOutside: (_)=>_passwordFocusNode.unfocus(),
                       obscureText: isPasswordVisible,
                       decoration:
                           AuthInputDecorationTheme.lightInputDecorationTheme(
@@ -140,7 +172,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        context.go(RouteName.emailVerifyScreen);
+                        context.push(RouteName.emailVerifyScreen);
                       },
                       child: Text(
                         "Forgot Password?",
@@ -152,10 +184,10 @@ class SignInScreen extends StatelessWidget {
                 SizedBox(height: 44.h),
                 Consumer(
                   builder: (context, ref, child) {
-                    final loginState = ref.watch(loginProvider);
-                    debugPrint("\nrebuilding...\n");
-
                     final logNotifier = ref.read(loginProvider.notifier);
+                    final loginState = ref.watch(loginProvider);
+                    debugPrint("\nrebuilding & \nuser token : ${loginState.userToken}\n");
+
                     return loginState.isLoading
                         ? Utils.loadingButton()
                         : CommonWidgets.primaryButton(
@@ -164,25 +196,12 @@ class SignInScreen extends StatelessWidget {
                           color: AppColors.primary,
                           textColor: AuthColorPalette.white,
                           onPressed: () async {
-                            if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
+                            if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty){
                               await logNotifier.login(
-                                email: emailController.text.trim(),
-                                password: passwordController.text.trim(),
+                                context:context,
+                                email: _emailController.text.trim(),
+                                password: _passwordController.text.trim(),
                               );
-                              // final login = ref.watch(loginProvider);
-
-                              if (loginState.success) {
-                                context.go(RouteName.homeScreen);
-                              } else if (loginState.error != null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      loginState.error!,
-                                      style: const TextStyle(color: Colors.black),
-                                    ),
-                                  ),
-                                );
-                              }
                             }
 
                           },
