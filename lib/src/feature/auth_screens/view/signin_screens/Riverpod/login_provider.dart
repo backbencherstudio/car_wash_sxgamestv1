@@ -22,7 +22,8 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
     required BuildContext context,
     required String email,
     required String password,
-  }) async {
+  }) async
+  {
     state = state.copyWith(isLoading: true, success: false, error: null);
 
     try {
@@ -76,5 +77,28 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
       textColor: Colors.white,
     );
   }
+
+  Future<void> updateUserModel() async {
+    try{
+     final response =  await ApiServices.instance.getData(endPoint: ApiEndPoints.updateUserData, headers: {"Authorization":"Bearer ${state.userToken}"});
+     if(response['success'] == true || response['success'].toString().toLowerCase() == 'true'){
+       state = state.copyWith(
+         userModel: UserModel.fromJson(response['data'])
+       );
+     }
+     else{
+       throw Exception('Failed to updated user model.\nResponse: $response');
+     }
+    }catch(error){
+      throw Exception('Error while updating user model : $error');
+    }
+  }
+
+  void updateUserToken(String token){
+    state = state.copyWith(
+      userToken:  token
+    );
+  }
+  
 }
 

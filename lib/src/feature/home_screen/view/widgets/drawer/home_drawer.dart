@@ -1,6 +1,7 @@
 import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/services/local_storage_services/secure_storage_service.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +99,13 @@ Drawer appDrawer({required BuildContext context}) {
         // ),
         SizedBox(height: 8.h),
         ListTile(
-          onTap: () => context.go(RouteName.signInScreen),
+          onTap: () async {
+            await SecureAuthTokenStorageService.deleteAuthToken();
+            if(context.mounted){
+              context.go(RouteName.signInScreen);
+            }
+
+          },
           leading: Utils.secondaryButton(
             onPressed: () {},
             imageAsset: AppIcons.logout,
