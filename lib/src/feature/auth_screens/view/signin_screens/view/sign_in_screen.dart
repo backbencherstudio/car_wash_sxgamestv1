@@ -152,10 +152,11 @@ class SignInScreen extends StatelessWidget {
                 SizedBox(height: 44.h),
                 Consumer(
                   builder: (context, ref, child) {
-                    final initlogin = ref.watch(loginProvider);
+                    final loginState = ref.watch(loginProvider);
+                    debugPrint("\nrebuilding...\n");
 
                     final logNotifier = ref.read(loginProvider.notifier);
-                    return initlogin.isLoading
+                    return loginState.isLoading
                         ? Utils.loadingButton()
                         : CommonWidgets.primaryButton(
                           context: context,
@@ -163,24 +164,27 @@ class SignInScreen extends StatelessWidget {
                           color: AppColors.primary,
                           textColor: AuthColorPalette.white,
                           onPressed: () async {
-                            await logNotifier.login(
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim(),
-                            );
-                            final login = ref.watch(loginProvider);
-
-                            if (login.success) {
-                              context.go(RouteName.homeScreen);
-                            } else if (login.error != null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    login.error!,
-                                    style: const TextStyle(color: Colors.black),
-                                  ),
-                                ),
+                            if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
+                              await logNotifier.login(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim(),
                               );
+                              // final login = ref.watch(loginProvider);
+
+                              if (loginState.success) {
+                                context.go(RouteName.homeScreen);
+                              } else if (loginState.error != null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      loginState.error!,
+                                      style: const TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                );
+                              }
                             }
+
                           },
                         );
                   },

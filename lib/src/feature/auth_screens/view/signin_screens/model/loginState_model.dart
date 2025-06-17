@@ -1,15 +1,15 @@
-class LoginstateModel {
+class LoginStateModel {
 
 final bool isLoading;
   final String? message;
   final String? error;
-    final bool success;
+  final bool success;
 
-  LoginstateModel({this.isLoading = false, this.message, this.error, this.success = false});
+LoginStateModel({this.isLoading = false, this.message, this.error, this.success = false});
 
-  LoginstateModel copyWith({bool? isLoading, String? message, String? error, bool? success,
+LoginStateModel copyWith({bool? isLoading, String? message, String? error, bool? success,
 }) {
-    return LoginstateModel(
+    return LoginStateModel(
       isLoading: isLoading ?? this.isLoading,
       message: message ?? this.message,
       error: error ?? this.error,
