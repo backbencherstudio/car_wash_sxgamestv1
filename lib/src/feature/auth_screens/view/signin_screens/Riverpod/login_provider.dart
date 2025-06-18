@@ -22,7 +22,8 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
     required BuildContext context,
     required String email,
     required String password,
-  }) async {
+  }) async
+  {
     state = state.copyWith(isLoading: true);
 
     try {
@@ -53,7 +54,9 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
         debugPrint("Login successful. User ID: ${state.userModel?.id}");
 
         if (state.userModel!.subscriptions != null) {
-          debugPrint("\nis subscribed : ${state.userModel!.subscriptions?[0].is_active.toString()}\n");
+          debugPrint(
+            "\nis subscribed : ${state.userModel!.subscriptions?[0].is_active.toString()}\n",
+          );
           if (state.userModel!.subscriptions!.isNotEmpty &&
               state.userModel!.subscriptions![0].is_active == true) {
             return RouteName.homeScreen;
@@ -61,7 +64,9 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
             return RouteName.paymentSlectionFormScreen;
           }
         } else {
-          debugPrint("\nis subscribed : ${state.userModel!.subscriptions?[0].is_active.toString()}\n");
+          debugPrint(
+            "\nis subscribed : ${state.userModel!.subscriptions?[0].is_active.toString()}\n",
+          );
           return RouteName.paymentSlectionFormScreen;
         }
       } else {
@@ -92,6 +97,8 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
       if (response['success'] == true ||
           response['success'].toString().toLowerCase() == 'true') {
         state = state.copyWith(userModel: UserModel.fromJson(response['data']));
+        debugPrint("\nupdated data : ${response['data']}\n");
+        debugPrint("\nuser id : ${state.userToken}\n");
       } else {
         throw Exception('Failed to updated user model.\nResponse: $response');
       }
@@ -102,5 +109,27 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
 
   void updateUserToken(String token) {
     state = state.copyWith(userToken: token);
+  }
+
+  Future<bool?> makePayment({required String paymentMethodId}) async {
+    try{
+      final body = {
+        "email":state.userModel?.email ?? "",
+        "userId":state.userModel?.id ?? "",
+        "paymentMethodId":paymentMethodId
+      };
+      final response = await ApiServices.instance.postData(endPoint: ApiEndPoints.makePayment, body: body, headers: {
+        "Content-Type":"application/json"
+      });
+      debugPrint("\npayment response : $response\n");
+      if(response["success"] == true || response["success"].toString().toLowerCase() == 'true'){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }catch(error){
+      throw Exception("Error while making payment : $error");
+    }
   }
 }

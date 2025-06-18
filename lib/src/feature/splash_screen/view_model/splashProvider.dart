@@ -44,6 +44,7 @@ class SplashViewModel {
           // context.go(RouteName.homeScreen);
         }
         else{
+          debugPrint("\nsubscription : ${loginNotifier.state.userModel!.subscriptions?[0].is_active}\n");
           return RouteName.paymentSlectionFormScreen;
          // context.go(RouteName.homeScreen);
         }
