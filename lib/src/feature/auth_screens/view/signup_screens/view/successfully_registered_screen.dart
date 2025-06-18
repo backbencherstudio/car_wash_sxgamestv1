@@ -64,7 +64,7 @@ class SuccessfullyRegisteredScreen extends StatelessWidget {
                   color: AppColors.primary,
                   textColor: Color(0xffffffff),
                   onPressed: () {
-                    context.go(RouteName.paymentSlectionFormScreen);
+                    context.go(RouteName.signInScreen);
                   },
                 ),
                 SizedBox(height: 56.h),
