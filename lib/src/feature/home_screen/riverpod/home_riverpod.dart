@@ -1,14 +1,20 @@
 import 'package:car_wash/core/constant/icons.dart';
+import 'package:car_wash/src/feature/auth_screens/model/user_model.dart';
+import 'package:car_wash/src/feature/auth_screens/view/signin_screens/Riverpod/login_provider.dart';
 import 'package:car_wash/src/feature/home_screen/riverpod/home_state.dart';
 import 'package:car_wash/src/model/service_list_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final homeRiverpod = StateNotifierProvider<HomeRiverpod, HomeState>(
-  (ref) => HomeRiverpod(),
+  (ref) {
+    final userModel = ref.watch(loginProvider).userModel;
+    return HomeRiverpod(userModel!);
+    },
 );
 
 class HomeRiverpod extends StateNotifier<HomeState> {
-  HomeRiverpod() : super(HomeState()) {
+  final UserModel userModel;
+  HomeRiverpod(this.userModel) : super(HomeState()) {
     fetchServiceItem();
   }
 
