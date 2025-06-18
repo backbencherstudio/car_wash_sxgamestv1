@@ -3,14 +3,13 @@ import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/services/payment_services/stripe_services.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
-import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/agreement.dart';
-import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/box_container.dart';
-import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/form.dart';
-import 'package:car_wash/src/feature/auth_screens/view/payment/view/widget/terms&condition.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../../../core/services/local_storage_services/secure_storage_service.dart';
 
 class PaymentSelectionFormScreen extends StatelessWidget {
   const PaymentSelectionFormScreen({super.key});
@@ -57,15 +56,39 @@ class PaymentSelectionFormScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16.h),
-              Utils.primaryButton(
-                onPressed: () async {
-                  /// payment id paile registraion e hit korum naile toast marum ...river pod dia kora lagbo
-                  /// 
-                  final String? paymentId = await StripeServices.instance.createPaymentMethod();
-                    context.go(RouteName.homeScreen);
-                },
-                text: "Start Membership",
+              Consumer(
+                builder: (_, ref, _) {
+                  return Utils.primaryButton(
+                    onPressed: () async {
+                      /// payment id paile registraion e hit korum naile toast marum ...river pod dia kora lagbo
+                      ///
+                      final String? paymentId = await StripeServices.instance.createPaymentMethod();
+                        context.go(RouteName.homeScreen);
+                    },
+                    text: "Start Membership",
+                  );
+                }
               ),
+              SizedBox(height: 20.h,),
+              GestureDetector(
+                onTap: () async {
+                  await SecureAuthTokenStorageService.deleteAuthToken();
+                  if(context.mounted){
+                    context.go(RouteName.signInScreen);
+                  }
+                },
+                child: RichText(text: TextSpan(
+                  text: "Do you want to ",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black),
+                  children:
+                    [
+                      TextSpan(
+                        text: "Sign Out?",
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.primary,fontWeight: FontWeight.w600),
+                      )
+                    ]
+                )),
+              )
             ],
           ),
         ),

@@ -18,13 +18,13 @@ final loginProvider = StateNotifierProvider<LoginNotifier, LoginStateModel>((
 class LoginNotifier extends StateNotifier<LoginStateModel> {
   LoginNotifier() : super(LoginStateModel());
 
-  Future<void> login({
+  Future<String?> login({
     required BuildContext context,
     required String email,
     required String password,
   }) async
   {
-    state = state.copyWith(isLoading: true, success: false, error: null);
+    state = state.copyWith(isLoading: true);
 
     try {
       final payload = {"email": email, "password": password};
@@ -47,30 +47,40 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
 
         state = state.copyWith(
           isLoading: false,
-          success: true,
-          message: response['message'],
           userToken: token,
           userModel: UserModel.fromJson(userJson),
         );
 
         debugPrint("Login successful. User ID: ${state.userModel?.id}");
-        if (context.mounted) {
-          context.go(RouteName.homeScreen);
+
+        if (state.userModel!.subscriptions != null) {
+          debugPrint(
+            "\nis subscribed : ${state.userModel!.subscriptions?[0].is_active.toString()}\n",
+          );
+          if (state.userModel!.subscriptions!.isNotEmpty &&
+              state.userModel!.subscriptions![0].is_active == true) {
+            return RouteName.homeScreen;
+          } else {
+            return RouteName.paymentSlectionFormScreen;
+          }
+        } else {
+          debugPrint(
+            "\nis subscribed : ${state.userModel!.subscriptions?[0].is_active.toString()}\n",
+          );
+          return RouteName.paymentSlectionFormScreen;
         }
       } else {
         _handleError(response['message'] ?? 'Login failed');
+        return null;
       }
     } catch (e) {
       _handleError('Login exception: ${e.toString()}');
+      return null;
     }
   }
 
   void _handleError(String message) {
-    state = state.copyWith(
-      isLoading: false,
-      error: message,
-      success: false,
-    );
+    state = state.copyWith(isLoading: false);
     Fluttertoast.showToast(
       msg: message,
       backgroundColor: Colors.red,
@@ -79,26 +89,47 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
   }
 
   Future<void> updateUserModel() async {
-    try{
-     final response =  await ApiServices.instance.getData(endPoint: ApiEndPoints.updateUserData, headers: {"Authorization":"Bearer ${state.userToken}"});
-     if(response['success'] == true || response['success'].toString().toLowerCase() == 'true'){
-       state = state.copyWith(
-         userModel: UserModel.fromJson(response['data'])
-       );
-     }
-     else{
-       throw Exception('Failed to updated user model.\nResponse: $response');
-     }
-    }catch(error){
+    try {
+      final response = await ApiServices.instance.getData(
+        endPoint: ApiEndPoints.updateUserData,
+        headers: {"Authorization": "Bearer ${state.userToken}"},
+      );
+      if (response['success'] == true ||
+          response['success'].toString().toLowerCase() == 'true') {
+        state = state.copyWith(userModel: UserModel.fromJson(response['data']));
+        debugPrint("\nupdated data : ${response['data']}\n");
+        debugPrint("\nuser id : ${state.userToken}\n");
+      } else {
+        throw Exception('Failed to updated user model.\nResponse: $response');
+      }
+    } catch (error) {
       throw Exception('Error while updating user model : $error');
     }
   }
 
-  void updateUserToken(String token){
-    state = state.copyWith(
-      userToken:  token
-    );
+  void updateUserToken(String token) {
+    state = state.copyWith(userToken: token);
   }
-  
-}
 
+  Future<bool?> makePayment({required String paymentMethodId}) async {
+    try{
+      final body = {
+        "email":state.userModel?.email ?? "",
+        "userId":state.userModel?.id ?? "",
+        "paymentMethodId":paymentMethodId
+      };
+      final response = await ApiServices.instance.postData(endPoint: ApiEndPoints.makePayment, body: body, headers: {
+        "Content-Type":"application/json"
+      });
+      debugPrint("\npayment response : $response\n");
+      if(response["success"] == true || response["success"].toString().toLowerCase() == 'true'){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }catch(error){
+      throw Exception("Error while making payment : $error");
+    }
+  }
+}

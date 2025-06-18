@@ -17,8 +17,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
   gender: json['gender'] as String?,
   date_of_birth: json['date_of_birth'] as String?,
   created_at: json['created_at'] as String?,
-  subscription:
-      (json['subscription'] as List<dynamic>?)
+  subscriptions:
+      (json['subscriptions'] as List<dynamic>?)
           ?.map((e) => SubscriptionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
 );
@@ -34,7 +34,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
   'gender': instance.gender,
   'date_of_birth': instance.date_of_birth,
   'created_at': instance.created_at,
-  'subscription': instance.subscription,
+  'subscriptions': instance.subscriptions,
 };
 
 SubscriptionModel _$SubscriptionModelFromJson(Map<String, dynamic> json) =>

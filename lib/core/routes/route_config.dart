@@ -3,12 +3,10 @@ import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/v
 import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/view/otp_verify_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/forgot_password_screens/view/successfully_reset_password_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/payment/view/payment_form.dart';
-import 'package:car_wash/src/feature/auth_screens/view/payment/view/select_option.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signin_screens/view/sign_in_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/sign_up_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/signup_otp_screen.dart';
 import 'package:car_wash/src/feature/auth_screens/view/signup_screens/view/successfully_registered_screen.dart';
-
 import 'package:car_wash/src/feature/google_map_screen/view/google_map_screen.dart';
 import 'package:car_wash/src/feature/notification_screens/view/notification_screen.dart';
 import 'package:car_wash/src/feature/onboarding_screens/view/onboarding_screen.dart';
@@ -181,13 +179,6 @@ class RouteConfig {
         path: RouteName.googleMapScreen,
         pageBuilder: (context, state) {
           return MaterialPage(child: GoogleMapScreen());
-        },
-      ),
-      GoRoute(
-        name: RouteName.paymentSlectionScreen,
-        path: RouteName.paymentSlectionScreen,
-        pageBuilder: (context, state) {
-          return MaterialPage(child: PaymentSlectionScreen());
         },
       ),
       GoRoute(

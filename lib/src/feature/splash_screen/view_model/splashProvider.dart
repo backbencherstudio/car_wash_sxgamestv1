@@ -29,6 +29,7 @@ class SplashViewModel {
     if (isFirstOpen == 0) {
       // First time opening the app
       await SharedPreferenceStorageService.saveData(firstOpenKey, 1);
+      await Future.delayed(Duration(milliseconds: 500));
       return RouteName.onboardingScreen;
       //context.go(RouteName.onboardingScreen);
     }
@@ -38,12 +39,13 @@ class SplashViewModel {
         loginNotifier.updateUserToken(userToken);
         await loginNotifier.updateUserModel();
         debugPrint("\nuser name : ${loginNotifier.state.userModel?.name}\n");
-        if(loginNotifier.state.userModel!.subscription != null && loginNotifier.state.userModel!.subscription![0].is_active == true){
+        if(loginNotifier.state.userModel!.subscriptions != null && loginNotifier.state.userModel!.subscriptions![0].is_active == true){
           return RouteName.homeScreen;
           // context.go(RouteName.homeScreen);
         }
         else{
-          return RouteName.homeScreen;
+          debugPrint("\nsubscription : ${loginNotifier.state.userModel!.subscriptions?[0].is_active}\n");
+          return RouteName.paymentSlectionFormScreen;
          // context.go(RouteName.homeScreen);
         }
 

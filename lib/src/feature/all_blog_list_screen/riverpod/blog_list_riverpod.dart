@@ -39,15 +39,18 @@
 
 import 'package:car_wash/core/services/api_services/api_endpoints.dart';
 import 'package:car_wash/core/services/api_services/api_services.dart';
+import 'package:car_wash/src/feature/auth_screens/view/signin_screens/Riverpod/login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../model/blog_model.dart';
 
 final blogListProvider = FutureProvider<List<BlogModel>>((ref) async {
+  final userToken = ref.watch(loginProvider).userToken;
+  debugPrint("\nuser token in home screen : $userToken\n");
   try {
     final headers = {
       'Authorization':
-      'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvcnBheW1lbnRAZ21haWwuY29tIiwic3ViIjoiY21iZDV5NXJpMDAwNGpoc2xxYnRjeXJ5NiIsImlhdCI6MTc0ODc1NTIzOCwiZXhwIjoxNzQ4ODQxNjM4fQ.CkS_QFKI9AcZGWSWZTxsmpltzm6NeuaYCs7QjnhVDAE',
+      'bearer $userToken',
     };
 
     final data = await ApiServices.instance.getData(

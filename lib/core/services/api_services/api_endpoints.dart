@@ -12,4 +12,5 @@ class ApiEndPoints {
   static const String extraPayment = 'api/payment/stripe/instant-payment';
   static const String login = 'api/auth/login';
   static const String updateUserData = 'api/auth/me';
+  static const String makePayment = 'api/payment/stripe/subscribe';
 }
