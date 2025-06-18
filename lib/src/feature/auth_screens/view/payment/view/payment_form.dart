@@ -12,6 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../core/services/local_storage_services/secure_storage_service.dart';
+
 class PaymentSelectionFormScreen extends StatelessWidget {
   const PaymentSelectionFormScreen({super.key});
 
@@ -66,6 +68,26 @@ class PaymentSelectionFormScreen extends StatelessWidget {
                 },
                 text: "Start Membership",
               ),
+              SizedBox(height: 20.h,),
+              GestureDetector(
+                onTap: () async {
+                  await SecureAuthTokenStorageService.deleteAuthToken();
+                  if(context.mounted){
+                    context.go(RouteName.signInScreen);
+                  }
+                },
+                child: RichText(text: TextSpan(
+                  text: "Do you want to ",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black),
+                  children:
+                    [
+                      TextSpan(
+                        text: "Sign Out?",
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.primary,fontWeight: FontWeight.w600),
+                      )
+                    ]
+                )),
+              )
             ],
           ),
         ),

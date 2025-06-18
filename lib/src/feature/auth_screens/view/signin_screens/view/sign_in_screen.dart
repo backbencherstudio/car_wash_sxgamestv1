@@ -197,11 +197,14 @@ class _SignInScreenState extends State<SignInScreen> {
                           textColor: AuthColorPalette.white,
                           onPressed: () async {
                             if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty){
-                              await logNotifier.login(
+                              final routeName = await logNotifier.login(
                                 context:context,
                                 email: _emailController.text.trim(),
                                 password: _passwordController.text.trim(),
                               );
+                              if(routeName != null && context.mounted){
+                                context.go(routeName);
+                              }
                             }
 
                           },
