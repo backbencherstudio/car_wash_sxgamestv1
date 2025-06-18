@@ -12,14 +12,15 @@ final otpEmailverifyProvider =
 
 class EmailOtpNotifier extends StateNotifier<EmailOtpStateModel> {
   EmailOtpNotifier() : super(EmailOtpStateModel());
- void resetError() {
-    state = state.copyWith(error: null); 
+  void resetError() {
+    state = state.copyWith(error: null);
   }
-  Future<void> emailOtpVerify({
-    required String? email,
-    required String? otp,
+
+  Future<bool> emailOtpVerify({
+    required String email,
+    required String otp,
   }) async {
-    state = EmailOtpStateModel(isLoading: true);
+    state = state.copyWith(isLoading: true);
     try {
       final payload = {"email": email, "token": otp};
       final response = await ApiServices.instance.postData(
@@ -27,24 +28,27 @@ class EmailOtpNotifier extends StateNotifier<EmailOtpStateModel> {
         body: payload,
         headers: {'Content-Type': 'application/json'},
       );
+      state = state.copyWith(isLoading: false);
       if (response['success'] == true || response['success'] == 'true') {
-        state = EmailOtpStateModel(
-          isLoading: false,
-          message: response['message'],
-          success: true,
+       // state = state.copyWith(isLoading: false);
+        return true;
+      } else {
+        Fluttertoast.showToast(
+          msg: response['message'] ?? "otp verification failled",
+          backgroundColor: Colors.red,
+          textColor: Color(0xffffffff),
         );
 
-      }else{
-     state = EmailOtpStateModel(
-          isLoading: false,
-          error: response['message'] ?? "otp verification failled",
-          success: false,
-        );
+      //  state = state.copyWith(isLoading: false);
+        return false;
       }
+
     } catch (e) {
-      Fluttertoast.showToast(msg: e.toString(),
-      backgroundColor: Colors.red,
-      textColor: Color(0xffffffff),
+      state = state.copyWith(isLoading: false);
+      Fluttertoast.showToast(
+        msg: e.toString(),
+        backgroundColor: Colors.red,
+        textColor: Color(0xffffffff),
       );
       throw Exception(e);
     }

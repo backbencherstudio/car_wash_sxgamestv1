@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import '../../auth_widgets/footer_text.dart';
 import '../../signin_screens/view/widgets/custom_login_button.dart';
@@ -103,7 +104,7 @@ class SignUpScreen extends StatelessWidget {
                       decoration:
                           AuthInputDecorationTheme.lightInputDecorationTheme(
                             context: context,
-                            hintText: "Create your password",
+                            hintText: "Enter your password",
                             fillColor: Color(0xffffffff),
                             suffixIcon: GestureDetector(
                               onTap: () {
@@ -169,89 +170,77 @@ class SignUpScreen extends StatelessWidget {
                           onPressed: () async {
                             if (passwordController.text.trim() !=
                                 confirmPasswordController.text.trim()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    "password doesnt match",
-
-                                    style: const TextStyle(color: Colors.black),
-                                  ),
-                                ),
+                              Fluttertoast.showToast(
+                                msg: "Password doesn't match",
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
                               );
                               return;
                             }
-                            await signUpNotifier.signUp(
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim(),
-                              name: nameController.text.trim(),
-                            );
-
-                            final updatedState = ref.read(
-                              signUpControllerProvider,
-                            );
-
-                            if (updatedState.success) {
-                              debugPrint("🚀 Navigating to OTP page...");
-
-                              context.push(
-                                '${RouteName.signUpOTPScreen}?email=${emailController.text.trim()}',
+                            if (emailController.text.isNotEmpty &&
+                                passwordController.text.isNotEmpty &&
+                                nameController.text.isNotEmpty &&
+                                confirmPasswordController.text.isNotEmpty) {
+                              final isSuccess = await signUpNotifier.signUp(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim(),
+                                name: nameController.text.trim(),
                               );
-                            } else if (updatedState.error != null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    updatedState.error!,
-                                    style: const TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                              );
+
+                              if (isSuccess) {
+                                debugPrint("Navigating to OTP page...\n");
+
+                                context.push(
+                                  '${RouteName.signUpOTPScreen}?email=${emailController.text.trim()}',
+                                );
+                              }
                             }
                           },
                         );
                   },
                 ),
                 SizedBox(height: 32.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        color: AuthColorPalette.greyscale200,
-                        height: 1,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 17.w),
-                      child: Text(
-                        "Or",
-                        style: bodyMedium?.copyWith(
-                          color: AuthColorPalette.textColorGrey,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        color: AuthColorPalette.greyscale200,
-                        height: 1,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 24.h),
-                buildLoginButton(
-                  context: context,
-                  imagePath: AppIcons.google,
 
-                  title: "Continue with Google",
-                ),
-
-                SizedBox(height: 24.h),
-
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Expanded(
+                //       child: Divider(
+                //         color: AuthColorPalette.greyscale200,
+                //         height: 1,
+                //       ),
+                //     ),
+                //     Padding(
+                //       padding: EdgeInsets.symmetric(horizontal: 17.w),
+                //       child: Text(
+                //         "Or",
+                //         style: bodyMedium?.copyWith(
+                //           color: AuthColorPalette.textColorGrey,
+                //           fontWeight: FontWeight.w500,
+                //         ),
+                //       ),
+                //     ),
+                //     Expanded(
+                //       child: Divider(
+                //         color: AuthColorPalette.greyscale200,
+                //         height: 1,
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // SizedBox(height: 24.h),
+                // buildLoginButton(
+                //   context: context,
+                //   imagePath: AppIcons.google,
+                //
+                //   title: "Continue with Google",
+                // ),
+                //
+                // SizedBox(height: 24.h),
                 footerText(
                   context: context,
                   text1: "Already have an account? ",
-                  text2: 'Log In',
+                  text2: 'Sign In',
                   onTap: () {
                     context.push(RouteName.signInScreen);
                   },

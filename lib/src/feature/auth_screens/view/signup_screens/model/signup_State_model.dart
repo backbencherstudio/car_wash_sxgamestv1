@@ -4,18 +4,14 @@ class SignupState {
   final bool isLoading;
   final String? message;
   final String? error;
-    final bool success;
 
-  SignupState({this.isLoading = false, this.message, this.error, this.success = false});
+  SignupState({this.isLoading = false, this.message, this.error});
 
-  SignupState copyWith({bool? isLoading, String? message, String? error, bool? success,
-}) {
+  SignupState copyWith({bool? isLoading, String? message, String? error}) {
     return SignupState(
       isLoading: isLoading ?? this.isLoading,
       message: message ?? this.message,
       error: error ?? this.error,
-      success: success ?? this.success,
-
     );
   }
 }

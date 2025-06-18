@@ -12,40 +12,36 @@ final signUpControllerProvider =
 
 class SignupController extends StateNotifier<SignupState> {
   SignupController() : super(SignupState());
-  Future<void> signUp({
+  Future<bool> signUp({
     required String email,
     required String password,
-    String? name,
+    required String name,
   }) async {
-    state = SignupState(isLoading: true);
+    state = state.copyWith(isLoading: true);
     try {
-      final payload = {
-        'email': email,
-        'password': password,
-        'name': name,
-      };
+      final payload = {'email': email, 'password': password, 'name': name};
       final response = await ApiServices.instance.postData(
         endPoint: ApiEndPoints.registration,
         body: payload,
         headers: {'Content-Type': 'application/json'},
       );
       if (response['success'] == true || response['success'] == "true") {
-       debugPrint("\n Signup successful: ${response['message']} \n");
+        debugPrint("\n Signup successful: ${response['message']} \n");
 
-      debugPrint("\n  Signup successful: ${response['message']} \n ");
-        state = SignupState(
-          isLoading: false,
-          message: response['message'],
-          success: true,
-        );
+        state = state.copyWith(isLoading: false, message: response['message']);
+        return true;
       } else {
-        state = SignupState(
+        state = state.copyWith(
           isLoading: false,
           error: response['message'] ?? 'Signup failed',
-          success: false,
         );
+        Fluttertoast.showToast(msg: response['message'] ?? "Sign Up Failed, Please try again!");
+        return false;
       }
     } catch (e) {
+      state = state.copyWith(
+        isLoading: false,
+      );
       Fluttertoast.showToast(
         msg: "Sign Up failed: $e",
         backgroundColor: Colors.red,
