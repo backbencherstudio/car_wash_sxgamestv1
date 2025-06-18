@@ -81,13 +81,13 @@ class SignupOtpScreen extends StatelessWidget {
                 SizedBox(height: 82.h),
                 Consumer(
                   builder: (context, ref, _) {
-                    final otpVerify = ref.watch(otpEmailverifyProvider);
+                    final otpState = ref.watch(otpEmailverifyProvider);
 
                     final otpNotifier = ref.read(
                       otpEmailverifyProvider.notifier,
                     );
 
-                    return otpVerify.isLoading
+                    return otpState.isLoading
                         ? Utils.loadingButton()
                         : CommonWidgets.primaryButton(
                           context: context,
@@ -99,30 +99,14 @@ class SignupOtpScreen extends StatelessWidget {
                                 .read(otpEmailverifyProvider.notifier)
                                 .resetError();
 
-                            await otpNotifier.emailOtpVerify(
-                              email: email,
+                            final isSuccess = await otpNotifier.emailOtpVerify(
+                              email: email ?? "",
                               otp: otpController.text,
                             );
-                            if (!context.mounted) return;
-                            final upadteOtpVerify = ref.watch(
-                              otpEmailverifyProvider,
-                            );
 
-                            if (upadteOtpVerify.success) {
+                            if (isSuccess && context.mounted) {
                               context.go(
                                 RouteName.successfullyRegisteredScreen,
-                              );
-                            } else {
-                              // Show error
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    upadteOtpVerify.message ??
-                                        "OTP verification failed. Please try again.",
-                                    style: TextStyle(color: Color(0xff000000)),
-                                  ),
-                                  backgroundColor: Colors.red,
-                                ),
                               );
                             }
                           },
@@ -136,13 +120,13 @@ class SignupOtpScreen extends StatelessWidget {
                     final resendNotifier = ref.read(resendOtpProvider.notifier);
                     return footerText(
                       text1: "Haven’t you got the OTP yet? ",
-                      text2: resend.isLoading ? "Loading...." : "Resend Code",
+                      text2: resend.isLoading ? "Sending OTP...." : "Resend Code",
                       context: context,
                       onTap: () async {
-                        await resendNotifier.hitTheResend(
+                        final isSuccess = await resendNotifier.hitTheResend(
                           email: email.toString(),
                         );
-                        debugPrint("\n\n\n ${resend.message}\n\n\n");
+                        debugPrint("\nRe-send otp : ${isSuccess.toString()}\n");
                       },
                     );
                   },

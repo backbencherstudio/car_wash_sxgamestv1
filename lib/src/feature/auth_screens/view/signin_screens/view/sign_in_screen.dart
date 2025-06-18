@@ -72,7 +72,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 Text(
-                  "Log in to your account",
+                  "Sign in to your account",
                   style: titleSmall?.copyWith(
                     color: Theme.of(context).colorScheme.onSecondary,
                     fontWeight: FontWeight.w500,
@@ -192,7 +192,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ? Utils.loadingButton()
                         : CommonWidgets.primaryButton(
                           context: context,
-                          title: "Log in",
+                          title: "Sign in",
                           color: AppColors.primary,
                           textColor: AuthColorPalette.white,
                           onPressed: () async {
@@ -208,41 +208,41 @@ class _SignInScreenState extends State<SignInScreen> {
                         );
                   },
                 ),
-                SizedBox(height: 44.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        color: AuthColorPalette.greyscale200,
-                        height: 1,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 17.w),
-                      child: Text(
-                        "Or",
-                        style: bodyMedium?.copyWith(
-                          color: AuthColorPalette.textColorGrey,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        color: AuthColorPalette.greyscale200,
-                        height: 1,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 44.h),
-                buildLoginButton(
-                  context: context,
-                  imagePath: AppIcons.google,
-
-                  title: "Continue with Google",
-                ),
+                // SizedBox(height: 44.h),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Expanded(
+                //       child: Divider(
+                //         color: AuthColorPalette.greyscale200,
+                //         height: 1,
+                //       ),
+                //     ),
+                //     Padding(
+                //       padding: EdgeInsets.symmetric(horizontal: 17.w),
+                //       child: Text(
+                //         "Or",
+                //         style: bodyMedium?.copyWith(
+                //           color: AuthColorPalette.textColorGrey,
+                //           fontWeight: FontWeight.w500,
+                //         ),
+                //       ),
+                //     ),
+                //     Expanded(
+                //       child: Divider(
+                //         color: AuthColorPalette.greyscale200,
+                //         height: 1,
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // SizedBox(height: 44.h),
+                // buildLoginButton(
+                //   context: context,
+                //   imagePath: AppIcons.google,
+                //
+                //   title: "Continue with Google",
+                // ),
                 // SizedBox(height: 16.h),
                 // buildLoginButton(
                 //   context: context,
