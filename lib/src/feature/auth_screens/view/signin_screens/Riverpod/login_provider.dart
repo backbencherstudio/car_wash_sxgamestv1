@@ -6,7 +6,6 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/model/logi
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../../core/routes/route_name.dart';
 
 final loginProvider = StateNotifierProvider<LoginNotifier, LoginStateModel>((

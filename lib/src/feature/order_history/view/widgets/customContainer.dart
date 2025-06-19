@@ -8,33 +8,51 @@ import 'package:go_router/go_router.dart';
 import 'custom_row_tile.dart';
 
 class Customcontainer extends StatelessWidget {
-  const Customcontainer({super.key});
+  final String status;
+  final String serviceName;
+  final String orderID;
+  final String orderLoacation;
+  final String orderDate;
+  final String orderTime;
+  final String serviceType;
+
+  const Customcontainer({
+    super.key,
+    required this.status,
+    required this.serviceName,
+    required this.orderDate,
+    required this.orderID,
+    required this.orderLoacation,
+    required this.orderTime,
+    required this.serviceType,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 400.w,
-      height: 340.h,
       decoration: Utils.commonBoxDecoration(),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
             Row(
               children: [
-                CustomOrderButton(text: "Complete Order"),
+                CustomOrderButton(text: status),
                 Spacer(),
-                CustomButton(onTap: () {
-                  context.push(RouteName.feedbackScreen);
-                },),
+                CustomButton(
+                  onTap: () {
+                    context.push(RouteName.feedbackScreen);
+                  },
+                ),
               ],
             ),
-          SizedBox(height: 4.h,),
+            SizedBox(height: 4.h),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "06 May 2025",
+                orderDate,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
@@ -48,20 +66,17 @@ class Customcontainer extends StatelessWidget {
               indent: 3.w,
               endIndent: 3.w,
             ),
-            CustomRowTile(text: "Service Name", leadingText: "Exterior Wash"),
+            CustomRowTile(text: "Service Name", leadingText: serviceName),
             SizedBox(height: 16.h),
-            CustomRowTile(text: "Order ID", leadingText: "#54637898"),
+            CustomRowTile(text: "Order ID", leadingText: orderID),
             SizedBox(height: 16.h),
-            CustomRowTile(text: "Order Location", leadingText: "New York City"),
+            CustomRowTile(text: "Order Location", leadingText: orderLoacation),
             SizedBox(height: 16.h),
-            CustomRowTile(text: "Order Date", leadingText: "02-05-2025"),
+            CustomRowTile(text: "Order Date", leadingText: orderDate),
             SizedBox(height: 16.h),
-            CustomRowTile(text: "Order Time", leadingText: "08:00 am"),
+            CustomRowTile(text: "Order Time", leadingText: orderTime),
             SizedBox(height: 16.h),
-            CustomRowTile(
-              text: "Service Type",
-              leadingText: "Schedule Service",
-            ),
+            CustomRowTile(text: "Service Type", leadingText: serviceType),
           ],
         ),
       ),
