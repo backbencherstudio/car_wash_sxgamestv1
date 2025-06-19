@@ -13,5 +13,9 @@ class ApiEndPoints {
   static const String login = 'api/auth/login';
   static const String updateUserData = 'api/auth/me';
   static const String makePayment = 'api/payment/stripe/subscribe';
+<<<<<<< HEAD
   static const String orderHistory = 'api/order-history';
+=======
+  static const String clientReview = 'api/order-history/reviews';
+>>>>>>> 43bdd8892894773103ddb060395157b344e97c6d
 }

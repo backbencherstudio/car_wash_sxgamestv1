@@ -3,6 +3,7 @@ import 'package:car_wash/core/routes/route_name.dart';
 import 'package:car_wash/core/services/payment_services/stripe_services.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
+import 'package:car_wash/src/feature/auth_screens/view/signin_screens/Riverpod/login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,12 +59,26 @@ class PaymentSelectionFormScreen extends StatelessWidget {
               SizedBox(height: 16.h),
               Consumer(
                 builder: (_, ref, _) {
-                  return Utils.primaryButton(
+                  final isLoading = ref.watch(loginProvider).isLoading;
+                  return isLoading ?
+                  Utils.loadingButton()
+                  :
+
+                    Utils.primaryButton(
                     onPressed: () async {
-                      /// payment id paile registraion e hit korum naile toast marum ...river pod dia kora lagbo
-                      ///
-                      final String? paymentId = await StripeServices.instance.createPaymentMethod();
-                        context.go(RouteName.homeScreen);
+                     FocusScope.of(context).unfocus();
+
+                        final isSuccess = await ref.read(loginProvider.notifier).makePayment();
+                       if(isSuccess != null && isSuccess){
+                         debugPrint("\nSuccessfully made payment, navigating to home screen.\n");
+                         if(context.mounted){
+                           context.go(RouteName.homeScreen);
+                         }
+                       }
+
+
+
+
                     },
                     text: "Start Membership",
                   );

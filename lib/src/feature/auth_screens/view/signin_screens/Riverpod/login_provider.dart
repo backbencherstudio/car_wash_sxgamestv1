@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../../../core/routes/route_name.dart';
+import '../../../../../../core/services/payment_services/stripe_services.dart';
 
 final loginProvider = StateNotifierProvider<LoginNotifier, LoginStateModel>((
   ref,
@@ -110,8 +111,11 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
     state = state.copyWith(userToken: token);
   }
 
-  Future<bool?> makePayment({required String paymentMethodId}) async {
+  Future<bool?> makePayment() async {
     try{
+      state = state.copyWith(isLoading: true);
+      final String? paymentMethodId = await StripeServices.instance.createPaymentMethod();
+      debugPrint("\nmaking payment for email : ${state.userModel?.email}\nuser id : ${state.userModel?.id}\n");
       final body = {
         "email":state.userModel?.email ?? "",
         "userId":state.userModel?.id ?? "",
@@ -121,6 +125,7 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
         "Content-Type":"application/json"
       });
       debugPrint("\npayment response : $response\n");
+      state = state.copyWith(isLoading: false);
       if(response["success"] == true || response["success"].toString().toLowerCase() == 'true'){
         return true;
       }
@@ -128,6 +133,7 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
         return false;
       }
     }catch(error){
+      state = state.copyWith(isLoading: false);
       throw Exception("Error while making payment : $error");
     }
   }
