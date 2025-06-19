@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:car_wash/core/services/api_services/api_endpoints.dart';
 import 'package:car_wash/core/services/api_services/api_services.dart';
+import 'package:car_wash/src/feature/auth_screens/model/user_model.dart';
+import 'package:car_wash/src/feature/auth_screens/view/signin_screens/Riverpod/login_provider.dart';
 import 'package:car_wash/src/feature/service_booking_screens/model/service_booking_model.dart';
 import 'package:car_wash/src/feature/service_booking_screens/riverpod/service_booking_screens_state.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +23,25 @@ import '../view/widgets/extra_payment_bottom_sheet.dart';
 final serviceBookingRiverpod =
     StateNotifierProvider<ServiceBookingRiverpod, ServiceBookingState>((ref) {
       final googleMapState = ref.watch(gMapRiverpod);
-      return ServiceBookingRiverpod(googleMapState);
+      final userModel = ref.watch(loginProvider).userModel;
+      final userToken = ref.watch(loginProvider).userToken;
+      return ServiceBookingRiverpod(
+        googleMapState: googleMapState,
+        userToken: userToken!,
+        userModel: userModel!,
+      );
     });
 
 class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
   final GoogleMapState googleMapState;
+  final UserModel userModel;
+  final String userToken;
 
-  ServiceBookingRiverpod(this.googleMapState) : super(ServiceBookingState());
+  ServiceBookingRiverpod({
+    required this.googleMapState,
+    required this.userModel,
+    required this.userToken,
+  }) : super(ServiceBookingState());
 
   void onSelectServiceTimeType({required ServiceTime selectedService}) {
     if (selectedService == state.selectedServiceTimeType) return;
@@ -134,15 +148,18 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
           state = state.copyWith(
             serviceBookingModel: ServiceBookingModel(
               serviceType: 'car_wash',
-              serviceTiming: 'instant',
+              serviceTiming:
+                  state.selectedServiceTimeType == ServiceTime.instantService
+                      ? 'instant'
+                      : 'scheduled',
               scheduleDate:
                   pickedDate != null
-                      ? DateFormat('dd-MM-yyyy').format(pickedDate)
-                      : DateFormat('dd-MM-yyyy').format(DateTime.now()),
+                      ? DateFormat('yyyy-MM-dd').format(pickedDate)
+                      : DateFormat('yyyy-MM-dd').format(DateTime.now()),
               scheduleTime:
                   picked != null
-                      ? DateFormat('hh:mm a').format(picked as DateTime)
-                      : DateFormat('hh:mm a').format(DateTime.now()),
+                      ? DateFormat('hh:mm').format(picked as DateTime)
+                      : DateFormat('hh:mm').format(DateTime.now()),
               location: googleMapState.autoDetectLocation,
             ),
           );
@@ -190,23 +207,28 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
         "\nPayment Method is called. Payment processing is starting...\n",
       );
       state = state.copyWith(isPaymentProcessing: true);
-      final String? paymentMethodId =
-          await StripeServices.instance.createPaymentMethod();
+
+      final String? paymentMethodId = await StripeServices.instance
+          .createPaymentMethod(email: userModel.email);
+
       if (paymentMethodId != null) {
-        debugPrint("\nPayment completed. Payment id : $paymentMethodId\n");
+        final body = {
+          "email": userModel.email,
+          "userId": userModel.id,
+          "paymentMethodId": paymentMethodId.toString(),
+          "amount": 20,
+          "currency": "usd",
+        };
+        debugPrint("\nbody : $body\n");
+        final header = {
+          'Authorization': 'Bearer $userToken',
+          'Content-Type': 'application/json',
+        };
+
         final response = await ApiServices.instance.postData(
           endPoint: ApiEndPoints.extraPayment,
-          body: {
-            "email": "tanvirbdcallingnode@gmail.com",
-            "userId": "cmbbzywb5000ojhy052i14fzm",
-            "paymentMethodId": paymentMethodId.toString(),
-            "amount": '20',
-            "currency": "usd",
-          },
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiY21iYnp5d2I1MDAwb2poeTA1MmkxNGZ6bSIsImlhdCI6MTc0ODY4MTc3NSwiZXhwIjoxNzQ4NzY4MTc1fQ.2lI5kyS5MJFynWHWNKMsjj6cW3Yb-6v3p5YgOKkOifk',
-          },
+          body: body,
+          headers: header,
         );
         state = state.copyWith(
           isPaymentProcessing: false,
@@ -243,5 +265,45 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
       isPaymentProcessing: false,
       paymentId: null,
     );
+  }
+
+  Future<bool> confirmOrder() async {
+    try {
+      state = state.copyWith(isContinueButtonLoading: true);
+      final body = state.serviceBookingModel!.toJson();
+      final headers = {
+        "Authorization": "bearer $userToken",
+        'Content-Type': 'application/json',
+      };
+      final response = await ApiServices.instance.postData(
+        endPoint:
+            state.selectedServiceTimeType == ServiceTime.instantService
+                ? ApiEndPoints.instantServiceBook
+                : ApiEndPoints.scheduledServiceBook,
+        body: body,
+        headers: headers,
+      );
+      if (response['success'] == true || response['success'] == 'true') {
+        clearBookingData();
+        Fluttertoast.showToast(
+
+          msg: "Order Confirmed",
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+        );
+        return true;
+      } else {
+        Fluttertoast.showToast(
+          msg: "Order Confirmation Failed",
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+        return false;
+      }
+    } catch (error) {
+      throw Exception('Error while confirming order : $error');
+    }finally{
+      state = state.copyWith(isContinueButtonLoading: false);
+    }
   }
 }

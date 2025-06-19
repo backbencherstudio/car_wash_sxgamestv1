@@ -14,4 +14,6 @@ class ApiEndPoints {
   static const String updateUserData = 'api/auth/me';
   static const String makePayment = 'api/payment/stripe/subscribe';
   static const String clientReview = 'api/order-history/reviews';
+  static const String instantServiceBook = 'api/service-booking/instant';
+  static const String scheduledServiceBook = 'api/service-booking/scheduled';
 }
