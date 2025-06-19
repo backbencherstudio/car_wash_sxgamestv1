@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomOrderButton extends StatelessWidget {
   final String text;
-  const CustomOrderButton({super.key,
+  const CustomOrderButton( {super.key,
   required this.text
   });
 
