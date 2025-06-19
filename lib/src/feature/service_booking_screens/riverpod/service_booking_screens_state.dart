@@ -15,9 +15,14 @@ class ServiceBookingState {
   bool isContinueButtonLoading;
   bool isPaymentProcessing;
   String? paymentId;
+  DateTime? pickedDate;
+  TimeOfDay? pickedTime;
   ServiceBookingModel? serviceBookingModel;
 
+
   ServiceBookingState({
+    this.pickedDate,
+    this.pickedTime,
     this.selectedServiceTimeType = ServiceTime.instantService,
     this.selectedServiceType = ServiceType.carWash,
     this.locationDetectType = LocationDetectType.auto,
@@ -39,6 +44,8 @@ class ServiceBookingState {
     ServiceBookingModel? serviceBookingModel,
   }) {
     return ServiceBookingState(
+      pickedDate: pickedDate ?? this.pickedDate,
+      pickedTime: pickedTime ?? this.pickedTime,
       selectedServiceTimeType:
           selectedServiceTimeType ?? this.selectedServiceTimeType,
       selectedServiceType: selectedServiceType ?? this.selectedServiceType,

@@ -6,6 +6,7 @@ import 'package:car_wash/src/feature/service_booking_screens/view/widgets/servic
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/constant/images.dart';
 import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
@@ -65,7 +66,14 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                   children: [
                     Padding(
                       padding: EdgeInsets.only(left: 20.w, top: 20),
-                      child: Utils.backButton(context: context),
+                      child: Consumer(
+                        builder: (_, ref, _) {
+                          return Utils.backButton(context: context,onTap: (){
+                            ref.read(serviceBookingRiverpod.notifier).clearBookingData();
+                            context.pop();
+                          });
+                        }
+                      ),
                     ),
 
                     HomeHeader(isOnlyTrailing: true),

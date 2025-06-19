@@ -44,12 +44,12 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
   }) : super(ServiceBookingState());
 
   void onSelectServiceTimeType({required ServiceTime selectedService}) {
-    if (selectedService == state.selectedServiceTimeType) return;
+   // if (selectedService == state.selectedServiceTimeType) return;
     state = state.copyWith(selectedServiceTimeType: selectedService);
   }
 
   void onSelectServiceType({required ServiceType selectedServiceType}) {
-    if (selectedServiceType == state.selectedServiceType) return;
+  //  if (selectedServiceType == state.selectedServiceType) return;
     state = state.copyWith(selectedServiceType: selectedServiceType);
   }
 
@@ -68,11 +68,13 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
     state = state.copyWith(pickedTime: pickedTime);
   }
 
-  void onContinueToBooking({
+  Future<void> onContinueToBooking({
     required BuildContext context,
     required TabController tabController,
-    required Function onAutoDetectLocation,
-  }) async {
+    required Function() onAutoDetectLocation,
+  }) async
+  {
+    debugPrint("\ncontinue button pressed, service time type : ${state.selectedServiceTimeType.toString()}\n");
     state = state.copyWith(isContinueButtonLoading: true);
     DateTime? pickedDate;
     TimeOfDay? picked;
@@ -81,7 +83,8 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
     /// Default picked date is today
     /// after picked date and time, store it in service booking state's variable
     if (tabController.index == 0 &&
-        state.selectedServiceTimeType == ServiceTime.scheduledService) {
+        state.selectedServiceTimeType == ServiceTime.scheduledService)
+    {
       /// Date picker
       pickedDate = await showDatePicker(
         initialDate: DateTime.now(),
@@ -113,26 +116,35 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
         onPickedDate(pickedDate: pickedDate);
         onPickedTime(pickedTime: picked);
       }
-    } else if (tabController.index == 0 &&
+    }
+    else if (tabController.index == 0 &&
         state.selectedServiceTimeType == ServiceTime.instantService) {
       await showPaymentBottomSheet(context: context);
     }
 
+    debugPrint("\n${state.selectedServiceTimeType.toString()}\n");
     if (tabController.index == 0 &&
         state.selectedServiceTimeType == ServiceTime.instantService) {
       state = state.copyWith(isContinueButtonLoading: false);
-      if (state.paymentId != null) {
+
+      if (state.paymentId != null && state.paymentId != 'null') {
+        debugPrint("\n animating to next tab, payment id : ${state.paymentId}\n");
         tabController.animateTo(1);
       }
 
       return;
-    } else if ((state.selectedServiceTimeType ==
+    }
+    else if ((state.selectedServiceTimeType ==
             ServiceTime.scheduledService) &&
-        (pickedDate != null && picked != null)) {
+        (pickedDate != null && picked != null) && (tabController.index == 0)) {
       tabController.animateTo(1);
       state = state.copyWith(isContinueButtonLoading: false);
       return;
     }
+    else{
+      state = state.copyWith(isContinueButtonLoading: false);
+    }
+    debugPrint("\n${state.selectedServiceTimeType.toString()}\n");
 
     /// If Tab index is the last one, and location detection type is selected to auto
     /// then just call the google Map Notifier auto detect location method
@@ -140,12 +152,17 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
     if (tabController.index + 1 == tabController.length) {
       /// Automatically detecting location
       if (state.locationDetectType == LocationDetectType.auto) {
-        debugPrint("\nDetecting Location automatically.\n");
+        state = state.copyWith(isContinueButtonLoading: true);
+
         if (googleMapState.autoDetectLocation == null) {
+          debugPrint("\nDetecting Location automatically.\n");
           await onAutoDetectLocation();
-        } else {
-          state = state.copyWith(isContinueButtonLoading: false);
+        }
+        else {
+          debugPrint("\nLocation is already detected\n");
+          debugPrint("\n${state.selectedServiceTimeType.toString()}\n");
           state = state.copyWith(
+            isContinueButtonLoading: false,
             serviceBookingModel: ServiceBookingModel(
               serviceType: 'car_wash',
               serviceTiming:
@@ -163,13 +180,14 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
               location: googleMapState.autoDetectLocation,
             ),
           );
-          debugPrint("\nLocation is already detected\n");
+
           context.pushReplacement(
             RouteName.confirmBookingScreen,
             extra: state.serviceBookingModel,
           );
         }
-      } else {
+      }
+      else {
         debugPrint("\nDetecting Location manually.\n");
         state = state.copyWith(isContinueButtonLoading: false);
         if (googleMapState.userAddress == null) {
@@ -179,13 +197,24 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
           state = state.copyWith(
             serviceBookingModel: ServiceBookingModel(
               serviceType: 'car_wash',
-              serviceTiming: 'instant',
-              scheduleTime: null,
-              scheduleDate: null,
+              serviceTiming:
+              state.selectedServiceTimeType == ServiceTime.instantService
+                  ? 'instant'
+                  : 'scheduled',
+              scheduleDate:
+              pickedDate != null
+                  ? DateFormat('yyyy-MM-dd').format(pickedDate)
+                  : DateFormat('yyyy-MM-dd').format(DateTime.now()),
+              scheduleTime:
+              picked != null
+                  ? DateFormat('hh:mm').format(picked as DateTime)
+                  : DateFormat('hh:mm').format(DateTime.now()),
               location: googleMapState.userAddress,
             ),
           );
-          debugPrint("\nLocation is already selected\n");
+          debugPrint("\nLocation is already selected\n${ state.selectedServiceTimeType == ServiceTime.instantService
+              ? 'instant'
+              : 'scheduled'}\n");
           context.pushReplacement(
             RouteName.confirmBookingScreen,
             extra: state.serviceBookingModel,
@@ -193,7 +222,7 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
         }
       }
     }
-
+    debugPrint("\ncontinue button end, service time type : ${state.selectedServiceTimeType.toString()}\n");
     /// Checking and assuring if the service time is selected to schedule service
     /// the picked date and time is not  null
 
@@ -263,10 +292,12 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
       locationDetectType: LocationDetectType.auto,
       isContinueButtonLoading: false,
       isPaymentProcessing: false,
-      paymentId: null,
+      paymentId: "null",
     );
   }
 
+
+  /// Call this API to confirm the order
   Future<bool> confirmOrder() async {
     try {
       state = state.copyWith(isContinueButtonLoading: true);
@@ -286,7 +317,6 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
       if (response['success'] == true || response['success'] == 'true') {
         clearBookingData();
         Fluttertoast.showToast(
-
           msg: "Order Confirmed",
           backgroundColor: Colors.green,
           textColor: Colors.white,
@@ -302,7 +332,7 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
       }
     } catch (error) {
       throw Exception('Error while confirming order : $error');
-    }finally{
+    } finally {
       state = state.copyWith(isContinueButtonLoading: false);
     }
   }
