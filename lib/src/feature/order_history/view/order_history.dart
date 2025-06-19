@@ -1,5 +1,4 @@
 import 'package:car_wash/core/utils/utils.dart';
-import 'package:car_wash/src/feature/all_blog_list_screen/view/widget/shimmer/blog_shimmer.dart';
 import 'package:car_wash/src/feature/order_history/Riverpod/order_notifier.dart';
 import 'package:car_wash/src/feature/order_history/view/widgets/customContainer.dart';
 import 'package:car_wash/src/feature/order_history/view/widgets/shimmer/order_Shimmer.dart';
@@ -52,43 +51,57 @@ class OrderHistoryScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                Consumer(
-  builder: (context, ref, _) {
-    final orderListAsync = ref.watch(orderHistoryProvider);
+                  Consumer(
+                    builder: (context, ref, _) {
+                      final orderListAsync = ref.watch(orderHistoryProvider);
 
-    return orderListAsync.when(
-      data: (orderList) {
-        if (orderList.isEmpty) {
-          return Center(child: Text("No order history found"));
-        }
+                      return orderListAsync.when(
+                        data: (orderList) {
+                          if (orderList.isEmpty) {
+                            return Center(
+                              child: Text("No order history found"),
+                            );
+                          }
 
-        return ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: orderList.length,
-          itemBuilder: (context, index) {
-            final order = orderList[index];
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: orderList.length,
+                            itemBuilder: (context, index) {
+                              final order = orderList[index];
 
-            return Padding(
-              padding:  EdgeInsets.only(left: 24.w, right: 24.w, top: 10.h, bottom: 16.h),
-              child: Customcontainer(
-                status: order.status,
-                serviceName: order.service_type,
-                orderDate: order.schedule_date,
-                orderID: order.id,
-                orderLoacation: order.location,
-                orderTime: order.schedule_time,
-                serviceType: order.service_type,
-              ),
-            );
-          },
-        );
-      },
-      loading: () => OrderShimmer(isHorizontal: false, height: 449.h),
-      error: (error, _) => Center(child: Text("Error: ${error.toString()}")),
-    );
-  },
-),
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  left: 24.w,
+                                  right: 24.w,
+                                  top: 10.h,
+                                  bottom: 16.h,
+                                ),
+                                child: Customcontainer(
+                                  status: order.status,
+                                  serviceName: order.service_type,
+                                  orderDate: order.schedule_date,
+                                  orderID: order.id,
+                                  orderLoacation: order.location,
+                                  orderTime: order.schedule_time,
+                                  serviceType: order.service_type,
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        loading:
+                            () => OrderShimmer(
+                              isHorizontal: false,
+                              height: 449.h,
+                            ),
+                        error:
+                            (error, _) => Center(
+                              child: Text("Error: ${error.toString()}"),
+                            ),
+                      );
+                    },
+                  ),
 
                   SizedBox(height: 100.h),
                 ],

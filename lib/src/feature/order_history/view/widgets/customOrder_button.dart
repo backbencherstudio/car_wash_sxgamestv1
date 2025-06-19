@@ -16,11 +16,11 @@ class CustomOrderButton extends StatelessWidget {
         color: AppColors.primary.withValues(alpha: .03)
       ),
       child: Padding(
-        padding:  EdgeInsets.all(8.0),
+        padding:  EdgeInsets.all(12.0),
         child: Text(text,
         style: Theme.of(context).textTheme.bodySmall!.copyWith(
           fontWeight: FontWeight.w400,
-          fontSize: 10.sp,
+          fontSize: 14.sp,
           color: AppColors.primary
         ),
         ),
