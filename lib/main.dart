@@ -2,6 +2,7 @@ import 'package:car_wash/core/services/local_storage_services/hive_services.dart
 import 'package:car_wash/core/services/payment_services/stripe_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:car_wash/core/theme/theme.dart';
@@ -11,7 +12,7 @@ import 'core/routes/route_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await dotenv.load(fileName: ".env");
   await StripeServices.instance.initialize();
   await HiveSecureStorageService.init();
 

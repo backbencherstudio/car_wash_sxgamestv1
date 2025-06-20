@@ -12,6 +12,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../home_screen/view/widgets/drawer/home_drawer.dart';
 import '../../home_screen/view/widgets/home_header/home_header.dart';
+import '../../service_booking_screens/riverpod/service_booking_screens_riverpod.dart';
 
 class GoogleMapScreen extends StatelessWidget {
   GoogleMapScreen({super.key});
@@ -41,6 +42,7 @@ class GoogleMapScreen extends StatelessWidget {
         child: Consumer(
           builder: (_, ref, _) {
             final googleMapState = ref.watch(gMapRiverpod);
+            final serviceBookingState = ref.read(serviceBookingRiverpod.notifier);
             return Column(
               mainAxisSize: MainAxisSize.min,
               spacing: 14.h,
@@ -80,8 +82,15 @@ class GoogleMapScreen extends StatelessWidget {
                 ),
 
                 Utils.primaryButton(
-                  onPressed: () {
-                    context.pop();
+                  onPressed: () async {
+                    if(googleMapState.userAddress != null){
+                      await serviceBookingState.onSelectManuallyLocation(googleMapState.userAddress!);
+                      if(context.mounted){
+                        context.pop();
+                      }
+
+                    }
+
                   },
                   text: "Confirm Location",
                 ),

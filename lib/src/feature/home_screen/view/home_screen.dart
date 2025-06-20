@@ -37,10 +37,10 @@ class HomeScreen extends StatelessWidget {
 
                     BookService(),
                     SizedBox(height: 33.h),
+
                     //
                     // ShowBanner(),
                     // SizedBox(height: 33.h),
-
                     HorizontalBlogList(),
                     SizedBox(height: 23.h),
 

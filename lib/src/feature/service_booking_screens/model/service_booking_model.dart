@@ -5,12 +5,13 @@ class ServiceBookingModel {
   String? scheduleDate;
   String? scheduleTime;
 
-  ServiceBookingModel(
-      {this.serviceType,
-        this.serviceTiming,
-        this.location,
-        this.scheduleDate,
-        this.scheduleTime});
+  ServiceBookingModel({
+    this.serviceType,
+    this.serviceTiming,
+    this.location,
+    this.scheduleDate,
+    this.scheduleTime,
+  });
 
   ServiceBookingModel.fromJson(Map<String, dynamic> json) {
     serviceType = json['service_type'];
@@ -28,5 +29,21 @@ class ServiceBookingModel {
     data['schedule_date'] = this.scheduleDate;
     data['schedule_time'] = this.scheduleTime;
     return data;
+  }
+
+  ServiceBookingModel copyWith({
+    String? serviceType,
+    String? serviceTiming,
+    String? location,
+    String? scheduleDate,
+    String? scheduleTime,
+  }) {
+    return ServiceBookingModel(
+      serviceType: serviceType ?? this.serviceType,
+      serviceTiming: serviceTiming ?? this.serviceTiming,
+      location: location ?? this.location,
+      scheduleDate: scheduleDate ?? this.scheduleDate,
+      scheduleTime: scheduleTime ?? this.scheduleTime,
+    );
   }
 }

@@ -6,7 +6,6 @@ import 'package:car_wash/src/feature/auth_screens/view/signin_screens/model/logi
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../../core/routes/route_name.dart';
 import '../../../../../../core/services/payment_services/stripe_services.dart';
 
@@ -115,7 +114,7 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
   Future<bool?> makePayment() async {
     try{
       state = state.copyWith(isLoading: true);
-      final String? paymentMethodId = await StripeServices.instance.createPaymentMethod();
+      final String? paymentMethodId = await StripeServices.instance.createPaymentMethod(email: state.userModel!.email);
       debugPrint("\nmaking payment for email : ${state.userModel?.email}\nuser id : ${state.userModel?.id}\n");
       final body = {
         "email":state.userModel?.email ?? "",
