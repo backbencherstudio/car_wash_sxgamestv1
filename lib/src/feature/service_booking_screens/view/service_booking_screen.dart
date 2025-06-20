@@ -86,24 +86,22 @@ class ServiceBookingScreen extends StatelessWidget {
                         serviceBookingRiverpod.notifier,
                       );
 
-
                       return serviceBookingState.isContinueButtonLoading
                           ? Utils.loadingButton()
                           : Utils.primaryButton(
                             height: 48.h,
                             onPressed: () async {
-                              final isSuccess = await serviceBookingNotifier.onSelectServiceTime(context);
-                              debugPrint("\nSuccessfully completed the first phase of booking : $isSuccess\n");
+                              final isSuccess = await serviceBookingNotifier
+                                  .onSelectServiceTime(context);
+                              debugPrint(
+                                "\nSuccessfully completed the first phase of booking : $isSuccess\n",
+                              );
 
-                              if(isSuccess == true && context.mounted){
-                                context.push(RouteName.serviceLocationSelectionScreen);
+                              if (isSuccess == true && context.mounted) {
+                                context.pushReplacement(
+                                  RouteName.serviceLocationSelectionScreen,
+                                );
                               }
-                              // serviceBookingNotifier.onContinueToBooking(
-                              //   context: context,
-                              //   tabController: tabController,
-                              //   onAutoDetectLocation:
-                              //       googleMapNotifier.onAutoDetectLocation,
-                              // );
                             },
                             text: "Continue",
                           );
