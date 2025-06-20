@@ -114,7 +114,7 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
   Future<bool?> makePayment() async {
     try{
       state = state.copyWith(isLoading: true);
-      final String? paymentMethodId = await StripeServices.instance.createPaymentMethod();
+      final String? paymentMethodId = await StripeServices.instance.createPaymentMethod(email: state.userModel!.email);
       debugPrint("\nmaking payment for email : ${state.userModel?.email}\nuser id : ${state.userModel?.id}\n");
       final body = {
         "email":state.userModel?.email ?? "",

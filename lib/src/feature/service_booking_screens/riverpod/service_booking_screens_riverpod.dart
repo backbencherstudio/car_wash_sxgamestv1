@@ -1,18 +1,14 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:car_wash/core/services/api_services/api_endpoints.dart';
 import 'package:car_wash/core/services/api_services/api_services.dart';
+import 'package:car_wash/core/services/location_services/location_services.dart';
+import 'package:car_wash/src/feature/auth_screens/model/user_model.dart';
+import 'package:car_wash/src/feature/auth_screens/view/signin_screens/Riverpod/login_provider.dart';
 import 'package:car_wash/src/feature/service_booking_screens/model/service_booking_model.dart';
 import 'package:car_wash/src/feature/service_booking_screens/riverpod/service_booking_screens_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
-import 'package:http/http.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../core/routes/route_name.dart';
 import '../../../../core/services/payment_services/stripe_services.dart';
 import '../../google_map_screen/riverpod/google_map_riverpod.dart';
 import '../../google_map_screen/riverpod/google_map_state.dart';
@@ -21,21 +17,31 @@ import '../view/widgets/extra_payment_bottom_sheet.dart';
 final serviceBookingRiverpod =
     StateNotifierProvider<ServiceBookingRiverpod, ServiceBookingState>((ref) {
       final googleMapState = ref.watch(gMapRiverpod);
-      return ServiceBookingRiverpod(googleMapState);
+      final userModel = ref.watch(loginProvider).userModel;
+      final userToken = ref.watch(loginProvider).userToken;
+      return ServiceBookingRiverpod(
+        googleMapState: googleMapState,
+        userToken: userToken!,
+        userModel: userModel!,
+      );
     });
 
 class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
   final GoogleMapState googleMapState;
+  final UserModel userModel;
+  final String userToken;
 
-  ServiceBookingRiverpod(this.googleMapState) : super(ServiceBookingState());
+  ServiceBookingRiverpod({
+    required this.googleMapState,
+    required this.userModel,
+    required this.userToken,
+  }) : super(ServiceBookingState());
 
   void onSelectServiceTimeType({required ServiceTime selectedService}) {
-    if (selectedService == state.selectedServiceTimeType) return;
     state = state.copyWith(selectedServiceTimeType: selectedService);
   }
 
   void onSelectServiceType({required ServiceType selectedServiceType}) {
-    if (selectedServiceType == state.selectedServiceType) return;
     state = state.copyWith(selectedServiceType: selectedServiceType);
   }
 
@@ -54,22 +60,22 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
     state = state.copyWith(pickedTime: pickedTime);
   }
 
-  void onContinueToBooking({
-    required BuildContext context,
-    required TabController tabController,
-    required Function onAutoDetectLocation,
-  }) async {
-    state = state.copyWith(isContinueButtonLoading: true);
-    DateTime? pickedDate;
-    TimeOfDay? picked;
-
-    /// If user select "Schedule Service then show date picker and time picker
-    /// Default picked date is today
-    /// after picked date and time, store it in service booking state's variable
-    if (tabController.index == 0 &&
-        state.selectedServiceTimeType == ServiceTime.scheduledService) {
+  /// select service time
+  Future<bool?> onSelectServiceTime(BuildContext context) async {
+    /// Extra payment for instant service
+    if (state.selectedServiceTimeType == ServiceTime.instantService) {
+      await showPaymentBottomSheet(context: context);
+      if (state.paymentId != null && state.paymentId != 'null') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    /// ====================================== ///
+    /// selecting schedule for schedule service
+    else {
       /// Date picker
-      pickedDate = await showDatePicker(
+      final DateTime? pickedDate = await showDatePicker(
         initialDate: DateTime.now(),
         context: context,
         firstDate: DateTime(DateTime.now().year - 1),
@@ -78,7 +84,7 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
       debugPrint("\npicked date : $pickedDate\n");
 
       /// Time picker
-      picked = await showTimePicker(
+      final TimeOfDay? timeOfDay = await showTimePicker(
         context: context,
         initialTime: TimeOfDay.now(),
         builder: (_, child) {
@@ -92,95 +98,13 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
           );
         },
       );
-      debugPrint("\npicked time : $picked\n");
-
-      /// Storing picked date and time
-      if (pickedDate != null && picked != null) {
-        onPickedDate(pickedDate: pickedDate);
-        onPickedTime(pickedTime: picked);
-      }
-    } else if (tabController.index == 0 &&
-        state.selectedServiceTimeType == ServiceTime.instantService) {
-      await showPaymentBottomSheet(context: context);
-    }
-
-    if (tabController.index == 0 &&
-        state.selectedServiceTimeType == ServiceTime.instantService) {
-      state = state.copyWith(isContinueButtonLoading: false);
-      if (state.paymentId != null) {
-        tabController.animateTo(1);
-      }
-
-      return;
-    } else if ((state.selectedServiceTimeType ==
-            ServiceTime.scheduledService) &&
-        (pickedDate != null && picked != null)) {
-      tabController.animateTo(1);
-      state = state.copyWith(isContinueButtonLoading: false);
-      return;
-    }
-
-    /// If Tab index is the last one, and location detection type is selected to auto
-    /// then just call the google Map Notifier auto detect location method
-    /// Else navigate to the google map screen
-    if (tabController.index + 1 == tabController.length) {
-      /// Automatically detecting location
-      if (state.locationDetectType == LocationDetectType.auto) {
-        debugPrint("\nDetecting Location automatically.\n");
-        if (googleMapState.autoDetectLocation == null) {
-          await onAutoDetectLocation();
-        } else {
-          state = state.copyWith(isContinueButtonLoading: false);
-          state = state.copyWith(
-            serviceBookingModel: ServiceBookingModel(
-              serviceType: 'car_wash',
-              serviceTiming: 'instant',
-              scheduleDate:
-                  pickedDate != null
-                      ? DateFormat('dd-MM-yyyy').format(pickedDate)
-                      : DateFormat('dd-MM-yyyy').format(DateTime.now()),
-              scheduleTime:
-                  picked != null
-                      ? DateFormat('hh:mm a').format(picked as DateTime)
-                      : DateFormat('hh:mm a').format(DateTime.now()),
-              location: googleMapState.autoDetectLocation,
-            ),
-          );
-          debugPrint("\nLocation is already detected\n");
-          context.pushReplacement(
-            RouteName.confirmBookingScreen,
-            extra: state.serviceBookingModel,
-          );
-        }
+      if (pickedDate != null && timeOfDay != null) {
+        state = state.copyWith(pickedDate: pickedDate, pickedTime: timeOfDay);
+        return true;
       } else {
-        debugPrint("\nDetecting Location manually.\n");
-        state = state.copyWith(isContinueButtonLoading: false);
-        if (googleMapState.userAddress == null) {
-          /// Navigate to the google map screen
-          context.push(RouteName.googleMapScreen);
-        } else {
-          state = state.copyWith(
-            serviceBookingModel: ServiceBookingModel(
-              serviceType: 'car_wash',
-              serviceTiming: 'instant',
-              scheduleTime: null,
-              scheduleDate: null,
-              location: googleMapState.userAddress,
-            ),
-          );
-          debugPrint("\nLocation is already selected\n");
-          context.pushReplacement(
-            RouteName.confirmBookingScreen,
-            extra: state.serviceBookingModel,
-          );
-        }
+        return false;
       }
     }
-
-    /// Checking and assuring if the service time is selected to schedule service
-    /// the picked date and time is not  null
-
-    // state = state.copyWith(isContinueButtonLoading:  false);
   }
 
   /// payment method
@@ -190,23 +114,28 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
         "\nPayment Method is called. Payment processing is starting...\n",
       );
       state = state.copyWith(isPaymentProcessing: true);
-      final String? paymentMethodId =
-          await StripeServices.instance.createPaymentMethod();
+
+      final String? paymentMethodId = await StripeServices.instance
+          .createPaymentMethod(email: userModel.email);
+
       if (paymentMethodId != null) {
-        debugPrint("\nPayment completed. Payment id : $paymentMethodId\n");
+        final body = {
+          "email": userModel.email,
+          "userId": userModel.id,
+          "paymentMethodId": paymentMethodId.toString(),
+          "amount": 20,
+          "currency": "usd",
+        };
+        debugPrint("\nbody : $body\n");
+        final header = {
+          'Authorization': 'Bearer $userToken',
+          'Content-Type': 'application/json',
+        };
+
         final response = await ApiServices.instance.postData(
           endPoint: ApiEndPoints.extraPayment,
-          body: {
-            "email": "tanvirbdcallingnode@gmail.com",
-            "userId": "cmbbzywb5000ojhy052i14fzm",
-            "paymentMethodId": paymentMethodId.toString(),
-            "amount": '20',
-            "currency": "usd",
-          },
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiY21iYnp5d2I1MDAwb2poeTA1MmkxNGZ6bSIsImlhdCI6MTc0ODY4MTc3NSwiZXhwIjoxNzQ4NzY4MTc1fQ.2lI5kyS5MJFynWHWNKMsjj6cW3Yb-6v3p5YgOKkOifk',
-          },
+          body: body,
+          headers: header,
         );
         state = state.copyWith(
           isPaymentProcessing: false,
@@ -231,9 +160,63 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
     }
   }
 
+  /// detect location
+  Future<bool?> onDetectLocation(BuildContext context) async {
+    state = state.copyWith(isContinueButtonLoading: true);
+
+    debugPrint("\nDetecting Location automatically.\n");
+    final String? serviceLocation =
+        await LocationService.instance.getCurrentAddress();
+    if (serviceLocation != null) {
+      state = state.copyWith(
+        isContinueButtonLoading: false,
+        serviceAutoDetectedLocation: serviceLocation,
+      );
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /// detect location manually
+  Future<void> onSelectManuallyLocation(String serviceLocation) async {
+    state = state.copyWith(serviceManuallyDetectedLocation: serviceLocation);
+  }
+
+  /// create service booking model
+  ServiceBookingModel createServiceBookingModel() {
+    final now = DateTime.now();
+    final serviceBookingModel = ServiceBookingModel(
+      scheduleDate: DateFormat('yyyy-MM-dd').format(state.pickedDate ?? now),
+      scheduleTime:
+          state.pickedTime != null
+              ? DateFormat('HH:MM').format(
+                DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  state.pickedTime!.hour,
+                  state.pickedTime!.minute,
+                ),
+              )
+              : DateFormat('hh:mm a').format(DateTime.now()),
+      location:
+          state.locationDetectType == LocationDetectType.auto
+              ? state.serviceAutoDetectedLocation
+              : state.serviceManuallyDetectedLocation,
+      serviceTiming:
+          state.selectedServiceTimeType == ServiceTime.instantService
+              ? 'instant'
+              : 'scheduled',
+      serviceType: handleServiceType(state.selectedServiceType),
+    );
+    state = state.copyWith(serviceBookingModel: serviceBookingModel);
+    return serviceBookingModel;
+  }
+
   /// clear booking data
-  void clearBookingData() {
-    state = state.copyWith(
+  void clearServiceBookingState() {
+    state = ServiceBookingState(
       pickedDate: null,
       pickedTime: null,
       selectedServiceTimeType: ServiceTime.instantService,
@@ -242,6 +225,59 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
       isContinueButtonLoading: false,
       isPaymentProcessing: false,
       paymentId: null,
+      serviceBookingModel: null,
+      serviceAutoDetectedLocation: null,
+      serviceManuallyDetectedLocation: null,
     );
+  }
+
+  /// Call this API to confirm the order
+  Future<bool> confirmOrder() async {
+    try {
+      state = state.copyWith(isContinueButtonLoading: true);
+      final body = state.serviceBookingModel!.toJson();
+      final headers = {
+        "Authorization": "bearer $userToken",
+        'Content-Type': 'application/json',
+      };
+      final response = await ApiServices.instance.postData(
+        endPoint:
+            state.selectedServiceTimeType == ServiceTime.instantService
+                ? ApiEndPoints.instantServiceBook
+                : ApiEndPoints.scheduledServiceBook,
+        body: body,
+        headers: headers,
+      );
+      if (response['success'] == true || response['success'] == 'true') {
+        clearServiceBookingState();
+        Fluttertoast.showToast(
+          msg: "Order Confirmed",
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+        );
+        return true;
+      } else {
+        Fluttertoast.showToast(
+          msg: "Order Confirmation Failed",
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+        return false;
+      }
+    } catch (error) {
+      throw Exception('Error while confirming order : $error');
+    } finally {
+      state = state.copyWith(isContinueButtonLoading: false);
+    }
+  }
+
+  String handleServiceType(ServiceType serviceType) {
+    if (serviceType == ServiceType.carWash) {
+      return 'car-wash';
+    } else if (serviceType == ServiceType.wheelFixing) {
+      return 'wheel-fixing';
+    } else {
+      return 'store';
+    }
   }
 }

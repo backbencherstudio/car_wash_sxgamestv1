@@ -244,13 +244,15 @@ class Utils {
     Color? color,
     required BuildContext context,
     Size? size,
+    VoidCallback? onTap,
   })
   {
     return SafeArea(
       child: GestureDetector(
-        onTap: () {
-          context.pop();
-        },
+        onTap: () =>
+           onTap != null ? onTap() : context.pop()
+
+        ,
         child: Container(
           width: 44.w,
           height: 44.h,
