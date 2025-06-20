@@ -92,7 +92,7 @@ class ServiceLocationSelectionScreen extends StatelessWidget {
                               if(serviceBookingState.locationDetectType == LocationDetectType.auto){
                                 if(serviceBookingState.serviceAutoDetectedLocation != null){
                                   final serviceBookingModel =  serviceBookingNotifier.createServiceBookingModel();
-                                  context.push(RouteName.confirmBookingScreen,extra: serviceBookingModel);
+                                  context.pushReplacement(RouteName.confirmBookingScreen,extra: serviceBookingModel);
                                 }
                                 else{
                                   final isSuccess = await serviceBookingNotifier
@@ -106,7 +106,7 @@ class ServiceLocationSelectionScreen extends StatelessWidget {
                               else{
                                 if(serviceBookingState.serviceManuallyDetectedLocation != null){
                                   final serviceBookingModel =  serviceBookingNotifier.createServiceBookingModel();
-                                  context.push(RouteName.confirmBookingScreen,extra: serviceBookingModel);
+                                  context.pushReplacement(RouteName.confirmBookingScreen,extra: serviceBookingModel);
 
                                 }
                                 else{
