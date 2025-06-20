@@ -20,7 +20,8 @@ class RouteName {
 
   ///static const String serviceDetailsScreen = '/serviceDetailsScreen';
   static const String googleMapScreen = '/googleMapScreen';
-  static const String serviceBookingScreen = '/serviceBookingScreen';
+  static const String serviceTimeSelectionScreen = '/serviceTimeSelectionScreen';
+  static const String serviceLocationSelectionScreen = '/serviceLocationSelectionScreen';
   static const String profileScreen = '/profileScreen';
   static const String blogListScreen = '/blogListScreen';
 
