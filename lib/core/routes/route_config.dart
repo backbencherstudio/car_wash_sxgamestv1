@@ -15,6 +15,7 @@ import 'package:car_wash/src/feature/profile_screen/view/profile_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/model/service_booking_model.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/confirm_booking_screen.dart';
 import 'package:car_wash/src/feature/service_booking_screens/view/service_booking_screen.dart';
+import 'package:car_wash/src/feature/service_booking_screens/view/service_time_selection_screen/service_location_selection_screen.dart';
 import 'package:car_wash/src/feature/splash_screen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -189,15 +190,26 @@ class RouteConfig {
         },
       ),
       GoRoute(
-        name: RouteName.serviceBookingScreen,
-        path: RouteName.serviceBookingScreen,
+        name: RouteName.serviceTimeSelectionScreen,
+        path: RouteName.serviceTimeSelectionScreen,
         pageBuilder: (context, state) {
           return buildPageWithTransition(
             context: context,
             state: state,
             child: ServiceBookingScreen(),
           );
-          //MaterialPage(child: ServiceBookingScreen());
+        },
+      ),
+      GoRoute(
+        name: RouteName.serviceLocationSelectionScreen,
+        path: RouteName.serviceLocationSelectionScreen,
+        pageBuilder: (context, state) {
+          return buildPageWithTransition(
+            context: context,
+            state: state,
+            child: ServiceLocationSelectionScreen(),
+          );
+
         },
       ),
 

@@ -11,86 +11,46 @@ import '../../riverpod/service_booking_screens_state.dart';
 import 'custom_selection_widget.dart';
 import 'extra_payment_bottom_sheet.dart';
 
-class ServiceBookingBody extends StatelessWidget {
-  final TabController tabController;
-  const ServiceBookingBody({super.key, required this.tabController});
+class ServiceTimeSelectionBody extends StatelessWidget {
+
+  const ServiceTimeSelectionBody({super.key,});
 
   @override
   Widget build(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
-    debugPrint("\nDevice Width : $deviceWidth\n");
     final deviceHeight = MediaQuery.of(context).size.height;
-    debugPrint("\nDevice Height : $deviceHeight\n");
+
     return Container(
       //width: 400.w,
       height: deviceHeight < 700 ? 325.h : 275.h,
       margin: AppPadding.screenHorizontal,
-      child: TabBarView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: tabController,
-        children: [
-          Consumer(
-            builder: (_, ref, _) {
-              final serviceSelectionState = ref.watch(serviceBookingRiverpod);
-              final serviceSelectionNotifier = ref.read(
-                serviceBookingRiverpod.notifier,
-              );
-              return customSelectionWidget(
-                context: context,
-                firstBodyText: "Instant Service",
-                firstLeadingIconPath: AppIcons.instant,
-                headingText: "Select Service Time",
-                isFirstOneActive:
-                    serviceSelectionState.selectedServiceTimeType ==
-                    ServiceTime.instantService,
-                firstOneTap: () async {
-                  serviceSelectionNotifier.onSelectServiceTimeType(
-                    selectedService: ServiceTime.instantService,
-                  );
-                },
-                secondBodyText: "Schedule Service",
-                secondLeadingIconPath: AppIcons.calendar,
-                secondOneTap: () async {
-                  serviceSelectionNotifier.onSelectServiceTimeType(
-                    selectedService: ServiceTime.scheduledService,
-                  );
-                },
+      child: Consumer(
+        builder: (_, ref, _) {
+          final serviceSelectionState = ref.watch(serviceBookingRiverpod);
+          final serviceSelectionNotifier = ref.read(
+            serviceBookingRiverpod.notifier,
+          );
+          return customSelectionWidget(
+            context: context,
+            firstBodyText: "Instant Service",
+            firstLeadingIconPath: AppIcons.instant,
+            headingText: "Select Service Time",
+            isFirstOneActive:
+                serviceSelectionState.selectedServiceTimeType ==
+                ServiceTime.instantService,
+            firstOneTap: () async {
+              serviceSelectionNotifier.onSelectServiceTimeType(
+                selectedService: ServiceTime.instantService,
               );
             },
-          ),
-
-
-          Consumer(
-            builder: (_, ref, _) {
-              final serviceSelectionState = ref.watch(serviceBookingRiverpod);
-              final serviceSelectionNotifier = ref.read(
-                serviceBookingRiverpod.notifier,
-              );
-              final locationState = ref.watch(gMapRiverpod);
-              return customSelectionWidget(
-                context: context,
-                firstBodyText:
-                    locationState.autoDetectLocation ?? "Auto Detect Location",
-                firstLeadingIconPath: AppIcons.car,
-                headingText: "Please Select Your Location",
-                isFirstOneActive:
-                    serviceSelectionState.locationDetectType ==
-                    LocationDetectType.auto,
-                firstOneTap: () {
-                  serviceSelectionNotifier.onSelectLocationDetectType(
-                    locationDetectType: LocationDetectType.auto,
-                  );
-                },
-                secondBodyText: locationState.userAddress ?? "Manual Selection",
-                secondLeadingIconPath: AppIcons.steering,
-                secondOneTap:
-                    () => serviceSelectionNotifier.onSelectLocationDetectType(
-                      locationDetectType: LocationDetectType.manual,
-                    ),
+            secondBodyText: "Schedule Service",
+            secondLeadingIconPath: AppIcons.calendar,
+            secondOneTap: () async {
+              serviceSelectionNotifier.onSelectServiceTimeType(
+                selectedService: ServiceTime.scheduledService,
               );
             },
-          ),
-        ],
+          );
+        },
       ),
     );
   }

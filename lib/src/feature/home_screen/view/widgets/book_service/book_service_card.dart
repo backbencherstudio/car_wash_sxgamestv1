@@ -10,11 +10,17 @@ import 'package:go_router/go_router.dart';
 
 class BookServiceCard extends StatelessWidget {
   final String serviceName;
+  final String serviceTime;
+  final String location;
   final String imagePath;
+  final Function() onTap;
   const BookServiceCard({
     super.key,
     required this.serviceName,
     required this.imagePath,
+    required this.onTap,
+    this.serviceTime = "9.30 AM - 11 PM",
+    this.location = "Ney York City",
   });
 
   @override
@@ -59,7 +65,7 @@ class BookServiceCard extends StatelessWidget {
                       ),
                       SizedBox(width: 4.w),
                       Text(
-                        "Ney York City",
+                        location,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Color(0xff62676C),
                         ),
@@ -80,7 +86,7 @@ class BookServiceCard extends StatelessWidget {
                       ),
                       SizedBox(width: 4.w),
                       Text(
-                        "9.30 AM - 11 PM",
+                        serviceTime,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Color(0xff62676C),
                         ),
@@ -89,8 +95,11 @@ class BookServiceCard extends StatelessWidget {
                   ),
 
                   Utils.primaryButton(
-                    onPressed: () {
-                      context.push(RouteName.serviceBookingScreen);
+                    onPressed: () async {
+                      await onTap();
+                      if (context.mounted) {
+                        context.push(RouteName.serviceTimeSelectionScreen);
+                      }
                     },
                     text: "Book Now",
                   ),

@@ -115,20 +115,37 @@ class ConfirmServiceBookingScreen extends StatelessWidget {
                 builder: (_, ref, _) {
                   final isLoading =
                       ref.watch(serviceBookingRiverpod).isContinueButtonLoading;
-                  return isLoading
-                      ? Utils.loadingButton()
-                      : Utils.primaryButton(
-                        onPressed: () async {
-                          final isSuccessfullyConfirmed =
-                              await ref
+                  return Column(
+                    spacing: 10.h,
+                    children: [
+                      isLoading
+                          ? Utils.loadingButton()
+                          : Utils.primaryButton(
+                            onPressed: () async {
+                              final isSuccessfullyConfirmed =
+                                  await ref
+                                      .read(serviceBookingRiverpod.notifier)
+                                      .confirmOrder();
+                              if (isSuccessfullyConfirmed && context.mounted) {
+                                context.go(RouteName.homeScreen);
+                              }
+                            },
+                            text: "Confirm Booking",
+                          ),
+                      !isLoading
+                          ? Utils.primaryButton(
+                            onPressed: () {
+                              ref
                                   .read(serviceBookingRiverpod.notifier)
-                                  .confirmOrder();
-                          if (isSuccessfullyConfirmed && context.mounted) {
-                            context.go(RouteName.homeScreen);
-                          }
-                        },
-                        text: "Confirm Booking",
-                      );
+                                  .clearServiceBookingState();
+                              context.go(RouteName.homeScreen);
+                            },
+                            text: "Cancel Booking",
+                            backgroundColor: AppColors.error,
+                          )
+                          : SizedBox.shrink(),
+                    ],
+                  );
                 },
               ),
             ),

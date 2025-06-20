@@ -4,7 +4,7 @@ import '../model/service_booking_model.dart';
 
 enum ServiceTime { instantService, scheduledService }
 
-enum ServiceType { carWash, wheelFixing }
+enum ServiceType { carWash, wheelFixing, store }
 
 enum LocationDetectType { auto, manual }
 
@@ -17,8 +17,9 @@ class ServiceBookingState {
   String? paymentId;
   DateTime? pickedDate;
   TimeOfDay? pickedTime;
+  String? serviceAutoDetectedLocation;
+  String? serviceManuallyDetectedLocation;
   ServiceBookingModel? serviceBookingModel;
-
 
   ServiceBookingState({
     this.pickedDate,
@@ -30,6 +31,8 @@ class ServiceBookingState {
     this.isPaymentProcessing = false,
     this.paymentId,
     this.serviceBookingModel,
+    this.serviceAutoDetectedLocation,
+    this.serviceManuallyDetectedLocation,
   });
 
   ServiceBookingState copyWith({
@@ -42,6 +45,8 @@ class ServiceBookingState {
     bool? isPaymentProcessing,
     String? paymentId,
     ServiceBookingModel? serviceBookingModel,
+    String? serviceAutoDetectedLocation,
+    String? serviceManuallyDetectedLocation,
   }) {
     return ServiceBookingState(
       pickedDate: pickedDate ?? this.pickedDate,
@@ -50,10 +55,16 @@ class ServiceBookingState {
           selectedServiceTimeType ?? this.selectedServiceTimeType,
       selectedServiceType: selectedServiceType ?? this.selectedServiceType,
       locationDetectType: locationDetectType ?? this.locationDetectType,
-      isContinueButtonLoading: isContinueButtonLoading ?? this.isContinueButtonLoading,
+      isContinueButtonLoading:
+          isContinueButtonLoading ?? this.isContinueButtonLoading,
       isPaymentProcessing: isPaymentProcessing ?? this.isPaymentProcessing,
       paymentId: paymentId ?? this.paymentId,
       serviceBookingModel: serviceBookingModel ?? this.serviceBookingModel,
+      serviceAutoDetectedLocation:
+          serviceAutoDetectedLocation ?? this.serviceAutoDetectedLocation,
+      serviceManuallyDetectedLocation:
+          serviceManuallyDetectedLocation ??
+          this.serviceManuallyDetectedLocation,
     );
   }
 }
