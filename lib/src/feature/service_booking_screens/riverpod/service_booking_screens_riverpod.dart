@@ -199,7 +199,7 @@ class ServiceBookingRiverpod extends StateNotifier<ServiceBookingState> {
                   state.pickedTime!.minute,
                 ),
               )
-              : DateFormat('hh:mm a').format(DateTime.now()),
+              : DateFormat('HH:MM').format(DateTime.now()),
       location:
           state.locationDetectType == LocationDetectType.auto
               ? state.serviceAutoDetectedLocation

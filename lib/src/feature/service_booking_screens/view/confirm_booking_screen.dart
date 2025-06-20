@@ -127,7 +127,7 @@ class ConfirmServiceBookingScreen extends StatelessWidget {
                                       .read(serviceBookingRiverpod.notifier)
                                       .confirmOrder();
                               if (isSuccessfullyConfirmed && context.mounted) {
-                                context.go(RouteName.homeScreen);
+                                context.pushReplacement(RouteName.orderHistoryScreen);
                               }
                             },
                             text: "Confirm Booking",
