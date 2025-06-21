@@ -1,6 +1,10 @@
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/constant/padding.dart';
+import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
+import 'package:car_wash/src/feature/auth_screens/view/signin_screens/Riverpod/login_provider.dart';
+import 'package:car_wash/src/feature/order_history/feedback%20screen/riverpod/feedback_send_provider.dart';
+import 'package:car_wash/src/feature/order_history/feedback%20screen/riverpod/parameter_model.dart';
 import 'package:car_wash/src/feature/order_history/feedback%20screen/riverpod/star_rating_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
@@ -12,16 +16,19 @@ class FeedbackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController description = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-       leading: Padding(
-         padding: const EdgeInsets.all(8.0),
-         child: Utils.backButton(context: context),
-       ),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Utils.backButton(context: context),
+        ),
       ),
       body: Consumer(
-        builder: (context,ref,_) {
+        builder: (context, ref, _) {
           final value = ref.watch(ratingProvider);
+
+          final id = ref.watch(loginProvider).userModel!.id;
           return Stack(
             children: [
               Positioned.fill(
@@ -30,7 +37,7 @@ class FeedbackScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              
+
               Align(
                 alignment: Alignment.center,
                 child: Column(
@@ -38,24 +45,27 @@ class FeedbackScreen extends StatelessWidget {
                   children: [
                     Text(
                       "Share Your Reviews",
-                      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            color: Color(0xff151C24),
-                            fontWeight: FontWeight.bold,
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineSmall!.copyWith(
+                        color: Color(0xff151C24),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(height: 32.h),
                     Text(
                       "Tap To Rate",
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                            color: Color(0xff444950),
-                          ),
+                        color: Color(0xff444950),
+                      ),
                     ),
                     SizedBox(height: 8.h),
-                    
+
                     RatingStars(
                       value: value,
                       onValueChanged: (v) {
-                        ref.read(ratingProvider.notifier).state = v;
+                        final val = ref.read(ratingProvider.notifier).state = v;
+                        debugPrint("\n\n\n${val.toString()}\n\n\n");
                       },
                       valueLabelVisibility: false,
                       starCount: 5,
@@ -66,16 +76,15 @@ class FeedbackScreen extends StatelessWidget {
                       starColor: Color(0xffFAAD14),
                     ),
                     SizedBox(height: 28.h),
-                    
+
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: AppPadding.screenHorizontal,
                         child: Text(
                           "Tell us more (Optional)",
-                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                color: Color(0xff444950),
-                              ),
+                          style: Theme.of(context).textTheme.bodyLarge!
+                              .copyWith(color: Color(0xff444950)),
                         ),
                       ),
                     ),
@@ -84,6 +93,7 @@ class FeedbackScreen extends StatelessWidget {
                       width: 390.w,
                       height: 101.h,
                       child: TextFormField(
+                        controller: description,
                         maxLines: 3,
                         style: TextStyle(fontSize: 16.sp),
                         decoration: InputDecoration(
@@ -101,7 +111,64 @@ class FeedbackScreen extends StatelessWidget {
                     SizedBox(height: 28.h),
                     Padding(
                       padding: AppPadding.screenHorizontal,
-                      child: Utils.primaryButton(onPressed: () {}, text: "Submit"),
+                      child: Utils.primaryButton(
+                        onPressed: () async {
+                          final rating = ref.read(ratingProvider);
+                          final desc = description.text.trim();
+
+                          if (rating == 0) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "Please give a rating before submitting.",
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+
+                          final feedbackParams = FeedbackParams(
+                            ratings: rating,
+                            description: desc,
+                            id: id,
+                          );
+                          debugPrint("Rating: $value");
+                          debugPrint("Description: ${description.text.trim()}");
+                          debugPrint("Order ID: $id");
+
+                          try {
+                            final response = await ref.read(
+                              feedbackProvider(feedbackParams).future,
+                            );
+                            debugPrint(
+                              "\n\n✔ Feedback Response: $response \n\n",
+                            );
+
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text("Thanks for your feedback!"),
+                                ),
+                              );
+                              Navigator.pop(context);
+                            }
+                          } catch (e) {
+                            debugPrint("Error sending feedback: $e");
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: AppColors.onError,
+                                  content: Text(
+                                    "Something went wrong. Please try again."
+                                    ,style: TextStyle(color: AppColors.secondary),
+                                  ),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                        text: "Submit",
+                      ),
                     ),
                     SizedBox(height: 20.h),
                   ],
@@ -109,7 +176,7 @@ class FeedbackScreen extends StatelessWidget {
               ),
             ],
           );
-        }
+        },
       ),
     );
   }

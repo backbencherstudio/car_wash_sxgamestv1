@@ -1,6 +1,7 @@
 import 'package:car_wash/core/constant/icons.dart';
 import 'package:car_wash/core/constant/images.dart';
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/services/local_storage_services/hive_services.dart';
 import 'package:car_wash/core/theme/theme_extension/app_colors.dart';
 import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/common_widget_style/common_style/auth_style/auth_color_pallete.dart';
@@ -201,6 +202,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 context:context,
                                 email: _emailController.text.trim(),
                                 password: _passwordController.text.trim(),
+                                fcmToken: _passwordController.text.trim(),
                               );
                               if(routeName != null && context.mounted){
                                 context.go(routeName);
