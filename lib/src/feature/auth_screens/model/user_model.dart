@@ -15,6 +15,7 @@ class UserModel {
   final String? gender;
   final String? date_of_birth;
   String? created_at;
+  String? avatar_url;
   List<SubscriptionModel>? subscriptions;
   UserModel({
     required this.id,
@@ -28,6 +29,7 @@ class UserModel {
     this.date_of_birth,
     this.created_at,
     this.subscriptions,
+    this.avatar_url,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

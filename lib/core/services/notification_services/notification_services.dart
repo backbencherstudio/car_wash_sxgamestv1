@@ -46,14 +46,16 @@ class NotificationServices {
 
   //Background message handler
   static Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
-    // final userToken = await checkIsUserLogin();
+      RemoteMessage message) async
+  {
+    debugPrint('Foreground message received: ${message.data}');    // final userToken = await checkIsUserLogin();
+    debugPrint('Foreground message received: ${message.notification}');    // final userToken = await checkIsUserLogin();
     // if (userToken != null) {
     // await fetchNotificationList();
-    //   _showNotification(
-    //     message.data['title'] ?? "New Notification",
-    //     message.data['body'] ?? "",
-    //   );
+      _showNotification(
+        message.data['title'] ?? "New Notification",
+        message.data['body'] ?? "",
+      );
     // } else {
     //   debugPrint("\nUser is not loged in\n");
     //   _showNotification("New Notification", "Please log in"
@@ -90,11 +92,12 @@ class NotificationServices {
 
   //Foreground message handler
   Future<void> _onMessageHandler(RemoteMessage message) async {
-    debugPrint('Foreground message received: ${message.data}');
+    debugPrint('Foreground message data received: ${message.data}');
+    debugPrint('Foreground message notification received: ${message.notification}');
     _notificationId =
         int.parse(message.data['id'] ?? "0"); // Use ID from notification data
     debugPrint("\nID : ${_notificationId}\n");
-
+    debugPrint("\nnotification title : ${ message.data["title"] }\nnotification body : ${ message.data["body"]}\n");
     // final userToken = await checkIsUserLogin();
     //  if (userToken != null) {
     ///await fetchNotificationList();
@@ -102,6 +105,7 @@ class NotificationServices {
       message.data["title"] ?? "New Notification",
       message.data["body"] ?? "",
     );
+
     // } else {
     //   _showNotification("New Notification", "Please log in"
     //       // "Nouvelle notification",

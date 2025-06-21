@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomDialogue extends StatelessWidget {
   const CustomDialogue({super.key});
@@ -27,8 +28,8 @@ class CustomDialogue extends StatelessWidget {
           ),
           child: Consumer(
             builder: (context, ref, _) {
-              final imagePicker = ref.read(profileImagePickerProvider.notifier);
-              final imageState = ref.watch(profileImagePickerProvider);
+              final imagePicker = ref.read(profileEditProvider.notifier);
+              final imageState = ref.watch(profileEditProvider);
               return Column(
                 children: [
                   Text(
@@ -39,7 +40,10 @@ class CustomDialogue extends StatelessWidget {
                   GestureDetector(
                     onTap: () async {
                       await imagePicker.pickFromGallery();
-                      Navigator.pop(context);
+                      if(context.mounted){
+                        context.pop();
+                      }
+
                     },
                     child: Padding(
                       padding: EdgeInsets.all(8.0),

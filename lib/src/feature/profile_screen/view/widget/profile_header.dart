@@ -1,4 +1,5 @@
 import 'package:car_wash/core/utils/common_widget.dart';
+import 'package:car_wash/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,17 +10,17 @@ import 'package:car_wash/src/feature/profile_screen/Riverpod/profile_provider.da
 import 'package:car_wash/src/feature/profile_screen/view/widget/custom_dialogue.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  final String profilePicture;
+  const ProfileHeader({super.key, required this.profilePicture});
 
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
         // Watch the profile image from the provider
-        final profilepic = ref.watch(profileImagePickerProvider);
+        final profileState = ref.watch(profileEditProvider);
         final profileImage =
-            profilepic.profileImage ??
-            AppImages.shakin; // Default image if profile image is null
+            profileState.profileImage;
 
         return Column(
           children: [
@@ -38,32 +39,22 @@ class ProfileHeader extends StatelessWidget {
                             MaterialPageRoute(
                               builder:
                                   (context) => FullScreenImage(
-                                    imageUrl:
-                                        profileImage is String
-                                            ? profileImage // For assets
-                                            : profileImage.toString() ??
-                                                AppImages
-                                                    .shakin, // For File, use its path
-                                    isNetworkImage:
-                                        false, // Assuming local image
+                                    imageUrl: profileImage != null ? profileImage.path : profilePicture,
+                                    isNetworkImage: profileImage != null ?
+                                        false : true, // Assuming local image
                                   ),
                             ),
                           );
                         },
                         child:
-                            profileImage is File
+                            profileImage !=  null
                                 ? Image.file(
                                   profileImage,
                                   fit: BoxFit.cover,
                                   height: 118.h,
                                   width: 118.w,
                                 )
-                                : Image.asset(
-                                  profileImage.toString(),
-                                  fit: BoxFit.cover,
-                                  height: 118.h,
-                                  width: 118.w,
-                                ),
+                                : Utils.networkImage(imageUrl: profilePicture,width: 118.w,height: 118.w)
                       ),
                     ),
                   ),

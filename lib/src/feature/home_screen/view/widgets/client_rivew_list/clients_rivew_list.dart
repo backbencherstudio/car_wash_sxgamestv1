@@ -70,11 +70,10 @@ class ClientsReviewList extends StatelessWidget {
                                               spacing: 8.w,
                                               children: [
                                                 ClipOval(
-                                                  child: Image.asset(
-                                                    AppImages.client,
+                                                  child: Utils.networkImage(
+                                                    imageUrl: review.user.avatar ?? "",
                                                     width: 60.w,
                                                     height: 60.w,
-                                                    fit: BoxFit.cover,
                                                   ),
                                                 ),
                                                 Text(
