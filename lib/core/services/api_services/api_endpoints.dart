@@ -1,6 +1,8 @@
 class ApiEndPoints {
+
   static const String baseUrl = 'https://car-wash-backend.signalsmind.com';
  // static const String baseUrl = 'http://10.0.2.2:4000';
+  // static const String baseUrl = 'https://car-wash-backend.signalsmind.com';
   static const String bookInstant = 'api/service-booking/instant';
   static const String bookScheduled = 'api/service-booking/scheduled';
   static const String blogList = 'api/blog';

@@ -22,12 +22,13 @@ class LoginNotifier extends StateNotifier<LoginStateModel> {
     required BuildContext context,
     required String email,
     required String password,
+    required String fcmToken,
   }) async
   {
     state = state.copyWith(isLoading: true);
 
     try {
-      final payload = {"email": email, "password": password};
+      final payload = {"email": email, "password": password, fcmToken:fcmToken};
 
       final response = await ApiServices.instance.postData(
         endPoint: ApiEndPoints.login,
