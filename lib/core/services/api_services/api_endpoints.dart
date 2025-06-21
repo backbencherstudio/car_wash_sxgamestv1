@@ -1,6 +1,8 @@
 class ApiEndPoints {
+
+  static const String baseUrl = 'https://car-wash-backend.signalsmind.com';
+ // static const String baseUrl = 'http://10.0.2.2:4000';
   // static const String baseUrl = 'https://car-wash-backend.signalsmind.com';
-  static const String baseUrl = 'http://localhost:4000';
   static const String bookInstant = 'api/service-booking/instant';
   static const String bookScheduled = 'api/service-booking/scheduled';
   static const String blogList = 'api/blog';
@@ -20,4 +22,5 @@ class ApiEndPoints {
   static const String clientReview = 'api/order-history/reviews';
   static const String instantServiceBook = 'api/service-booking/instant';
   static const String scheduledServiceBook = 'api/service-booking/scheduled';
+  static const String editProfile = 'api/user-dashboard/profile/update';
 }

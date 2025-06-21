@@ -1,4 +1,5 @@
 import 'package:car_wash/core/routes/route_name.dart';
+import 'package:car_wash/core/services/api_services/api_endpoints.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,7 @@ class HomeHeader extends StatelessWidget {
           return Utils.customAppBar(
             context: context,
             title: !isOnlyTrailing ? homeNotifier.userModel.name : null,
-            leadingImageAddress: !isOnlyTrailing ? homeNotifier.userModel.avatar : null,
+            leadingImageAddress: !isOnlyTrailing ? "${homeNotifier.userModel.avatar_url}" : null,
             subtitle: !isOnlyTrailing ? homeNotifier.userModel.address ?? "Address" : null,
             subtitlePreIconAsset: !isOnlyTrailing ? AppIcons.locationIcon : null,
             trailing: [

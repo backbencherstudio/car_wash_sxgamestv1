@@ -20,8 +20,7 @@ class Utils {
     Border? appBarBgColor,
     required BuildContext context,
     bool? isBackButton,
-  })
-  {
+  }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return SafeArea(
@@ -51,13 +50,13 @@ class Utils {
                   width: 44.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(13.2),
-                    image: DecorationImage(
-                      image: AssetImage(leadingImageAddress),
-                      fit: BoxFit.cover,
-                    ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(13.2),
+                    child: Utils.networkImage(imageUrl: leadingImageAddress,width: 44.w,height: 44.h),
                   ),
                 )
-                : SizedBox(),
+                : SizedBox.shrink(),
 
             SizedBox(width: 12.w),
 
@@ -129,8 +128,7 @@ class Utils {
     double? height,
     double? width,
     BorderRadius? borderRadius,
-  })
-  {
+  }) {
     return SizedBox(
       height: height,
       width: width ?? double.infinity,
@@ -160,8 +158,7 @@ class Utils {
     BorderRadius? borderRadius,
     required BuildContext context,
     Color? iconColor,
-  })
-  {
+  }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Column(
@@ -224,8 +221,7 @@ class Utils {
     Color? backgroundColor,
     BorderRadius? borderRadius,
     Color? shadowColor,
-  })
-  {
+  }) {
     return BoxDecoration(
       color: backgroundColor ?? Colors.white,
       borderRadius: borderRadius ?? BorderRadius.circular(12.r),
@@ -245,14 +241,10 @@ class Utils {
     required BuildContext context,
     Size? size,
     VoidCallback? onTap,
-  })
-  {
+  }) {
     return SafeArea(
       child: GestureDetector(
-        onTap: () =>
-           onTap != null ? onTap() : context.pop()
-
-        ,
+        onTap: () => onTap != null ? onTap() : context.pop(),
         child: Container(
           width: 44.w,
           height: 44.h,
@@ -322,16 +314,19 @@ class Utils {
 
   static void alertOfflineActivity() {
     Fluttertoast.showToast(
-        msg: "Please connect to internet",
+      msg: "Please connect to internet",
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.red,
-      textColor: Colors.white
+      textColor: Colors.white,
     );
   }
 
-
-  static Widget loadingButton({double? height, EdgeInsets? padding, double? loadingAnimationWidgetSize}){
+  static Widget loadingButton({
+    double? height,
+    EdgeInsets? padding,
+    double? loadingAnimationWidgetSize,
+  }) {
     return Container(
       height: height ?? 48.h,
       width: double.infinity,
@@ -349,43 +344,42 @@ class Utils {
     );
   }
 
-
-  static String dateFormat({required DateTime date, String? format}){
-    return DateFormat( format ?? 'MMM dd, yyyy').format(date);
+  static String dateFormat({required DateTime date, String? format}) {
+    return DateFormat(format ?? 'MMM dd, yyyy').format(date);
   }
 
-  static Widget networkImage({required String imageUrl, double? width, double? height}){
-    return  Image.network(
+  static Widget networkImage({
+    required String imageUrl,
+    double? width,
+    double? height,
+  }) {
+    return Image.network(
       // 'https://car-wash-backend.signalsmind.com/public/storage/avatar/e8f6578776d1f9352ae5d1baab11faccimage2.webp',
       imageUrl,
       width: width,
       height: height,
       fit: BoxFit.cover,
-      loadingBuilder: (context, child,
-          loadingProgress) {
-        if (loadingProgress == null)
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) {
           return child; // Image is fully loaded
+        }
         return Center(
           child: CircularProgressIndicator(
-            value: loadingProgress
-                .expectedTotalBytes !=
-                null
-                ? loadingProgress
-                .cumulativeBytesLoaded /
-                (loadingProgress
-                    .expectedTotalBytes ??
-                    1)
-                : null,
+            value:
+                loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        (loadingProgress.expectedTotalBytes ?? 1)
+                    : null,
           ),
         );
       },
-      errorBuilder:
-          (context, error, stackTrace) {
-        return Icon(Icons
-            .image_not_supported,size: 35.sp,); // Show an error icon if the image fails to load
+      errorBuilder: (context, error, stackTrace) {
+        return SizedBox(
+          width: width,
+          height: height,
+          child: Icon(Icons.image_not_supported, size: 35.sp),
+        ); // Show an error icon if the image fails to load
       },
-
     );
   }
-
 }

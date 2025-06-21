@@ -34,7 +34,7 @@ class BookService extends ConsumerWidget {
           location: "New York City",
           imagePath: AppImages.carWash,
           onTap: () async {
-            serviceBookingState.clearServiceBookingState();
+            //serviceBookingState.clearServiceBookingState();
             serviceBookingState.onSelectServiceType(
               selectedServiceType: ServiceType.carWash,
             );
