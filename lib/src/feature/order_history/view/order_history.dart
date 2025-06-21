@@ -2,6 +2,7 @@ import 'package:car_wash/core/utils/utils.dart';
 import 'package:car_wash/src/feature/order_history/Riverpod/order_notifier.dart';
 import 'package:car_wash/src/feature/order_history/view/widgets/customContainer.dart';
 import 'package:car_wash/src/feature/order_history/view/widgets/shimmer/order_Shimmer.dart';
+import 'package:car_wash/src/feature/service_booking_screens/view/widgets/shimmer/order_summary_shimmer_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,6 +65,7 @@ class OrderHistoryScreen extends StatelessWidget {
                           }
 
                           return ListView.builder(
+                            padding: EdgeInsets.zero,
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: orderList.length,
@@ -91,9 +93,12 @@ class OrderHistoryScreen extends StatelessWidget {
                           );
                         },
                         loading:
-                            () => OrderShimmer(
-                              isHorizontal: false,
-                              height: 449.h,
+                            () => Column(
+                              children: [
+                               OrderSummaryShimmerCard(),
+                               OrderSummaryShimmerCard(),
+                               OrderSummaryShimmerCard()
+                              ],
                             ),
                         error:
                             (error, _) => Center(

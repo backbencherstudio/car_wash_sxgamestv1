@@ -25,16 +25,19 @@ class CustomRowTile extends StatelessWidget {
         Spacer(),
 
         Flexible(
-          child: Text(
-          
-            leadingText,
-            textAlign: TextAlign.left,
-            softWrap: true,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              color: Color(0xff62676C),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+            
+              leadingText,
+              textAlign: TextAlign.right,
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
+                color: Color(0xff62676C),
+              ),
             ),
           ),
         ),
