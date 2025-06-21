@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -13,6 +14,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        // Enable desugaring (required for Java 8+ features)
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -45,4 +48,7 @@ flutter {
 
 dependencies {
     implementation("com.stripe:stripe-android:20.8.0")  // Correct version of Stripe Android SDK
+    implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
+    // Required for enabling desugaring support
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
