@@ -1,5 +1,6 @@
 import 'package:car_wash/core/services/local_storage_services/hive_services.dart';
 import 'package:car_wash/core/services/payment_services/stripe_services.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -9,12 +10,23 @@ import 'package:car_wash/core/theme/theme.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart' as gps;
 import 'core/routes/route_config.dart';
+import 'core/services/notification_services/notification_services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await StripeServices.instance.initialize();
   await HiveSecureStorageService.init();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyBb1XUyCBNBwRg9w7hfFIk53oSZtVVU9y4",
+        appId: "1:733806256154:android:89dceacf9b8bad9939f1a3",
+        messagingSenderId: "733806256154",
+        projectId: "car-flix"
+    ), // Firebase options for the current platform
+  );
+
+  await NotificationServices().initialize();
 
   ///set device orientation to portraitUp during app running for better user experience of the UI
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
